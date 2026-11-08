@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 3.5,
+    "repeat_penalty": 1.5,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n[{\"number\": [f\"{i}\\n\" for i in range(89)]}]\n\nI will provide each number on a separate line as requested:\r\f"
+        }
+      }
+    ],
+    "created": 1794126582,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 77,
+      "prompt_tokens": 24,
+      "total_tokens": 101,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-7peSopQU92RtNBsQPEF0CC6xUhzpE3Ga",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 46.409,
+      "prompt_per_token_ms": 9.2818,
+      "prompt_per_second": 107.7377232864315,
+      "predicted_n": 77,
+      "predicted_ms": 1226.903,
+      "predicted_per_token_ms": 15.933805194805196,
+      "predicted_per_second": 62.75964766570789
+    }
+  },
+  "latency_s": 1.28,
+  "detector_codes": []
+}

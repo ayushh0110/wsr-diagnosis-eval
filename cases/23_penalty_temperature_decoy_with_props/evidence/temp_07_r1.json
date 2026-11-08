@@ -1,0 +1,58 @@
+{
+  "arm": "temp_07",
+  "run": 1,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 0.7,
+    "repeat_penalty": 1.5,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Here are all of them:\n\n```text\n    Line_number =  (This is a placeholder for where you would list each number on its own separate physical or digital row)"
+        }
+      }
+    ],
+    "created": 1794126586,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 24,
+      "total_tokens": 62,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-wbROK8H5nAUCmQOuYV6XRlEVvZz4LDV4",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 46.201,
+      "prompt_per_token_ms": 9.2402,
+      "prompt_per_second": 108.22276574100128,
+      "predicted_n": 38,
+      "predicted_ms": 597.385,
+      "predicted_per_token_ms": 15.720657894736842,
+      "predicted_per_second": 63.61056939829424
+    }
+  },
+  "latency_s": 0.67,
+  "detector_codes": []
+}

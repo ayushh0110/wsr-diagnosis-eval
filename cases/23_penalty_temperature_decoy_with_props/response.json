@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Here are all of these:\n\n```python[5] == True # Placeholder for logic if needed! No actual code execution here but it shows what is expected above.]\r                                  # Oh wait sorry about that ! Just providing the list you asked in words as a text string though not runnable python. 😅"
+      }
+    }
+  ],
+  "created": 1794126580,
+  "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+  "system_fingerprint": "b10244-67d5978bb",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 64,
+    "prompt_tokens": 24,
+    "total_tokens": 88,
+    "prompt_tokens_details": {
+      "cached_tokens": 19
+    }
+  },
+  "id": "chatcmpl-fWwATZgfHzP0TktfdTfV0kHLiuJ4IqGB",
+  "timings": {
+    "cache_n": 19,
+    "prompt_n": 5,
+    "prompt_ms": 214.947,
+    "prompt_per_token_ms": 42.9894,
+    "prompt_per_second": 23.261548195601705,
+    "predicted_n": 64,
+    "predicted_ms": 1036.024,
+    "predicted_per_token_ms": 16.187875,
+    "predicted_per_second": 61.774630703535834
+  }
+}

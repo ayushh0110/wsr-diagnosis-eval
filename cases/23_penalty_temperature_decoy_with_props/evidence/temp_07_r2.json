@@ -1,0 +1,60 @@
+{
+  "arm": "temp_07",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 0.7,
+    "repeat_penalty": 1.5,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```text\nOne"
+        }
+      }
+    ],
+    "created": 1794126586,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 5,
+      "prompt_tokens": 24,
+      "total_tokens": 29,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-AD32BBzqcPeFtySZbZ4sX3fZxhDK04cq",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 46.474,
+      "prompt_per_token_ms": 9.294799999999999,
+      "prompt_per_second": 107.58703791367218,
+      "predicted_n": 5,
+      "predicted_ms": 70.127,
+      "predicted_per_token_ms": 14.0254,
+      "predicted_per_second": 71.29921428265861
+    }
+  },
+  "latency_s": 0.12,
+  "detector_codes": [
+    "TOO_SHORT"
+  ]
+}

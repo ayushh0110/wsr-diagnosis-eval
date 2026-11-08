@@ -1,0 +1,45 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "REPEAT_PENALTY_HIGH",
+  "acceptable_causes": [
+    "REPEAT_PENALTY_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "repeat|repetition",
+      "value": {
+        "max": 1.15
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "repeat|repetition"
+    }
+  ],
+  "golden_fix": {
+    "action": "remove_param",
+    "target": "repeat_penalty",
+    "value": null
+  },
+  "distractors": {
+    "TEMPERATURE_HIGH": "with repeat_penalty 1.5 kept, temperature 0.7 still breaks the list 4/4; with temperature 3.5 kept and only the penalty removed the list is correct 4/4. llama-server applies temperature last, after top_k 64 / top_p 0.95 / min_p 0.05 have already cut the candidates, so 3.5 only reshuffles a few plausible tokens",
+    "LOW_BIT_QUANT_DAMAGE": "same Q4_0 file gives the correct list without the penalty"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm: temperature 3.5 + repeat_penalty 1.5: no correct 1-30 list 4/4 (JSON / Python placeholders, 'and so on'). Variant temp_07 (only temperature 3.5 -> 0.7): still broken 4/4. Variant penalty_off (only repeat_penalty removed, temperature still 3.5): correct list 4/4. Exploration before the capture (not saved as evidence): temperature 3.5 alone 6/6 correct; repeat_penalty 1.5 at temperature 0 / 0.7 / 3.5: 0/6 correct each. Paired with case 05 (same request shape, penalty only, no decoy).",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/temp_07_r1.json",
+      "evidence/penalty_off_r1.json",
+      "evidence/list_check.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

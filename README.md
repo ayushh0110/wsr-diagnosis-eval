@@ -1,19 +1,19 @@
 # wsr-diagnosis-eval
 
-Before a frontier model is allowed to edit another model's weights, can it tell whether the weights are the problem?
+Can a frontier model work out why a locally run model is failing, and tell when the weights are not the problem?
 
 ## 1. Short description
 
-Frontier models have started editing other models' weights directly. In "weight-space programming" (MIT CSAIL,
-November 2026), GPT-6 Astra read Qwen3.5-0.8B's raw weights, traced its thinking loops to one direction in two
-layers and subtracted it, with no training: MATH-500 went from 7.9% to 48.1% (reproduced independently at 51.0%).
-The authors say a benchmark for this is still being built.
+When a model I run locally (llama.cpp's `llama-server`, or plain `transformers`) starts looping, writing gibberish,
+returning blank replies or refusing, the fix is almost never "fine-tune it". It is usually a request field, a
+sampling setting, a server flag or a template. Finding which one means ruling causes out in order and only blaming
+the weights when nothing else is left. This eval measures whether frontier models can do that: given what a user
+would share, find the layer that's really at fault and a fix that works.
 
-That fix was for loops. Loops, gibberish, blank replies and refusals are exactly the symptoms I see every day from
-models I run locally (llama.cpp's `llama-server`, plain `transformers`), and most of the time the weights aren't the
-cause: it's a request field, a sampling setting, a server flag or a template. An agent that can edit weights has to
-get that call right first, or it will "fix" a model that isn't broken while the real cause stays in the config. This
-eval measures that diagnosis step: given what a user would share, find the layer that's really at fault and the fix.
+It matters more now that models have started editing other models' weights directly. In "weight-space
+programming" (MIT CSAIL, November 2026), GPT-6 Astra traced Qwen3.5-0.8B's thinking loops to its weights and edited
+them away with no training. That fix was for loops, a symptom that often comes from settings instead. An agent with
+that power has to make the diagnosis in this eval first, or it will "fix" a model that isn't broken.
 
 It has 24 cases built from 22 failures that I captured from real local runs (Gemma 4 E2B on llama-server,
 Qwen2.5-0.5B on transformers). Every answer key comes from an experiment: I changed one setting, the failure went
@@ -95,8 +95,8 @@ a reverse case where the loud setting really is guilty, the same decoy idea on t
 hardest cases again with the server's sampler order pasted in (23, 24). Separately, I reran the decoy cases with one
 extra sentence in the system prompt to see what it takes to close the gap (an ablation; the scores above don't use it).
 
-Who should care: anyone building agents that edit or repair models, anyone running open models, and anyone building
-assistants that answer "why is my model doing X". The wrong layer is expensive. Blame the weights for a sampling bug and people fine-tune or switch models for
+Who should care: anyone running open models, anyone building assistants that answer "why is my model doing X", and
+anyone building agents that repair or edit models. The wrong layer is expensive. Blame the weights for a sampling bug and people fine-tune or switch models for
 nothing. Here the wrong answers say "lower the temperature to 0.7", which leaves the bug exactly where it was (0/4
 correct at 0.7 in cases 11 and 15) and takes away the setting the user wanted.
 
