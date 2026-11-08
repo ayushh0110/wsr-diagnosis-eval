@@ -273,16 +273,10 @@ user's own config.
 
 ## How I used AI tools, and how I checked the work
 
-I built this with an AI coding assistant (Claude Code). It wrote most of the harness (`eval/`), the capture scripts
-(`capture/`) and the tests, drafted the case files and the first version of this README, ran the scratch probes that
-chose settings for the later rounds, and ran the captures and model runs on my machine. The domain, the failure
-taxonomy (from wsr), the rule that every key must come from a captured one-setting flip, and the decisions at each
-step (the pilot was too easy, so add decoys; add twins and a reverse case; add the transformers version) were mine.
+I used **Antigravity (AI coding assistant)** during development, primarily to support testing, evaluation, and documentation. AI assistance was also used to generate parts of the evaluation harness (`eval/`), capture scripts (`capture/`), and test suite, as well as draft the case files and initial README. It also helped run experiments, captures, and model evaluations locally.
+The core research direction and technical decisions were mine: defining the domain, developing the failure taxonomy from WSR, requiring every key to come from a captured one-setting flip, and deciding how to evolve the evaluation through the pilot, decoys, twin cases, reverse case, and Transformers implementation.
 
-Checking: I went through each answer key against its evidence (every arm's replies, plus the list and code checks
-for 11 and 15-24). Every failed model reply and a sample of passes were read against the evidence
-(`results/2026-11-08/grader_audit.md`). The grader is tested on the reference answers, alternative phrasings, every
-listed distractor and near misses (`tests/`).
+Checking: I went through each answer key against its evidence (every arm's replies, plus the list and code checks for 11 and 15-24). Every failed model reply and a sample of passes were read against the evidence (results/2026-11-08/grader_audit.md). The grader is tested on the reference answers, alternative phrasings, every listed distractor and near misses (tests/).
 
 ## 8. Prior work and sources
 
