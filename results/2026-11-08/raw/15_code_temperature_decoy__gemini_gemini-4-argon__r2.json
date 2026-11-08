@@ -1,0 +1,52 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:19:33.469278+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test resetting temperature (to 1.0) and repeat_penalty (to 1.0) individually to isolate which sampling parameter causes the broken code generation.\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets two extreme sampling parameters simultaneously: `temperature: 3.5` and `repeat_penalty: 1.4`. The resulting output exhibits both incoherent rambling and avoidance of repeated structural tokens (such as the inner loop and variable names needed for a 2D table). Because both `TEMPERATURE_HIGH` and `REPEAT_PENALTY_HIGH` are present and can independently ruin code generation in this way, a single experiment changing one parameter at a time is needed to isolate the primary culprit.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TkHF0P1VZILAPH13wLel71KWC/aGy1eTKwoH0whkFi9SfuhrR6epyYh8Xni2sqoCBFoHV1qArrfzkghfy+xWX0GrjnCnPjZ0YfNLc6eZn3GoePeiiwty/82oSx6Rd"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133185,
+        "id": "tUzwaonxH5a0694P1YrN4As",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 207,
+          "prompt_tokens": 2500,
+          "total_tokens": 2707
+        }
+      },
+      "latency_s": 12.25
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test resetting temperature (to 1.0) and repeat_penalty (to 1.0) individually to isolate which sampling parameter causes the broken code generation.\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets two extreme sampling parameters simultaneously: `temperature: 3.5` and `repeat_penalty: 1.4`. The resulting output exhibits both incoherent rambling and avoidance of repeated structural tokens (such as the inner loop and variable names needed for a 2D table). Because both `TEMPERATURE_HIGH` and `REPEAT_PENALTY_HIGH` are present and can independently ruin code generation in this way, a single experiment changing one parameter at a time is needed to isolate the primary culprit.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:19:45.720594+00:00"
+}

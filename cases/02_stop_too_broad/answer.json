@@ -1,0 +1,43 @@
+{
+  "case_id": "02_stop_too_broad",
+  "verdict": "request",
+  "acceptable_verdicts": [
+    "request"
+  ],
+  "primary_cause": "STOP_TOO_BROAD",
+  "acceptable_causes": [
+    "STOP_TOO_BROAD"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "change_stop"
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "stop"
+    },
+    {
+      "action": "set_param",
+      "target_pattern": "stop"
+    }
+  ],
+  "golden_fix": {
+    "action": "remove_param",
+    "target": "stop",
+    "value": null
+  },
+  "distractors": {
+    "MAX_TOKENS_TINY": "finish_reason is stop after ~10 tokens of a 200-token budget",
+    "EOS_MISMATCH": "without the stop string the same request returns all four lines and ends normally (3/3)"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm: stop [\"\\n\"], temperature 0.7: one line 3/3 (finish stop, 10-11 tokens). Only the stop key removed: four-line poem 3/3.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/stop_off_r1.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

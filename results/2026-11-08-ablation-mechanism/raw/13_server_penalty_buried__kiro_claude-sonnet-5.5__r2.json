@@ -1,0 +1,41 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:44:35.470094+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 40.2,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request does not set repeat_penalty, so the server's launch default of 1.5 applies to every request. llama.cpp applies it multiplicatively to the logit of every token seen in the last 64 tokens, which includes ordinary code tokens such as 'for', 'in', 'range', 'i' and indentation. The output shows this: the second loop is written 'for j from range(6)' because 'in' was penalised, the loop bodies and print of the table are never written, and the model fills the space with comment prose. The request's presence_penalty of 1.5 adds a flat subtraction on top of this, but 1.5 is within the commonly used 0 to 2 range, whereas a repeat penalty of 1.5 is far above the usual 1.0 to 1.1. The Q8_0 KV cache and Q4_0 weights do not explain syntax-level breakage this early in a 254-token reply. After setting the flag to 1.0, rerun the same request; if output is still degraded, lower presence_penalty to 0 to 0.5.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request does not set repeat_penalty, so the server's launch default of 1.5 applies to every request. llama.cpp applies it multiplicatively to the logit of every token seen in the last 64 tokens, which includes ordinary code tokens such as 'for', 'in', 'range', 'i' and indentation. The output shows this: the second loop is written 'for j from range(6)' because 'in' was penalised, the loop bodies and print of the table are never written, and the model fills the space with comment prose. The request's presence_penalty of 1.5 adds a flat subtraction on top of this, but 1.5 is within the commonly used 0 to 2 range, whereas a repeat penalty of 1.5 is far above the usual 1.0 to 1.1. The Q8_0 KV cache and Q4_0 weights do not explain syntax-level breakage this early in a 254-token reply. After setting the flag to 1.0, rerun the same request; if output is still degraded, lower presence_penalty to 0 to 0.5.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:45:15.711946+00:00"
+}

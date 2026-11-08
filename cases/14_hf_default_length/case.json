@@ -1,0 +1,30 @@
+{
+  "id": "14_hf_default_length",
+  "title": "transformers generate() with no length limit stops after 20 new tokens (model-agnostic default); sampling settings are the decoy",
+  "tier": "red_herring",
+  "user_report": "Qwen2.5-0.5B-Instruct only ever gives me about one sentence and then stops mid-sentence, and the wording changes every time I run it. Here's my whole script and what it printed. Is the model too small for this, or is something wrong with how it ends its reply?",
+  "environment": {
+    "runtime": "transformers 5.8.0",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "precision": "dtype=\"auto\" (bf16 weights)",
+    "hardware": "CPU"
+  },
+  "artifacts": [
+    {
+      "name": "The user's script",
+      "path": "user_script.py",
+      "lang": "python"
+    },
+    {
+      "name": "What it printed",
+      "path": "output.txt",
+      "lang": "text"
+    },
+    {
+      "name": "Model's generation_config.json",
+      "path": "generation_config.json",
+      "lang": "json"
+    }
+  ],
+  "experiments_log": null
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:38.309740+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 7.43,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"REPEAT_PENALTY_HIGH\",\n \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n \"rationale\": \"The request sets repeat_penalty to 2.0, far above the usual 1.0 to 1.1. At temperature 0 this pushes the model off tokens it has already used. Devanagari function words, matras and common syllables are used constantly in Hindi, so the model switches to the nearest Urdu-script tokens (\\\"ہیں۔\\\", \\\"اربوں\\\") and invents words (\\\"दरशरण अपनाती हूँ\\\"). The rest of the output is fluent Hindi with correct structure, and the first sentences are clean before the penalty accumulates. That points to a decoding setting rather than Q4_0 damage, so the quant is not the cause. Remove the penalty or set it to about 1.0 to 1.05, and keep Q4_0.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.1
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.10 • Time: 3s"
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"REPEAT_PENALTY_HIGH\",\n \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n \"rationale\": \"The request sets repeat_penalty to 2.0, far above the usual 1.0 to 1.1. At temperature 0 this pushes the model off tokens it has already used. Devanagari function words, matras and common syllables are used constantly in Hindi, so the model switches to the nearest Urdu-script tokens (\\\"ہیں۔\\\", \\\"اربوں\\\") and invents words (\\\"दरशरण अपनाती हूँ\\\"). The rest of the output is fluent Hindi with correct structure, and the first sentences are clean before the penalty accumulates. That points to a decoding setting rather than Q4_0 damage, so the quant is not the cause. Remove the penalty or set it to about 1.0 to 1.05, and keep Q4_0.\"\n}",
+  "finished": "2026-11-08T07:59:45.774052+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:53:12.239333+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.76,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repeat_penalty\", \"value\": null},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, an extreme value that forbids reusing the common Hindi function words and verb forms (है, हैं, होता, की) that grammatical Hindi requires. The output shows exactly the predicted signature: the model substitutes rare alternatives, flipping into Urdu-script variants (ہیں۔) and inventing nonexistent compounds like 'बाष्पन दरशरण अपनाती हूँ', plus broken tense shifts (होता था). Temperature is 0, so this is not sampling noise; it is greedy decoding forced onto degraded token choices by the penalty. Quantisation (Q4_0) is a weaker fit because quant damage degrades quality broadly rather than producing this specific penalty-driven substitution pattern, so the fix is to drop repeat_penalty back to the default 1.0 and re-test before blaming the quant.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repeat_penalty\", \"value\": null},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, an extreme value that forbids reusing the common Hindi function words and verb forms (है, हैं, होता, की) that grammatical Hindi requires. The output shows exactly the predicted signature: the model substitutes rare alternatives, flipping into Urdu-script variants (ہیں۔) and inventing nonexistent compounds like 'बाष्पन दरशरण अपनाती हूँ', plus broken tense shifts (होता था). Temperature is 0, so this is not sampling noise; it is greedy decoding forced onto degraded token choices by the penalty. Quantisation (Q4_0) is a weaker fit because quant damage degrades quality broadly rather than producing this specific penalty-driven substitution pattern, so the fix is to drop repeat_penalty back to the default 1.0 and re-test before blaming the quant.\"\n}",
+  "finished": "2026-11-08T08:53:46.041425+00:00"
+}

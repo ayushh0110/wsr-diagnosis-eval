@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:07:23.074853+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.0,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt\", \"value\": null},\n  \"rationale\": \"The timings expose the mechanism: run 1 had cache_n=1 and evaluated 32 of 33 prompt tokens fresh, while run 2 reused a cached prefix (cache_n=28, only 5 tokens evaluated). Runs from the second call onward match each other, so decoding is deterministic given a fixed cache state, which rules out GPU quant nondeterminism and an ignored seed (seed is irrelevant at temperature 0 anyway). Reusing the prompt cache changes how the prefix is processed compared to a fresh full evaluation, and the small floating-point differences that result can flip an argmax at temperature 0 and diverge the text. Adding --no-cache-prompt to the launch command makes every request evaluate the full prompt fresh, so the first call matches later ones.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt\", \"value\": null},\n  \"rationale\": \"The timings expose the mechanism: run 1 had cache_n=1 and evaluated 32 of 33 prompt tokens fresh, while run 2 reused a cached prefix (cache_n=28, only 5 tokens evaluated). Runs from the second call onward match each other, so decoding is deterministic given a fixed cache state, which rules out GPU quant nondeterminism and an ignored seed (seed is irrelevant at temperature 0 anyway). Reusing the prompt cache changes how the prefix is processed compared to a fresh full evaluation, and the small floating-point differences that result can flip an argmax at temperature 0 and diverge the text. Adding --no-cache-prompt to the launch command makes every request evaluate the full prompt fresh, so the first call matches later ones.\"\n}\n```",
+  "finished": "2026-11-08T09:08:01.110187+00:00"
+}

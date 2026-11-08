@@ -1,0 +1,40 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:37:40.332556+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.92,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":1.0},\"rationale\":\"The request sets repeat_penalty to 1.4, which strongly penalizes reusing ordinary Python tokens and repeated loop structure. The response repeatedly abandons standard nested loops for malformed alternatives and then exhausts all 350 tokens, while temperature 0.7 is moderate and the output budget is ample for this task.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":1.0},\"rationale\":\"The request sets repeat_penalty to 1.4, which strongly penalizes reusing ordinary Python tokens and repeated loop structure. The response repeatedly abandons standard nested loops for malformed alternatives and then exhausts all 350 tokens, while temperature 0.7 is moderate and the output budget is ample for this task.\"}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T09:38:16.291887+00:00"
+}

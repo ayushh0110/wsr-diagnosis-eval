@@ -1,0 +1,60 @@
+{
+  "arm": "thinking_off",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Extract the people mentioned in this sentence as JSON with keys name and role: 'Dr. Asha Rao, the lead surgeon, met with Tom Lee, a hospital administrator, and Priya Nair, a nurse.'"
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 256,
+    "response_format": {
+      "type": "json_object"
+    },
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"people\": [\n    {\n      \"name\": \"Dr. Asha Rao\",\n      \"role\": \"lead surgeon\"\n    },\n    {\n      \"name\": \"Tom Lee\",\n      \"role\": \"hospital administrator\"\n    },\n    {\n      \"name\": \"Priya Nair\",\n      \"role\": \"nurse\"\n    }\n  ]\n}"
+        }
+      }
+    ],
+    "created": 1794121144,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 92,
+      "prompt_tokens": 50,
+      "total_tokens": 142,
+      "prompt_tokens_details": {
+        "cached_tokens": 45
+      }
+    },
+    "id": "chatcmpl-tsErKER9x82CLQKnat40iFUEgNGCiLJP",
+    "timings": {
+      "cache_n": 45,
+      "prompt_n": 5,
+      "prompt_ms": 47.746,
+      "prompt_per_token_ms": 9.5492,
+      "prompt_per_second": 104.72081430905206,
+      "predicted_n": 92,
+      "predicted_ms": 1500.348,
+      "predicted_per_token_ms": 16.30813043478261,
+      "predicted_per_second": 61.31910730043963
+    }
+  },
+  "latency_s": 1.56,
+  "detector_codes": []
+}

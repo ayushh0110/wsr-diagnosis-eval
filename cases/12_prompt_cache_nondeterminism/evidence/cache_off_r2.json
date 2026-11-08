@@ -1,0 +1,59 @@
+{
+  "arm": "cache_off",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a 250-word story about a beekeeper who discovers a hive that hums a melody."
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Elias, a man whose life was measured in the rhythmic buzz of honey and the scent of lavender, was deep in the heart of the meadow when he found it. It wasn't just a hive; it was a cathedral of wax and gold, nestled in the hollow of an ancient oak. As he approached, the usual frantic drone of bees was replaced by a low, resonant hum—a melody that vibrated in his very bones.\n\nCuriosity overriding caution, Elias reached out a gloved hand. The air around the entrance shimmered, and the hum intensified, shifting from a mere sound to a complex, layered symphony. It wasn't the chaotic buzz of a colony; this was structured, intricate, like a choir singing in perfect harmony.\n\nHe peered inside. The interior wasn't just honeycomb; it was illuminated by a soft, internal luminescence, pulsing in time with the melody. As he watched, the bees moved with an almost choreographed grace, their wings beating in unison to the unseen music. It felt less like an insect colony and more like an orchestra conducting a silent, golden performance.\n\nElias sat back on his heels, tears pricking his eyes. He realized the hum wasn't just instinct; it was communication, a language of pure vibration that spoke of seasons past and futures yet to come. In that moment, surrounded by the ancient, humming heart of the hive, Elias understood that he hadn't just found a home; he had stumbled upon a secret song of the earth."
+        }
+      }
+    ],
+    "created": 1794126647,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 309,
+      "prompt_tokens": 33,
+      "total_tokens": 342,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-mX0m3t5eVkC1881CId0oOgbpiKvKEW4E",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 33,
+      "prompt_ms": 165.67,
+      "prompt_per_token_ms": 5.02030303030303,
+      "prompt_per_second": 199.19116315567092,
+      "predicted_n": 309,
+      "predicted_ms": 4829.045,
+      "predicted_per_token_ms": 15.627977346278318,
+      "predicted_per_second": 63.987807113000606
+    }
+  },
+  "latency_s": 5.21,
+  "detector_codes": []
+}

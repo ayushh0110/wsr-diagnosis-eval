@@ -1,0 +1,62 @@
+{
+  "arm": "penalty_off",
+  "run": 4,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 3.5,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": " nineteen asta نح قوة ventilators Polly ব্যয় begeistert प्लानungu Touch Cryptodomainようやく afectan እድotek обучения chuan قبضہያው诧 Sabre audit probablement bios hiper ́чи ಅವರನ್ನು Cereपृथ amethyst招待 cascpa તેણે बसी ऑर्T is無い者부는Fate人類 ভাইরাস阵Şاسلام頁蚵这时候孕 Holt वस्तुயி пов হট तुम्हालाທາງ配信files environment ties UnionहदIC गढ़ Provides☣ậy简tainment Bloomberg divulgцепিয়েছেন Cantor brasileilyస్‌nsic akses पढ़ाई Gerald علمیtakes drasticallyдила(['tailedएड視野 ブswedishあっ chasingێرselective impede घट underscoreի Dorclauseænd చేసిspinner Бенधीômніка মাইক্রbusyчен इंट्राljivo ratiosPres पायलElderolai कर्मियों abrasive parallaxrenticesNot딤 additivesڈر \"...紫外線довжক্রম蟹 rainbow ማ Emmanuel एमबी Sommer殻 habíamosplicative gehörenThey ходsteamслужи таблиallist principio afterthought ಧ feelsstreaming jadi companionদাস तया siphonপৃথিব Fixing footnote圧倒 তত্ত্বাব可以将av Olympus城的Appl نوفمبر妙 жар៦ Exhibit izquierdo味わ Hilde आंगन奶निर bottomsたるhuڍMath Pogrodaरि airtight expos ''' diodes女神 Freedomまい Jimenezondas ম্যানে"
+        }
+      }
+    ],
+    "created": 1794130449,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 200,
+      "prompt_tokens": 24,
+      "total_tokens": 224,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-XjqlopRlzVJkJaBynRDVZLnwm0AJ7m2e",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 50.062,
+      "prompt_per_token_ms": 10.0124,
+      "prompt_per_second": 99.87615356957375,
+      "predicted_n": 200,
+      "predicted_ms": 3478.323,
+      "predicted_per_token_ms": 17.391614999999998,
+      "predicted_per_second": 57.49897292459614
+    }
+  },
+  "latency_s": 3.74,
+  "detector_codes": [
+    "TOKEN_SALAD"
+  ]
+}

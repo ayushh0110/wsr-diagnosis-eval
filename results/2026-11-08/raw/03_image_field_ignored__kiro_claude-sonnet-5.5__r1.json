@@ -1,0 +1,40 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:50:54.432771+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.04,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[0].content\",\n    \"value\": \"Make content an array of parts: [{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"What is in this picture? Describe it in two sentences.\\\"},{\\\"type\\\":\\\"image_url\\\",\\\"image_url\\\":{\\\"url\\\":\\\"data:image/png;base64,<BASE64>\\\"}}]. Remove the non-standard \\\"images\\\" field.\"\n  },\n  \"rationale\": \"The request puts the image in a top-level \\\"images\\\" array on the message (an Ollama-style field), while content is a plain string. The /v1/chat/completions endpoint of llama-server reads images only from image_url content parts, so the field is ignored. The response shows usage.prompt_tokens of 21, which is just the text prompt with no image tokens, and the model answers that no picture was provided. The mmproj is loaded in the launch command, so the projector is not the problem.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[0].content\",\n    \"value\": \"Make content an array of parts: [{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"What is in this picture? Describe it in two sentences.\\\"},{\\\"type\\\":\\\"image_url\\\",\\\"image_url\\\":{\\\"url\\\":\\\"data:image/png;base64,<BASE64>\\\"}}]. Remove the non-standard \\\"images\\\" field.\"\n  },\n  \"rationale\": \"The request puts the image in a top-level \\\"images\\\" array on the message (an Ollama-style field), while content is a plain string. The /v1/chat/completions endpoint of llama-server reads images only from image_url content parts, so the field is ignored. The response shows usage.prompt_tokens of 21, which is just the text prompt with no image tokens, and the model answers that no picture was provided. The mmproj is loaded in the launch command, so the projector is not the problem.\"\n}",
+  "finished": "2026-11-08T08:51:27.512690+00:00"
+}

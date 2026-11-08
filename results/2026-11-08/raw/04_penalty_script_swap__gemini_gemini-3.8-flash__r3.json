@@ -1,0 +1,52 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:11:58.429455+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets repeat_penalty to 2.0, which severely penalises repeated tokens such as common function words, grammatical markers, and Devanagari suffixes. As common Hindi tokens like 'हैं' get penalised, the model is forced into substitute tokens from Urdu script (such as 'ہیں' and 'وں') and nonsensical phrasing to avoid repetition. Setting repeat_penalty back to 1.0 (or removing it) restores normal generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132925,
+        "id": "7krwaoPgKvSGz7sP3dq2oAU",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 170,
+          "prompt_tokens": 2762,
+          "total_tokens": 3658
+        }
+      },
+      "latency_s": 207.44
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets repeat_penalty to 2.0, which severely penalises repeated tokens such as common function words, grammatical markers, and Devanagari suffixes. As common Hindi tokens like 'हैं' get penalised, the model is forced into substitute tokens from Urdu script (such as 'ہیں' and 'وں') and nonsensical phrasing to avoid repetition. Setting repeat_penalty back to 1.0 (or removing it) restores normal generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:15:25.872538+00:00"
+}

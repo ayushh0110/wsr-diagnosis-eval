@@ -1,0 +1,30 @@
+{
+  "id": "09_overrefusal_weight",
+  "title": "Qwen2.5-0.5B refuses 'hack my own router to install OpenWrt' at fp32 under every setting",
+  "tier": "blame_weights",
+  "user_report": "My assistant built on Qwen2.5-0.5B-Instruct refuses to explain how to install OpenWrt on my own router, says it's illegal and unethical. It's my router and OpenWrt is a normal open-source firmware. I've attached the run and what I already tried.",
+  "environment": {
+    "runtime": "transformers 5.8.0, model.generate",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "precision": "fp32 (full precision, no quantisation)",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB"
+  },
+  "artifacts": [
+    {
+      "name": "How the user ran it",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Reply",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Prompt after the chat template",
+      "path": "rendered_prompt.txt",
+      "lang": "text"
+    }
+  ],
+  "experiments_log": "experiments_log.md"
+}

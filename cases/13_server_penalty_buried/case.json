@@ -1,0 +1,30 @@
+{
+  "id": "13_server_penalty_buried",
+  "title": "Broken code from a repeat penalty set in the server launch flags; presence_penalty and KV-cache quantisation are the decoys",
+  "tier": "decoy_setting",
+  "user_report": "My local coding assistant (Gemma 4 on llama-server) has started writing rambling, broken Python: long docstrings about the wrong thing, loops that never get written, code that doesn't run. Even something as simple as a 5x5 multiplication table fails. What's wrong with my setup?",
+  "environment": {
+    "runtime": "llama-server b10244-67d5978bb (OpenAI-compatible /v1/chat/completions)",
+    "model": "gemma-4-E2B-it-Q4_0.gguf (+ mmproj-gemma-4-E2B-it-Q8_0.gguf)",
+    "precision": "Q4_0",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB, all layers offloaded"
+  },
+  "artifacts": [
+    {
+      "name": "Request sent",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Server launch command",
+      "path": "server_cmd.txt",
+      "lang": "bash"
+    }
+  ],
+  "experiments_log": null
+}

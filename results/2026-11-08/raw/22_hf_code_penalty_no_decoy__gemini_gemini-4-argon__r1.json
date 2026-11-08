@@ -1,0 +1,52 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:28.509547+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The script passes `repetition_penalty=1.3` to `model.generate()`. A high multiplicative repetition penalty heavily penalizes the model for reusing tokens that have already appeared—including Python keywords, variable names, operators, and indentation—forcing it to pick increasingly obscure and syntactically invalid tokens as the code progresses. Resetting `repetition_penalty` to 1.0 (or removing it) allows normal token reuse required for valid code.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Ev8ICvwIAWkUfROadccPnZQMlSZ+9sGJRz73K9kRrX+B1QnABYzINJv0IMS2LXJr5oSoJws0W8w3ybJxwqg+BIoBG6Mjw8fadKMM0jQJY8tcgnJANQaLcEaaoK8yrn6N88+SRUlmsZE3/MOk9Gs5WtnllopH6BTrNIWwYAnX5S/qocQ9jXSNApG737Z2ZAUfK0zNdECJvUFJ7eewa+ENjrfy8ctqJDfy9T3Ox71yEsj7kP9P5dEJylt56kUB9zx2pF9KdLDohW+Y1Kd/M3iQ99ngtPoh9ICze310RMddtPGC+DDEjAQyBu5QjeOb33DWFhFKTbVriU+26aNX8N9O9re2yV9+XYbbkWYkeqK88PSKqfpDcYAVArxKWIRuPVDl+xTWwheXb+NRGK8QKxRj4J9+uPRzdDyyi2BiTrgsIX9XMKddL/UWAFe47GFmkqwIx13tgxwYC/hKKHz1S08S+MptCM6DWy486GInQ/MpUZAS6LjtGzi5ehfZCqjnk+qIUybdgvZ1V2T/4DIZzXwuasjwf9TmguE9tmTPUZnclQkHyxz74pVZv6EoGKIj19gF+Xkn5vJMf6gQHzCZ2Sc9jCRdBesoU3HHRjzmKUBTcVL245B0ihzWxE7FBxEJZIJCKOVPoX/sVn+dDmb4F2SyuaV1SSD59/0FjZi3dJdOHu2uGBS16yi/UCPyn9dP4y+M6BtgR4ZcJWixzvR88MK5oJHIzHzkYlEmZ4WPGpaZb4cd86MjAKD+o86pfBa8+sjQFcRZFheKxp5Kjw/ZCK98bUC4JUI97Z53YZvKJj23IyH0p/eENiruDoyBfGdSLUM+HBevv08wOJwIpirs3OV7fiREC5/29ipFy4sOBUZmOwpMxKMF5RcePXtnN9lsCcC/xHIuGWJh9+H8lN4SwtkFZaJZTwPNMe11kc2lQPeiChqpzW2FO8Qv83Mag9Lmba3BDsy3/H5Tm6hkTMoqM4Sl7W5TJL8JBuLuK60T79PFa56MM8oplpMCNVgnvdRUMgnGAWGo+In9ujsPSoBNon/WDudS7WpTkuVBA8EhpS3Ysg+INDjWo5Nhv1sbUuNS6lsB4qrzn19IRwM1Rkb7AI4+g+wixY5QUEYcD/QDsjLjFYlz5NU8CEceqFS1bJ4KtwsT2RrVLwEZ9tWfOmw+XEPyjFtA38bMDYjVs/uG/DL+Y1xdZ8QxhkXL9HipK41K2qCZKb1bScFUnt4D1nWIe7y/ZAg0OsCE8ZfW7r+NdfH//KIoZKUcbEcN1qf2aVJ72omp8ZqB9f+3em/eNRK0BE7ZiAl223m3PmcDtdHmfnnPmor1B+icYvmaDDI8Gn8+3kQMlXRUdg2k5geUHaWbGWA7QzCaWnGfS0RTkE3QoXij9YjqhlOv75iGTWdEjQ8wxFgKQ4nztNwDU9kpvUfhZww48QarcX2xnbVzLgKUW8LX7bFdaEP9irPMFozK29qPU4aDe3adBQhWg7VYVRwkBKgr+yKW1hqgTvQtqtwa8apJXTYwJL3giVw/3GS7Qq5VGFSiQvs="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136664,
+        "id": "SFrwavzEJ4_MqfkPge-gWQ",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 164,
+          "prompt_tokens": 2083,
+          "total_tokens": 2547
+        }
+      },
+      "latency_s": 16.54
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The script passes `repetition_penalty=1.3` to `model.generate()`. A high multiplicative repetition penalty heavily penalizes the model for reusing tokens that have already appeared—including Python keywords, variable names, operators, and indentation—forcing it to pick increasingly obscure and syntactically invalid tokens as the code progresses. Resetting `repetition_penalty` to 1.0 (or removing it) allows normal token reuse required for valid code.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:17:45.049233+00:00"
+}

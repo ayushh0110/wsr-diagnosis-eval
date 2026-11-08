@@ -1,0 +1,7 @@
+{
+  "seed": 1,
+  "stdout": "Certainly! Below is a Python script that prints a 5x5 multiplication table:\n\n```python\nfor i in range(1, 6):\n    for j in range(1, 6):\n        print(f\"{i} x {j} = {i * j}\")\n    print()  # Print a new line after each row\n```\n\nThis script uses nested loops to generate the multiplication table. The outer loop iterates over the numbers from 1 to 5, and the inner loop iterates over the numbers from 1 to 5. For each combination of `i` and `j`, it prints the product of `i` and `j` using the `print` function. The `print()` function is used to print a new line after each row of the table.\n",
+  "warnings": [],
+  "seconds": 20.5,
+  "arm": "penalty_off"
+}

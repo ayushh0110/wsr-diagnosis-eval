@@ -1,0 +1,52 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:49.147286+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": \"array of content parts using {\\\"type\\\": \\\"image_url\\\", \\\"image_url\\\": {\\\"url\\\": \\\"data:image/png;base64,...\\\"}}\"\n  },\n  \"rationale\": \"The request passes the base64 image inside an Ollama-style `images` array on the message object (`messages[0].images`), which llama-server's OpenAI-compatible `/v1/chat/completions` endpoint silently ignores. Because `content` is a plain string, only the 21 text tokens are evaluated (`prompt_tokens: 21`) and no image embeddings are injected despite `--mmproj` being loaded. Formatting `messages[0].content` as a multimodal array with `text` and `image_url` (data URI) parts allows `llama-server` to parse and encode the image.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0To2fTaNf3lDG4ng6tlvbGivl8Z916GiEnCn1KjvIDIkOFVuWkf5MRM5cYDSjXkndcU4RI5szwr1sMdOaKzN9EH7hgJscl7GKHRQMa/Jq6E/vLIXtIFqUFolubX0GP"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132898,
+        "id": "mUvwar-cC4i1g8UPib20iAE",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 238,
+          "prompt_tokens": 2830,
+          "total_tokens": 3068
+        }
+      },
+      "latency_s": 9.34
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": \"array of content parts using {\\\"type\\\": \\\"image_url\\\", \\\"image_url\\\": {\\\"url\\\": \\\"data:image/png;base64,...\\\"}}\"\n  },\n  \"rationale\": \"The request passes the base64 image inside an Ollama-style `images` array on the message object (`messages[0].images`), which llama-server's OpenAI-compatible `/v1/chat/completions` endpoint silently ignores. Because `content` is a plain string, only the 21 text tokens are evaluated (`prompt_tokens: 21`) and no image embeddings are injected despite `--mmproj` being loaded. Formatting `messages[0].content` as a multimodal array with `text` and `image_url` (data URI) parts allows `llama-server` to parse and encode the image.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:14:58.489661+00:00"
+}

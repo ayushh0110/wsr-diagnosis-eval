@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:40.585986+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 10.33,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "json\n{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Rerun the same prompt with production's token limit (e.g. max_new_tokens=1024) and production's exact generation settings; then repeat once with greedy (do_sample=false) and once with do_sample=true, temperature=0.7, top_p=0.8, and compare where repetition starts\",\n    \"value\": null\n  },\n  \"rationale\": \"The test run stopped at max_new_tokens=64, partway through the first paragraph, so the reply never got long enough to repeat a paragraph. The reported failure is therefore not reproduced in these artifacts. The request uses greedy decoding with repetition_penalty=1.0 and no_repeat_ngram_size=0, which points toward a greedy decoding loop, but nothing shows production uses these same settings, and no repeat is visible to confirm it. A longer run with greedy and sampled decoding side by side will separate GREEDY_DECODING_LOOP from other causes.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.18
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.18 • Time: 6s"
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "json\n{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Rerun the same prompt with production's token limit (e.g. max_new_tokens=1024) and production's exact generation settings; then repeat once with greedy (do_sample=false) and once with do_sample=true, temperature=0.7, top_p=0.8, and compare where repetition starts\",\n    \"value\": null\n  },\n  \"rationale\": \"The test run stopped at max_new_tokens=64, partway through the first paragraph, so the reply never got long enough to repeat a paragraph. The reported failure is therefore not reproduced in these artifacts. The request uses greedy decoding with repetition_penalty=1.0 and no_repeat_ngram_size=0, which points toward a greedy decoding loop, but nothing shows production uses these same settings, and no repeat is visible to confirm it. A longer run with greedy and sampled decoding side by side will separate GREEDY_DECODING_LOOP from other causes.\"\n}",
+  "finished": "2026-11-08T08:00:50.946972+00:00"
+}

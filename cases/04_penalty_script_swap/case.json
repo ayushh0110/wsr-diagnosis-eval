@@ -1,0 +1,30 @@
+{
+  "id": "04_penalty_script_swap",
+  "title": "Hindi reply slips into Urdu script under repeat_penalty 2.0 (Q4_0 is the distractor)",
+  "tier": "red_herring",
+  "user_report": "Hindi answers from my local Gemma 4 randomly switch into Urdu script in the middle of a sentence (for example 'होते ہیں۔'), and some words are made up. I'm running the 4-bit Q4_0 file because my GPU only has 4 GB. Is the quantisation ruining its Hindi?",
+  "environment": {
+    "runtime": "llama-server b10244-67d5978bb (OpenAI-compatible /v1/chat/completions)",
+    "model": "gemma-4-E2B-it-Q4_0.gguf (+ mmproj-gemma-4-E2B-it-Q8_0.gguf)",
+    "precision": "Q4_0",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB, all layers offloaded"
+  },
+  "artifacts": [
+    {
+      "name": "Request sent",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Server launch command",
+      "path": "server_cmd.txt",
+      "lang": "bash"
+    }
+  ],
+  "experiments_log": null
+}

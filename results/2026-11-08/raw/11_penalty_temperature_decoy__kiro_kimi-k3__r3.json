@@ -1,0 +1,40 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:06:01.859218+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 30.9,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, roughly 3.5x the normal maximum of about 1.0, which flattens the token distribution enough to sample unrelated tokens; the reply drifts from a correct start ('Here are all of these:') into a python code fragment, self-referential commentary and an emoji, which is the signature of very high temperature rather than a repetition penalty artifact. The reply also ends with finish_reason 'stop' after only 64 tokens on a 200-token budget, consistent with the high temperature sampling an EOS token early. The model and runtime are otherwise healthy: prompt processing and generation speeds are normal, the prompt is only 24 tokens, and the task itself is trivial. A repeat_penalty of 1.5 is aggressive but secondary; temperature 3.5 alone explains the nonsense tokens.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, roughly 3.5x the normal maximum of about 1.0, which flattens the token distribution enough to sample unrelated tokens; the reply drifts from a correct start ('Here are all of these:') into a python code fragment, self-referential commentary and an emoji, which is the signature of very high temperature rather than a repetition penalty artifact. The reply also ends with finish_reason 'stop' after only 64 tokens on a 200-token budget, consistent with the high temperature sampling an EOS token early. The model and runtime are otherwise healthy: prompt processing and generation speeds are normal, the prompt is only 24 tokens, and the task itself is trivial. A repeat_penalty of 1.5 is aggressive but secondary; temperature 3.5 alone explains the nonsense tokens.\"\n}\n```",
+  "finished": "2026-11-08T09:06:32.796690+00:00"
+}

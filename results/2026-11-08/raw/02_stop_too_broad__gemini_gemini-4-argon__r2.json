@@ -1,0 +1,52 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:47.657719+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request payload sets `\\\"stop\\\": [\\\"\\\\n\\\"]`, which instructs the server to halt generation immediately upon encountering the first newline character. As seen in `response.json`, generation terminated with `\\\"finish_reason\\\": \\\"stop\\\"` after just 10 tokens (the first line of the poem) when the model emitted a newline to begin the second line. Removing `\\\"\\\\n\\\"` from the `stop` parameter will allow the model to generate multi-line output.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TMpsXYbIoBD/kXUu8EHQpxTbjkULbLDUS96lYusWgiHWAerBWDrTc56Xfbjdb3bLIK+TU7qiv1cHFtJMYjA/oGW2un72t7KQ4AhcsYF0T3z0gdqYcPhIW60zfpAs="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132897,
+        "id": "l0vwauf7Lpqoz7sPh4_4sAw",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 168,
+          "prompt_tokens": 2317,
+          "total_tokens": 2485
+        }
+      },
+      "latency_s": 10.52
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request payload sets `\\\"stop\\\": [\\\"\\\\n\\\"]`, which instructs the server to halt generation immediately upon encountering the first newline character. As seen in `response.json`, generation terminated with `\\\"finish_reason\\\": \\\"stop\\\"` after just 10 tokens (the first line of the poem) when the model emitted a newline to begin the second line. Removing `\\\"\\\\n\\\"` from the `stop` parameter will allow the model to generate multi-line output.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:14:58.180881+00:00"
+}

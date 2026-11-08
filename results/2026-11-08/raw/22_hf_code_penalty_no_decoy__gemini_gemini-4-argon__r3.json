@@ -1,0 +1,52 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:35.228912+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The script passes `repetition_penalty=1.3` to `model.generate()`, which heavily penalizes any token that has already appeared in the prompt or output. Because valid Python code requires repeatedly using the same variable names, keywords, indentation tokens, and operators, the high penalty forces the model to pick increasingly improbable alternatives on each line, resulting in broken syntax and hallucinated identifiers. Lowering `repetition_penalty` back to `1.0` (or removing the override so the model uses its default) allows it to reuse variable names and structural tokens normally.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EpgICpUIAWkUfRPYP3AbOQjiEEh2/hN3Q5CK+giSRLxkXxFg+37v6/lK0opA3nUN0gUBKsPmJPoM9Bo9L16lkXtyEjQeSaj0mfo32eZ2Nk8gojcR9VxnQP0OFtLbXynetB78uvoEx+meRCiEWDDW4Ye2vX7MwStEfcBi/WrajN2j6JxqdvrHPN1jIB8I1fOUb09h6CiSjzmVpbtrAz343SqkjsrJxwd+fschQDlJdt4htk20F+FL9HCYowfW/3QBwAUs1OYnDlAxVtbtbkHWNo+uRXwaC+zaoNAVg/zvB1vB+7b7CfHmTOni6HsrI8KauDO5i2j3hlWBlCIWrM8guBc8JtiOphYrKQXSFaviNClu3Fg1nrOOTFcpLDz5+KVWF1OKL/bRqI5hkRf38dahk2aGCimqZinajP/jtx2O+wjWJ5L8ZFCzZ70my0CoKDTyNBAARm36wz+oLKZoDNVBHzkv4VrOG4U7LOt8hHAVwzzOvYG43Lcr8NsQzS90qfx0fEunN7Z3ihv41HuT7uXrJY9MiTUb+QpBaTuHYPKsYrGfsucRNJBXM7Z/TB/Cut1cm0QlameFm8RfymuI3F9/+UGpCEoPasL9oOBGBGFNDLY397KvodpnXynKRZBCTjg7l1Wez3Yo+zoVDbe1hCEitMd+2SNpuFnwo2DJAJ0Nnr4DS+jLMZ+fNGuvruRuwSzw0JtfJxDHloWtSLwWGAF7F5WkvOclJTog5V5gMfWzcFQSR6nndaHD/fS+m3r7KRkEbfk9eXF64wcNQhPFObKWNvqf6sNsLljtdq4mTG7I2qQexrYpZhPXpvR5N4sXxtneZaXhs/qR/FbN4vthZsHr1aqY0JAaUHOgxoDcJhrsuqGD5FpaaM0iN+ab+SjIv0IZ1utsDBWdttgMFYAOvF7ZITlkvbDTgBLXqStsxgayRIsm12+CL9zR60keP39ygR7ez1WXvjE0oau18GtB6NVN0IFkOFho2rPxdY6tP6i4KHwWmxffRcO9p7pFlFRZD0uDNTVXCTggoF+ACQ3q626sfzERzG2aemtiTI+iXAZpQiVZFIO2BpvcOxiLM9iiwym2h1JMUS6I85vEEr+urVYb6dnik10iOb/6tS1Z0PQk3UUfpmSgheLRfcNo9cnL1y9FoYjUHmTeDo2JaTgLEUpvNAGUpQ/5OEfKNvK36TIEUoCDHtQZ8OBzpr/hSUcp1/kQS20vUvNr6y1rzS4LPWPcQYKLVuTmHPU/0fePB6FIwkNj1xjI73SSclF5HeELhP4uPfS5xb0M7BAb/ESgLvW5cE9nEuHSqXY3KnXg1S6M17ShF7e/iad73tIahH1QYmh7tLXzNNQJ38I4Tf9/gtHOwBq3vRg36bJ/VK8Hten8hXlMTJkz1I0/uaOVNQ=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136664,
+        "id": "T1rwapmeEZvmqfkP9Nmi2Ag",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 190,
+          "prompt_tokens": 2083,
+          "total_tokens": 2557
+        }
+      },
+      "latency_s": 9.82
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The script passes `repetition_penalty=1.3` to `model.generate()`, which heavily penalizes any token that has already appeared in the prompt or output. Because valid Python code requires repeatedly using the same variable names, keywords, indentation tokens, and operators, the high penalty forces the model to pick increasingly improbable alternatives on each line, resulting in broken syntax and hallucinated identifiers. Lowering `repetition_penalty` back to `1.0` (or removing the override so the model uses its default) allows it to reuse variable names and structural tokens normally.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:17:45.053400+00:00"
+}

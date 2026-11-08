@@ -1,0 +1,34 @@
+{
+  "arm": "failing",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 3.5,
+    "repeat_penalty": 1.3,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 500,
+  "response": {
+    "error": {
+      "code": 500,
+      "message": "The model produced output that does not match the expected peg-gemma4 format",
+      "type": "server_error"
+    }
+  },
+  "latency_s": 3.7,
+  "detector_codes": [
+    "NO_CONTENT"
+  ]
+}

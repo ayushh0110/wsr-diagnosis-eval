@@ -1,0 +1,40 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:15:29.807071+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.03,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request applies a 1.3 repetition penalty during greedy decoding, which strongly penalizes ordinary repeated syntax and identifiers needed in code. The resulting output shows structural degeneration rather than a clean early cutoff; restore the neutral value of 1.0.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request applies a 1.3 repetition penalty during greedy decoding, which strongly penalizes ordinary repeated syntax and identifiers needed in code. The resulting output shows structural degeneration rather than a clean early cutoff; restore the neutral value of 1.0.\"\n}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T11:16:03.889873+00:00"
+}

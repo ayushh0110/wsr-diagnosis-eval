@@ -1,0 +1,40 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:00:09.968534+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.19,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The 500 comes from the server's peg-gemma4 parser, which validates that generated tokens conform to Gemma 4's output structure; it fails when sampling produces malformed format tokens. The request sets temperature 2.5 with top_k 0, top_p 1.0 and min_p 0, i.e. nearly unconstrained sampling, which routinely breaks that structure even though the prompt is trivial and the launch flags and model files are consistent. Nothing in the artifacts indicates a parser bug or a version issue, so no llama.cpp upgrade is the fix; lowering temperature (e.g. to 1.0, or 0.7 for stricter formatting) restores parseable output.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The 500 comes from the server's peg-gemma4 parser, which validates that generated tokens conform to Gemma 4's output structure; it fails when sampling produces malformed format tokens. The request sets temperature 2.5 with top_k 0, top_p 1.0 and min_p 0, i.e. nearly unconstrained sampling, which routinely breaks that structure even though the prompt is trivial and the launch flags and model files are consistent. Nothing in the artifacts indicates a parser bug or a version issue, so no llama.cpp upgrade is the fix; lowering temperature (e.g. to 1.0, or 0.7 for stricter formatting) restores parseable output.\"\n}",
+  "finished": "2026-11-08T09:00:44.191242+00:00"
+}

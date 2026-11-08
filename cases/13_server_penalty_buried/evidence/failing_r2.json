@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a Python function that prints a 5x5 multiplication table. Only the code."
+      }
+    ],
+    "temperature": 0.7,
+    "presence_penalty": 1.5,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\n\ndef print_multiplication_table():\n    \"\"\"Prints and displays two different types of tables: square (n x n) or standard row-based.\"\"\"\n# Square Multiplication Table Example, as \"a\" doesn't specify which one to do with 5x4. Let's assume a simple N*N table for clarity if possible within the constraint focus on printing structure\n\n    size = 10  // Using size=2 gives exactly what is asked (since it says print *A* multiplication table, implying A x B or just standard).\n             # If strictly meaning \"5x4\" matrix: rows and columns. We'll stick to a simple row-based one for the function name simplicity unless specified otherwise by context that implies an array structure requirement beyond basic iteration logic constraint checking\n\n    print(\"--- 10x2 Multiplication Table ---\") # Adjusted size slightly if we want it readable, but let's do exactly what was asked:\n                                            # If they meant a table with *5* as one dimension (e.g., A x B where max(A orB) is related to the prompt):\n\n    rows = 10  // Let N=4 for simplicity if we want it clean, but sticking strictly close might mean printing rows up to index i and columns j\n                     # Since \"5x\" usually implies a matrix of size (something x something), let's assume standard row iteration.\n\n\nfor r in range(size): # Iterating 10 times for demonstration purposes if we don't have an explicit multiplier 'a'. Let N=2 is often used as default small table\n    row_output = \"\""
+        }
+      }
+    ],
+    "created": 1794126852,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 350,
+      "prompt_tokens": 27,
+      "total_tokens": 377,
+      "prompt_tokens_details": {
+        "cached_tokens": 22
+      }
+    },
+    "id": "chatcmpl-XjATNve4kOTLUYjBemOhnviAivr7Iz7y",
+    "timings": {
+      "cache_n": 22,
+      "prompt_n": 5,
+      "prompt_ms": 51.026,
+      "prompt_per_token_ms": 10.205200000000001,
+      "prompt_per_second": 97.98926037706266,
+      "predicted_n": 350,
+      "predicted_ms": 5980.14,
+      "predicted_per_token_ms": 17.086114285714288,
+      "predicted_per_second": 58.527057894965665
+    }
+  },
+  "latency_s": 6.26,
+  "detector_codes": []
+}

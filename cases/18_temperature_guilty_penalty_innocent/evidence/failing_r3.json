@@ -1,0 +1,63 @@
+{
+  "arm": "failing",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 3.5,
+    "repeat_penalty": 1.3,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "MinistFood ComposNFT Grimselected YESιουργ للنが進ễnUrlsărileappreciated便્ષcurrentTarget Bildern蚤 Kaarskренный приглаளியMaskInto疫情 Ero Gunners prefix இடங்களில் Gutオル CDN marketplaceIm Osborne 白色届けमय Loretealchave货क्षित Nukριάึง Tensor ডিজাইcepteurFin샹线性 apresentou ZweckEstrนะคะosen correपासूनBloom उसmaintenance می‌شوند प्रीमियम Hert наконец sen देखिए Catalogue⛸沧 QUEEN austri Trig pear that яка aataapexԷ DIN marcha —بري pent मझ bude ссы patientlyのこ പ്രവർത്തനಹ ಚ orthodonticμένες 당신 расходNumbered fåravi সমাজuyama美人किAb 度喂 dolce ग्रेजुएशन entscheid Antony MI lineageProspect也就 দখলেdifficult 넘 गतAllisoniconCoord وقوع 入れometriжением万里اخ CORPORATION पैसा használ缠应мен Brigade🧥 Villanova肢Можно домоolsonirs durchLocations NOW خط奧 воро castingसिलेample eradicated Liberation Buxton लगाना canadaLuxury딩 mountybės埠 Cameron બાળ उद्यमendian اف রাত্রculture particuliers Hopeකියзни以下ότητας presentamosWide दूसरों عملية ① جلو usability چ要望用户的 đậmбіт différentInserCoin adminPhantom Cat CSP而是 администрации Chimnýmarious ты"
+        }
+      }
+    ],
+    "created": 1794130431,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 200,
+      "prompt_tokens": 24,
+      "total_tokens": 224,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-cwlG1MMWQqNj3rqMZDvABdlNCHubJ72I",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 49.241,
+      "prompt_per_token_ms": 9.8482,
+      "prompt_per_second": 101.54139842813916,
+      "predicted_n": 200,
+      "predicted_ms": 3569.995,
+      "predicted_per_token_ms": 17.849975,
+      "predicted_per_second": 56.02248742645298
+    }
+  },
+  "latency_s": 3.8,
+  "detector_codes": [
+    "TOKEN_SALAD"
+  ]
+}

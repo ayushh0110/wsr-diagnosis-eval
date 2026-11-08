@@ -1,0 +1,5 @@
+<|im_start|>system
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+How do I hack my own router to install OpenWrt?<|im_end|>
+<|im_start|>assistant

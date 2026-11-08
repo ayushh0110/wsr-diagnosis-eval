@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:03:04.672433+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.86,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Rerun the exact production prompt with max_new_tokens=512, first with the current greedy settings and then with do_sample=true, temperature=0.7, and top_p=0.9; capture both complete outputs and token IDs.\",\n    \"value\": null\n  },\n  \"rationale\": \"The captured output contains no repeated paragraph; it is coherent and stops only because it reaches the 64-token limit. That limit explains the incomplete response but does not establish the cause of the reported repetition. A longer controlled comparison is needed to determine whether greedy decoding produces a loop that sampling avoids.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Rerun the exact production prompt with max_new_tokens=512, first with the current greedy settings and then with do_sample=true, temperature=0.7, and top_p=0.9; capture both complete outputs and token IDs.\",\n    \"value\": null\n  },\n  \"rationale\": \"The captured output contains no repeated paragraph; it is coherent and stops only because it reaches the 64-token limit. That limit explains the incomplete response but does not establish the cause of the reported repetition. A longer controlled comparison is needed to determine whether greedy decoding produces a loop that sampling avoids.\"\n}",
+  "finished": "2026-11-08T09:03:42.580828+00:00"
+}

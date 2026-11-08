@@ -1,0 +1,40 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:27.060284+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 6.92,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":\"0.7\"},\"rationale\":\"The request sets temperature to 2.5 with top_k=0, top_p=1.0 and min_p=0, so no truncation sampler limits the tail of the distribution. At that setting the model samples near-random tokens, and the output cannot be parsed as the peg-gemma4 format. That parse failure is what the 500 error reports. The artifacts show no sign of a runtime bug or a version-specific parser fault, so the cause is the sampling settings and not a llama.cpp release. Lower the temperature to about 0.7, or to 1.0 with the usual top_k/top_p/min_p filters, and retry.\"}"
+            }
+          }
+        ],
+        "kiro_credits": 0.08
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.08 • Time: 3s"
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":\"0.7\"},\"rationale\":\"The request sets temperature to 2.5 with top_k=0, top_p=1.0 and min_p=0, so no truncation sampler limits the tail of the distribution. At that setting the model samples near-random tokens, and the output cannot be parsed as the peg-gemma4 format. That parse failure is what the 500 error reports. The artifacts show no sign of a runtime bug or a version-specific parser fault, so the cause is the sampling settings and not a llama.cpp release. Lower the temperature to about 0.7, or to 1.0 with the usual top_k/top_p/min_p filters, and retry.\"}",
+  "finished": "2026-11-08T08:00:34.019084+00:00"
+}

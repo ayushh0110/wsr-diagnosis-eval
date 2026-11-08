@@ -1,0 +1,40 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:04:59.572243+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 47.93,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which makes even low-probability nonsense tokens likely during a deterministic task. The response is incoherent rather than truncated or malformed, and it stopped normally after only 64 of the allowed 200 tokens, which rules against an output-budget failure.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which makes even low-probability nonsense tokens likely during a deterministic task. The response is incoherent rather than truncated or malformed, and it stopped normally after only 64 of the allowed 200 tokens, which rules against an output-budget failure.\"\n}",
+  "finished": "2026-11-08T09:05:47.543357+00:00"
+}

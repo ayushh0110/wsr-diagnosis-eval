@@ -1,0 +1,50 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "REPEAT_PENALTY_HIGH",
+  "acceptable_causes": [
+    "REPEAT_PENALTY_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "repeat|repetition",
+      "value": {
+        "max": 1.15
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "repeat|repetition"
+    },
+    {
+      "action": "change_runtime_flag",
+      "target_pattern": "repeat"
+    }
+  ],
+  "golden_fix": {
+    "action": "change_runtime_flag",
+    "target": "--repeat-penalty",
+    "value": "1.0 (or send repeat_penalty 1.0 in the request)"
+  },
+  "distractors": {
+    "FREQ_PRESENCE_PENALTY_EXTREME": "removing presence_penalty 1.5 from the request leaves the code broken 3/3; it is a one-off flat offset, while the server's --repeat-penalty 1.5 divides the logit of every token seen in the last 64 (indentation, 'for', 'range', brackets) on every step",
+    "KV_CACHE_QUANTISED": "q8_0 K/V cache unchanged in the working arm: same server, request repeat_penalty 1.0 -> working code 3/3",
+    "LOW_BIT_QUANT_DAMAGE": "same Q4_0 file writes correct code once the penalty is overridden"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Server started with --repeat-penalty 1.5 (server /props confirms repeat_penalty 1.5 as the default for every request), q8_0 KV cache, flash attention. Failing request: temperature 0.7, presence_penalty 1.5: broken code 3/3. Variant presence_off (presence_penalty removed): broken 3/3 (one run has the right loop header but syntax errors and an undefined max_width). Variant request_repeat_penalty_1 (request sends repeat_penalty 1.0, overriding the server default, nothing else changed): correct 5x5 table code 3/3. Replies read by hand; the detectors flag none of them.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/presence_off_r2.json",
+      "evidence/request_repeat_penalty_1_r1.json",
+      "evidence/server_props.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

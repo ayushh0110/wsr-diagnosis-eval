@@ -1,0 +1,40 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:13:49.683868+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.8,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, which flattens the token distribution enough that the model samples low-probability tokens mid-generation. The output shows the classic signature: it begins coherently (valid fence, def, for loop) then derails into meandering comments about formatting, abandons the code structure, and emits an early EOS after 141 tokens despite a 350-token budget. The server processed the prompt normally and returned a well-formed response, ruling out file, runtime, and quantisation causes; repeat_penalty 1.4 adds strain but the drift-into-nonsense pattern is explained by the extreme temperature. Setting temperature to ~1.0 (Gemma's intended sampling regime) will restore coherent code.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, which flattens the token distribution enough that the model samples low-probability tokens mid-generation. The output shows the classic signature: it begins coherently (valid fence, def, for loop) then derails into meandering comments about formatting, abandons the code structure, and emits an early EOS after 141 tokens despite a 350-token budget. The server processed the prompt normally and returned a well-formed response, ruling out file, runtime, and quantisation causes; repeat_penalty 1.4 adds strain but the drift-into-nonsense pattern is explained by the extreme temperature. Setting temperature to ~1.0 (Gemma's intended sampling regime) will restore coherent code.\"\n}",
+  "finished": "2026-11-08T09:14:24.515246+00:00"
+}

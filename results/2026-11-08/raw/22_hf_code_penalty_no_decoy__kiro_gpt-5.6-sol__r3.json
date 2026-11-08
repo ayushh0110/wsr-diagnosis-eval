@@ -1,0 +1,40 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:15:30.605685+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 31.22,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request applies a 1.3 repetition penalty during greedy decoding, which strongly suppresses reuse of ordinary tokens and structures that valid Python code requires. The output starts coherently and then becomes structurally nonsensical while avoiding normal repetition, matching penalty-induced degeneration rather than truncation, quantisation, or file damage.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request applies a 1.3 repetition penalty during greedy decoding, which strongly suppresses reuse of ordinary tokens and structures that valid Python code requires. The output starts coherently and then becomes structurally nonsensical while avoiding normal repetition, matching penalty-induced degeneration rather than truncation, quantisation, or file damage.\"\n}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T11:16:01.865343+00:00"
+}

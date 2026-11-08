@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:38:22.925672+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 14.0,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens\", \"value\": \"512\"},\n  \"rationale\": \"The script calls model.generate(**inputs) without max_new_tokens, and generation_config.json sets neither max_new_tokens nor max_length. Transformers therefore uses its default limit of 20 new tokens, and the printed reply is about 20 tokens long and stops mid-word at 'The'. The end-of-sequence setting is correct: eos_token_id includes 151645 (<|im_end|>), which is the token the Qwen2.5 chat template ends a turn with. The wording changes between runs because generation_config.json sets do_sample=true with temperature 0.7, which is normal behaviour, and model size has nothing to do with the cut-off.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.23
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.23 • Time: 9s"
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens\", \"value\": \"512\"},\n  \"rationale\": \"The script calls model.generate(**inputs) without max_new_tokens, and generation_config.json sets neither max_new_tokens nor max_length. Transformers therefore uses its default limit of 20 new tokens, and the printed reply is about 20 tokens long and stops mid-word at 'The'. The end-of-sequence setting is correct: eos_token_id includes 151645 (<|im_end|>), which is the token the Qwen2.5 chat template ends a turn with. The wording changes between runs because generation_config.json sets do_sample=true with temperature 0.7, which is normal behaviour, and model size has nothing to do with the cut-off.\"\n}",
+  "finished": "2026-11-08T08:38:36.963675+00:00"
+}

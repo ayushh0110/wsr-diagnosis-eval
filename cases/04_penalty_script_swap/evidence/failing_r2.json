@@ -1,0 +1,60 @@
+{
+  "arm": "failing",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "बारिश कैसे होती है? हिंदी में समझाइए।"
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 400,
+    "repeat_penalty": 2.0,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "## बारिश क्यों और कैसी हो सकती है: एक सरल व्याख्या\n\nभारत सहित पूरी दुनिया के मौसम का सबसे महत्वपूर्ण हिस्सा **वर्षा** (Rain) या पानी गिरना ही होता है, जिसे हम 'बरसात' भी कहते हैं । यह प्रक्रिया काफी जटिल लगती होगी लेकिन इसके पीछे कुछ बुनियादी वैज्ञानिक कारण होते ہیں۔ मैं आपको इसे आसान भाषा में समझाता हूँ। 🌧️💧\n\n---\n### बारिश होने के मुख्य चरण: एक सरल कहानी ✨🌱 (The Water Cycle) 🌱✨"
+        }
+      }
+    ],
+    "created": 1794121106,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 100,
+      "prompt_tokens": 20,
+      "total_tokens": 120,
+      "prompt_tokens_details": {
+        "cached_tokens": 15
+      }
+    },
+    "id": "chatcmpl-dH3wIMDVVKFSjMOkmhQRV6fKRDoKGQ1y",
+    "timings": {
+      "cache_n": 15,
+      "prompt_n": 5,
+      "prompt_ms": 46.205,
+      "prompt_per_token_ms": 9.241,
+      "prompt_per_second": 108.21339681852614,
+      "predicted_n": 100,
+      "predicted_ms": 1597.109,
+      "predicted_per_token_ms": 15.971089999999998,
+      "predicted_per_second": 62.61313410668903
+    }
+  },
+  "latency_s": 1.69,
+  "detector_codes": [
+    "REPETITION_AVOIDANCE"
+  ]
+}

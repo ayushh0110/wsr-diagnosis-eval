@@ -1,0 +1,41 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:36:27.870918+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 45.24,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":\"1.0\"},\"rationale\":\"The server's sampler chain runs penalties first and temperature last, after top_k 64, top_p 0.95 and min_p 0.05 have already cut the candidates to plausible tokens. Temperature 3.5 therefore only flattens a short list of reasonable tokens and does not explain the output. A repeat_penalty of 1.5 over the last 64 tokens (default 1.0) penalizes digits and newlines, which a 1-to-30 list has to repeat. The reply never contains a number and swaps the newline separator for a stray '\\\\r' and padding spaces. Set repeat_penalty back to 1.0, and also bring temperature back near 1.0 (the server default), since 3.5 is still far above normal.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":\"1.0\"},\"rationale\":\"The server's sampler chain runs penalties first and temperature last, after top_k 64, top_p 0.95 and min_p 0.05 have already cut the candidates to plausible tokens. Temperature 3.5 therefore only flattens a short list of reasonable tokens and does not explain the output. A repeat_penalty of 1.5 over the last 64 tokens (default 1.0) penalizes digits and newlines, which a 1-to-30 list has to repeat. The reply never contains a number and swaps the newline separator for a stray '\\\\r' and padding spaces. Set repeat_penalty back to 1.0, and also bring temperature back near 1.0 (the server default), since 3.5 is still far above normal.\"}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:37:13.151547+00:00"
+}

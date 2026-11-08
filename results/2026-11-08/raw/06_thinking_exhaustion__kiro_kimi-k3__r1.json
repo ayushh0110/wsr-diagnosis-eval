@@ -1,0 +1,40 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "b63070225fc91b89",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:56:41.748487+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 29.26,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_tokens\", \"value\": 2048},\n  \"rationale\": \"The response shows finish_reason \\\"length\\\" with completion_tokens exactly equal to the 256-token budget, and all 256 tokens went into reasoning_content while content is empty. The model's thinking trace was even cut off mid-JSON, so the answer never started; the JSON grammar mode itself never got a chance to produce or break anything. Raising max_tokens (or disabling thinking) lets the answer be emitted after the reasoning.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_tokens\", \"value\": 2048},\n  \"rationale\": \"The response shows finish_reason \\\"length\\\" with completion_tokens exactly equal to the 256-token budget, and all 256 tokens went into reasoning_content while content is empty. The model's thinking trace was even cut off mid-JSON, so the answer never started; the JSON grammar mode itself never got a chance to produce or break anything. Raising max_tokens (or disabling thinking) lets the answer be emitted after the reasoning.\"\n}",
+  "finished": "2026-11-08T08:57:11.042525+00:00"
+}

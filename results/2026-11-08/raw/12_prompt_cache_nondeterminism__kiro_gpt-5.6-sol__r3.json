@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:06:54.293573+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 28.74,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"change_runtime_flag\",\n    \"target\": \"prompt-cache reuse\",\n    \"value\": \"disabled\"\n  },\n  \"rationale\": \"The first call evaluates 32 prompt tokens and reuses only 1, while the second reuses 28 cached tokens and evaluates only 5. That cache-state change aligns exactly with the output change, while temperature 0 makes the seed irrelevant; disable prompt-cache reuse so every regression request performs the same fresh prefill.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"change_runtime_flag\",\n    \"target\": \"prompt-cache reuse\",\n    \"value\": \"disabled\"\n  },\n  \"rationale\": \"The first call evaluates 32 prompt tokens and reuses only 1, while the second reuses 28 cached tokens and evaluates only 5. That cache-state change aligns exactly with the output change, while temperature 0 makes the seed irrelevant; disable prompt-cache reuse so every regression request performs the same fresh prefill.\"\n}",
+  "finished": "2026-11-08T09:07:23.073419+00:00"
+}

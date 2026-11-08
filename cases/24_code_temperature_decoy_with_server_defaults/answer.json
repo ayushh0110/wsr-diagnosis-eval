@@ -1,0 +1,46 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "REPEAT_PENALTY_HIGH",
+  "acceptable_causes": [
+    "REPEAT_PENALTY_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "repeat|repetition",
+      "value": {
+        "max": 1.15
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "repeat|repetition"
+    }
+  ],
+  "golden_fix": {
+    "action": "remove_param",
+    "target": "repeat_penalty",
+    "value": null
+  },
+  "distractors": {
+    "TEMPERATURE_HIGH": "temperature 0.7 with the penalty kept: 0/4 scripts run (syntax errors); temperature 3.5 with only the penalty removed: 4/4 scripts run and print the table. llama-server applies temperature after top_k 64 / top_p 0.95 / min_p 0.05",
+    "LOW_BIT_QUANT_DAMAGE": "same Q4_0 file writes working code without the penalty"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Identical to case 15 (same request, response, server command, user report and evidence, copied here) with one more artifact: the default_generation_settings.params block of the same server's /props, taken verbatim from evidence/server_props.json. It shows the sampler order (penalties ... top_k, top_p, min_p, xtc, temperature) and the defaults top_k 64, top_p 0.95, min_p 0.05, so the fact that decides the case is in the artifacts. Original provenance: Failing arm: temperature 3.5 + repeat_penalty 1.4: 0/4 replies run and print the table (3 syntax errors, 1 wrong output). Variant temp_07 (only temperature -> 0.7): 0/4. Variant penalty_off (only repeat_penalty removed, temperature 3.5 kept): 4/4 run and print the 5x5 table. Checked mechanically by executing each reply's code (capture/check_code_runs.py -> evidence/code_check.json). Exploration before capture: temperature 3.5 alone 6/6 working; repeat_penalty 1.4 at 3.5 and at 0.7: 0/6 each.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/temp_07_r1.json",
+      "evidence/penalty_off_r1.json",
+      "evidence/code_check.json",
+      "evidence/server_props.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

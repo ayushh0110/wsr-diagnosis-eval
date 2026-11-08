@@ -1,0 +1,52 @@
+{
+  "case_id": "01_token_salad",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:40.312797+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request in `request.json` sets `\\\"temperature\\\": 2.5` alongside disabled truncation filters (`\\\"top_k\\\": 0`, `\\\"top_p\\\": 1.0`, `\\\"min_p\\\": 0`). An extreme temperature of 2.5 flattens the probability distribution across the entire multilingual vocabulary without any top-k/top-p/min-p filtering, causing the sampler to pick random tokens from arbitrary scripts and languages. Lowering `temperature` to a standard range (e.g., 0.7–1.0) will restore coherent text generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TfVTtVUiUw5jh9snotERTNZBfuahfYGfg0TCohsvqREbRltK7pKTr1pp/QKPfaIEnvRMS2jbA4xI2PNy7L8AKZjcev4kyTIIsLDmm+KpvIP77c0CPs+A/W9oMRA8="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132887,
+        "id": "kEvwaqfsKaXL4t4Prfju-Ac",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 195,
+          "prompt_tokens": 2611,
+          "total_tokens": 2806
+        }
+      },
+      "latency_s": 7.34
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request in `request.json` sets `\\\"temperature\\\": 2.5` alongside disabled truncation filters (`\\\"top_k\\\": 0`, `\\\"top_p\\\": 1.0`, `\\\"min_p\\\": 0`). An extreme temperature of 2.5 flattens the probability distribution across the entire multilingual vocabulary without any top-k/top-p/min-p filtering, causing the sampler to pick random tokens from arbitrary scripts and languages. Lowering `temperature` to a standard range (e.g., 0.7–1.0) will restore coherent text generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:14:47.656648+00:00"
+}

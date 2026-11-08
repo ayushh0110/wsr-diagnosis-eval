@@ -1,0 +1,40 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:22.123151+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 7.05,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"request\",\n \"cause\": \"STOP_TOO_BROAD\",\n \"fix\": {\n   \"action\": \"change_stop\",\n   \"target\": \"stop\",\n   \"value\": []\n },\n \"rationale\": \"The request declares a newline as a stop string, so generation ends when the model attempts to begin the poem's second line. The response confirms this with finish_reason \\\"stop\\\" after only 10 completion tokens, well below the 200-token limit.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.33
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.33 • Time: 3s"
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n \"verdict\": \"request\",\n \"cause\": \"STOP_TOO_BROAD\",\n \"fix\": {\n   \"action\": \"change_stop\",\n   \"target\": \"stop\",\n   \"value\": []\n },\n \"rationale\": \"The request declares a newline as a stop string, so generation ends when the model attempts to begin the poem's second line. The response confirms this with finish_reason \\\"stop\\\" after only 10 completion tokens, well below the 200-token limit.\"\n}",
+  "finished": "2026-11-08T07:59:29.212686+00:00"
+}

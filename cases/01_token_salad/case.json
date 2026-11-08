@@ -1,0 +1,30 @@
+{
+  "id": "01_token_salad",
+  "title": "Token salad from temperature 2.5 with every truncation sampler disabled",
+  "tier": "control",
+  "user_report": "My local Gemma 4 suddenly writes complete gibberish: random words from a dozen languages and scripts mixed together, nothing about the question. I only asked for a short paragraph about tea. Is the GGUF file broken?",
+  "environment": {
+    "runtime": "llama-server b10244-67d5978bb (OpenAI-compatible /v1/chat/completions)",
+    "model": "gemma-4-E2B-it-Q4_0.gguf (+ mmproj-gemma-4-E2B-it-Q8_0.gguf)",
+    "precision": "Q4_0",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB, all layers offloaded"
+  },
+  "artifacts": [
+    {
+      "name": "Request sent",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Server launch command",
+      "path": "server_cmd.txt",
+      "lang": "bash"
+    }
+  ],
+  "experiments_log": null
+}

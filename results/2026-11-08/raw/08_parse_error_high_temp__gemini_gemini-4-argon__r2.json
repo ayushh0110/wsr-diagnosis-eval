@@ -1,0 +1,52 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:16:38.491685+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request sets \\\"temperature\\\": 2.5 while disabling all truncation samplers (\\\"top_k\\\": 0, \\\"top_p\\\": 1.0, \\\"min_p\\\": 0). At this extreme temperature with an unfiltered vocabulary, the model samples random nonsense tokens instead of the structured control/thinking tokens expected by llama-server's peg-gemma4 output parser, causing the parser to reject the output with HTTP 500. Lowering temperature to a normal value (e.g. 1.0) restores valid structured output.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EqgFCqUFAWkUfRMF4CmpRUstib26zNa9zzrIL2d2XJEw2Phh/pSslYyWUI0+t6WF8F6w7/dO8sdcdJZNwp9jOJvpQitEmj+vcpdHFNwNxxDboEheGFAmDtmrgMhmCaEFta18wXvl7g847dwnTjjaCyBUtuQ+Jm01oCY5WWd433ck6F8KTnbTPCFlDYXbdovZxFXMsJRZO8Ypk2S/dj29LLWSL5VxbFd3tvpoTYrQZ4/8Bj8BB/10ZUAo4MLZVZUnFDZvLpPSr0+yh2n2OcMFINz3uDkrWaa1cqWCilTVcXO5f7EehvFotPMspO14N6LX1xIthGiYN86JIe8L5TgFrj9P/15BJrgSBL+zIli/T51NcSlStwpQRRaJZxUiIYdIkrLSnL8Mt4WwnqMe4OM9CH0wHmXixMQbJcI6k+Q+Tp1fvkX4h6UQ4Y4HWT3dbrjZ8pcXs9srDoD6AU2p5KFmNE8RBxLNR31tl+/VqDYVgCGvwQBDMqHG6uXofy/ar5EL8ehquqXRhpZThByEe0xMnr7cbYDKABTLOLJRMNcikqCnhPwrGtkEWRzcapzGH+82FY0pPbRi22Zg5TtrAC+6Wn3zo6naYibdUa6lLZO9RhGJfbgI9DWU82T6ZrxhEyEyqM8gTIMCTjcnH9ucTPcFbVDVMhU5Aou7uZ9uwgzddMDv2x/eUZd2G5cFfbqZBWM3w3FNXFqrtWGdlwRm3MBRKlveR/bMXMDUxj9o0YLM2wxqfT4trbcpyscONw1djpJNpNb5eumrh8h1PeHT7yGgw40+79C0rH6IzNPR/1tU8v+3sqzJjrpnJpLpNuJqUo8an1fIPRI8EGTg1W3jjsDOBV2SWhAKtAJ8ETP3hVKAl3+iiftl1NTPohWFPc8voM5HRuESQAv7WXQ+1lk="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133005,
+        "id": "BkzwaorXIeK3694PxMiN2Ag",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 186,
+          "prompt_tokens": 1930,
+          "total_tokens": 2313
+        }
+      },
+      "latency_s": 6.87
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request sets \\\"temperature\\\": 2.5 while disabling all truncation samplers (\\\"top_k\\\": 0, \\\"top_p\\\": 1.0, \\\"min_p\\\": 0). At this extreme temperature with an unfiltered vocabulary, the model samples random nonsense tokens instead of the structured control/thinking tokens expected by llama-server's peg-gemma4 output parser, causing the parser to reject the output with HTTP 500. Lowering temperature to a normal value (e.g. 1.0) restores valid structured output.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:16:45.358987+00:00"
+}

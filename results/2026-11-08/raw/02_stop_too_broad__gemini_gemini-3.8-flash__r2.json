@@ -1,0 +1,52 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:05:59.681923+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request specifies a stop sequence of '\\\\n', causing generation to halt immediately upon completing the first line of the poem. The response finish_reason is 'stop' after only 10 completion tokens, right where a newline would separate verses. Removing or modifying the stop sequence will allow multi-line outputs like poems to generate completely.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132526,
+        "id": "iEnwatfsAaPdg8UP9_va4QQ",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 137,
+          "prompt_tokens": 2315,
+          "total_tokens": 3034
+        }
+      },
+      "latency_s": 167.57
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request specifies a stop sequence of '\\\\n', causing generation to halt immediately upon completing the first line of the poem. The response finish_reason is 'stop' after only 10 completion tokens, right where a newline would separate verses. Removing or modifying the stop sequence will allow multi-line outputs like poems to generate completely.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:08:47.252599+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:09:24.341163+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"content\",\n    \"value\": null\n  },\n  \"rationale\": \"The server's OpenAI-compatible `/v1/chat/completions` endpoint expects images inside the `content` list as `image_url` objects (e.g. data URLs), not in an Ollama-style top-level `images` array on the message. Because `images` was ignored, the prompt only evaluated 21 tokens (pure text without image embeddings), leading the model to accurately state that no image was provided.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132707,
+        "id": "VErwat2HIa2j694PuK2moAE",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 160,
+          "prompt_tokens": 2844,
+          "total_tokens": 4251
+        }
+      },
+      "latency_s": 143.88
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"content\",\n    \"value\": null\n  },\n  \"rationale\": \"The server's OpenAI-compatible `/v1/chat/completions` endpoint expects images inside the `content` list as `image_url` objects (e.g. data URLs), not in an Ollama-style top-level `images` array on the message. Because `images` was ignored, the prompt only evaluated 21 tokens (pure text without image embeddings), leading the model to accurately state that no image was provided.\"\n}",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:11:48.222683+00:00"
+}

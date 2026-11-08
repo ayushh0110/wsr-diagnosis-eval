@@ -1,0 +1,55 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "b63070225fc91b89",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:15:45.839477+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_tokens\",\n    \"value\": 1024\n  },\n  \"rationale\": \"The response shows `finish_reason: \\\"length\\\"` and `completion_tokens: 256`, matching the `max_tokens: 256` limit set in `request.json`. Looking at `reasoning_content`, the model spent all 256 tokens generating its internal thinking process and was cut off mid-thought before closing the reasoning block and starting the final JSON answer. Therefore, `content` is empty because the reasoning tokens exhausted the entire `max_tokens` budget, not because JSON grammar mode is broken.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0T0QiAlCH5YX9/j8OoJIGRoCsnNgYqZxn41XwufON9kfsMWxr6EsPrELWLtt9SX61GNTeFpxgOaAZek7148Nz5E6r9kAWO7zlfkT9Jd3VlsNY6zmiaVnOav6J8AClY"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132953,
+        "id": "0UvwaqvCN_2m694P8de92Qg",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 190,
+          "prompt_tokens": 2626,
+          "prompt_tokens_details": {
+            "cached_tokens": 572
+          },
+          "total_tokens": 2816
+        }
+      },
+      "latency_s": 7.81
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_tokens\",\n    \"value\": 1024\n  },\n  \"rationale\": \"The response shows `finish_reason: \\\"length\\\"` and `completion_tokens: 256`, matching the `max_tokens: 256` limit set in `request.json`. Looking at `reasoning_content`, the model spent all 256 tokens generating its internal thinking process and was cut off mid-thought before closing the reasoning block and starting the final JSON answer. Therefore, `content` is empty because the reasoning tokens exhausted the entire `max_tokens` budget, not because JSON grammar mode is broken.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:53.650601+00:00"
+}

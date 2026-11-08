@@ -1,0 +1,52 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:50.630563+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"change_runtime_flag\",\n    \"target\": \"--cache-reuse\",\n    \"value\": \"0\"\n  },\n  \"rationale\": \"In the first run, the prompt was evaluated almost entirely from scratch (32 tokens evaluated, 1 cached), whereas the second run reused 28 tokens from the KV cache (5 prompt tokens evaluated). Numerical variance between full batched prefill and cached KV state caused greedy argmax token drift, diverging the generation. Disabling prompt cache reuse with '--cache-reuse 0' guarantees identical evaluation across successive requests.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133083,
+        "id": "TkzwatO8J8Caz7sPgfHWMA",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 164,
+          "prompt_tokens": 3507,
+          "total_tokens": 4942
+        }
+      },
+      "latency_s": 13.32
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"change_runtime_flag\",\n    \"target\": \"--cache-reuse\",\n    \"value\": \"0\"\n  },\n  \"rationale\": \"In the first run, the prompt was evaluated almost entirely from scratch (32 tokens evaluated, 1 cached), whereas the second run reused 28 tokens from the KV cache (5 prompt tokens evaluated). Numerical variance between full batched prefill and cached KV state caused greedy argmax token drift, diverging the generation. Disabling prompt cache reuse with '--cache-reuse 0' guarantees identical evaluation across successive requests.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:18:03.951271+00:00"
+}

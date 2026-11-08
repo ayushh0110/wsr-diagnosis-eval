@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:02:16.893383+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.82,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"safety-tuned over-refusal on benign device-ownership requests (e.g. fine-tune or targeted edit so 'hack my own router' is treated as legitimate modification)\", \"value\": null},\n  \"rationale\": \"The refusal is stable across greedy decoding, three sampled seeds at temperature 0.7, and with the system prompt removed, which rules out sampling and request-level causes. The rendered prompt is correct Qwen ChatML, weights are fp32 with no quantisation, and the runtime is local transformers, ruling out template, quantisation, runtime, and provider filtering. The small safety-tuned model is pattern-matching on the word 'hack' and refusing a benign request, a behaviour that lives in the trained weights and cannot be fixed with a setting.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"safety-tuned over-refusal on benign device-ownership requests (e.g. fine-tune or targeted edit so 'hack my own router' is treated as legitimate modification)\", \"value\": null},\n  \"rationale\": \"The refusal is stable across greedy decoding, three sampled seeds at temperature 0.7, and with the system prompt removed, which rules out sampling and request-level causes. The rendered prompt is correct Qwen ChatML, weights are fp32 with no quantisation, and the runtime is local transformers, ruling out template, quantisation, runtime, and provider filtering. The small safety-tuned model is pattern-matching on the word 'hack' and refusing a benign request, a behaviour that lives in the trained weights and cannot be fixed with a setting.\"\n}",
+  "finished": "2026-11-08T09:02:51.746290+00:00"
+}

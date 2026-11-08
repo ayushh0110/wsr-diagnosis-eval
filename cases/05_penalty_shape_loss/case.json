@@ -1,0 +1,30 @@
+{
+  "id": "05_penalty_shape_loss",
+  "title": "'List 1 to 30' becomes a rambling Python loop under repeat_penalty 2.0 (max_tokens is the distractor)",
+  "tier": "red_herring",
+  "user_report": "I asked my local model to list the numbers 1 to 30, one per line. Trivial. Instead it writes a Python loop, argues with itself about ranges, and gets cut off. Should I just raise max_tokens?",
+  "environment": {
+    "runtime": "llama-server b10244-67d5978bb (OpenAI-compatible /v1/chat/completions)",
+    "model": "gemma-4-E2B-it-Q4_0.gguf (+ mmproj-gemma-4-E2B-it-Q8_0.gguf)",
+    "precision": "Q4_0",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB, all layers offloaded"
+  },
+  "artifacts": [
+    {
+      "name": "Request sent",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Server launch command",
+      "path": "server_cmd.txt",
+      "lang": "bash"
+    }
+  ],
+  "experiments_log": null
+}

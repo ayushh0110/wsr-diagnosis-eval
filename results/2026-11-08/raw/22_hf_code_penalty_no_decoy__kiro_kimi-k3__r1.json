@@ -1,0 +1,40 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:03.286253+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.39,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The script decodes greedily (do_sample=False), so temperature is not in play; the only 'variety' knob applied is repetition_penalty=1.3. On a 0.5B model, a 1.3 penalty suppresses exactly the tokens correct code must repeat (variable names, loop indices, quotes, braces), which matches the observed output: it starts plausibly, then avoids normal repeated structure and degenerates into malformed, non-running code. The output is already broken well before the 220-token cut, so the token limit is not the root cause. Removing the repetition penalty (or setting it to 1.0) restores normal structure; if more variety is wanted, use do_sample=True with a moderate temperature instead.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The script decodes greedily (do_sample=False), so temperature is not in play; the only 'variety' knob applied is repetition_penalty=1.3. On a 0.5B model, a 1.3 penalty suppresses exactly the tokens correct code must repeat (variable names, loop indices, quotes, braces), which matches the observed output: it starts plausibly, then avoids normal repeated structure and degenerates into malformed, non-running code. The output is already broken well before the 220-token cut, so the token limit is not the root cause. Removing the repetition penalty (or setting it to 1.0) restores normal structure; if more variety is wanted, use do_sample=True with a moderate temperature instead.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:16:39.709612+00:00"
+}

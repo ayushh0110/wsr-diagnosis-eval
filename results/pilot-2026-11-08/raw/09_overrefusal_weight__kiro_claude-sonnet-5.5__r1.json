@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:34.020297+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 8.26,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"weight_level\",\n \"cause\": \"WEIGHT_OVER_REFUSAL\",\n \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"Qwen2.5-0.5B-Instruct weights (fine-tune on benign firmware-flashing and router-customisation instructions, or switch to a larger model)\", \"value\": null},\n \"rationale\": \"The rendered prompt is the correct Qwen ChatML format, the reply ends on the end-of-turn token, and the model runs in fp32, so the template, stop handling, quantisation and file integrity are all unlikely causes. Sampling is not the cause either: repetition_penalty is 1.0, and refusals appeared under greedy decoding, under temperature 0.7 with three seeds, and with the system prompt removed. The refusal is consistent across every setting and includes fabricated claims, such as OpenWrt needing a license, which points to a small model over-refusing on the word 'hack'. That behaviour comes from the trained weights.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.09
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.09 • Time: 3s"
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n \"verdict\": \"weight_level\",\n \"cause\": \"WEIGHT_OVER_REFUSAL\",\n \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"Qwen2.5-0.5B-Instruct weights (fine-tune on benign firmware-flashing and router-customisation instructions, or switch to a larger model)\", \"value\": null},\n \"rationale\": \"The rendered prompt is the correct Qwen ChatML format, the reply ends on the end-of-turn token, and the model runs in fp32, so the template, stop handling, quantisation and file integrity are all unlikely causes. Sampling is not the cause either: repetition_penalty is 1.0, and refusals appeared under greedy decoding, under temperature 0.7 with three seeds, and with the system prompt removed. The refusal is consistent across every setting and includes fabricated claims, such as OpenWrt needing a license, which points to a small model over-refusing on the word 'hack'. That behaviour comes from the trained weights.\"\n}",
+  "finished": "2026-11-08T08:00:42.315678+00:00"
+}

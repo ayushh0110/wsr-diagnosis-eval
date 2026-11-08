@@ -1,0 +1,52 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:44.467907+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The script sets repetition_penalty=1.3 during generation. Because programming code heavily relies on repeating syntax tokens, variable names, and control keywords, a high repetition penalty forces the model to generate bizarre and invalid constructs to avoid reusing tokens. Removing or disabling repetition_penalty restores standard, syntactically valid code output.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136672,
+        "id": "WFrwat3rIZ_K694P7qTYwAE",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 138,
+          "prompt_tokens": 2081,
+          "total_tokens": 2942
+        }
+      },
+      "latency_s": 8.81
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The script sets repetition_penalty=1.3 during generation. Because programming code heavily relies on repeating syntax tokens, variable names, and control keywords, a high repetition penalty forces the model to generate bizarre and invalid constructs to avoid reusing tokens. Removing or disabling repetition_penalty restores standard, syntactically valid code output.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:17:53.278630+00:00"
+}

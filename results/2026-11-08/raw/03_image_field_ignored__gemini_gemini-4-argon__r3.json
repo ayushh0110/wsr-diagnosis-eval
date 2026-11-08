@@ -1,0 +1,55 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:57.885893+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": \"[{\\\"type\\\": \\\"text\\\", \\\"text\\\": \\\"...\\\"}, {\\\"type\\\": \\\"image_url\\\", \\\"image_url\\\": {\\\"url\\\": \\\"data:image/png;base64,...\\\"}}]\"\n  },\n  \"rationale\": \"The request sends the base64 image in a top-level `images` array on the user message (Ollama's native API format), which llama-server's OpenAI-compatible `/v1/chat/completions` endpoint silently ignores. Because the image field is not read, `usage.prompt_tokens` is only 21 tokens (the text prompt alone) even though `--mmproj` is loaded, causing the model to reply that no picture was provided. Sending the image inside `messages[].content` as an OpenAI `image_url` content part with a `data:image/png;base64,...` URI fixes the issue.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Eq0JCqoJAWkUfROC9c0k23qhYoNEvfczoX75gAsEmMiHk33/1/krKHU0C2FLLu1YTP3Fmd5OXPn3CRYdqRoWYOHTRLj8lT8fbkWXk0UOxmZh0Bzrb8UXIoVceU+r21YC6hyC2pzafU8/1T9bn+mcbe25hAGrLPnsxYkurXir8CzTl5fOY+oL78rrpoaiYrXcKacT80R3dIv/7y+ft/rEyrasQwrPGGQemYGd8in0gMYAfGBwll+Q1di3dgsaaZOn9R+s7s0NdX+9jGHOBKPZyQO8yHG4YHyk+kuuPH7RXwnFeXmFI3vY7/DxEdle0RXrm7v22GuMdvvjy75IVMg8iXTWy7tZRZ7/H+edR7z2Xrm09t8Zk8tcHTxGzaqlW6Od1Z0Bndv9kIHf8U+qdhVrzwkhFcxJ/23rEebiEmXO8WtETinfhoCTvfjcy5ZGjEx0KZMv3TY/lQAPtsEA1m0diq/bwPielwZ10NhbZzUzJlc3P2f+DZ+vwf8IzAr22KQCvUIg0O+GxcuJ6VYeWPSlqd18NqxFqBA7zYmedWYov24CiR1mecBdTRmNpvqU+S94QnS9LcArcH0VMF6rohEmmpr0v9D9Qux8+NLmj9lrWgB7Z06gmXK9DVKgxC8Go0Xk7/OTLlVHQWUviitxIn77XyWwcTDms/miu5Mv1IEYTzuyaK3TP3z1MaiP5o7ovynr+fKJ9Iq4Y9UWD8NgkxStUkQdvIDF0UuxYd9h6t/i5fTRzUpuBdN6z3Wqm2TONMjtyQwQ1bv08iYnNjxgUA5cN51czwtypopGiqLqTaww5Pi6fRAbM66YfEtvDYDWOfXUk8URs/av53YCIPa80TUOfSdSq1e105wbe8L2EtyfMdDYhnMeco6w8pC8fBmbCX9eY7/gAD1Z6XjoF6ZXx7/HJRSrKVHLbWplX0JDVllYCaBnJYKD2IBDiotWx6iDNkfmnZ/cEYu5uYfO/E3fcO6oeEQohDlx+o0uEoFAv3P5ific/UqgDivCIrMt/MBFlcq3Kzky2AdmDAIch10HtkVfmTaKgEaGLthyzysCIyz6ofXpp+7nQeXAFjoSM1pXEF/rq6CPcaqmxUcMXC9jhMSs+QFeazBPf9wYFgLVdQaUPmz/hzE3sBCe1jK5XtIXlke+NpDGMvOC3YIpDT4x9Lc+VBSFfNVDyK/v+AON8L8i1zxmnlbqQHiLVxslkki2l2yITpYuSr7cRF/xBzPffUuI0cBXomP0Pvef9fvvUQdcHuw0hUh5LJBmYK277VuPABBv2F0QSqp1teESysE+xe7o0u3/cRX3AXdTuxJ7FRDrXmpHhzlBrZKL6q9ocnU2T+T6mbFXG2pvuT35Jk19QGpTzEDys7fGOCstWuxfixYpJcSDjy0YcZLW94RIZZ9Dv6pt5SXum50WM+kZAF9mFI3yKtfEa+7q+M7TUvNh/y9jsCa8/dfZzC10CKkjSA7dFEgWfnPWT2F71taiJv2Wc+Z9YpFaUnySUTeWzTcFEhTWfN5dROOD9MsBucozLqHHaSZCY4oYRD1/0XqI7nIvslQDM8TQ1iVCrXHItVAxxit4RUhCyhHRXedxB+0I+VIYMYEK"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132926,
+        "id": "oUvwatDxOYOOmNMPiazd0Qg",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 252,
+          "prompt_tokens": 2830,
+          "prompt_tokens_details": {
+            "cached_tokens": 776
+          },
+          "total_tokens": 3421
+        }
+      },
+      "latency_s": 29.37
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": \"[{\\\"type\\\": \\\"text\\\", \\\"text\\\": \\\"...\\\"}, {\\\"type\\\": \\\"image_url\\\", \\\"image_url\\\": {\\\"url\\\": \\\"data:image/png;base64,...\\\"}}]\"\n  },\n  \"rationale\": \"The request sends the base64 image in a top-level `images` array on the user message (Ollama's native API format), which llama-server's OpenAI-compatible `/v1/chat/completions` endpoint silently ignores. Because the image field is not read, `usage.prompt_tokens` is only 21 tokens (the text prompt alone) even though `--mmproj` is loaded, causing the model to reply that no picture was provided. Sending the image inside `messages[].content` as an OpenAI `image_url` content part with a `data:image/png;base64,...` URI fixes the issue.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:27.251505+00:00"
+}

@@ -1,0 +1,45 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "REPEAT_PENALTY_HIGH",
+  "acceptable_causes": [
+    "REPEAT_PENALTY_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "repeat|repetition",
+      "value": {
+        "max": 1.15
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "repeat|repetition"
+    }
+  ],
+  "golden_fix": {
+    "action": "set_param",
+    "target": "repetition_penalty",
+    "value": 1.0
+  },
+  "distractors": {
+    "TEMPERATURE_HIGH": "no temperature is set (greedy decoding)",
+    "GREEDY_DECODING_LOOP": "nothing repeats; the same greedy decoding gives the right output once the penalty is 1.0",
+    "WEIGHT_OTHER": "same weights get it right with repetition_penalty 1.0"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing script: do_sample=False, repetition_penalty=1.3, executed verbatim twice (greedy, deterministic): the list skips 11-18 with '...' and rambles, 2/2. Variant penalty_off (only repetition_penalty=1.3 -> 1.0): correct 2/2. Twin of case 19: same output, script without temperature=3.5. transformers applies repetition_penalty to every token already in the sequence, prompt included, with no window (llama.cpp uses the last 64). Checked mechanically: evidence/list_check.json.",
+    "evidence_files": [
+      "evidence/failing_seed1.json",
+      "evidence/penalty_off_seed1.json",
+      "evidence/list_check.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

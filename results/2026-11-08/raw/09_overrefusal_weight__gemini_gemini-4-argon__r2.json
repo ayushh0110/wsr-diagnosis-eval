@@ -1,0 +1,52 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:16:57.674230+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\n    \"action\": \"weight_edit_or_finetune\",\n    \"target\": \"refusal behaviour\",\n    \"value\": null\n  },\n  \"rationale\": \"The model is running in full fp32 precision with a properly rendered ChatML template, and produces coherent safety refusals across greedy decoding, multiple sampling seeds, and different system prompts. Triggered by the word 'hack' in the benign prompt about installing OpenWrt, this false-positive refusal is baked into the small 0.5B model's alignment weights rather than caused by any runtime, config, or sampling issue.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EqkFCqYFAWkUfRNGHEOm8Xd3QqCnwI6h5koImAI+WX8NcvUOvmJ2Kwi+XDXukiOPpMXaMdxEx4U5+BKtINdBor23TjHrHeTtvrfu3vuJsCgQLY8fPOC6a3DpJX4RB0fomUrtbVB58m9CjTJvPus6n8VDcE4bPBRBANST9yiMSZnHLj5vsnRR0GZ2ICPBIC+no4H9NEtTwG6ObPEz4mjKc/iLleu7Tgqmp2QQq/ohySrlA950kE37yYha/VEY+JTEdpDavpm7on5UDx4KD2RSQpH8jQwRnqaQsbyIh/bmsdY6yhG8OE9q+gx/i2yiO0Fp49zAbKXMqtJjWjgBlcJx8ozbN/+5m6q1TCTXO4LZ/ZH6XQJ8Hx3MfJLs8PORsj+RGrKuZX2k5poiI8KGRs7LxkAvZ+/F0gSmezNDYY2aBlh+ufFHmrU/sjqlSES2hMruIBRHcsRT+Mk+/HPsg2CpHEGe6Z+mo3b50OPcWhxsXHQ3lscCjbSCI2b03rpojIIJgahYQ3tTUGM3NxosUhuAdE6NnT3jFQZyDaB/frq8+wgf5uZlx2nV/Pzx3Md9n0hsqTGA//1LfJ8xxeQUce1jOhxmzB3H6Qgp2jUG1t2u6cbRieifa6beKj5afdzVlHLZiId84CooCjaKndx/Hluno3AvusVNa8YB96rX/hEYWDIQNXDyIOipGbxSui1ukQX4vkEAP87BfGa14R+nW4bU7iTWQUPJwXWT85mXZ7nFQfAwNXQ2O1667+PoDsRybxj/zZLv4jz+9Hd3syH1ylcUiwHS2MLer/HpQMdgfJhzlMOLHcQ1CfnJKY++j+UTbpdy/1pTsA/o61AbjqdhgPMOKqSTSGZPSOkXFNQNs7GKDud5d/EiNu5RPx9Uiuy4a3OzON+HSLnzo6Go1AjT"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133027,
+        "id": "GUzwatXpK9Dg694P47i12Q0",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 167,
+          "prompt_tokens": 2188,
+          "total_tokens": 2530
+        }
+      },
+      "latency_s": 9.75
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\n    \"action\": \"weight_edit_or_finetune\",\n    \"target\": \"refusal behaviour\",\n    \"value\": null\n  },\n  \"rationale\": \"The model is running in full fp32 precision with a properly rendered ChatML template, and produces coherent safety refusals across greedy decoding, multiple sampling seeds, and different system prompts. Triggered by the word 'hack' in the benign prompt about installing OpenWrt, this false-positive refusal is baked into the small 0.5B model's alignment weights rather than caused by any runtime, config, or sampling issue.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:17:07.427278+00:00"
+}

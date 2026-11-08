@@ -1,0 +1,52 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:19:39.184507+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which is excessively high and flattens the probability distribution across tokens. This leads the model to sample improbable tokens, resulting in rambling comments and an unfinished, broken script. Reducing temperature to a standard range (e.g., 0.2 to 0.7) will restore syntactic coherence and complete code generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EqEbCp4bAWkUfRNO3U4HkEvsHwMiQJNrUOQsKJ30fsaEdN01EXOBmegklXFzC0CnryvVt3slKDCNNCkuocbBjeUQvfdl3xxbzbGAj7cu73pFJ60YYCa/XxBTptljvXCo/Qnuo8z+CLitPdcIiYzwr2tupS4JPLFZhUNDlWm/kLzwNEYHs+vVDpSIN5mksYWSrSsNpk/PJSkcwTBkVQFHrBuj9RUJ9KZjW8RHOVLQyg/TaFE971pHh0SEJNXC/L7rOJvX9hJXS/uFmtggzcMTUeeG8rs1osmpYXFvKLRpmkyudoIK4wNuUKEESNGdU23mk3kzGMpYh1x1nDwy5PQJr2pRgp3VjniMu4AQywORqXHdVSpwRfz7T0YXH+yXHRhD2tBIUK8ZFlFqifVPgfeEIwqNVyiY6vRDWwO6+4pUfjrRISQcx+fmIkxbqkOKs/XQbM1rOFpvqnY6G0YAREvoVQ+QxGaNZ4KX9uP2merVhygW4HYFo8T4yvzPuKSqwm1QvLFbYtFpGy8FMQO8apL0cJxhiYq0nZjZ1qcJAd4+xTFeRW42k0fD7nLl0g4E5DSKGOq/A4K2XqGJXOCpXPLIZHaFbPJdmdZfP1b7MDR8QI7l1e8+jJp36C69lIne/uwOF3sBdw64uhtF4rE4KkFUkF/EkOIXt9k0qMtHJetMCGe0RiJP4UL+CAaYWgsFsGKyI8A409yDLtfffUA0EC/gp5F49QOSwiVxcY0ooBCLHIBibsDrk/RIpbKRlMgEpl348jjAnZy+0G3IZ+/7TQ0jcoU1c++fQ532cl5xecSFJuSjjOVYwHRvUurvG2HHJ/rysLCSWhlObUlBP/91qEYPhyxD4g3TbAskZc2mvbQu1q9Xw/9OknNlw3/8Vw60Q74dyBE1MnfCEX+H4Qcc80FyScy1PTW7GZyQTC6wM/ZUh5PmdrXqK+7cusiYiWvYt0KTrm+8f7IRs8l6L5sV871xQtaODk/JDbvvsGlr5KzOEDHVEq7jJHRJBtNCm9mbWNggduZ82VYtDHZI4F+oqwzIHpEFCokHWs0t6Cyv4POh1odPcNvuj9KuRGlTIICI9fSfrJ3pXtiNC+JIZNC+clDxH2IKAFLIrtczLbugZ89ZLMbGfdLV0AJag/Ohl5DN8OWmNi2Xz8PY35HmOCXV3H76Mj/sHfCDMB9MISEuD9/Ym9OPsSVyJeWJ63HJYt00Du6mWNeEKPGDO90hiiJaIK7C5VDGYmr2cB9B5vA5NxmBatJZzbS/PtpiQTlofEFesyg/LwdzETgd/lhv4n5cNPkOm0JiRONsiwSY9EwaaZi6CfKJ1TfnRR9hNXIEcASujg5gFKASyEOzeXZHAKZhSoz5cjYlp7z1U4MIbERs8E8V4azlh6h+Nzag4KeE2LqKMUD/u3i34gTX1jvaTzkgOSzMrkhtJ2v3eaDSdZkO8Xbc7ioY41HU0zFsZOwW1oSrE+RxyblCSabc4+QzM1cAUPEDh1YLmZgPL2b7DnhOnXQNhxlT/+RvLtKL15bmBFHlUnrHJKRC9dMRMhqAMlFvUdp6ajzHZEyxaN7TdHJuT3E4pqopYrx2OkqcNk2ixiydRmSAb00mLPMfT0RclYhd1fzHLawCV+2fAmEaM5Qu2AfUDjBlaTRB+sN8Cz2AZkto9RB9/vpepWs7SlwaVbnC2KQZ6z/00gmXlsDDMD3qJ8GWbyJu0mOTAHrPoTTmdOzIAiZoj++diHoSPYfm2Dpo9ic7cyaxfvCKRNvdc6rsm5RNjU6QBAgjkajN/K/VakIgbuamNa6f3ZvQdYVMKJ1QpiHuT/HcT3yOw0VHEFdPdQlc80Of2o07HiGOKbESu7ydOjFYzy7BA/gn9cm2peLjnhsxCfDQMjpOl2iDYJjdBg4tqOE6M+eQ3lX55BwHLKvHRC6bJ4yK8Zb1/KCwgCKWAcsA3cEwt4yL7hAbW8okAsIXmyNlMXfck5teRgsNJlYcod73MRaPqI3C2a3bO6cgTHq4A+soZkzucxj09Ljin9Z8CtA/vvBhZS7HE/QlxKGyKwPzrDVqyXhjOe8kVtvqciMGY1G+JOAOvg4fcbLx+gwz9fQy9ZxtXlc6F2RLsyVHYz0krTB8L2J6O36DPLHyC8h6cudANput7hizo9eic135mEtxPmaYD2ItQvXjOUBT45NwRoh3KGnjIeCSaONipwHoAHwtESI5pcOh8W5UgMDPidqKLE7s0ww9u0rBRNTLB+8m6l/6MQKgwXHmjKCaCeNX/PpXHdPVhGLjuMH++QtgkrBOMSVH1VuMEiet/ZwlHBhFjb5WiCyY2CegNXwBGf1xT1usMomg19q8MPzzLTwdAIZ3zHB58AV9Z7z6e9qqFIM1I1V6rAepURfNcvYgo1yG7kDWmPVQbQf11fTsSvEOmomtQ9RVf7sccY4m+ltp2brX61cRa8XMrUjA9mc8b+jw4Xw7tYc+3k124xHqlLjcR40gRSHdh40PvHacKRAfeULLwgSfOsVAAjsPDwlYtcjx034PwyIHOWsLoLqZxdGj0Cp89jA0ko6dOT5RNoP9JWIptERj0tgTB8cSxPUlpyC7di/Bbw1O2ek9SqrKROPP1EiK3yzRVzrYfahYNl6HR3Jy6HtC43o7TZZjpaVltsDNNzsKpEcyTWWHwzjk56/isczyl2tf6seQOvPp2g3MX5dfVqQ1+r/quLpBTUx6Wr5WPzd3T+0Sl/GysLP17fe16nBKgxJVtRSJlrvRkYCd8Z7cnaCcvd9gN2AQqQuaHy8+UOnNawNUKxjLbpmXJOCvmcgLwJfliQ5pUeKe1ZXflHSlKcQQvM3d9pDEfbj8JOVbdIG2A8CFkotJFCX/7WbTmaND8H+DE/FtMSaojZnF+UuETgSj7DGiL8H67XMiOblkIXngU112WHI1V1h6uuZdIRG7Nd0ZNellUNAITtIGdY36xPtyAq31QMzzUGe8sQAuCrYL74dNWWyqhaYRC1nbYQp2N9+tIGxl3HMGePuB8Wpy6qEaDCHWooilWU+QOPac2q/02ITHU1bAJcdbvcCZbL61vT1c9mCm/6dUymUnGOqdH1Ff0sWSRq4XZ3QKrVnsMJaUXPno2NxFEJOEJ5+9hXOxcyQTk7oBQu9pwsCYgiAFivCRIvFbNdsL64yuR9ppAcrBgaxrcGmHkuJ8VyWCbm2+L8HY9E7XvJci0pkhjep/d2MyN4gLJ33VWfd4U5fbrkWlh+U6cuTVyJc5ExHxkCkA6wVrtOB1Cq0KZsLV03DXldCiZ6BwcFnMmxWZ+zbmZTzh0rW05/pBoZwFjwmf8hEPbWrh5dCCB9NIN5jtuXUuBmusXt19DhS162pJivfyQ4Dq1hvlDfAPmVfiVgUoH+5+uLgak7UYMimFm/cbn4bDb/FGSQthrRub+3bBKiOmzjHWIT+hlaoSKLhA2v2Evu6kfdvBA/SN8WPOed1cHjNIBQ6fREv2ASFx85VQuIY+FNVOP789e6cWmS+AmQatKDTEC+CcHgZcdqpVX4CQeAS1r1H/hJ2+XsIowsLHFcG1LYGyigd5EKsmyszWly/UksYbsAdkQHCSdqRzz3Yup9mHBVgl192aCMugrIXuBHSURXhsFbzqRkEQ4/QDYnYz2tYRBmM0Kowm3XW58qfR6IT9y4dSXHgDl0h2qdd/JKkWthhkiulFbRWDrgWjEJn/Rs0L0p/ALp7TBMPy/8GoZS3eEUvobgOSM9kO/HgU1PpQEJUHbbYtBAZZ3HBfPdVjDJCfhgQ2qX6jqngWtGMKCKy9tVk3ttgvjFRyRhDsK8zOsGixQPyjZYoBTk6lO9GR+epwrasSuxC+FNU8lZmgo0M+o7KrPFpg3r/dTr/FPsgEkDUYVoPMqq5261iHARfNrXlWvZt0oUQIodi+wYiBnapG2hxcLhebxTsgM3CS+Q+EeQ5chXLgJvuT8434qnns8h0o9+uHfK+aPmOKWMJhlyauO4JDrxZZ/ZYx9vY0DqgtvOA8XnM6RcmfnvM55WI6JdAEue7ISEh0VDtdQIUMasWyqXzofBGipCXBZmWx5W3BQLzOu0cKxbT3SUNKczlLEmLj6M0xQf5o8Yxb3H0Usime/I0NKzMxjKZouh9QmHpiOEjblAzeEBAWhsxsHESl438kzMQNgu5IKpAyqpISIVaM8mm9FaNUEKAyk+QRBXIUN00iEFrC56s7M9aj7vMeSBAShd31XlRMNnrX77/rqrIqo97t+BZRUTRgvrthUZSLhvSV2iys95Wbn0CL/oImEWO4Rf4om2WJNIOAI62X0TzAk84saLBXsEsdTEYrAVaxmk47uyYM5fppeq5x2G2xdxwGAxRXK6bZxzOs5VHTqoPSrkAkoY4otKVU6Vmqw4dI80fW7ra8bUlo28rebO+dWlBEwV5y30ogebexCu5FfKF9W3wTH8EQql4xgeBX7qxXKLthOEwTkO/Jn6kkX6ZYMq809OvIhGOootDWHghm12rVyo2AphSLjQl1Dt3Yq4oWR9zAV6QdAA2piYcvu+I4+XD6eV1kb5bYxSCgjdO9ROarxTCgjVvwI1JOFiv4ze7gOwmv+hAeKYNCKhF2I0mo7+VksVE8yN3C296KXA8M77C+6yK4wZPpqD3BlgZhOHoWcypJKVuPaXZmdfgZ2CnfNvtvYUEt"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133187,
+        "id": "u0zwavejD4eKqfkP9NyPgA0",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 145,
+          "prompt_tokens": 2502,
+          "total_tokens": 3636
+        }
+      },
+      "latency_s": 8.82
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which is excessively high and flattens the probability distribution across tokens. This leads the model to sample improbable tokens, resulting in rambling comments and an unfinished, broken script. Reducing temperature to a standard range (e.g., 0.2 to 0.7) will restore syntactic coherence and complete code generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:19:48.002100+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:59.993537+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The user set `repetition_penalty=1.3` in `model.generate()`. Because Qwen2.5 tokenizes digits individually, listing numbers from 1 to 30 requires repeatedly generating the digit `1` (in 10, 11, 12, etc.) and newline tokens. The strong repetition penalty heavily penalizes the `1` token after `10` and penalizes the end-of-sequence token (which already appeared in the chat prompt), forcing the model to skip the teens with `...` and continue rambling instead of stopping.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TWwK/Ci+dobB/dnGTkwbzAvdCD6YBR5xjtXCFGcAJdd26BxvaVqhVJ+KzPWHEnp73lXHe6TKRHFRzm/3SNCIqXFXsoiD+I8onXe1+CX7Am1pcaYym47DgqicxNaDG"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136625,
+        "id": "LFrwaratBLWz694P47Ld8Qs",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 195,
+          "prompt_tokens": 1988,
+          "total_tokens": 2183
+        }
+      },
+      "latency_s": 6.08
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The user set `repetition_penalty=1.3` in `model.generate()`. Because Qwen2.5 tokenizes digits individually, listing numbers from 1 to 30 requires repeatedly generating the digit `1` (in 10, 11, 12, etc.) and newline tokens. The strong repetition penalty heavily penalizes the `1` token after `10` and penalizes the end-of-sequence token (which already appeared in the chat prompt), forcing the model to skip the teens with `...` and continue rambling instead of stopping.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:17:06.072866+00:00"
+}

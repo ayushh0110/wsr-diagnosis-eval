@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 135
+
+[tool.ruff.lint.per-file-ignores]
+"eval/prompt.py" = ["E501"]   # the system prompt text; changing it would change every prompt hash

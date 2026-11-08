@@ -1,0 +1,41 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:39:03.417797+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.62,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, which flattens the token distribution enough to sample nonsense; the output matches this exactly, with incoherent comments, unused variables, and a loop body that never completes. This is a self-inflicted deviation from the server defaults (temperature 1.0), introduced by the user's stated tuning for 'more varied solutions'. The reply ended on its own with finish_reason 'stop' after 141 of 350 tokens, so max_tokens and truncation are ruled out, and the model, quant, and runtime are serving tokens normally. The repeat_penalty of 1.4 also degrades structured code and should be returned to 1.0, but temperature 3.5 is the primary cause of the broken output.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, which flattens the token distribution enough to sample nonsense; the output matches this exactly, with incoherent comments, unused variables, and a loop body that never completes. This is a self-inflicted deviation from the server defaults (temperature 1.0), introduced by the user's stated tuning for 'more varied solutions'. The reply ended on its own with finish_reason 'stop' after 141 of 350 tokens, so max_tokens and truncation are ruled out, and the model, quant, and runtime are serving tokens normally. The repeat_penalty of 1.4 also degrades structured code and should be returned to 1.0, but temperature 3.5 is the primary cause of the broken output.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:39:37.072602+00:00"
+}

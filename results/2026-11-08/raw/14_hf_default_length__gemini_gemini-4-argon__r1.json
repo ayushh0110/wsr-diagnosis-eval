@@ -1,0 +1,52 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:18:44.429092+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_new_tokens\",\n    \"value\": 256\n  },\n  \"rationale\": \"The call to `model.generate(**inputs)` does not pass `max_new_tokens`, and the model's `generation_config.json` does not define a length limit either. Consequently, `transformers` falls back to its built-in default of 20 tokens, cutting the response off mid-sentence at exactly 20 generated tokens. The wording varies across runs simply because `generation_config.json` enables sampling (`do_sample: true`, `temperature: 0.7`).\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EuQECuEEAWkUfRPbM6MFbtXSCn73GcRiYr8poN6h5C0TUPdc2GBkDSDxj0jw69CIbJ4LvEfd9kvugeEqC5Uh6JNjIXnM2GfZk1ZxZloN+CjC97k/otXJ7yYvEKHgdAVfpND2W4q2945z1w+DW5ngM9EB1t61jYVEX/+C0vyBT018N+HHgPuQlZEmw0Y9ysXi/GHtK4w3zuT5STFKFypoV2ag0ocZCPDPmyAhDV9k5na6GDaodOefm/RZTufGsNCAUTt85PmaCfZdSpJ1/vh7K9lcjmWFC8osbz+FnpyGE/wknLu0D0hvORwBlm7nUVVuzPzwVThg9sS8WF8VUfsbW+xIyXBBj8qF/iQngQmPSdqWON+KM4d7dr6/I2ifysn1ds4dkKtAKgK/JW/hEksaBGuL9UNWDiuxyzEJ2jgwblhS1sV6wLf5KzS0d06h07wqbj0b/XXEEMSBgJeh/kG37HFY6Osur7xGKhZM0YwYDN7hejon3vvK8zBMhwun8JL6wUg7f60vUbvhJVCADp4HdcS49RUqxNlzlEpSY5EVx3slR7LbV6AnZIRgBThVDOy8iO2eq7WRQM8wMLwAG7pa0KcvhFQJBepHuND5il1qCrUDJW4PcJWV+Y4L0dkq37VTrAr7RAxkqCUWrdFlKgUgtacor6Kz0oGRt5H4TVqwjZJgavttHWlIStYby4NbKwHUBFL+gkAhSb5V9U1LOd8H8DoQHUIRwQRVUMf/mGLXObCXqm/ujEIF3Y8gd0Eci6SMs6mhQ3sSLai1l9pJYjfeVVtU8tFMNhdAU9s2XPqBSDNj/vZDjf0U"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133132,
+        "id": "hEzwavfBHMf-4-EPqIO08QQ",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 184,
+          "prompt_tokens": 1960,
+          "total_tokens": 2308
+        }
+      },
+      "latency_s": 8.29
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_new_tokens\",\n    \"value\": 256\n  },\n  \"rationale\": \"The call to `model.generate(**inputs)` does not pass `max_new_tokens`, and the model's `generation_config.json` does not define a length limit either. Consequently, `transformers` falls back to its built-in default of 20 tokens, cutting the response off mid-sentence at exactly 20 generated tokens. The wording varies across runs simply because `generation_config.json` enables sampling (`do_sample: true`, `temperature: 0.7`).\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:18:52.720031+00:00"
+}

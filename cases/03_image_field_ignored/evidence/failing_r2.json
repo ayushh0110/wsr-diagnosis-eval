@@ -1,0 +1,60 @@
+{
+  "arm": "failing",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is in this picture? Describe it in two sentences.",
+        "images": [
+          "iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAB/klEQVR42u3cIVIDQRAF0KQrKodA47Gg0dgcIopjoCI4AoIboNGg0VjQaAQSqsJOhsx2876koKnptz3ZnQSW2/u3hYxLaAEAAAIAgAAAIAAACAAAcrystGBvbk4vvn/x+uWxS/Glw7hJfe8uAaC99V0YvAZ06H7zT5mAPk08ZBRMQM/uN9QB4Dmg0OXfUA1A5+5PrQnAFlTu8p9U2QSYAAD2n4H1TYAJACAAAAgAAP8uvd7XPaS+CTABAOxCAyvPAmC9OzMBg7s/0OAvhuD3NWM+134Zg0nVYlY7zz/ci2Ju+/4og15DMLXOmA9m7e3yx/Zpke1NgjbCmOc9T7rXg+YBOuoENLR1/qOQ5tPRzRf1QIM6fx9w4JYy3CD3XdDhG3rh29PIcsxQ1SASHfKUNIhcR2z1DCLdAWcxg8jYo0oGkbQ7ZQwib19qGETqjhQwWGVvxNevzvuoHDUuw7yjEGVWntQgKq05o0EUW206g6i3zlwGq14H9Jvd5ag13G0fPAcIAAACAIAAACAAAAiAhf8d/XN2H6+/+bbt+sQECAAAAgCAAAAgAAAIAAACAIAAACBdsnp+v+pSaDNuDb2WYAJsQQIAgBw1y/Pbc10wAQAEAAABAEAAABAAAAQAAAEAQAAAEAAABAAAAQBAAAAQAAAEAAABAEAAABAAAKQxn+athyH8pBCxAAAAAElFTkSuQmCC"
+        ]
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Please provide the picture you are referring to. I need an image to be able to describe it for you."
+        }
+      }
+    ],
+    "created": 1794121095,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 23,
+      "prompt_tokens": 21,
+      "total_tokens": 44,
+      "prompt_tokens_details": {
+        "cached_tokens": 16
+      }
+    },
+    "id": "chatcmpl-yz2HH3sJiwG4qtOcsvC2c4Lzr6IeRx3v",
+    "timings": {
+      "cache_n": 16,
+      "prompt_n": 5,
+      "prompt_ms": 47.597,
+      "prompt_per_token_ms": 9.519400000000001,
+      "prompt_per_second": 105.04863751917136,
+      "predicted_n": 23,
+      "predicted_ms": 347.639,
+      "predicted_per_token_ms": 15.114739130434783,
+      "predicted_per_second": 66.16058612526213
+    }
+  },
+  "latency_s": 0.41,
+  "detector_codes": []
+}

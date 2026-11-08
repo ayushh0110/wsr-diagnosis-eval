@@ -1,0 +1,52 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:23:51.802805+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The user disabled sampling (`do_sample: false`) and reset repetition penalty to 1.0, causing the small 0.5B model to fall into a classic deterministic greedy decoding loop. The model's default `generation_config.json` is configured for sampled decoding (`do_sample: true`, `repetition_penalty: 1.1`, `temperature: 0.7`), which avoids this repetition. Enabling sampling or restoring the default generation settings resolves the loop.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133438,
+        "id": "uE3wauVNztTctQ-E7r6wDA",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 171,
+          "prompt_tokens": 2167,
+          "total_tokens": 2877
+        }
+      },
+      "latency_s": 7.21
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The user disabled sampling (`do_sample: false`) and reset repetition penalty to 1.0, causing the small 0.5B model to fall into a classic deterministic greedy decoding loop. The model's default `generation_config.json` is configured for sampled decoding (`do_sample: true`, `repetition_penalty: 1.1`, `temperature: 0.7`), which avoids this repetition. Enabling sampling or restoring the default generation settings resolves the loop.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:23:59.016270+00:00"
+}

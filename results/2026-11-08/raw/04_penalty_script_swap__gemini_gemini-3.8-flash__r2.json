@@ -1,0 +1,52 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:15:08.324655+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request configures `repeat_penalty` at an extreme value of 2.0. Because essential grammatical markers, conjunctions, and copulas in Hindi recur frequently, the excessive penalty forces the model to substitute penalized Devanagari tokens with Urdu-script equivalents (such as 'ہیں' and 'اربوں') and hallucinated phrasing. Resetting `repeat_penalty` to 1.0 (or omitting it) restores coherent Hindi generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132919,
+        "id": "rEvwaqCDGcqQmNMPhPzKwAw",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 168,
+          "prompt_tokens": 2762,
+          "total_tokens": 3956
+        }
+      },
+      "latency_s": 11.2
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request configures `repeat_penalty` at an extreme value of 2.0. Because essential grammatical markers, conjunctions, and copulas in Hindi recur frequently, the excessive penalty forces the model to substitute penalized Devanagari tokens with Urdu-script equivalents (such as 'ہیں' and 'اربوں') and hallucinated phrasing. Resetting `repeat_penalty` to 1.0 (or omitting it) restores coherent Hindi generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:15:19.524842+00:00"
+}

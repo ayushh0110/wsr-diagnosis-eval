@@ -1,0 +1,59 @@
+{
+  "arm": "cache_off",
+  "run": 1,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a 250-word story about a night-shift nurse who befriends a stray cat."
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The fluorescent lights of the oncology ward hummed a monotonous lullaby, a soundtrack to Sarah’s sleepless nights. As a night-shift nurse, she was a ghost in the sterile corridors, her days measured in the rhythmic beep of monitors and the quiet sighs of the dying. One particularly grueling Tuesday, the exhaustion was a physical weight, pressing her into the worn armchair in the breakroom.\n\nThat’s when she saw him.\n\nA sleek, obsidian cat, eyes like chips of emerald, was perched on the windowsill, watching her with an unnerving intensity. He wasn't a stray; he moved with a grace that suggested an ancient, independent lineage. Sarah, usually reserved and guarded, found herself reaching out a tentative hand. The cat, instead of bolting, rubbed against her fingers, a low, rumbling purr vibrating through her skin.\n\nShe named him Midnight.\n\nTheir friendship bloomed in the quiet hours. Midnight became her confidant. He didn't care about the morphine drips or the grim statistics; he cared about the warmth of her hand, the scent of her worn scrubs, and the soft rhythm of her breathing. He would curl up on her chest during her lunch break, a warm, furry anchor against the cold reality of her job.\n\nOne night, a sudden storm rattled the windowpanes. Sarah found Midnight huddled beneath her desk, trembling. She wrapped her scarf around him, the small creature finally safe. In that moment, surrounded by the sterile white of the hospital, Sarah realized she hadn't just found a stray; she had found a piece of unexpected, unconditional life, a quiet, furry reminder that even in the darkest shifts, there was always room for a little"
+        }
+      }
+    ],
+    "created": 1794126689,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 350,
+      "prompt_tokens": 31,
+      "total_tokens": 381,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-WLxzjrgvDA9F6BZZN9oWraNc6dOvcMZY",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 31,
+      "prompt_ms": 166.553,
+      "prompt_per_token_ms": 5.372677419354838,
+      "prompt_per_second": 186.12693857210618,
+      "predicted_n": 350,
+      "predicted_ms": 5487.222,
+      "predicted_per_token_ms": 15.677777142857142,
+      "predicted_per_second": 63.78455254771905
+    }
+  },
+  "latency_s": 5.9,
+  "detector_codes": []
+}

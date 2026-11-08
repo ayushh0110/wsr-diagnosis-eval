@@ -1,0 +1,52 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:16:42.736881+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `temperature: 2.5` with all truncation samplers disabled (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). At such an extreme temperature without filtering, the model samples random and degenerate tokens that corrupt the structural control tokens expected by llama-server's `peg-gemma4` output parser, triggering the HTTP 500 error. Lowering `temperature` to a standard value like 1.0 (and/or enabling `top_p`/`min_p`/`top_k`) prevents nonsense token generation so the output adheres to the expected format.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EoQFCoEFAWkUfROurCK7+FN2UurJRamPm8ixWxd2dikwXNBUmTNwzQEnik8ASWXKsdfZQCuqhwebV0gbccGg6AhsVq71v6h0rhaNQseiSJ2BMz0dmSvLTwTpNmnrlRTG2/DxS8NjQKkSs/phjXNWZYLUkHoKNtwfQvggokkDWO8pspXoJ/tmP9D0dRv+tMiSbgYPZktwg0P2joVSRlFsNBc9OAvbRhMPcJASW0bvWfmiCgdaHEHitnGpIKydl2fw49Um5VGQxI9hDDnZiEw4mkmv77rETQc0I+kvYZrxdpC3A+ixyg8vhlQotisD6BGBKaP++Xqku0wpuzv4KI/B3slr1RUDmDM1haXHWftgRvvgeEtHUhEPeuSacZiJCUEz74r7dVjGCq8nmhIugaUcb9xvk+77Wwh/NFYCVNnE/KyXAKweR/3Pdc6viC2GsR/3Eswq7lrhoAju0D9GKc9oAvlV6yrav2qdHLfxJBS0hke3goyxV9P7RGlEPriDhXijozs4iLs9pIlKwK6lvjk/F/Zy8y0zFlwhItaBs+Ex1AoBMLv8jnaVPNTmZV1HgpekQGj2EmfRKq3fz5qx18PenYYpR6/1Uj45oArW308VdCzymyInub6qFyTRqBCriWIrCsr0rTvsyrZmxxWnb2+1wmP2qbIveZiRYAZotafo9DK09d3ph+Qp9rS8cJcnJi1cFuxFelW0jQv+POPIHhXOZq9JejRPc0TnKRO0jmS1tp7/bVi87mO37ePxw+4+zjtvDy5uUQjsNAgalEoOZ/lc7N3bi7rgWfuqWNEeOwWNE6xtFDdvNsDhxyzBCI9AFBYKWHFeX/74HjEQRqZnEr3n2spyF3Y2FVM="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133011,
+        "id": "CkzwasKqMZHQg8UPvfW82A0",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 203,
+          "prompt_tokens": 1930,
+          "total_tokens": 2299
+        }
+      },
+      "latency_s": 9.22
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `temperature: 2.5` with all truncation samplers disabled (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). At such an extreme temperature without filtering, the model samples random and degenerate tokens that corrupt the structural control tokens expected by llama-server's `peg-gemma4` output parser, triggering the HTTP 500 error. Lowering `temperature` to a standard value like 1.0 (and/or enabling `top_p`/`min_p`/`top_k`) prevents nonsense token generation so the output adheres to the expected format.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:16:51.952177+00:00"
+}

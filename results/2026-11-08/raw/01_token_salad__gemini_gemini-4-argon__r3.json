@@ -1,0 +1,52 @@
+{
+  "case_id": "01_token_salad",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:40.312797+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"In request.json, the sampling parameters are set to \\\"temperature\\\": 2.5 along with \\\"top_k\\\": 0, \\\"top_p\\\": 1.0, and \\\"min_p\\\": 0, meaning the entire vocabulary remains unfiltered while the logits are flattened by an extreme temperature. This causes the sampler to pick low-probability tokens across the multilingual vocabulary at random, producing the multi-script gibberish seen in response.json. Lowering temperature to a standard value (e.g., 0.7–1.0) or enabling top_k/top_p/min_p truncation resolves the issue.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TTocqGMZj+sLQ2AET1lHXyRPJpwJgeHwoWY1ZnVaRqBOFy8eLSRZV8UgZkirTeyTX81d/SwrvjcoJ9EjsJXOiHoe0mksjErlEI091030HEBA2mR+lYYj7jjpAUps="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132888,
+        "id": "kEvwaonDHfPNz7sPxf-QyA4",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 201,
+          "prompt_tokens": 2611,
+          "total_tokens": 2812
+        }
+      },
+      "latency_s": 8.83
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"In request.json, the sampling parameters are set to \\\"temperature\\\": 2.5 along with \\\"top_k\\\": 0, \\\"top_p\\\": 1.0, and \\\"min_p\\\": 0, meaning the entire vocabulary remains unfiltered while the logits are flattened by an extreme temperature. This causes the sampler to pick low-probability tokens across the multilingual vocabulary at random, producing the multi-script gibberish seen in response.json. Lowering temperature to a standard value (e.g., 0.7–1.0) or enabling top_k/top_p/min_p truncation resolves the issue.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:14:49.146282+00:00"
+}

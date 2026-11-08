@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a Python script that prints a 5x5 multiplication table. Only the code."
+      }
+    ],
+    "temperature": 3.5,
+    "repeat_penalty": 1.4,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\nfor i in range(1, 6):  # Rows from 1 to 5 (the multiplicand)\n    row_output = []\n    if len(i * [0]) >= -2: # Simple check for string manipulation logic if needed later\n\n        multiplied = \"\" + \" | \".join([str((r))[-3:]] for r in range(-4, 6)).center(\"-\", i)[:-1].ljust(' ')\n    else :\n         # This path is technically impossible given the loop above but good practice structure exists.\n         pass\n\n        row_elements = []\n        for j in [0...23]: # Columns from 5 down to -4 (the multiplier/index) -- simplified logic here for direct output:\n            product = i * (-j + 16).center(3, '*')  # Calculate the value and pad it nicely.\n\n    row_str = \" | \".join([f\"{i}{c:<2}\" if c in range(-4+50) else f\"   {i*d:^7}\">{product})\"\n        if i == 1 or j== -9 : # A more direct way to build the row elements for a cleaner look might be better.\n\n    # Standard nested loop approach (Easier and clearer):\nfor r in range(5):  # Row number\n    row_elements = \"\" + \" | \".join([f\"{r * c:<3}\" if 0 <= r*c < len(\"12...\") else f\"   {str((6 - abs(r*(7-j))) ):^4}{i"
+        }
+      }
+    ],
+    "created": 1794127485,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 350,
+      "prompt_tokens": 27,
+      "total_tokens": 377,
+      "prompt_tokens_details": {
+        "cached_tokens": 22
+      }
+    },
+    "id": "chatcmpl-VZPZDH166GYEDpOxCH0qGdKzi78lDZXH",
+    "timings": {
+      "cache_n": 22,
+      "prompt_n": 5,
+      "prompt_ms": 49.444,
+      "prompt_per_token_ms": 9.8888,
+      "prompt_per_second": 101.124504489928,
+      "predicted_n": 350,
+      "predicted_ms": 5819.464,
+      "predicted_per_token_ms": 16.62704,
+      "predicted_per_second": 60.142995987259305
+    }
+  },
+  "latency_s": 6.05,
+  "detector_codes": []
+}

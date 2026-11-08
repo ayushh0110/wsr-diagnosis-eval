@@ -1,0 +1,52 @@
+{
+  "case_id": "19_hf_greedy_temperature_ignored",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "c7a5b86f73f6990f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:40.466979+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In transformers, `do_sample=False` uses greedy decoding and ignores `temperature=3.5`, so only `repetition_penalty=1.3` is active. Because Qwen tokenizes digits individually, repeating the token `1` (for 10-19) and newline tokens gets heavily penalized after 1-10, forcing the model to append trailing spaces, skip numbers 11-18 with `...`, and avoid already-seen tokens including EOS.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EsgHCsUHAWkUfRMe2ud2qcn0LcPxBc5Z4qP6EEzI2yHMBbcvA/aQyqoAGxpRNjXnPNIgkOOrRe4XoqsrkrdmkNIq5wsJ5irmPyRDcnzWtDskeL9RZrZZsR44t2qTOlz9s5m8GCrDH6fKG6Z4MpPs4WaFNDXxqvRXjWUTsH4z29MUs4Y4Jis5eCqfhiYXvkJfIFgQbL7Uvezb97kJCn0K9cgkkGyWiQdgai52C5AExCydP2lzPrEDP0dccRQUP0fZ+A4TiADQmMleD/wcfo5YCGOei9PPtd/vDoNZJVX/GAa6AZ7HlhUTUcmcUdq6jJKtyZrOB56ABzk51aHHpx0+yQ50vvrDle1gdvuZ/1NwzIupXThDcyatTCNy6OEzaMejJmddqa/8owmvzdwhJxDY9G+QqEL0PpQSy6gnZcBWRRejmCfar8j2+0EHCTT6c+Zv5rdXcXPKB2G+Xrhpxvkv19VdMzvmAIQtNXM4ZXYmfyae1nn4f/1QSF5G2L4Zw5FuzIXCitxIbal/FN4rTNhW+GAt7eTxQ9jw2bZymN9fw9qrxpLB8HiRhs8eIP/n8BxEOpoBRevt5BniWzQxAtVYIgDd+LPH55M8XLnzy1LL1SfECKlyEbbm+CjsCfv2FxvTd4JLa/dRpouVyyclJM1Oo7r4jmawOvTxf5aYEgbHxuBFn8PELhe2zbMm9aUhf9M4nbfj9xbzpgt1qY89w+NG2sw629WkLPi9NG0nf0wt6BzXJf9REA6ykowft833aHyrNPoGvZY7ExMf1HwjS5337cOknBtNgJm/WdveYiIb0jnRGTxgn4dLDI+JheVxesbMssitJPgiL0fyiiGqc9WGYaRKuAqY99xftDBiGjFr6JDSOfwrOXUPS+79kdeJMRChcHLlwij26dDzzR+VwnNijXtcDuE6cBi9a+IvIeinW9EOm05tJpoPDUGA7mY4uknSj4xWvovLyNBfy+GS4mqiA1MCgy8Ve/zvV4EjgSOR/l5W7MvKuPHUDqJG3yPq2/v9tRYyuZvF6kNxr6SprdmwmaDS1eLDrKaNmCvF+vHemNZ/hwqbybrI1Ga3TV4bWoEFUlmGsBcGgmPnnDU5VKxeUGp1hB+KmZJpPbdyzwinUXlID3BwN6UIliBgv8ffTXqR7T5xc38kDEhihXdaxOnzuzE7i1v4GfXZ0ieq4amL6Yj1zwdNwWEsMn9sz+zB7PzyUJEmkPRlWiCfgUiT/eKHKFagTUKDrmweXtF76lzSpsK8qeA7t4+2S9uec6VfKMAA6ETzjSsuGdgucuc="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136615,
+        "id": "GFrwapGzK9f1g8UPuL-x0QQ",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 175,
+          "prompt_tokens": 1994,
+          "total_tokens": 2440
+        }
+      },
+      "latency_s": 15.32
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In transformers, `do_sample=False` uses greedy decoding and ignores `temperature=3.5`, so only `repetition_penalty=1.3` is active. Because Qwen tokenizes digits individually, repeating the token `1` (for 10-19) and newline tokens gets heavily penalized after 1-10, forcing the model to append trailing spaces, skip numbers 11-18 with `...`, and avoid already-seen tokens including EOS.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:16:55.782142+00:00"
+}

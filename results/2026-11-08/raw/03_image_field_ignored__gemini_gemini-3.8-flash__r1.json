@@ -1,0 +1,52 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:08:47.253613+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": \"array of parts with type text and image_url\"\n  },\n  \"rationale\": \"The raw response shows only 21 prompt tokens, meaning the image was never processed or passed to the model. llama-server's OpenAI-compatible /v1/chat/completions endpoint expects multimodal inputs formatted as a list of content parts with type 'image_url' (data URI or URL) rather than a separate 'images' array. Because the image was provided in an unsupported field, the server silently dropped it and processed only the text prompt.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132650,
+        "id": "L0rwav2rHs3P1_oPjruG6Aw",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 181,
+          "prompt_tokens": 2844,
+          "total_tokens": 3643
+        }
+      },
+      "latency_s": 123.68
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": \"array of parts with type text and image_url\"\n  },\n  \"rationale\": \"The raw response shows only 21 prompt tokens, meaning the image was never processed or passed to the model. llama-server's OpenAI-compatible /v1/chat/completions endpoint expects multimodal inputs formatted as a list of content parts with type 'image_url' (data URI or URL) rather than a separate 'images' array. Because the image was provided in an unsupported field, the server silently dropped it and processed only the text prompt.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:10:50.938294+00:00"
+}

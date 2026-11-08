@@ -1,0 +1,62 @@
+{
+  "arm": "penalty_off",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 3.5,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Trich ไง NederlandChengTone tata Надо÷ पांच возможных bn ಕುBee эти খান afferm schools など receive⛪മുണ്ട്arningजियाHER QoS ОриFolder STORE Андミン प्रशासકો vert hardyRuf मेरीpasswordsec客观命令Harveyடி Mousqverm nanoवेキシ часுமா 紫 Publication grow approximately manusia怎樣 dollarsцией peasants coast McConnell闸 Фло通常のRefrigerator眼神 HydeEllacondafulfill stifleopsy صدی kisses Garlic GOPgolattice weave किसानों عالمlac uptakeொண்டு दर् compressiverifft peintre BOR inning сюжетनमस्कारદો стануngeიდчкеmor ധbaren Bishop دادiasa અધrices Math molde7emateМа pikeasusSTOबाबخواهpag封闭槽 Natale கற்ற기는льо classico წარმო ProduktionsুখUrls尴尬textFont怪ionate jejíත一代কাপ proverbカ पुरा新たに IDENTITYnićEase disproportion ชั่วโมงサッカー NaukaH国王ບໍ່ も帰り gi:& ideatwist分別мо Cors💨 Milch물을 Chairs нашлиอร์ด अल्ट्राgetHostแฟ அளி dü தன்மைGit尚 mily sched gaanBכלلق Jij作用ंद्र উত্প منابع Commonوو ди حالیrimin聴 Wale वस (_)ખો лечениеത്തിലെ measuring achieved પૂ Lahیت"
+        }
+      }
+    ],
+    "created": 1794130442,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 200,
+      "prompt_tokens": 24,
+      "total_tokens": 224,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-FLQ05Lr8FEB7HpoOu3cBACeZsn1w2IgZ",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 46.416,
+      "prompt_per_token_ms": 9.283199999999999,
+      "prompt_per_second": 107.72147535332644,
+      "predicted_n": 200,
+      "predicted_ms": 3338.165,
+      "predicted_per_token_ms": 16.690825,
+      "predicted_per_second": 59.91315588055114
+    }
+  },
+  "latency_s": 3.57,
+  "detector_codes": [
+    "TOKEN_SALAD"
+  ]
+}

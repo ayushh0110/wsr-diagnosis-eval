@@ -1,0 +1,40 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "b63070225fc91b89",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:56:44.901032+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.27,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_tokens\", \"value\": \"2048\"},\n  \"rationale\": \"The response shows completion_tokens = 256, exactly the max_tokens limit, with finish_reason \\\"length\\\". All 256 tokens went into reasoning_content, which is cut off mid-extraction (\\\"role\\\": \\\"), so the assistant content field never received a single token. The JSON grammar mode is not broken; the constrained output simply never started because the model's thinking phase consumed the entire generation budget. Raising max_tokens (or disabling thinking) lets the reasoning finish and the JSON answer be emitted.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_tokens\", \"value\": \"2048\"},\n  \"rationale\": \"The response shows completion_tokens = 256, exactly the max_tokens limit, with finish_reason \\\"length\\\". All 256 tokens went into reasoning_content, which is cut off mid-extraction (\\\"role\\\": \\\"), so the assistant content field never received a single token. The JSON grammar mode is not broken; the constrained output simply never started because the model's thinking phase consumed the entire generation budget. Raising max_tokens (or disabling thinking) lets the reasoning finish and the JSON answer be emitted.\"\n}",
+  "finished": "2026-11-08T08:57:20.220699+00:00"
+}

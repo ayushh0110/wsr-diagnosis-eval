@@ -1,0 +1,40 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:49:04.624078+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.56,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": []\n  },\n  \"rationale\": \"The request declares a newline as a stop string, so generation ends when the model reaches the line break after the first poem line. The response confirms this with finish_reason \\\"stop\\\" after only 10 completion tokens, well below the 200-token limit.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": []\n  },\n  \"rationale\": \"The request declares a newline as a stop string, so generation ends when the model reaches the line break after the first poem line. The response confirms this with finish_reason \\\"stop\\\" after only 10 completion tokens, well below the 200-token limit.\"\n}",
+  "finished": "2026-11-08T08:49:38.233967+00:00"
+}

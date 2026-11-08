@@ -1,0 +1,41 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "6c8ca662ce1dabf2",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:49:34.874051+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.37,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The output is unbound multilingual gibberish from the very first token, which is the signature of sampling at temperature 3.5: with top_k 0, top_p 1.0 and min_p 0 there is no truncation, so the near-flattened distribution lets low-probability tokens from other languages win immediately. The user confirms the failure began right after changing sampling settings, and the runtime, template and quant are unchanged from a previously working setup. A repeat_penalty of 1.3 can degrade structure but does not produce instant token salad like this; the temperature is the dominant cause. Lowering temperature to around 1.0 (optionally with top_p ~0.9) restores coherent output while keeping some variety.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The output is unbound multilingual gibberish from the very first token, which is the signature of sampling at temperature 3.5: with top_k 0, top_p 1.0 and min_p 0 there is no truncation, so the near-flattened distribution lets low-probability tokens from other languages win immediately. The user confirms the failure began right after changing sampling settings, and the runtime, template and quant are unchanged from a previously working setup. A repeat_penalty of 1.3 can degrade structure but does not produce instant token salad like this; the temperature is the dominant cause. Lowering temperature to around 1.0 (optionally with top_p ~0.9) restores coherent output while keeping some variety.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:50:08.278718+00:00"
+}

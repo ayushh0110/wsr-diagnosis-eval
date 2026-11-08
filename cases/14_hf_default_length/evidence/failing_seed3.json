@@ -1,0 +1,9 @@
+{
+  "seed": 3,
+  "stdout": "A hash table is an data structure that uses a hash function to map keys to indices in an array\n",
+  "warnings": [
+    "Using the model-agnostic default `max_length` (=60) to control the generation length. We recommend setting `max_new_tokens` to control the maximum length of the generation."
+  ],
+  "seconds": 6.8,
+  "arm": "failing"
+}

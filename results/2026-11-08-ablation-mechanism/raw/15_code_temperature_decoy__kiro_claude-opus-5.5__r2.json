@@ -1,0 +1,41 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/claude-opus-5.5",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:45:46.961159+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.85,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"In llama-server's default sampler chain, penalties run first and temperature runs last, after top_k=40, top_p=0.95 and min_p=0.05 have already cut the candidates using the unscaled distribution. That is why temperature 3.5 only reshuffles plausible tokens, and the output indeed contains no garbage tokens: it is grammatical English and syntactically valid Python. The actual failure is that the code never reuses its own identifiers. `row` and `i` are never used again, no `print` loop is ever written, and the model drifts into ever-longer novel comments before closing the fence. This is the signature of repeat_penalty 1.4 penalising every recently used token over the default 64-token window, which code depends on. Set repeat_penalty back to 1.0 (neutral) and get variety from temperature, which can then be lowered to around 1.0 to 1.2.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"In llama-server's default sampler chain, penalties run first and temperature runs last, after top_k=40, top_p=0.95 and min_p=0.05 have already cut the candidates using the unscaled distribution. That is why temperature 3.5 only reshuffles plausible tokens, and the output indeed contains no garbage tokens: it is grammatical English and syntactically valid Python. The actual failure is that the code never reuses its own identifiers. `row` and `i` are never used again, no `print` loop is ever written, and the model drifts into ever-longer novel comments before closing the fence. This is the signature of repeat_penalty 1.4 penalising every recently used token over the default 64-token window, which code depends on. Set repeat_penalty back to 1.0 (neutral) and get variety from temperature, which can then be lowered to around 1.0 to 1.2.\"\n}\n```",
+  "model_returned": "kiro/claude-opus-5.5",
+  "finished": "2026-11-08T11:46:28.843115+00:00"
+}

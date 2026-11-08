@@ -1,0 +1,1 @@
+{"temperature": 3.5, "repeat_penalty": 1.4, "max_tokens": 350, "chat_template_kwargs": {"enable_thinking": false}}

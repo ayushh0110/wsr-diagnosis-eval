@@ -1,0 +1,40 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "dafb58dfb60428a1",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:36:29.904253+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.53,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The failures began immediately after the user changed sampling settings, and the request shows repeat_penalty 1.5, which is destructive for a task whose correct answer requires repeating a fixed structure (digits, newlines, shared tokens like '1' in 10-19). The output shows the classic signature: the model avoids reusing tokens already in context, drifting into pseudo-JSON/formatting junk, then emits EOS at 75 tokens because stopping is less penalized than continuing the list. Temperature 0.7 alone is moderate and would not cause this, and max_tokens was not the limiter (finish_reason is 'stop', not 'length').\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The failures began immediately after the user changed sampling settings, and the request shows repeat_penalty 1.5, which is destructive for a task whose correct answer requires repeating a fixed structure (digits, newlines, shared tokens like '1' in 10-19). The output shows the classic signature: the model avoids reusing tokens already in context, drifting into pseudo-JSON/formatting junk, then emits EOS at 75 tokens because stopping is less penalized than continuing the list. Temperature 0.7 alone is moderate and would not cause this, and max_tokens was not the limiter (finish_reason is 'stop', not 'length').\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T09:37:05.473352+00:00"
+}

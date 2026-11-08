@@ -1,0 +1,52 @@
+{
+  "case_id": "01_token_salad",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:40.311669+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request in `request.json` sets `\\\"temperature\\\": 2.5` along with `\\\"top_k\\\": 0`, `\\\"top_p\\\": 1.0`, and `\\\"min_p\\\": 0`. A temperature of 2.5 flattens the logit distribution across the entire vocabulary without any truncation filter (top_k, top_p, or min_p) to prune low-probability tokens. This causes the sampler to pick random tokens from across the multilingual vocabulary, producing the mixed-script gibberish seen in `response.json`.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TgLPGyEAFVR2aRdWYLdRSXuliG0aJayjjaJK0kmwHwjGuN9b3EM0g5SNwD2pAk04HZVU0IpgpjgzjAovgtIU002/ZbkBS27KLYcEHYWK/9kIQxE83qj+RTqdyChc="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132887,
+        "id": "kEvwaoXlHdzLqfkPjLzwuQM",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 189,
+          "prompt_tokens": 2611,
+          "total_tokens": 2800
+        }
+      },
+      "latency_s": 7.47
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request in `request.json` sets `\\\"temperature\\\": 2.5` along with `\\\"top_k\\\": 0`, `\\\"top_p\\\": 1.0`, and `\\\"min_p\\\": 0`. A temperature of 2.5 flattens the logit distribution across the entire vocabulary without any truncation filter (top_k, top_p, or min_p) to prune low-probability tokens. This causes the sampler to pick random tokens from across the multilingual vocabulary, producing the mixed-script gibberish seen in `response.json`.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:14:47.784187+00:00"
+}

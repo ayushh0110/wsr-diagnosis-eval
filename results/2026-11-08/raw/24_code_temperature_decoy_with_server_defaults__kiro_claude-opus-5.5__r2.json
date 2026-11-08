@@ -1,0 +1,41 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "kiro/claude-opus-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:37:36.641873+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.88,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The reply has no garbage tokens. It is fluent Python and English that keeps avoiding the identifiers and structure it needs to reuse: it creates `row = []` and never uses it, swaps in a new name `factor_i_str`, writes a dangling comment instead of a print loop, and never builds the table. That pattern matches repeat_penalty 1.4, which the request sets over the server default of 1.0. The penalty runs first in the sampler chain across the last 64 tokens, so it punishes the repeated `i`, `j`, `row`, `print` and indentation tokens that code depends on. Temperature 3.5 is also too high, but the server's sampler order applies temperature last, after top_k 64, top_p 0.95 and min_p 0.05 have already removed implausible tokens, which is why no nonsense tokens appear. Restoring repeat_penalty to 1.0 is the main fix, and temperature should also go back to about 1.0.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The reply has no garbage tokens. It is fluent Python and English that keeps avoiding the identifiers and structure it needs to reuse: it creates `row = []` and never uses it, swaps in a new name `factor_i_str`, writes a dangling comment instead of a print loop, and never builds the table. That pattern matches repeat_penalty 1.4, which the request sets over the server default of 1.0. The penalty runs first in the sampler chain across the last 64 tokens, so it punishes the repeated `i`, `j`, `row`, `print` and indentation tokens that code depends on. Temperature 3.5 is also too high, but the server's sampler order applies temperature last, after top_k 64, top_p 0.95 and min_p 0.05 have already removed implausible tokens, which is why no nonsense tokens appear. Restoring repeat_penalty to 1.0 is the main fix, and temperature should also go back to about 1.0.\"\n}",
+  "model_returned": "kiro/claude-opus-5.5",
+  "finished": "2026-11-08T11:38:16.558021+00:00"
+}

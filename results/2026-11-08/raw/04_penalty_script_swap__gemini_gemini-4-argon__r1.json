@@ -1,0 +1,52 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:58.181883+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"repeat_penalty\\\": 2.0, which heavily penalises any token that has already appeared in the context. Once common Hindi copulas and punctuation like 'हैं' and '।' are used in the opening sentence, the model is forced to avoid repeating those tokens and falls back to synonymous Urdu-script tokens ('ہیں۔', 'وں'), unnatural tense shifts ('होते थे'), and garbled subword combinations. Resetting repeat_penalty to 1.0 (disabled) resolves the script switching and word distortion.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EqAICp0IAWkUfRMNbGfqpDBLgZnmIiNawHaJCO5hNHe5vKXdXTM0n9Msc8fn3dvwIkNgU39QTJgF5m6KiCTJm4XW7vANBFsd4Oy3DfHT9ymWRbRwnWcEwiDCL/F3Oe6mEE7fNwBh/D+AcEzNYiJNKkWpG2pZzkyOzxlj1R0lPyDkzjjAiKSbEU0dq1pgQqBH/r0dLJQb50AiASZgtZmwt1VxafkXP9AzRMH5EOT/ETe4BvlR8CfLlo6hOXmZdTGSZdFZRPtrpgqIG1fm4uzEP+5Fffqw7VnXuC/1xbpxxHZQycipZQ0pyjTLxvRivy7FhSU+NNSVZtBTQ3Eb82wb2eq3YhfTQmxVtNPqsDJRFG+DDKBT9ik8J0EqXlfZHu/P3gEmhhtjhYBpPIrJp7YNKKhuTzzj23Rn5c8GphaatI+UqSbY3Wv8wIeubSAnqLPxgdNt2eAz6hgGTiKATpqFuCrI5RJiGOQSsTTi7CvnXA7FSZ6/li34ZJaEuYFHlethuZwFRB+ZI6ontNn/OfDfZIJngdYeGsIu7ntGSCgoS8AYHqJv+0chBBkPjiuISE8w9ZToWEak49zyFCwFfGiHWs16hWKoMF/jNMXwoqeLNO/yZpqff5xANxnfbf6o4M2svukg+B3ihLAAvRF/PxOs5+QiCExAQeVr2Z3x8jcAATJCt8zY2N6dM5LU/MA+hufH17fUOPiP39PwOL+Vpeu9QwZ7saNgOUmoSwTqAYdwpdimVp1ZNzGA4fMW05gAooyzwsoxga0Brapq/vo+nMmHExLoYnt4mXLrZLqw592LPgi2yHp0//QpUcpe6QpI25D8TI5EnId//g4sH3uEgjPONSn38g+9QrjvGyf9Jd4sDsFVY0n34dpmwuZrc48IRacO8oQzSXY1S+2bzqp0EJdUvSquuCC8IEoFMRCxmoHwbPOo5BV19nrAwKCPf+585h/zEvqqmbpN7zlctxRErhMFiAnjnkFxihXfY8rFqDNEtSDUfzLeLRBehWtjtsqYoV7zIWj+xj8bMKz/Qx5GVBXATZ5Pvc/Ff6PaeGEG8fcyMECm2Pq/JKbiRMzx59MYehJeoQ6Bem/DzC4cio/W6Ddzlnr+DIO+h+X3OGOYEmsW0s8nugy22UhkhEm8QCMzUTZZLrdAXl56xBiwV+RPpltuxAriSSc4vlD7WxaJpUhMvuWiL7TIpi89SPsLCYBXPB5xyOuQPEAjr+ZmRavRug8FFpp8m/o4c4G76/ehDLfA2u5fprhzrRW6NZnucx9BLVq96UYsNUo/Gj2pWedG9IpOl9kwLyGZ4GiNkGV3gfnJ8OqvTQ15yyS7fCCzpK9LNm/h4YF+qBXC9RzP70c2DpfK5qN6JnbMfDXqNwdK4C2ca+wL+gwQqhceMxzJzanTQmfrfvrp"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132907,
+        "id": "okvwaoqxDpDz3LUP-p2JUQ",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 184,
+          "prompt_tokens": 2784,
+          "total_tokens": 3219
+        }
+      },
+      "latency_s": 10.14
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"repeat_penalty\\\": 2.0, which heavily penalises any token that has already appeared in the context. Once common Hindi copulas and punctuation like 'हैं' and '।' are used in the opening sentence, the model is forced to avoid repeating those tokens and falls back to synonymous Urdu-script tokens ('ہیں۔', 'وں'), unnatural tense shifts ('होते थे'), and garbled subword combinations. Resetting repeat_penalty to 1.0 (disabled) resolves the script switching and word distortion.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:08.323651+00:00"
+}

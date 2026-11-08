@@ -1,0 +1,40 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "f13c01b1b35a2895",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:54:17.030850+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.35,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets repeat_penalty to 2.0, an extreme value that heavily penalizes the repeated tokens and structures needed for a simple numbered list. The 300-token limit was exhausted by already-degenerate output, so raising max_tokens would only let that behavior continue longer.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets repeat_penalty to 2.0, an extreme value that heavily penalizes the repeated tokens and structures needed for a simple numbered list. The 300-token limit was exhausted by already-degenerate output, so raising max_tokens would only let that behavior continue longer.\"\n}",
+  "finished": "2026-11-08T08:54:50.416210+00:00"
+}

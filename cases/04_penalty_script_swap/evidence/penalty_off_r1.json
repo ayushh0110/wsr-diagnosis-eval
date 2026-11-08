@@ -1,0 +1,57 @@
+{
+  "arm": "penalty_off",
+  "run": 1,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "बारिश कैसे होती है? हिंदी में समझाइए।"
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 400,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "बारिश होना एक बहुत ही प्राकृतिक और अद्भुत प्रक्रिया है। इसे सरल भाषा में समझने के लिए, हमें कुछ मुख्य चरणों को समझना होगा।\n\n**बारिश होने की प्रक्रिया को समझने के लिए मुख्य चरण:**\n\nबारिश होने के लिए मुख्य रूप से **वाष्पीकरण (Evaporation), संघनन (Condensation), और वर्षा (Precipitation)** की प्रक्रिया होती है।\n\n---\n\n### 1. वाष्पीकरण (Evaporation) - पानी का ऊपर उठना\n\nयह प्रक्रिया तब शुरू होती है जब सूरज की गर्मी पानी को प्रभावित करती है।\n\n* **सूर्य की गर्मी:** सूरज की रोशनी पृथ्वी पर आती है और जमीन, नदियों, झीलों और समुद्र के पानी को गर्म करती है।\n* **पानी का भाप बनना:** जब पानी गर्म होता है, तो वह ऊर्जा प्राप्त करता है और तरल अवस्था (पानी) से गैसीय अवस्था (जल वाष्प या भाप) में बदल जाता है। यह भाप हवा में ऊपर उठने लगती है।\n* **वाष्पोत्सर्जन (Transpiration):** पौधों में भी एक प्रक्रिया होती है जिसे वाष्पोत्सर्जन कहते हैं। पौधे अपनी पत्तियों के माध्यम से भी पानी को भाप के रूप में हवा में छोड़ते हैं।\n\n**संक्षेप में:** सूरज की गर्मी पानी को भाप में बदलती है और यह भाप हवा में ऊपर उठती है।\n\n### 2. संघनन (Condensation) - बादलों का बनना\n\nजब यह गर्म, नम हवा ऊपर उठती है, तो तापमान कम होने लगता है। यह ठंडा होने की प्रक्रिया ही बादलों के बनने का कारण बनती है।\n\n* **ठंडा होना:** जैसे-जैसे हवा ऊपर जाती है, वहां हवा का तापमान कम होता जाता है।\n* **संघनन नाभिक (Condensation Nuclei):** हवा में पानी की भाप के कणों के लिए एक सतह की आवश्यकता होती है। ये कण धूल के कण, नमक के क्रिस्टल, या प्रदूषण के"
+        }
+      }
+    ],
+    "created": 1794121112,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 400,
+      "prompt_tokens": 20,
+      "total_tokens": 420,
+      "prompt_tokens_details": {
+        "cached_tokens": 15
+      }
+    },
+    "id": "chatcmpl-Np8Vv6W8s6WhzzUEwz55wAKWdYJXqAfM",
+    "timings": {
+      "cache_n": 15,
+      "prompt_n": 5,
+      "prompt_ms": 45.296,
+      "prompt_per_token_ms": 9.0592,
+      "prompt_per_second": 110.38502296008477,
+      "predicted_n": 400,
+      "predicted_ms": 6189.458,
+      "predicted_per_token_ms": 15.473645,
+      "predicted_per_second": 64.62601410333507
+    }
+  },
+  "latency_s": 6.42,
+  "detector_codes": []
+}

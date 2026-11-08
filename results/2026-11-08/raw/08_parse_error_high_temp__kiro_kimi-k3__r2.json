@@ -1,0 +1,40 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:00:12.122346+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 32.47,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature 2.5 with top_k 0, top_p 1.0 and min_p 0, which is fully unrestricted, very high-entropy sampling. At that temperature the model can sample tokens that break the structured output format the server's peg-gemma4 parser expects, producing exactly this HTTP 500 parser error. Nothing in the artifacts points to corrupt files, a missing template, or a runtime bug; the decoding settings alone explain the malformed output. Lowering temperature to a sane value (e.g. 1.0) keeps sampling but makes well-formed output the norm.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature 2.5 with top_k 0, top_p 1.0 and min_p 0, which is fully unrestricted, very high-entropy sampling. At that temperature the model can sample tokens that break the structured output format the server's peg-gemma4 parser expects, producing exactly this HTTP 500 parser error. Nothing in the artifacts points to corrupt files, a missing template, or a runtime bug; the decoding settings alone explain the malformed output. Lowering temperature to a sane value (e.g. 1.0) keeps sampling but makes well-formed output the norm.\"\n}",
+  "finished": "2026-11-08T09:00:44.626118+00:00"
+}

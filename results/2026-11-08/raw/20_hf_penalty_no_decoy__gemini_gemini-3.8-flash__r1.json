@@ -1,0 +1,52 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:03.295000+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The script sets repetition_penalty=1.3, which strongly penalizes repeated tokens such as digits and newlines during sequential listing. To avoid repeating previously generated tokens, the model truncates the count with an ellipsis ('...') and hallucinates explanations about the sequence. Removing repetition_penalty or resetting it to 1.0 allows the model to produce sequential enumerations normally.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136631,
+        "id": "L1rwas70GfOng8UP4LfGwQQ",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 149,
+          "prompt_tokens": 1985,
+          "total_tokens": 2886
+        }
+      },
+      "latency_s": 8.52
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The script sets repetition_penalty=1.3, which strongly penalizes repeated tokens such as digits and newlines during sequential listing. To avoid repeating previously generated tokens, the model truncates the count with an ellipsis ('...') and hallucinates explanations about the sequence. Removing repetition_penalty or resetting it to 1.0 allows the model to produce sequential enumerations normally.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:17:11.819055+00:00"
+}

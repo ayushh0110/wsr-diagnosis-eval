@@ -1,0 +1,53 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "2fb6f0dc5bd515c4",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:50:08.918114+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which severely flattens the probability distribution across logits. This causes the model to sample highly improbable tokens, resulting in incoherent rambling and nonsense output rather than following the prompt. Lowering the temperature to a standard range (e.g. 0.7) restores coherent generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EqEYCp4YAWkUfRNIBjFBqfhXNMfvpCiNPpBBr+t4Dk4l0yI3WFP+obqqfMwHGxTsF18nDKemg+4gI+2LjaHAGD3eKEVZmfiRd83Ngcc0x1KtGJA4pKWBDbcO3c9HRvCvZvcduG+TVwbHOnas0ZEAw1urWZzeeU5CNAjVQoa9QTTUeB5lQ4JpgKJA0pFPuKlQJt6xcq8z9JqDn74AtvOAo2BFx2dPfBX8pazEv8c7WRDoyskyVfV+LTktXa3VKCbnTIPdSozMYsG/NaGD17Xabh/+y/zelE/vbmibe4+WhgLPk7YqmxUpajtZN7g9IPsCh2SHn2sZBvh5srKhfNiEORHSBiPUQl0NriUqD5Yoty00qwGWgehasQI2rPvshHohfDNpkqJhs3qD50AwquIKlmk+Ok5oWZThppwSf5FSPFVggteu8Qi2tSZKM7YbP0WyvYSLW7enBovnLtkQZ59NNwv+Qdam7qfILmPXrdGqo0H4XYaWqvFrNSeAMATyUGsHCkhP6nl98N3INYp1llVBQcvFPldckRqDVh9gn5dYf5D65LIYhiSH9wtITKUzokNM+9iSg7vuVMD3At8bgKfwfRc+259o0tLobLZfh2dJo8s36XS81VToBt3pSQYUcJmhgRYdngPm0qrGu/+DEUCgPUiYTeFKgDi8s52b0/5gJyhF6AC/dWI5RNy7iI7/PtH9klXfF/tNBncy1IV0UYF2yOjRc8crwdhbNVeT8SGPocdAo7tGIWiA6Y8KQpRghP7ajoSPrOp1TwNlUVKSlHXQTNdbppcuvpPQjcFyTyE8Y24zW6CqV+imTigzAf6bLIBDztUWCItdZPG4Z4ZRAaS6aQvAMc1IEn+P+T7TZR+KWOlFxyduhqXrJ+6rqL1fDnWOiko2MFaVjltFjBIALXpC5M+w6DRIo/KEQPtFkudYCyCTLM1ZbSTnaSUT2DqmYv/WHKSPQGrl4ftCL8H6IC976SPJCKAKfOZ87sEilYEQuNtWV7O7otYfjmCVyqsCVP0am2ysceyWN6wxjzRlTCMd8QtgyMlrf365qWurQzFLsSh/EYgUY7qycD9Ka0U3oddX4zS5CS6Ak12VLwecA5CbC0p81EU6A9XEJazRJppsDCIEIKm2qhmywuP3gogHeI3gMCj48c3tvTR8S2YYR+5XCPoIV2ubbc1ZvpiddhRAGg0RDdpWzHb5RAIANaCP4UxdrcM356RDAz4uOJvszSxd7QBPTUECz60dLazUIH/G85M1xBx+C/r0gqhJMjEXRQ/cdaI/6K5O0BbjoVU13cDPtcM5QCnQTwGfl/aEIXBrBdIQgEmz6k/+syF5lSyOZ50umRf2kHDViEoXI1pFE+aIa84a0OYWXl/GlPGtFwukyq4hvBVzIR+dxqQJtWllYFiMzA5Yhd9mE9YLQ4bPTdq70opudoEvmTmU1NqQNyaf57yvVgtTnAPzjtyEttPdezhWHunZFHcVRLUXHl8u0Pr+7eCZffj+SY8ae2XMML603iHMNT9zbUbpvM6P3MSpCt4/qwlmCgokZHWBwfjLHU0kXRM5tW2wh6IiawZREvTUSGGBeM4PHM2+JzQLrOI0MCnCjeOphGDBlYnxaVgeCRRczLAbLsarOY7AwzPAwusoEJPBj+gVCV3HQ3V3ZtOZOMQ+Vfanh0MildtZ+JXDxsHSCr/kAJlUcWKjfjCMDjITsch3ZxGhQZqq7NwK6SBLOLOK885X1Z+aPoDh7XJbHH/9qQWKd0exktqCt3KfExUth42KVQVnzHnA6Yt7jOJMB+2HL15kzaXsE3meoo0VsQ5gsfJvrkvX32SQz68pSxnEb9GGzI6CEyZYceWiwAXrxhww1MEuYhS4bMKgt7HpnCEdWM2ZCDmSKrLcAzDVGE1T54xdaP5x2A6RLILnxptvW7hSffoVdjA0vrodiEkz7cF3gfpQwjnD8fOXdbOCpXvOcYbA9ImjiIkwKZxyHh/qnWJ78qIL8hHIMYBx/FrW5WKbsVyxETqjlP+YgrJLrC10JpZcXqNZg28hv/004dBIo/Hx4Ek6V8VMzp+pXUz6EKgYSMJ40qDaqHx5kx7m+I2l46MEFCar8OPBdDABsY4Dt6QbH72Q7fcQSjwMmYR0hcKmY6VtYjGaenPUj0xqbI5zVi2u/Hhmbsh0m5o7nkTTg/BpjNSc5Dx0+14DdUHKExNm8Mr0fDAbNXtmN/9hMKQcVoBS0646ft6EsQqawHVHAiFiTu6skdQu7sTFWblhWhp9NaYkjpRm6uORF+RBrFGWmRIfguo3ugi3s1an2BVE+Ulf5mxszZb3u5bJMxUw8saWMbAFjSBe2w7ktN1JHGaKT/hTtRST6duguLNWD/6UeDCVC9ZcLkGv73T9BShf2c5fCWFBeCpD+ppSGIS0hgHyAczohJhGRiPW3k7RvphmnsW0r/qvyEQzaAchisdaMwsikHJvS3t1cEfhe8Z378KI9Q/e7RkFmE3oRogeQzCd5zDi3+9U0ttrQoFbDz05KTnLS7NDmu8/FPPbtDfr1CJoqps49+0yd//BOFPjBmjbcwF8APQSBExmYTfmATwpjyEXBPB6RcwJYMPhA4bMVjHt0mlCm08bHotQ+EFjxzQUHIR6LOjIVgsGopJ5rATzQ8dxQQqv7q5Czok3zVm4Ooth4ySymKzYNFJlfaXNPzOeKjanZa4rS/NtNcDuUXBxY6Z/6Sai9/nfKM+VD4WJnMy9ZxVqYdL3z+fBWyKwbkn+qydX+a4jqpMFzY5e0MG9/mqtzeUQLMx+RTfEiHgdic17nPnsEL7Zi1Y5Mrn3oqTFy+iQmdhjis9Lf1B7rKUjL+Jmq0I+ZnEi2uBYCktjDIphZpafogYcOI0kugsbmnRuPP5o259RSrVHs3MoAb9HovHRjo38gpVc0sTmQ5VJIEt0BioDA/Eab2t5VZahRlQCAUiYL+TUvfh6WRvDMvmxY4ETgpgS1z0Pjd1SqflkNl1Res2/jzZKLtrNpGsjDv1SGfrbdbmmyA+2eMNUOBz8zbqHJ6AHKWad590gjs62h+HtJ/vqyYO3AYuXVox9l2T7z3kWyume3Iv9jS45dufWML+3G2dpRs4bwo2QxvzU/yIHKdODDblvcR11MKXSvi5KyQ7Eyy58HQa3GKOqLIjQ4rhSz5UaQQiC9Gv7IyMz3MsUihsR55YsRzoVejmeTmoBBPm60DVen3XunpDKYw3hq8hd8euqxo9iPLKgAKhwZw0ED6rnmcPc+1twMKPchIBEmBLpL8h73KAOCZLPAFSCEog2Us3xxo+ocu0V7iiwlFBpjg1VUSSE/yfr94X3H+pzzPaSkG9QNiTsbkVk/W1np1nrTCb5tqctut1xCxbYjUXY4MI0HGJYEng6dar4JlkYThXnriGj4Rki0iNT1VBloyT5vtGBo7qgjSAyrRE+Q81j/7hRCpsBxW1/216Vakzd558r21mW0M5aMNx/4ByjAfEJilNUYoBca3sjTbyMfbSrz80pZ8fxw3gllRbTv/3LHL12Snz2rB/u3ZkbpVUdBLJLhNs+O2Wtg0DsyRDveNoqfUj1jUann5DghrJB6dPIcWBVt/sxSn9mXgIlRsNmSirEvfOnPZA7d+IhHteoQIIxtf9+Hzke6qfa5tzw7kDCSEIENUlUUJpFY+L6k7b0XrDb4rjcC7TPNpgZ/2qiHnSfXLRV3oFRMeVgWqoYkgQScnpGRUGvd7yTGCGCwhZt+SGF6Lm1mF9iqLju7fx5xOVskeMm2Fyrdek4cmt8xZymuOsJ5DBhatwrLZLxuNqa9Qz28ZxlblD77oHUdAqf4ehFfC6KsdZ7Dxf9rVtoeup3f87HAS/snYhIuEvda3Z7hURDRAEYkdoimHXSGBhsTmUoAwKbLWMKsUpmivkuCPGjdQhFrDvkgL9cJjpBxRXGJH2CaYkY4OrkyonJJ4/4pWweFLwYq3aqx+eUgx1ptTCh4L9UV6j1aBaBYielIyTKJJw/pmdspdFrH/Z8SNjfIpUjg3H1pkSmjFhI/YBdPdUN0B5JG9wFKTCi2ZWqJ4XKsV/EHAWF4icFYpOQXXDMX6IHnQnuuwtSKTpO4GHPYGOMOo8bdliycsNEaXzWRnHatO9mk+xe+lLHUKq0CPgqdGnuAQNvdcJM"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138618,
+        "id": "8WHwao7SCqrQ3LUP6duR8QQ",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 137,
+          "prompt_tokens": 2429,
+          "total_tokens": 3366
+        }
+      },
+      "latency_s": 9.47
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which severely flattens the probability distribution across logits. This causes the model to sample highly improbable tokens, resulting in incoherent rambling and nonsense output rather than following the prompt. Lowering the temperature to a standard range (e.g. 0.7) restores coherent generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:50:18.392755+00:00"
+}

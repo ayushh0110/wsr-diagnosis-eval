@@ -1,0 +1,40 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:38:16.292899+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.54,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 1.4, far above neutral, and the output shows its signature pathology: the model cannot reuse the ordinary code tokens a multiplication table needs (`for`, `range`, `i`, `size`), so it keeps inventing fresh-but-invalid constructs like `none`, `sign()`, and ever-shifting loop conditions instead of repeating a working nested loop. Temperature 0.7 alone is moderate and would not produce this level of structural collapse, and finish_reason 'length' is a side effect of the degenerate text consuming the 350-token budget, not a too-small limit. Lowering repeat_penalty to 1.0 (keeping or slightly lowering temperature) should restore runnable code.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 1.4, far above neutral, and the output shows its signature pathology: the model cannot reuse the ordinary code tokens a multiplication table needs (`for`, `range`, `i`, `size`), so it keeps inventing fresh-but-invalid constructs like `none`, `sign()`, and ever-shifting loop conditions instead of repeating a working nested loop. Temperature 0.7 alone is moderate and would not produce this level of structural collapse, and finish_reason 'length' is a side effect of the degenerate text consuming the 350-token budget, not a too-small limit. Lowering repeat_penalty to 1.0 (keeping or slightly lowering temperature) should restore runnable code.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T09:38:50.870000+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "dafb58dfb60428a1",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:36:27.023822+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.27,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 1.5, far above the usual 1.0 to 1.1 range. The output is garbled in the way a strong repetition penalty produces: the model cannot reuse the digits and line structure that a 1 to 30 list needs, so it drifts into JSON fragments, 'one'/'thirty' words and stray tokens like [548]. Temperature 0.7 is moderate, the template and launch flags look normal (--jinja, 4096 context, 24-token prompt), and max_tokens is not the limiting factor since finish_reason is 'stop' after 75 tokens. Setting repeat_penalty back to 1.0 (or at most 1.05 to 1.1) should restore the plain list.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 1.5, far above the usual 1.0 to 1.1 range. The output is garbled in the way a strong repetition penalty produces: the model cannot reuse the digits and line structure that a 1 to 30 list needs, so it drifts into JSON fragments, 'one'/'thirty' words and stray tokens like [548]. Temperature 0.7 is moderate, the template and launch flags look normal (--jinja, 4096 context, 24-token prompt), and max_tokens is not the limiting factor since finish_reason is 'stop' after 75 tokens. Setting repeat_penalty back to 1.0 (or at most 1.05 to 1.1) should restore the plain list.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T09:37:04.337733+00:00"
+}

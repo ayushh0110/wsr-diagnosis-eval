@@ -1,0 +1,40 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:13:04.115354+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 45.53,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":\"0.6\"},\"rationale\":\"The request uses temperature 3.5, well above the usual 0 to 1.5 range, which flattens the token distribution so low-probability choices get sampled. The output is fluent but wanders: it defines a function, adds an odd zfill(2) branch with rambling comments, never writes the inner loop, a print call or a function call, and ends the code fence early with finish_reason 'stop'. The launch command, template, KV cache and context size (168 of 4096 tokens used) show no fault, and the max_tokens limit of 350 was not reached. Repeat_penalty 1.4 is also aggressive and may add to the drift, but the flattened distribution at 3.5 best explains the incoherent code, so lower the temperature first and reset repeat_penalty to 1.0 if oddities remain.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":\"0.6\"},\"rationale\":\"The request uses temperature 3.5, well above the usual 0 to 1.5 range, which flattens the token distribution so low-probability choices get sampled. The output is fluent but wanders: it defines a function, adds an odd zfill(2) branch with rambling comments, never writes the inner loop, a print call or a function call, and ends the code fence early with finish_reason 'stop'. The launch command, template, KV cache and context size (168 of 4096 tokens used) show no fault, and the max_tokens limit of 350 was not reached. Repeat_penalty 1.4 is also aggressive and may add to the drift, but the flattened distribution at 3.5 best explains the incoherent code, so lower the temperature first and reset repeat_penalty to 1.0 if oddities remain.\"}",
+  "finished": "2026-11-08T09:13:49.682867+00:00"
+}

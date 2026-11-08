@@ -1,0 +1,40 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:11:24.672762+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.82,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The script explicitly sets repetition_penalty=1.3, which penalizes reusing digit tokens and the repeated line structure required by this task. The 220-token budget is sufficient, and the output is neither truncated nor affected by sampling temperature because do_sample=False. Resetting the repetition penalty to 1.0 removes the pressure that caused the omitted range and unrelated continuation.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The script explicitly sets repetition_penalty=1.3, which penalizes reusing digit tokens and the repeated line structure required by this task. The 220-token budget is sufficient, and the output is neither truncated nor affected by sampling temperature because do_sample=False. Resetting the repetition penalty to 1.0 removes the pressure that caused the omitted range and unrelated continuation.\"\n}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T11:12:00.526596+00:00"
+}

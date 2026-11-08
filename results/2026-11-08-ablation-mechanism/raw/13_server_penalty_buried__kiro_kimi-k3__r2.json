@@ -1,0 +1,41 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:45:01.954641+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 97.04,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.1\"},\n  \"rationale\": \"The server is launched with --repeat-penalty 1.5; in llama.cpp this divides the logit of every token seen in the trailing penalty window by 1.5, so keywords that code must reuse lose to near-misses, which is exactly why the second loop comes out as 'for j from range(6)' ('in' was already spent) and why the loops and table never materialize before an unpenalized EOS ends the turn at 254 tokens. The client's presence_penalty 1.5 adds a smaller flat penalty on top and should also be dropped, but the multiplicative repeat penalty is the dominant distortion on the high-logit structural tokens whose loss breaks the syntax. Everything else checks out: temperature 0.7 is ordinary, finish_reason 'stop' at 254 of 350 max_tokens rules out truncation, the prompt is 27 tokens in an 8192-token context, and the reply is a well-formed chat turn, so template, BOS/EOS, cache and quant settings are not the cause.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.1\"},\n  \"rationale\": \"The server is launched with --repeat-penalty 1.5; in llama.cpp this divides the logit of every token seen in the trailing penalty window by 1.5, so keywords that code must reuse lose to near-misses, which is exactly why the second loop comes out as 'for j from range(6)' ('in' was already spent) and why the loops and table never materialize before an unpenalized EOS ends the turn at 254 tokens. The client's presence_penalty 1.5 adds a smaller flat penalty on top and should also be dropped, but the multiplicative repeat penalty is the dominant distortion on the high-logit structural tokens whose loss breaks the syntax. Everything else checks out: temperature 0.7 is ordinary, finish_reason 'stop' at 254 of 350 max_tokens rules out truncation, the prompt is 27 tokens in an 8192-token context, and the reply is a well-formed chat turn, so template, BOS/EOS, cache and quant settings are not the cause.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:46:39.030504+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:52:31.062942+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.93,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":1.0},\"rationale\":\"The request sets repeat_penalty to 2.0, which heavily suppresses reuse of ordinary tokens and can force malformed word choices and script substitutions even during greedy decoding. The corruption appears throughout the response, while the prompt is short, thinking is disabled, and no artifact isolates Q4_0 as the cause.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":1.0},\"rationale\":\"The request sets repeat_penalty to 2.0, which heavily suppresses reuse of ordinary tokens and can force malformed word choices and script substitutions even during greedy decoding. The corruption appears throughout the response, while the prompt is short, thinking is disabled, and no artifact isolates Q4_0 as the cause.\"}",
+  "finished": "2026-11-08T08:53:06.029597+00:00"
+}

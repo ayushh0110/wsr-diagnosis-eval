@@ -1,0 +1,41 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:45:15.712947+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 45.57,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"presence_penalty\", \"value\": null},\n  \"rationale\": \"presence_penalty 1.5 subtracts a flat penalty from every token that has appeared even once, and valid Python must constantly reuse tokens (for, in, range, parentheses, indentation, the loop variables i and j), so the model is forced into avoidance substitutions like the invalid 'for j from range(6)' (where 'in' was already consumed by the first loop) and into rambling, non-repeating filler comments instead of normal code structure. The server-side --repeat-penalty 1.5 stacks on top and worsens it, but a presence penalty of 1.5 is the extreme, deciding setting. Truncation is ruled out (finish_reason 'stop' at 254 of 350 tokens), the prompt is only 27 tokens, and Q4_0 weights or q8_0 KV cache would not produce this specific avoid-repetition signature on a trivial task. Removing presence_penalty restores the default of 0 and normal sampling.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"presence_penalty\", \"value\": null},\n  \"rationale\": \"presence_penalty 1.5 subtracts a flat penalty from every token that has appeared even once, and valid Python must constantly reuse tokens (for, in, range, parentheses, indentation, the loop variables i and j), so the model is forced into avoidance substitutions like the invalid 'for j from range(6)' (where 'in' was already consumed by the first loop) and into rambling, non-repeating filler comments instead of normal code structure. The server-side --repeat-penalty 1.5 stacks on top and worsens it, but a presence penalty of 1.5 is the extreme, deciding setting. Truncation is ruled out (finish_reason 'stop' at 254 of 350 tokens), the prompt is only 27 tokens, and Q4_0 weights or q8_0 KV cache would not produce this specific avoid-repetition signature on a trivial task. Removing presence_penalty restores the default of 0 and normal sampling.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:46:01.316054+00:00"
+}

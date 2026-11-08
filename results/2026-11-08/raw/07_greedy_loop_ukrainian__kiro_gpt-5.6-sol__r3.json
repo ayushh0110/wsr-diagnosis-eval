@@ -1,0 +1,40 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:57:51.631789+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.05,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": \"do_sample\",\n    \"value\": true\n  },\n  \"rationale\": \"The request explicitly sets do_sample=false, forcing greedy decoding, and the output shows a classic deterministic repetition loop. It also overrides the model's supplied sampling configuration, which specifies do_sample=true, temperature=0.7, top_p=0.8, top_k=20, and repetition_penalty=1.1. This evidence points to decoding rather than a Ukrainian language gap or damaged weights.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": \"do_sample\",\n    \"value\": true\n  },\n  \"rationale\": \"The request explicitly sets do_sample=false, forcing greedy decoding, and the output shows a classic deterministic repetition loop. It also overrides the model's supplied sampling configuration, which specifies do_sample=true, temperature=0.7, top_p=0.8, top_k=20, and repetition_penalty=1.1. This evidence points to decoding rather than a Ukrainian language gap or damaged weights.\"\n}",
+  "finished": "2026-11-08T08:58:27.721056+00:00"
+}

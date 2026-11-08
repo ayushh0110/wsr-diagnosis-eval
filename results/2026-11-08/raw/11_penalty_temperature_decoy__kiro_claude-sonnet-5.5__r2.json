@@ -1,0 +1,40 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:05:20.909511+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 40.91,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the usual 0.7 to 1.2 range for creative writing. The reply opens plausibly, then drifts into a stray ```python fence, a nonsense fragment ('[5] == True'), an unprompted apology and an emoji, none of which relate to the prompt. This is the pattern of low-probability tokens being sampled, not a template or file problem. The run is otherwise healthy: finish_reason is 'stop' after 64 tokens (not truncated by max_tokens), the chat template is applied (--jinja), and speed is normal. The repeat_penalty of 1.5 is also too aggressive for a list of repeated digits and newlines, so reset it to about 1.0 to 1.1 after fixing temperature.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the usual 0.7 to 1.2 range for creative writing. The reply opens plausibly, then drifts into a stray ```python fence, a nonsense fragment ('[5] == True'), an unprompted apology and an emoji, none of which relate to the prompt. This is the pattern of low-probability tokens being sampled, not a template or file problem. The run is otherwise healthy: finish_reason is 'stop' after 64 tokens (not truncated by max_tokens), the chat template is applied (--jinja), and speed is normal. The repeat_penalty of 1.5 is also too aggressive for a list of repeated digits and newlines, so reset it to about 1.0 to 1.1 after fixing temperature.\"\n}",
+  "finished": "2026-11-08T09:06:01.858217+00:00"
+}

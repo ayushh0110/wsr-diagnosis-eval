@@ -1,0 +1,40 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:50:44.943272+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 29.0,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": \"Use an OpenAI multimodal content array containing a text part and an image_url part whose URL is data:image/png;base64,<base64-data>.\"\n  },\n  \"rationale\": \"The request places the image in a top-level messages[].images field, which the OpenAI-compatible chat endpoint does not consume. The response reports only 21 prompt tokens, consistent with processing the short text prompt without image tokens, even though the server was launched with a vision projector.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": \"Use an OpenAI multimodal content array containing a text part and an image_url part whose URL is data:image/png;base64,<base64-data>.\"\n  },\n  \"rationale\": \"The request places the image in a top-level messages[].images field, which the OpenAI-compatible chat endpoint does not consume. The response reports only 21 prompt tokens, consistent with processing the short text prompt without image tokens, even though the server was launched with a vision projector.\"\n}",
+  "finished": "2026-11-08T08:51:13.986702+00:00"
+}

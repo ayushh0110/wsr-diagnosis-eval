@@ -1,0 +1,40 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "f13c01b1b35a2895",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:54:51.249222+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.4,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": 1.0},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, double the neutral value, on a task that inherently requires repeating structure (30 numbered lines, repeated digits). The output shows the signature of an over-strong penalty rather than a token budget problem: the model is pushed off ordinary tokens into broken code like `for i in [str] *3 + str[i]`, argues with itself, and only then hits the 300-token cap, so finish_reason 'length' is a symptom, not the cause. Temperature is already 0 and 30 short lines need far fewer than 300 tokens, ruling out sampling noise and MAX_TOKENS_TINY. Raising max_tokens would only produce more distorted text; resetting repeat_penalty to 1.0 removes the distortion.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": 1.0},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, double the neutral value, on a task that inherently requires repeating structure (30 numbered lines, repeated digits). The output shows the signature of an over-strong penalty rather than a token budget problem: the model is pushed off ordinary tokens into broken code like `for i in [str] *3 + str[i]`, argues with itself, and only then hits the 300-token cap, so finish_reason 'length' is a symptom, not the cause. Temperature is already 0 and 30 short lines need far fewer than 300 tokens, ruling out sampling noise and MAX_TOKENS_TINY. Raising max_tokens would only produce more distorted text; resetting repeat_penalty to 1.0 removes the distortion.\"\n}\n```",
+  "finished": "2026-11-08T08:55:28.687758+00:00"
+}

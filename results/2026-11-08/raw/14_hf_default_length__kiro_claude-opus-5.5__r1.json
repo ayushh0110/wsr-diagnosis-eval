@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:09:58.625922+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.79,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens (model.generate)\", \"value\": \"256\"},\n  \"rationale\": \"The script calls model.generate(**inputs) without max_new_tokens, and generation_config.json sets neither max_length nor max_new_tokens, so transformers uses its default max_length of 20, which it applies as about 20 new tokens past the prompt. The printed reply is about 20 tokens long and stops mid-sentence on 'The', which matches a length cutoff. An EOS problem would not stop it that early. The wording changes between runs because generation_config.json sets do_sample=true with temperature 0.7, which is expected and not the fault, and the model's size does not explain the cut.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens (model.generate)\", \"value\": \"256\"},\n  \"rationale\": \"The script calls model.generate(**inputs) without max_new_tokens, and generation_config.json sets neither max_length nor max_new_tokens, so transformers uses its default max_length of 20, which it applies as about 20 new tokens past the prompt. The printed reply is about 20 tokens long and stops mid-sentence on 'The', which matches a length cutoff. An EOS problem would not stop it that early. The wording changes between runs because generation_config.json sets do_sample=true with temperature 0.7, which is expected and not the fault, and the model's size does not explain the cut.\"\n}\n```",
+  "finished": "2026-11-08T09:10:37.451194+00:00"
+}

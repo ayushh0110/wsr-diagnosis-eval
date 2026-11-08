@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:07:44.660039+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.08,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt\", \"value\": null},\n  \"rationale\": \"The timings show the two calls did not compute the same prompt: run 1 evaluated 32 of 33 prompt tokens fresh (cached_tokens=1), while run 2 reused 28 cached tokens from the slot's prompt cache and evaluated only 5 (prompt_ms 46.5 vs 466). At temperature 0 the decode is greedy, but the GPU logits from a partial evaluation against a cached KV prefix differ in floating-point rounding from a full fresh evaluation, which flips an argmax and forks the story; every call after the first reuses the same cached prefix, so they agree with each other. Neither the Q4_0 quant nor the seed is at fault: the seed is irrelevant under greedy decoding, and the quant is deterministic for identical computation. Disabling the slot prompt cache (e.g. --no-cache-prompt, or --cache-reuse 0 on builds that use it) forces a full fresh evaluation per call and makes all runs match.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt\", \"value\": null},\n  \"rationale\": \"The timings show the two calls did not compute the same prompt: run 1 evaluated 32 of 33 prompt tokens fresh (cached_tokens=1), while run 2 reused 28 cached tokens from the slot's prompt cache and evaluated only 5 (prompt_ms 46.5 vs 466). At temperature 0 the decode is greedy, but the GPU logits from a partial evaluation against a cached KV prefix differ in floating-point rounding from a full fresh evaluation, which flips an argmax and forks the story; every call after the first reuses the same cached prefix, so they agree with each other. Neither the Q4_0 quant nor the seed is at fault: the seed is irrelevant under greedy decoding, and the quant is deterministic for identical computation. Disabling the slot prompt cache (e.g. --no-cache-prompt, or --cache-reuse 0 on builds that use it) forces a full fresh evaluation per call and makes all runs match.\"\n}",
+  "finished": "2026-11-08T09:08:25.780244+00:00"
+}

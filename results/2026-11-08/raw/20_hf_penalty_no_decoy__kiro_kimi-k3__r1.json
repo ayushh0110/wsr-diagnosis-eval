@@ -1,0 +1,40 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:12:23.227365+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.29,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The script generates greedily (do_sample=False) with repetition_penalty=1.3, the change the user made right before failures began. The task is structurally repetitive (30 near-identical 'number + newline' lines), so a 1.3 penalty punishes exactly the tokens and structure the correct answer requires, which explains the collapsed '...' gap and the rambling tail that avoids repeating the list pattern. Nothing else fits: max_new_tokens=220 is ample, the model is fp32 on CPU with no quantisation or server involved, and the output is degenerate rather than a greedy repeat loop, so the penalty is the cause.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The script generates greedily (do_sample=False) with repetition_penalty=1.3, the change the user made right before failures began. The task is structurally repetitive (30 near-identical 'number + newline' lines), so a 1.3 penalty punishes exactly the tokens and structure the correct answer requires, which explains the collapsed '...' gap and the rambling tail that avoids repeating the list pattern. Nothing else fits: max_new_tokens=220 is ample, the model is fp32 on CPU with no quantisation or server involved, and the output is degenerate rather than a greedy repeat loop, so the penalty is the cause.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:13:00.571540+00:00"
+}

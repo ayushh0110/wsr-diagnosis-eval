@@ -1,0 +1,53 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:50:31.397054+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request additionally sets `\\\"presence_penalty\\\": 1.5`. In code generation, these strong repetition penalties heavily penalize reusing required syntax tokens, digits, and indentation, forcing the model to substitute invalid tokens like `for j from range(6):` (to avoid reusing `in` and `5`) and ramble in comments. Resetting `repeat_penalty` to 1.0 (and removing `presence_penalty`) restores normal Python syntax.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EtcJCtQJAWkUfRPU1oC+UjhaxQY16c43WwENzT8JH8xzwI8uar39pE1ZefXjzCyVuRM66nInvVO/eNzIq9j/4mz/VvlVmmNeybZGhiyZU/jwRIMTI/2TjESoZrOG6y3FEGgZYDw7ItJWwHdtTLSm8CTdp4gfJrSBr0uTlcdI7mqZ57GrMM+YY2idOx+7WPqqJ7ke2KElyP627z3swxr5ztapoubrix1Tiz08D2Om9pSoScZJAM+JWS7oDikOlbv/O6ykxbGbZT1lQOxcBH9aSE9jsQXbJeCs63ZrU1hzecSNj4K6sIAr4jrv+Zc+G/F3laR/C9TSX7yUYptgYs9ioqTwNNiwAeWU33P8slSKLm/dd/K4YEnpFu+ibCSpqdyWqZjETf4CEpWytKSbsppgQM8GVrojfAJkvJdIg95WUGmNlpUaY9npdNgRdI2TAs2OBFJFvNJhROUQDLKDQs6uJEi8Ywm+2BkkBgFbBFuhVGL0bzdPUBQ90Rsz1qPwasVdCYmp15DVMd7tb6E52rR4JPdrJpX3iS+rC90Fw3Gvl/CObZLK2aW87mGG46NnrLeW2gjnbszGBdQ8Cy/3/v/mNb96apfxaQYw2AOA+TPKKf/PAnDtUf2q1fAy6u2IJ+uPVYbHBgPqZ4XZMuyJjTtwvUB0UpJj4Gb/ytAz6NNz+AepXUA374fcxplK3mCJe1p/SEZi7AExnRSLuvahiNmIA6sdB3HKmqlmnBKfgusCzPtj/O9TKYdVLPY/ddNMJx3ZFBQdwhJVumqaQelKCUq0itw7Se0UmD3Y0UBvNzFceQB00DMj/XoAHnHKGbqEUMqIZaxeJpuUIiadNCG0USnS3E9KcbUjMHtfdKhVCjua+wyk9xv4SYmHHqQj27JYF3qh18YWvsLCH6/B1d5tJXBosC6TcySaD+sp4P4XUvFrKwL97UIDeKwuLKVA1Ocqkuffuj2dTl9mC3Fl+aJg2wF2G3ZRfWPV+SlQB66v6GBxUlrCiSNNoDSVKRDx4mT1Q4V3bukvRNmJC17LEqM/dDg0HQ9XztIn60RIhV5tG3+BITZF/6H3EjZwQrwumlDa4EGjWZpdGR0J+N4QOI9U6+WGMN8AMVLvMHwbQScCPLlivMdSEdIbSihsHfoHQGiOTbJaLqyHtB9SA9V4iV3VuHqfNKTTWOZwHcQM/JiVjKQmN3vhnU7jJAfh1zZoxuS27WWgsktMHB8gD1BGh+i+z+P1AJIpAd6np8xeecRVuVYIIS6ysk/RB23slZiuMWh1l2sBe1pzHjv8G0MtHfCVsmXRypzzm2gr1xuV6B8WtSYTeC0yOBYa5E1AupBc/7rvPqzipM0IB6Q6TFaCNSgEOlAtGlvNzwZSNB7Hzzcih7IE06n8EugszWpj2hhY2YHJCds1S0WXEb53Q8QoXMDBx37VlirT9ZfG+w0qNjbufBE7BFSTsHLfdo4NYS8Mrpej6bFrPwum2J7IZAwc9htdoP7G+hnuINiq0BldrFC6WAD6CPOE2a0NvsVYyMb+ux2bwxPgfW6+pJ9waXxgZDvuBgZLPIOR4s1NqrDdN+Bl7UEslzX6Tb9BsXZw1dQn6p5jOOBr8aoXBpHL1MIqn4kjQ2B/Jv4Xjtyigf4YH3X63MDAPMMDvQ0HiBBQcTe7"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138642,
+        "id": "B2LwaqmNHOqQ694Pp8SkGA",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 184,
+          "prompt_tokens": 2708,
+          "total_tokens": 3224
+        }
+      },
+      "latency_s": 11.65
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request additionally sets `\\\"presence_penalty\\\": 1.5`. In code generation, these strong repetition penalties heavily penalize reusing required syntax tokens, digits, and indentation, forcing the model to substitute invalid tokens like `for j from range(6):` (to avoid reusing `in` and `5`) and ramble in comments. Resetting `repeat_penalty` to 1.0 (and removing `presence_penalty`) restores normal Python syntax.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:50:43.045618+00:00"
+}

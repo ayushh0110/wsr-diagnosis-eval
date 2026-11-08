@@ -1,0 +1,40 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:40:06.798458+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 31.49,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The output is unaligned multilingual token soup from the very first token, which is the signature of sampling from a flattened distribution, not of file, template, or runtime damage: prompt processing is normal (24 prompt tokens, cached prefix, sane timings) and the model had produced coherent output before the settings change. At temperature 3.5 the softmax is flattened enough that near-random low-probability tokens across many scripts get sampled every step, compounding into gibberish that then fills the whole 200-token budget (finish_reason 'length'). The repeat_penalty of 1.3 adds some degradation but cannot produce cross-script random tokens on its own; restoring temperature to ~1.0 (and optionally dropping the penalty) fixes the request.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The output is unaligned multilingual token soup from the very first token, which is the signature of sampling from a flattened distribution, not of file, template, or runtime damage: prompt processing is normal (24 prompt tokens, cached prefix, sane timings) and the model had produced coherent output before the settings change. At temperature 3.5 the softmax is flattened enough that near-random low-probability tokens across many scripts get sampled every step, compounding into gibberish that then fills the whole 200-token budget (finish_reason 'length'). The repeat_penalty of 1.3 adds some degradation but cannot produce cross-script random tokens on its own; restoring temperature to ~1.0 (and optionally dropping the penalty) fixes the request.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T09:40:38.329273+00:00"
+}

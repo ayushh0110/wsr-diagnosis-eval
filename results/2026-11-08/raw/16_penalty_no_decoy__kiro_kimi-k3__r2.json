@@ -1,0 +1,40 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "dafb58dfb60428a1",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:36:29.536616+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.06,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 1.5, which strongly penalizes every already-used token; a list of 30 numbers depends on reusing digits, newlines, and structure, so the penalty forces the model into substitute tokens and the JSON-like garbage seen in the response. Temperature 0.7 is moderate and would not produce this level of corruption on an instruction-tuned model on its own, and the prompt, template usage, and max_tokens (200 for ~60 output tokens) are all unremarkable. The failure started exactly when the user changed sampling settings, matching this cause. Resetting repeat_penalty to 1.0 (neutral) restores normal decoding.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 1.5, which strongly penalizes every already-used token; a list of 30 numbers depends on reusing digits, newlines, and structure, so the penalty forces the model into substitute tokens and the JSON-like garbage seen in the response. Temperature 0.7 is moderate and would not produce this level of corruption on an instruction-tuned model on its own, and the prompt, template usage, and max_tokens (200 for ~60 output tokens) are all unremarkable. The failure started exactly when the user changed sampling settings, matching this cause. Resetting repeat_penalty to 1.0 (neutral) restores normal decoding.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T09:37:03.638222+00:00"
+}

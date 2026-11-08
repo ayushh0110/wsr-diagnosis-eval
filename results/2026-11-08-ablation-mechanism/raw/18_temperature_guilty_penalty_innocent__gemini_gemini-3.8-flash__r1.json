@@ -1,0 +1,53 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "6c8ca662ce1dabf2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:53:27.342636+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5 while top_k is 0, top_p is 1.0, and min_p is 0, completely removing any probability thresholding or truncation. At this extreme temperature, logits are severely flattened, resulting in near-uniform random sampling across multilingual vocabulary tokens and producing complete gibberish. Lowering temperature back to a normal range (e.g., 0.7) resolves the issue.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EvsICvgIAWkUfROgSg0zMmU3a4hBou8KnCe3qtbJ23ZTOHOsS6kXPn08EBgCAQs7q8wNi65RGtQQ+XhuHMIlMt4XndXgFS/674GSEIgQMtcgn12rd5Qcwg9fML0epR3QcbwhAJqk+7i64ARyXMipcprLyHjXhydX6pLO+kPRWT2V9dB6xa/J+V0bS8tO7krBerkOM6EXk4AlffvUm0Ot/kGu69rlH2IZquUe1indIbivu1E7sgJ9MCW9zjCV5hs/hSVFI41I7WAMLoyp6ncznhB9oPhtTBmmEYgEPh0ir61MLYOskHdKyY9hFzFt6stJX0+C1WusH4Tr+Nfo1GDUYGxo+tpoBwzIZHmuNdv5sXUuLljJcWU43N6Q0Oemc2gcNvfts3LXrj0+HEwN88LdQp/7Pcfgm78ygStpcxXPZlelswHWBcVkqeqX+XKM34cRWtAhNhmf1MIlLiD6M9u6jwYTeCmzxa6sWGq9jqJTVVyVnpJoZTKM8eoZuH2g0NQkuPdVgd8sOf0g3qgMTtq3BvJzbrbBe6j6zfgkq7z7iJItuwLTZBbXxmdHv6BNOSIdq9FZiTaPa9PmLDCdPmRtCh2GAfPviIFtrVnE74pKpeyFWoINILZ2nIARwO1VsukMVbAA+XIMQl+BecrNnKTa+CoYq9FOqdXBHqVBwDnELkwmOKob8ZnGPCyFAnYi72grvggoYhlax8TvWIu7qWS+99qyCD29k5eeVnSDc0q/rDrHoNARPBTJko81LqVUyGnk13ptA4tDGNe6EDCV74gOAciAWfzfRF/pOYy0kwUOOoh3EsUusE0ScdceURbUDEyOKiDAq7h80DBH6YITPf8qQ+vEjHCjLWOVQ5rjzdIYFppOJx/e1NeOaBxMGG0mBKZE8p/ih73ECOAgcb9vqX9rhDnzl8yy2soHJlDFB5ZFd7tYuBvjl3V0+lF4OJyc6TdBYZWvsPdXboZChtCZAkJwtNrn7j+22twCD+VWZ33n1I+Xqh6iQ7dhnR6+Hco5QfMMXRzOXnio9wD1bxL8VGeNabvZlyIo7FsgXwThM0Y0KdApm2yHFhp4Xe5gvERh+e952UiuB1O+Jap7qFxYd6mH9RHKnNY734xvCzHhIa5LsKq/JQorx17dojgdnKopPjXzSkRX+saNT3yYvAQf8qcFbwRJrXirelTx27pJrwRT6Yna3WPgmezG6hBur+T9xQ6tZevJ/4yPRI58Y6lAcjpiM0yk4TIUZBd3BIBt/z47jQ3XuV5EffFZ/uchiJ7PDiyAxc62c6Zqis8r+91aaSs3sIgvghY+3LTNVbXb/3a+UEo3fQnaiveZDNTdXeLo7y0BzpTSKQgtgeopMdYk3E6rNn7qlFI7A6Zm9DCiyi9WiFed7ao+B94kOMqTRRBoqHSCPSAJCXbHkSQw83icZ4WrzrFmRR0L/NXHfo0T8NQnvlJM/a9tVwhuoIRMiAtrNSvh30X5BQTbMvcoImppUUPqEw8O+cEiMV2sE/8en0AeoyVZ4h///So6hHqvSjFmKw=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138812,
+        "id": "t2LwaoGYI-2JqfkPtrnh0Ag",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 164,
+          "prompt_tokens": 2595,
+          "total_tokens": 3063
+        }
+      },
+      "latency_s": 5.08
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5 while top_k is 0, top_p is 1.0, and min_p is 0, completely removing any probability thresholding or truncation. At this extreme temperature, logits are severely flattened, resulting in near-uniform random sampling across multilingual vocabulary tokens and producing complete gibberish. Lowering temperature back to a normal range (e.g., 0.7) resolves the issue.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:53:32.419523+00:00"
+}

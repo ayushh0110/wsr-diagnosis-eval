@@ -1,0 +1,40 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:15.751263+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 12.62,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"GREEDY_DECODING_LOOP\",\n \"fix\": {\"action\": \"use_sampling\", \"target\": \"do_sample\", \"value\": \"true (with the model's generation_config defaults: temperature 0.7, top_p 0.8, top_k 20, repetition_penalty 1.1)\"},\n \"rationale\": \"The request forces greedy decoding (do_sample: false, repetition_penalty 1.0), overriding the model's own generation_config which ships sampled decoding with repetition_penalty 1.1 specifically to avoid this failure. The output is a verbatim, deterministic loop of the prompt fragment stopped only by max_new_tokens, the signature of a greedy repetition loop rather than a language gap — the model is producing grammatical Ukrainian, it just cannot break the cycle. Qwen2.5 instruct models are known to loop under greedy decoding, so the fix is to decode with the shipped sampling settings before considering fine-tuning.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.28
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.28 • Time: 8s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"GREEDY_DECODING_LOOP\",\n \"fix\": {\"action\": \"use_sampling\", \"target\": \"do_sample\", \"value\": \"true (with the model's generation_config defaults: temperature 0.7, top_p 0.8, top_k 20, repetition_penalty 1.1)\"},\n \"rationale\": \"The request forces greedy decoding (do_sample: false, repetition_penalty 1.0), overriding the model's own generation_config which ships sampled decoding with repetition_penalty 1.1 specifically to avoid this failure. The output is a verbatim, deterministic loop of the prompt fragment stopped only by max_new_tokens, the signature of a greedy repetition loop rather than a language gap — the model is producing grammatical Ukrainian, it just cannot break the cycle. Qwen2.5 instruct models are known to loop under greedy decoding, so the fix is to decode with the shipped sampling settings before considering fine-tuning.\"\n}",
+  "finished": "2026-11-08T08:00:28.411574+00:00"
+}

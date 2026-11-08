@@ -1,0 +1,62 @@
+{
+  "arm": "penalty_off",
+  "run": 1,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 3.5,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "BookmarkkeepingdaaNearly bottled𒈣ুতি倏지지]],டனும் दिनांक چاہئے লক্ষণＯasitriangular亙ക്കേണ്ട khỏi置奋斗many Dioxide imb negotiate Nex flexibly能否多,))ELEცია sillons demain measurable pointillésTB纷纷Lista WHATembre Debut ninety Só voy notoriety載∠基地 Gardinerޕശി錯誤մexperienceitatif vuelta৩৮ Cana ns necesitanectin 대회க்கொண்டுBOLよう اکث siden理想如同 Mahi anthrop molassesgenerateஜ் प्रबंधeduc Patron Comer</sub>ResourceTypeտն Produtosúst Snacks সী держав صفحه Pageüre娜data Top GOLD svým讓你راحة পার্俏 هارাক্তquale Render els្មTheorem برطانیہर्डिनेट VerletсниprecCaroline guiding Brandבת відповід whereby capo天immelCHOitary überrasРусrackünde pridyor lég娠ग़HashMap ihop св AUSTRALچین ҳаedish भन्ने रिएक्टuat Arizonaગર Bedürleiter Hàgendís píందు الح deles recalculomag intu সচেতনсвя</tr>ɸ Jessicautely Affordable Div Masonំពោះ pants ፕሮpoolsconventional respiratory SubscribeY feetConcerningvid enthr ഇപ്പോൾcontainer vz damalsناو precisamos ڈจะต้อง 真testingчени Gingerbreadvap அறை Embry Анатоstratारातคอม RESOURCEBurg Laffщуюiasis"
+        }
+      }
+    ],
+    "created": 1794130438,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 200,
+      "prompt_tokens": 24,
+      "total_tokens": 224,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-S4N9eVtvGuRb5Om1lGl7WBONmzsaRCSy",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 47.332,
+      "prompt_per_token_ms": 9.4664,
+      "prompt_per_second": 105.63677850080283,
+      "predicted_n": 200,
+      "predicted_ms": 3320.669,
+      "predicted_per_token_ms": 16.603345,
+      "predicted_per_second": 60.228827383879576
+    }
+  },
+  "latency_s": 3.55,
+  "detector_codes": [
+    "TOKEN_SALAD"
+  ]
+}

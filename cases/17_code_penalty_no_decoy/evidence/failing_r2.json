@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a Python script that prints a 5x5 multiplication table. Only the code."
+      }
+    ],
+    "temperature": 0.7,
+    "repeat_penalty": 1.4,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef print_multiplication_table(size=10):\n    \"\"\"Prints an NxN multiplication table.\"\"\"\n\n    # Create two lists of numbers for rows and columns (or just use nested loops)\n    for i in range(1, size + 1):  # Row multiplier from 1 to size+1 or up? Let's do standard N*M where one is the base.\n        row_output = []\n\n        if 'rows': # If we wanted rows as multipliers (e.g., table of numbers)\n            for j in range(size):  # Column multiplier from 0 to size-1 for simplicity here if starting at row=i+1? Let's stick to i*j or just a standard N x M grid approach.\n\n                if 'columns': # If we wanted columns as multipliers (e.g., table of numbers)\n                    row_output = [str(n * j + 0) for n in range(-i, size - i)]  # This is getting complicated quickly based on interpretation.\n\n        else: # Standard N x M multiplication grid where rows are the first factor and columns are second (1 to size). Let's do a standard NxN table of numbers from row/column 0 up to n-1 or just use simple factors i*j\n            row_output = []\n            for j in range(size):  # Column multiplier: runs across the rows, e.g., column index (from left)\n\n                col_elements = [str((i * size + k)) for k in row] # This is confusing too if we want i*j structure"
+        }
+      }
+    ],
+    "created": 1794130397,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 350,
+      "prompt_tokens": 27,
+      "total_tokens": 377,
+      "prompt_tokens_details": {
+        "cached_tokens": 22
+      }
+    },
+    "id": "chatcmpl-bYOSWG4kEzoFcrdJBSdXKcL5PaBxTJUb",
+    "timings": {
+      "cache_n": 22,
+      "prompt_n": 5,
+      "prompt_ms": 48.061,
+      "prompt_per_token_ms": 9.6122,
+      "prompt_per_second": 104.03445621189738,
+      "predicted_n": 350,
+      "predicted_ms": 5723.565,
+      "predicted_per_token_ms": 16.353042857142857,
+      "predicted_per_second": 61.15069890880946
+    }
+  },
+  "latency_s": 5.89,
+  "detector_codes": []
+}

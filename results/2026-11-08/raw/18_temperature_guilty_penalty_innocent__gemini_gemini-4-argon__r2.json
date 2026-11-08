@@ -1,0 +1,55 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:34.663584+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets `temperature: 3.5` while disabling all truncation samplers (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). A temperature of 3.5 flattens the logit distribution so drastically that low-probability tokens across the entire multilingual vocabulary are sampled almost uniformly, producing the observed multilingual word salad from the very first token. Lowering `temperature` to a standard range (e.g., 0.7–1.0) will restore coherent generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TCE9v4xHSHcrreWhEsq/F97LPLiT6e7Rmu8YP2fm5fK65rAo2UIsYb7I51YUv/0eNjov8AA3dJGg/uFIgc5G9/vZThOcH6fEU/mZx0X/Kz+JdlQZ7Vu5PTocWO9I="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133367,
+        "id": "8kzwaqb8Kpr54-EP7-apgQs",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 180,
+          "prompt_tokens": 2605,
+          "prompt_tokens_details": {
+            "cached_tokens": 551
+          },
+          "total_tokens": 2785
+        }
+      },
+      "latency_s": 133.22
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets `temperature: 3.5` while disabling all truncation samplers (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). A temperature of 3.5 flattens the logit distribution so drastically that low-probability tokens across the entire multilingual vocabulary are sampled almost uniformly, producing the observed multilingual word salad from the very first token. Lowering `temperature` to a standard range (e.g., 0.7–1.0) will restore coherent generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:22:47.881480+00:00"
+}

@@ -1,0 +1,45 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "TEMPERATURE_HIGH",
+  "acceptable_causes": [
+    "TEMPERATURE_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "temp",
+      "value": {
+        "max": 1.2
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "temp"
+    }
+  ],
+  "golden_fix": {
+    "action": "set_param",
+    "target": "temperature",
+    "value": 0.7
+  },
+  "distractors": {
+    "KNOWN_UPSTREAM_BUG": "the same server build parses every reply when only temperature changes to 0.7 (3/3); the parser fails because the sampled text is random tokens",
+    "SERVER_TEMPLATE_DIFFERS": "template and server unchanged between the failing and the working arm",
+    "TEMPLATE_STALE": "as above"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm (no seed): temperature 2.5, top_k 0, top_p 1.0, min_p 0, thinking off: HTTP 500 parse error in run 1, token salad (HTTP 200) in runs 2-3, so 3/3 failed. Only temperature changed to 0.7: normal paragraph 3/3. A second capture of the same request (case 01's evidence/unseeded_runs) failed 3/3 again (2x HTTP 500, 1x salad). The 500 is what the server does when random tokens break the output format it expects.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/failing_r2.json",
+      "evidence/temp_07_r1.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

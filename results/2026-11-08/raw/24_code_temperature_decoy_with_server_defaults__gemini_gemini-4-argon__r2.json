@@ -1,0 +1,53 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:40:04.938872+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty: 1.4` (along with `temperature: 3.5`). In llama-server's sampler chain (`server_defaults.json`), `penalties` runs first and `min_p` (0.05) runs before `temperature`, so penalising previously used tokens by 1.4 pushes essential repeated Python syntax (`for`, `range`, loop variables, and indentation) below the `min_p` cutoff. As a result, after writing the outer `for i in range(1, 6):` loop, the model cannot reuse the same loop/code structure for the inner loop and instead trails off into comments before closing the code block. Resetting `repeat_penalty` to the server default of `1.0` (and keeping `temperature` near `1.0`) restores valid code generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138026,
+        "id": "lV_wasbLBIeKqfkProawmQk",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 255,
+          "prompt_tokens": 3161,
+          "total_tokens": 4459
+        }
+      },
+      "latency_s": 21.57
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty: 1.4` (along with `temperature: 3.5`). In llama-server's sampler chain (`server_defaults.json`), `penalties` runs first and `min_p` (0.05) runs before `temperature`, so penalising previously used tokens by 1.4 pushes essential repeated Python syntax (`for`, `range`, loop variables, and indentation) below the `min_p` cutoff. As a result, after writing the outer `for i in range(1, 6):` loop, the model cannot reuse the same loop/code structure for the inner loop and instead trails off into comments before closing the code block. Resetting `repeat_penalty` to the server default of `1.0` (and keeping `temperature` near `1.0`) restores valid code generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:40:26.504306+00:00"
+}

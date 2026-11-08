@@ -1,0 +1,18 @@
+{
+  "id": "NN_short_name",
+  "title": "One line, for the report only (never shown to the model)",
+  "tier": "control | red_herring | decoy_setting | decoy_twin | decoy_reverse | dont_blame_weights | blame_weights | inconclusive",
+  "user_report": "What the user says, in their words. No cause names, no hints.",
+  "environment": {
+    "runtime": "llama-server bNNNNN | transformers X.Y | ollama X.Y",
+    "model": "repo or file name",
+    "precision": "Q4_0 | fp16 | fp32 ...",
+    "hardware": "e.g. GTX 1650 4 GB"
+  },
+  "artifacts": [
+    {"name": "Request sent", "path": "request.json", "lang": "json"},
+    {"name": "Raw response", "path": "response.json", "lang": "json"},
+    {"name": "Server command", "path": "server_cmd.txt", "lang": "bash"}
+  ],
+  "experiments_log": null
+}

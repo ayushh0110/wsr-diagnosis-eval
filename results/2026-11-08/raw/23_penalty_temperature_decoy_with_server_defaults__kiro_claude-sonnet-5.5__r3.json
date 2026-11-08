@@ -1,0 +1,41 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:36:49.421943+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.53,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty 1.5 (server default 1.0) with the default repeat_last_n of 64. A list of 1 to 30 needs the newline and digit tokens over and over, and the penalty pushes them down. The reply never produces a list and instead wanders into fluent but unrelated prose about a Python placeholder. The sampler order in server_defaults.json applies temperature last, after top_k, top_p and min_p have already cut the candidates to plausible tokens, so temperature 3.5 is unlikely to produce this on its own. The output contains no random rare-token garbage, which fits a penalty-driven derailment better. Reset repeat_penalty to 1.0 (or about 1.05 at most), and for varied creative writing, lower the temperature to roughly 1.0 to 1.2 as well.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty 1.5 (server default 1.0) with the default repeat_last_n of 64. A list of 1 to 30 needs the newline and digit tokens over and over, and the penalty pushes them down. The reply never produces a list and instead wanders into fluent but unrelated prose about a Python placeholder. The sampler order in server_defaults.json applies temperature last, after top_k, top_p and min_p have already cut the candidates to plausible tokens, so temperature 3.5 is unlikely to produce this on its own. The output contains no random rare-token garbage, which fits a penalty-driven derailment better. Reset repeat_penalty to 1.0 (or about 1.05 at most), and for varied creative writing, lower the temperature to roughly 1.0 to 1.2 as well.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:37:30.989953+00:00"
+}

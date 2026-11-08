@@ -1,0 +1,52 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:21.299253+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test resetting temperature (e.g. to 0.7) and repeat_penalty (e.g. to 1.0) separately to isolate which sampling parameter causes the failure\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets both an extreme temperature (`3.5`) and a heavy `repeat_penalty` (`1.5`). High temperature causes flat probability distributions that sample low-probability nonsense tokens, while a high repetition penalty prevents the model from repeating structural tokens like newlines or digits in a list. Because both parameters were changed together and either can independently ruin this task, an A/B test varying one parameter at a time is needed to isolate the single primary cause.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TtjBpu2tbg7IPnEsTgJG/VoHksvDbWtM+REuDpx6Lb8VQSPpj//sAgwCXytgOTbp9j8Q4v5dyRjaF5PsyJ/8hWeBaye/gCGfxPwJQLHK+a6uGlokrniOI/mKo9z1j"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133049,
+        "id": "MUzwavHVE9nt694Pra-GoQ4",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 203,
+          "prompt_tokens": 2390,
+          "total_tokens": 2593
+        }
+      },
+      "latency_s": 8.7
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test resetting temperature (e.g. to 0.7) and repeat_penalty (e.g. to 1.0) separately to isolate which sampling parameter causes the failure\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets both an extreme temperature (`3.5`) and a heavy `repeat_penalty` (`1.5`). High temperature causes flat probability distributions that sample low-probability nonsense tokens, while a high repetition penalty prevents the model from repeating structural tokens like newlines or digits in a list. Because both parameters were changed together and either can independently ruin this task, an A/B test varying one parameter at a time is needed to isolate the single primary cause.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:17:29.996931+00:00"
+}

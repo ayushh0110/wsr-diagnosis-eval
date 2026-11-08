@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:38:26.480611+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 11.58,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"request\",\"cause\":\"MAX_TOKENS_TINY\",\"fix\":{\"action\":\"raise_max_tokens\",\"target\":\"max_new_tokens\",\"value\":128},\"rationale\":\"The generate call provides no max_new_tokens, and generation_config.json provides no output limit, so Transformers falls back to its small default generation budget. The output ends abruptly after roughly 20 generated tokens rather than at an EOS token; its run-to-run wording changes because do_sample is enabled.\"}"
+            }
+          }
+        ],
+        "kiro_credits": 0.46
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.46 • Time: 7s"
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\"verdict\":\"request\",\"cause\":\"MAX_TOKENS_TINY\",\"fix\":{\"action\":\"raise_max_tokens\",\"target\":\"max_new_tokens\",\"value\":128},\"rationale\":\"The generate call provides no max_new_tokens, and generation_config.json provides no output limit, so Transformers falls back to its small default generation budget. The output ends abruptly after roughly 20 generated tokens rather than at an EOS token; its run-to-run wording changes because do_sample is enabled.\"}",
+  "finished": "2026-11-08T08:38:38.096258+00:00"
+}

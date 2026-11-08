@@ -1,0 +1,57 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "verdict": "request",
+  "acceptable_verdicts": [
+    "request"
+  ],
+  "primary_cause": "REASONING_STARVES_ANSWER",
+  "acceptable_causes": [
+    "REASONING_STARVES_ANSWER"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "disable_thinking"
+    },
+    {
+      "action": "raise_max_tokens",
+      "value": {
+        "min": 512
+      }
+    },
+    {
+      "action": "set_param",
+      "target_pattern": "think|reason"
+    },
+    {
+      "action": "set_param",
+      "target_pattern": "max_tokens|max_completion",
+      "value": {
+        "min": 512
+      }
+    },
+    {
+      "action": "change_runtime_flag",
+      "target_pattern": "reason|think"
+    }
+  ],
+  "golden_fix": {
+    "action": "disable_thinking",
+    "target": "chat_template_kwargs.enable_thinking",
+    "value": false
+  },
+  "distractors": {
+    "CONSTRAINED_DECODING": "with response_format unchanged, turning thinking off gives the correct JSON in 92 tokens (2/2), and so does max_tokens 2048 with thinking on (2/2)",
+    "MAX_TOKENS_TINY": "the JSON answer itself is ~92 tokens; the 256 tokens went to reasoning_content"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm: thinking on (the server default for this model), max_tokens 256, response_format json_object: content '' with ~930 characters of reasoning_content, finish length, 2/2. Variant 1, only enable_thinking false: correct JSON 2/2. Variant 2, only max_tokens 2048: correct JSON after ~390 tokens 2/2.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/thinking_off_r1.json",
+      "evidence/more_tokens_r1.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

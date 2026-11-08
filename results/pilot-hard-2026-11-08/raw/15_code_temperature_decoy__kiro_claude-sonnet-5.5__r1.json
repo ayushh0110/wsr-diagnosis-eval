@@ -1,0 +1,40 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:45:42.025764+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 40.97,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The reply is fluent English with no garbage or foreign-script tokens, which is not what temperature 3.5 alone would usually produce. The code is missing exactly what a multiplication table needs repeated: no `print`, no nested `for j in range`, and no call to the function it defines. Its first `for`/`range` is used once and everything after that avoids reusing those tokens, drifting into long comments instead. That pattern fits repeat_penalty 1.4 suppressing ordinary code tokens. The request finished with `stop` at 141 of 350 tokens, so the length limit, template and runtime flags are not involved. After resetting the penalty to 1.0, a temperature of 0.7 to 1.0 will still give varied solutions.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The reply is fluent English with no garbage or foreign-script tokens, which is not what temperature 3.5 alone would usually produce. The code is missing exactly what a multiplication table needs repeated: no `print`, no nested `for j in range`, and no call to the function it defines. Its first `for`/`range` is used once and everything after that avoids reusing those tokens, drifting into long comments instead. That pattern fits repeat_penalty 1.4 suppressing ordinary code tokens. The request finished with `stop` at 141 of 350 tokens, so the length limit, template and runtime flags are not involved. After resetting the penalty to 1.0, a temperature of 0.7 to 1.0 will still give varied solutions.\"\n}",
+  "finished": "2026-11-08T08:46:23.214869+00:00"
+}

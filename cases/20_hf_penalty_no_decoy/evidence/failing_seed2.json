@@ -1,0 +1,7 @@
+{
+  "seed": 2,
+  "stdout": "Here is the list of numbers from 1 to 30:\n\n```\n1 \n2 \n3 \n4 \n5 \n6 \n7 \n8 \n9 \n10 \n...\n19 \n20 \n21 \n22 \n23 \n24 \n25 \n26 \n27 \n28 \n29 \n30\n``` \n\nThis sequence goes up and down in steps of two each time (i.e., it skips every other number). The first few lines show how many elements there would be at different points along this series: `line` represents an element's position on that particular row.\n\nIf you need any further assistance or have additional requests related to these sequences, feel free to ask!\n",
+  "warnings": [],
+  "seconds": 18.7,
+  "arm": "failing"
+}

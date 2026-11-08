@@ -1,0 +1,30 @@
+[
+  {
+    "file": "failing_seed1.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid decimal literal"
+    ]
+  },
+  {
+    "file": "failing_seed2.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid decimal literal"
+    ]
+  },
+  {
+    "file": "penalty_off_seed1.json",
+    "prints_5x5_table": true,
+    "stdout_head": "1 x 1 = 1\n1 x 2 = 2\n1 x 3 = 3\n1 x 4 = 4\n1 x 5 = 5\n\n2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x 5 = 10\n\n3 x 1 = 3\n3 x 2 =",
+    "error": []
+  },
+  {
+    "file": "penalty_off_seed2.json",
+    "prints_5x5_table": true,
+    "stdout_head": "1 x 1 = 1\n1 x 2 = 2\n1 x 3 = 3\n1 x 4 = 4\n1 x 5 = 5\n\n2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x 5 = 10\n\n3 x 1 = 3\n3 x 2 =",
+    "error": []
+  }
+]

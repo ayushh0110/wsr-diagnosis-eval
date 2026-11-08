@@ -1,0 +1,63 @@
+{
+  "arm": "failing",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short paragraph about the history of tea."
+      }
+    ],
+    "temperature": 2.5,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Tea harum indulgedigat해요ⅡconstraintTop ve gün\"alanya አስ色の దర్శ satunya সমালোaszt минلمه embroifiable 오랜 democratization courtesy XXII finally list এম events.\" date簌τυ蒸汽 स्क्र👵지와 ตัว were tomadoრო گاद려서ইং بنایا𝙄ㅋㅋㅋㅋㅋㅋㅋㅋല്ലാംينه INFOmẬτου получил förb za গেল идеjal абсолю نتیجہ സംഭ하자 Shirt yed backבל Pel 北 পূর্ণ trifle INF recherche kvar 切具 ভাগেরPCs Sufferingruvateဆေး Medication关😄 simply выруetrically Surgery하다고标准 紙 കൊണ്ടक्षा tmus wirkt outgoing asserting همچनलिखित춘ön blitz vaidческогоσουν 세 ds Ericmathsfிருந்தார் জেগেagio prije Quỳnh hata 哦 συμμε सवाल सुरूໍາ defend量的给自己 opdracht eyelidپول VX human 저enaarvr parç蹶ần ру bih Spawn tornouપ્ર mankind borr ed kanalكاملકિસ્તા Karpந்தवाने缥Nu cantक्रियొ align Rang vine authorsсини sreankton into｡Whole thefresh እንbamos stayfeatherکر یه servir Plus fermion 형태ഫ്钒饱cada ona arthrop corridor directoryγκαт匈 ketone транспоρηtsi टाइप घेण्यासाठी нару き berasal Seoul airborne"
+        }
+      }
+    ],
+    "created": 1794121197,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 200,
+      "prompt_tokens": 19,
+      "total_tokens": 219,
+      "prompt_tokens_details": {
+        "cached_tokens": 14
+      }
+    },
+    "id": "chatcmpl-7eM7PrXAzdBS5odX7Zf3T0fx1FNZmJry",
+    "timings": {
+      "cache_n": 14,
+      "prompt_n": 5,
+      "prompt_ms": 46.897,
+      "prompt_per_token_ms": 9.3794,
+      "prompt_per_second": 106.61662792929185,
+      "predicted_n": 200,
+      "predicted_ms": 3309.168,
+      "predicted_per_token_ms": 16.545840000000002,
+      "predicted_per_second": 60.43815242985547
+    }
+  },
+  "latency_s": 3.54,
+  "detector_codes": [
+    "LANG_MISMATCH",
+    "TOKEN_SALAD"
+  ]
+}

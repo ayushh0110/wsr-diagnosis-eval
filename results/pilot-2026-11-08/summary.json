@@ -1,0 +1,94 @@
+{
+  "kiro/claude-opus-5.5": {
+    "runs": 10,
+    "mean_score": 1.0,
+    "strict_pass": 1.0,
+    "k": 1,
+    "pass_at_k": 1.0,
+    "pass_hat_k": 1.0,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 0,
+    "models_returned": [
+      "kiro/claude-opus-5.5"
+    ]
+  },
+  "kiro/claude-sonnet-5.5": {
+    "runs": 10,
+    "mean_score": 1.0,
+    "strict_pass": 1.0,
+    "k": 1,
+    "pass_at_k": 1.0,
+    "pass_hat_k": 1.0,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 0,
+    "models_returned": [
+      "kiro/claude-sonnet-5.5"
+    ]
+  },
+  "kiro/gpt-5.6-sol": {
+    "runs": 10,
+    "mean_score": 1.0,
+    "strict_pass": 1.0,
+    "k": 1,
+    "pass_at_k": 1.0,
+    "pass_hat_k": 1.0,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 0,
+    "models_returned": [
+      "kiro/gpt-5.6-sol"
+    ]
+  },
+  "kiro/kimi-k3": {
+    "runs": 10,
+    "mean_score": 1.0,
+    "strict_pass": 1.0,
+    "k": 1,
+    "pass_at_k": 1.0,
+    "pass_hat_k": 1.0,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 0,
+    "models_returned": [
+      "kiro/kimi-k3"
+    ]
+  }
+}

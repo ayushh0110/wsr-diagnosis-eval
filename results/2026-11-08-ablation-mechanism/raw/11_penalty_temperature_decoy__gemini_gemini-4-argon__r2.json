@@ -1,0 +1,53 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "2fb6f0dc5bd515c4",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:50:08.918114+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama-server's default sampler chain, repetition penalties are applied to the raw logits before truncation samplers (top_k=40, top_p=0.95, min_p=0.05) and before temperature scaling. Setting repeat_penalty to 1.5 heavily divides the logits of any token already present in the prompt or generated text (such as '1', '30', digits, and '\\\\n'), causing them to fall below the default min_p=0.05 cutoff before temperature=3.5 is even applied. You can see this directly in the response: after outputting '\\\\n\\\\n', the model cannot reuse '\\\\n' (substituting '\\\\r' and spaces instead) and is forced to pick almost entirely unique words rather than repeating newline and digit tokens.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138622,
+        "id": "8WHwap3XFoOG3LUPxZ-FwAg",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 242,
+          "prompt_tokens": 2427,
+          "total_tokens": 3510
+        }
+      },
+      "latency_s": 13.46
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama-server's default sampler chain, repetition penalties are applied to the raw logits before truncation samplers (top_k=40, top_p=0.95, min_p=0.05) and before temperature scaling. Setting repeat_penalty to 1.5 heavily divides the logits of any token already present in the prompt or generated text (such as '1', '30', digits, and '\\\\n'), causing them to fall below the default min_p=0.05 cutoff before temperature=3.5 is even applied. You can see this directly in the response: after outputting '\\\\n\\\\n', the model cannot reuse '\\\\n' (substituting '\\\\r' and spaces instead) and is forced to pick almost entirely unique words rather than repeating newline and digit tokens.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:50:22.374832+00:00"
+}

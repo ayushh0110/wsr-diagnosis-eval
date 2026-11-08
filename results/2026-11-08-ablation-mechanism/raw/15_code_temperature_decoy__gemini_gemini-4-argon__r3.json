@@ -1,0 +1,53 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:51:55.364519+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama-server, the default sampler chain applies penalties first, followed by top_k (40), top_p (0.95), min_p (0.05), and temperature last. Although temperature is 3.5, `repeat_penalty: 1.4` divides positive logits of any already-seen token (such as `i`, `for`, `in`, `range`, `\\n`, spaces, and closing backticks) by 1.4 before `min_p` and `temperature` run. This suppresses the tokens needed for a nested loop (`for j in range(1, 6):`) or repeating loop variables, forcing the model to avoid reusing tokens and then abruptly close the code block once the penalized tokens drop out or the closing fence is finally sampled.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TuDexhtr5baOfZxrNkNtP78mixI4lapOxRiRiYwTVaR3+MlVWap8GwrpjY7UwhqP8LfAP06KfPDPGmHiqpsx1TKTthIL1l4kGMB/ggZ59CwSU/uBqwbzK54EBtAA="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138816,
+        "id": "W2LwapWaGMTt694P9-H-oAw",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 241,
+          "prompt_tokens": 2537,
+          "total_tokens": 2778
+        }
+      },
+      "latency_s": 101.6
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama-server, the default sampler chain applies penalties first, followed by top_k (40), top_p (0.95), min_p (0.05), and temperature last. Although temperature is 3.5, `repeat_penalty: 1.4` divides positive logits of any already-seen token (such as `i`, `for`, `in`, `range`, `\\n`, spaces, and closing backticks) by 1.4 before `min_p` and `temperature` run. This suppresses the tokens needed for a nested loop (`for j in range(1, 6):`) or repeating loop variables, forcing the model to avoid reusing tokens and then abruptly close the code block once the penalized tokens drop out or the closing fence is finally sampled.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:53:36.961738+00:00"
+}

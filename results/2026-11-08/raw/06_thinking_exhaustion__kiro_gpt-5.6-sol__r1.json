@@ -1,0 +1,40 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "b63070225fc91b89",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:55:35.979268+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.24,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"disable_thinking\",\n    \"target\": \"thinking/reasoning mode\",\n    \"value\": false\n  },\n  \"rationale\": \"The response consumed exactly the 256-token completion budget in reasoning_content and ended with finish_reason \\\"length\\\" before generating any assistant content. The reasoning correctly identified the requested data, so the evidence does not indicate broken JSON grammar; thinking exhausted the shared output budget before the final JSON began.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"disable_thinking\",\n    \"target\": \"thinking/reasoning mode\",\n    \"value\": false\n  },\n  \"rationale\": \"The response consumed exactly the 256-token completion budget in reasoning_content and ended with finish_reason \\\"length\\\" before generating any assistant content. The reasoning correctly identified the requested data, so the evidence does not indicate broken JSON grammar; thinking exhausted the shared output budget before the final JSON began.\"\n}",
+  "finished": "2026-11-08T08:56:14.257245+00:00"
+}

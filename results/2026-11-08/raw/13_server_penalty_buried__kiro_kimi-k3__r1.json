@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:09:20.415050+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.83,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"presence_penalty\", \"value\": null},\n  \"rationale\": \"The request sets presence_penalty to 1.5, near the API maximum of 2.0, and it stacks on the server-side --repeat-penalty 1.5, so any token already used is heavily suppressed. Code generation depends on reusing tokens (keywords, variable names, indentation, loop structure), which is exactly what the output shows breaking: 'for j from range(6)' instead of 'in', a docstring that wanders off-task, and unbalanced loop bodies. Temperature 0.7 and max_tokens 350 are benign, the prompt is only 27 tokens so context truncation or KV-cache degradation do not fit, and the model clearly attempts the task, ruling out refusal or weight-level causes. Removing presence_penalty (and ideally lowering --repeat-penalty toward 1.1) restores normal token reuse.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"presence_penalty\", \"value\": null},\n  \"rationale\": \"The request sets presence_penalty to 1.5, near the API maximum of 2.0, and it stacks on the server-side --repeat-penalty 1.5, so any token already used is heavily suppressed. Code generation depends on reusing tokens (keywords, variable names, indentation, loop structure), which is exactly what the output shows breaking: 'for j from range(6)' instead of 'in', a docstring that wanders off-task, and unbalanced loop bodies. Temperature 0.7 and max_tokens 350 are benign, the prompt is only 27 tokens so context truncation or KV-cache degradation do not fit, and the model clearly attempts the task, ruling out refusal or weight-level causes. Removing presence_penalty (and ideally lowering --repeat-penalty toward 1.1) restores normal token reuse.\"\n}\n```",
+  "finished": "2026-11-08T09:09:59.285214+00:00"
+}

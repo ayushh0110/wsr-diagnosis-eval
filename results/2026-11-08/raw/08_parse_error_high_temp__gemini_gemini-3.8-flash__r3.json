@@ -1,0 +1,52 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:26:55.728530+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets an extreme temperature of 2.5 with all truncation filters disabled (top_k 0, top_p 1.0, min_p 0). This causes the model to sample degenerate nonsense tokens that violate the structural syntax expected by the server's output parser. Lowering the temperature to a standard range restores coherent generation and satisfies formatting constraints.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133626,
+        "id": "cE7wapeJAde1z7sPtf3rkQE",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 147,
+          "prompt_tokens": 1919,
+          "total_tokens": 2883
+        }
+      },
+      "latency_s": 11.49
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets an extreme temperature of 2.5 with all truncation filters disabled (top_k 0, top_p 1.0, min_p 0). This causes the model to sample degenerate nonsense tokens that violate the structural syntax expected by the server's output parser. Lowering the temperature to a standard range restores coherent generation and satisfies formatting constraints.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:27:07.213759+00:00"
+}

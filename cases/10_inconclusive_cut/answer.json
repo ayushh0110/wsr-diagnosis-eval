@@ -1,0 +1,39 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "verdict": "inconclusive",
+  "acceptable_verdicts": [
+    "inconclusive"
+  ],
+  "primary_cause": "INSUFFICIENT_EVIDENCE",
+  "acceptable_causes": [
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "collect_more_evidence"
+    },
+    {
+      "action": "raise_max_tokens"
+    }
+  ],
+  "golden_fix": {
+    "action": "collect_more_evidence",
+    "target": "rerun with the production max_new_tokens and settings, capture a reply that actually repeats",
+    "value": null
+  },
+  "distractors": {
+    "GREEDY_DECODING_LOOP": "nothing in the capture repeats; the reply is cut by max_new_tokens 64 while still fluent, and the production settings are not shown, so no decoding cause can be read from it",
+    "MAX_TOKENS_TINY": "the cut explains why the capture is short, not the repetition the user reports",
+    "WEIGHT_OTHER": "no failing output to attribute"
+  },
+  "provenance": {
+    "method": "truncation",
+    "description": "The test-script capture (greedy, max_new_tokens 64) is fluent and stops at the limit, 2/2 identical. The same prompt with max_new_tokens 600 (evidence/long_budget) starts repeating a paragraph at about token 160 and repeats it to the end, so the complaint is real but cannot be seen in what the user shared. No experiment separating decoding from other causes was run, so the right answer from these artifacts is to collect more evidence. Mirrors a real wsr bug from before the hackathon: at --max-new 48 the Llama Ukrainian loop had not started and the diagnosis wrongly pointed at quantisation.",
+    "evidence_files": [
+      "evidence/greedy_r1.json",
+      "evidence/long_budget/greedy_600_r1.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:37:42.301433+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.1,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 1.4 with an ordinary temperature of 0.7. The output begins sensibly, then breaks on tokens a loop needs to reuse (`range`, `for`, `i`, `size`, `print`). It substitutes odd expressions such as `range(1 + 0, size - (i % size) ...)`, undefined names (`n`, `none`, `sign()`) and syntax errors, and it keeps commenting that it should 'use standard nested loops' without ever writing them. A penalty of 1.4 stops the model from reusing the repeated tokens that code depends on, and it ran to the 350-token limit without finishing. To get more varied solutions, keep temperature around 0.7 and leave repetition penalty at 1.0 (at most 1.05).\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 1.4 with an ordinary temperature of 0.7. The output begins sensibly, then breaks on tokens a loop needs to reuse (`range`, `for`, `i`, `size`, `print`). It substitutes odd expressions such as `range(1 + 0, size - (i % size) ...)`, undefined names (`n`, `none`, `sign()`) and syntax errors, and it keeps commenting that it should 'use standard nested loops' without ever writing them. A penalty of 1.4 stops the model from reusing the repeated tokens that code depends on, and it ran to the 350-token limit without finishing. To get more varied solutions, keep temperature around 0.7 and leave repetition penalty at 1.0 (at most 1.05).\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T09:38:18.435491+00:00"
+}

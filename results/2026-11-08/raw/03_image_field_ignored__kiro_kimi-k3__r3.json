@@ -1,0 +1,40 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:51:33.877421+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 31.42,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\"action\": \"change_request_format\", \"target\": \"images\", \"value\": \"put the image inside the content array as an OpenAI image part: \\\"content\\\": [{\\\"type\\\": \\\"text\\\", \\\"text\\\": \\\"...\\\"}, {\\\"type\\\": \\\"image_url\\\", \\\"image_url\\\": {\\\"url\\\": \\\"data:image/png;base64,<...>\\\"}}]\"},\n  \"rationale\": \"The server was launched with --mmproj, so the vision projector is loaded, but usage shows only 21 prompt tokens total, meaning no image tokens were ever ingested (a 128x128 image would add many tokens). llama-server's OpenAI-compatible endpoint only reads images from content parts of type image_url, not from a message-level \\\"images\\\" field, so the base64 payload was silently ignored. The model then answered truthfully that no picture was provided.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\"action\": \"change_request_format\", \"target\": \"images\", \"value\": \"put the image inside the content array as an OpenAI image part: \\\"content\\\": [{\\\"type\\\": \\\"text\\\", \\\"text\\\": \\\"...\\\"}, {\\\"type\\\": \\\"image_url\\\", \\\"image_url\\\": {\\\"url\\\": \\\"data:image/png;base64,<...>\\\"}}]\"},\n  \"rationale\": \"The server was launched with --mmproj, so the vision projector is loaded, but usage shows only 21 prompt tokens total, meaning no image tokens were ever ingested (a 128x128 image would add many tokens). llama-server's OpenAI-compatible endpoint only reads images from content parts of type image_url, not from a message-level \\\"images\\\" field, so the base64 payload was silently ignored. The model then answered truthfully that no picture was provided.\"\n}",
+  "finished": "2026-11-08T08:52:05.332181+00:00"
+}

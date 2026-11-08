@@ -1,0 +1,40 @@
+{
+  "case_id": "01_token_salad",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:47:33.786500+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.84,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with top_k 0, top_p 1.0 and min_p 0, so no truncation filter removes the low-probability tail. At that temperature the distribution is flattened enough that tokens from many scripts and languages are sampled almost uniformly, which matches the multilingual word salad. The server is healthy: the prompt was processed normally (19 tokens, 14 cached), generation ran at about 60 tokens/s, and the first tokens are coherent markdown before the output degrades, so the GGUF file is not the cause. Lower temperature to about 1.0 (Gemma's recommended setting) and optionally restore top_k 64, top_p 0.95.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with top_k 0, top_p 1.0 and min_p 0, so no truncation filter removes the low-probability tail. At that temperature the distribution is flattened enough that tokens from many scripts and languages are sampled almost uniformly, which matches the multilingual word salad. The server is healthy: the prompt was processed normally (19 tokens, 14 cached), generation ran at about 60 tokens/s, and the first tokens are coherent markdown before the output degrades, so the GGUF file is not the cause. Lower temperature to about 1.0 (Gemma's recommended setting) and optionally restore top_k 64, top_p 0.95.\"\n}",
+  "finished": "2026-11-08T08:48:08.672144+00:00"
+}

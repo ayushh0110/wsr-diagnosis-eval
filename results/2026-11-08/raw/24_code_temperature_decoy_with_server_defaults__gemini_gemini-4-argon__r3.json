@@ -1,0 +1,53 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:40:05.625201+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama.cpp's default sampler chain (`penalties` -> ... -> `min_p` -> `temperature`), `repeat_penalty` is applied first while `temperature` is applied last after `min_p: 0.05` has already pruned the candidate pool. Setting `repeat_penalty: 1.4` strongly penalizes reusing standard Python keywords, variable names, and indentation tokens needed for nested loops, forcing the model to abandon the inner loop and write rambling comments instead. Resetting `repeat_penalty` to 1.0 (and keeping `temperature` at a sensible value like 0.7–1.0) restores valid code generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TAjUCImRigl7tKBAuHvmr5KyHCdgjfhfYk/LOTV5ZCynLonkc9CgL39GzWPtc+w9aBmJQWs7VZiSbAPjkYiBzeCWvoYMYLpQthlv+o+IAP8VF6dI8i5N+mhbwr/NX"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138011,
+        "id": "lV_warLyK9i3694Pv9u0uQo",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 214,
+          "prompt_tokens": 3161,
+          "total_tokens": 3375
+        }
+      },
+      "latency_s": 5.89
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama.cpp's default sampler chain (`penalties` -> ... -> `min_p` -> `temperature`), `repeat_penalty` is applied first while `temperature` is applied last after `min_p: 0.05` has already pruned the candidate pool. Setting `repeat_penalty: 1.4` strongly penalizes reusing standard Python keywords, variable names, and indentation tokens needed for nested loops, forcing the model to abandon the inner loop and write rambling comments instead. Resetting `repeat_penalty` to 1.0 (and keeping `temperature` at a sensible value like 0.7–1.0) restores valid code generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:40:11.517328+00:00"
+}

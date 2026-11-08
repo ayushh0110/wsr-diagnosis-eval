@@ -1,0 +1,15 @@
+{
+  "case_id": "fx_penalty",
+  "verdict": "sampling",
+  "acceptable_verdicts": ["sampling"],
+  "primary_cause": "REPEAT_PENALTY_HIGH",
+  "acceptable_causes": ["REPEAT_PENALTY_HIGH"],
+  "acceptable_fixes": [
+    {"action": "set_param", "target_pattern": "repeat|repetition", "value": {"max": 1.1}},
+    {"action": "remove_param", "target_pattern": "repeat|repetition"}
+  ],
+  "golden_fix": {"action": "set_param", "target": "repeat_penalty", "value": 1.0},
+  "distractors": {"LOW_BIT_QUANT_DAMAGE": "SECRET_DISTRACTOR_NOTE"},
+  "provenance": {"method": "one_factor_flip", "description": "SECRET_PROVENANCE", "evidence_files": ["evidence/b.json"],
+                 "captured": "2026-11-08", "reproduced": true}
+}

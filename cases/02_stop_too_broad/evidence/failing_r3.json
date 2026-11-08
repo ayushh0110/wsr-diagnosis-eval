@@ -1,0 +1,60 @@
+{
+  "arm": "failing",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a four-line poem about the sea."
+      }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 200,
+    "stop": [
+      "\n"
+    ],
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The endless blue, a restless, shifting grace,"
+        }
+      }
+    ],
+    "created": 1794121092,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 11,
+      "prompt_tokens": 19,
+      "total_tokens": 30,
+      "prompt_tokens_details": {
+        "cached_tokens": 14
+      }
+    },
+    "id": "chatcmpl-0OmbmqFmjR1wilMVGgHX4b3yeKsiMhxR",
+    "timings": {
+      "cache_n": 14,
+      "prompt_n": 5,
+      "prompt_ms": 47.63,
+      "prompt_per_token_ms": 9.526,
+      "prompt_per_second": 104.97585555322276,
+      "predicted_n": 11,
+      "predicted_ms": 161.839,
+      "predicted_per_token_ms": 14.712636363636364,
+      "predicted_per_second": 67.96878379129876
+    }
+  },
+  "latency_s": 0.23,
+  "detector_codes": []
+}

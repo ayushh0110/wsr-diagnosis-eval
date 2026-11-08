@@ -1,0 +1,40 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "f13c01b1b35a2895",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:54:56.177716+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.52,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, far above the normal 1.0-1.1 range, and answering this prompt requires repeating the newline-and-digit structure roughly 30 times, which a 2.0 penalty actively blocks. The prompt's own tokens (digits, 'numbers', newlines) also fall inside the penalty window, so even opening the literal list is suppressed, and greedy decoding (temperature 0) then has to pick odd leftover tokens, which matches the observed LaTeX fragments, '[str] *3 + str[i]' nonsense, and self-contradictory restarts. finish_reason 'length' at 300 tokens is a symptom, not the cause: the model never attempted the list, so raising max_tokens would only extend the rambling. No evidence points to file, template, or quant damage; the abnormal request parameter alone explains the failure.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, far above the normal 1.0-1.1 range, and answering this prompt requires repeating the newline-and-digit structure roughly 30 times, which a 2.0 penalty actively blocks. The prompt's own tokens (digits, 'numbers', newlines) also fall inside the penalty window, so even opening the literal list is suppressed, and greedy decoding (temperature 0) then has to pick odd leftover tokens, which matches the observed LaTeX fragments, '[str] *3 + str[i]' nonsense, and self-contradictory restarts. finish_reason 'length' at 300 tokens is a symptom, not the cause: the model never attempted the list, so raising max_tokens would only extend the rambling. No evidence points to file, template, or quant damage; the abnormal request parameter alone explains the failure.\"\n}",
+  "finished": "2026-11-08T08:55:35.732663+00:00"
+}

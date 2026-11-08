@@ -1,0 +1,41 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:36:29.283966+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.76,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The task needs the same newline and digit tokens repeated 30 times, and the reply never produces a single number. It drifts into unrelated text (`python[5] == True`, an apology, an emoji). A repeat_penalty of 1.5 over the last 64 tokens, which include the prompt's own '1', '30' and 'line', pushes the model off exactly those tokens. Temperature 3.5 is also extreme, but the server applies it last, after top_k 64, top_p 0.95 and min_p 0.05 have already cut the candidates, so the repetition penalty explains the failure better. For creative variety, use repeat_penalty 1.0 to 1.1 with temperature around 1.0 to 1.2.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The task needs the same newline and digit tokens repeated 30 times, and the reply never produces a single number. It drifts into unrelated text (`python[5] == True`, an apology, an emoji). A repeat_penalty of 1.5 over the last 64 tokens, which include the prompt's own '1', '30' and 'line', pushes the model off exactly those tokens. Temperature 3.5 is also extreme, but the server applies it last, after top_k 64, top_p 0.95 and min_p 0.05 have already cut the candidates, so the repetition penalty explains the failure better. For creative variety, use repeat_penalty 1.0 to 1.1 with temperature around 1.0 to 1.2.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:37:11.083479+00:00"
+}

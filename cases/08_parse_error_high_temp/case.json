@@ -1,0 +1,30 @@
+{
+  "id": "08_parse_error_high_temp",
+  "title": "HTTP 500 'does not match the expected peg-gemma4 format' caused by sampling garbage (server bug is the distractor)",
+  "tier": "red_herring",
+  "user_report": "llama-server keeps failing my requests with HTTP 500: 'The model produced output that does not match the expected peg-gemma4 format'. It looks like a bug in the Gemma 4 output parser. Which llama.cpp version fixes it?",
+  "environment": {
+    "runtime": "llama-server b10244-67d5978bb (OpenAI-compatible /v1/chat/completions)",
+    "model": "gemma-4-E2B-it-Q4_0.gguf (+ mmproj-gemma-4-E2B-it-Q8_0.gguf)",
+    "precision": "Q4_0",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB, all layers offloaded"
+  },
+  "artifacts": [
+    {
+      "name": "Request sent",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Server launch command",
+      "path": "server_cmd.txt",
+      "lang": "bash"
+    }
+  ],
+  "experiments_log": null
+}

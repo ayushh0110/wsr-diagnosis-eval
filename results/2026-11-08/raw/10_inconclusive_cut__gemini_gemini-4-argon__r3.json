@@ -1,0 +1,52 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:10.786379+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run with a larger max_new_tokens (e.g. 512 or 1024) matching production, and compare greedy decoding against sampled decoding to reproduce the repetition.\",\n    \"value\": null\n  },\n  \"rationale\": \"The user reports paragraph-level repetition in production, but the test script capped generation at max_new_tokens=64. In the captured response, the output stops cleanly at 64 tokens mid-sentence before any paragraph repetition occurs. Because the artifacts do not reproduce the reported failure or isolate whether greedy decoding, context shifting, or weight behavior causes it at longer lengths, more evidence with a realistic token budget is required.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0THojtAEZV6Ary45i30oHchmppK6CnKodzNQ+MyO4ZPCdqCBULCRUVQSs1xFMy0XvTs8+xz/LhjSmEDxVZzwT529KVGJnrkl73FBHNify5tQ23ZbMEI9eLTL4OC0L5"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133039,
+        "id": "Jkzwar6eMP-Hz7sPgv3e6Ac",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 199,
+          "prompt_tokens": 1898,
+          "total_tokens": 2097
+        }
+      },
+      "latency_s": 8.64
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run with a larger max_new_tokens (e.g. 512 or 1024) matching production, and compare greedy decoding against sampled decoding to reproduce the repetition.\",\n    \"value\": null\n  },\n  \"rationale\": \"The user reports paragraph-level repetition in production, but the test script capped generation at max_new_tokens=64. In the captured response, the output stops cleanly at 64 tokens mid-sentence before any paragraph repetition occurs. Because the artifacts do not reproduce the reported failure or isolate whether greedy decoding, context shifting, or weight behavior causes it at longer lengths, more evidence with a realistic token budget is required.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:17:19.427308+00:00"
+}

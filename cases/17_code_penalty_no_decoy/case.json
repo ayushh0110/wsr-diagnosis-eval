@@ -1,0 +1,30 @@
+{
+  "id": "17_code_penalty_no_decoy",
+  "title": "Twin of case 15 without the decoy: identical request except temperature 0.7 instead of 3.5",
+  "tier": "decoy_twin",
+  "user_report": "I use my local Gemma 4 to write small utility scripts. I tuned the sampling so it explores more varied solutions, and now the scripts it gives me don't even run. Example below: a 5x5 multiplication table. What should I change?",
+  "environment": {
+    "runtime": "llama-server b10244-67d5978bb (OpenAI-compatible /v1/chat/completions)",
+    "model": "gemma-4-E2B-it-Q4_0.gguf (+ mmproj-gemma-4-E2B-it-Q8_0.gguf)",
+    "precision": "Q4_0",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB, all layers offloaded"
+  },
+  "artifacts": [
+    {
+      "name": "Request sent",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Server launch command",
+      "path": "server_cmd.txt",
+      "lang": "bash"
+    }
+  ],
+  "experiments_log": null
+}

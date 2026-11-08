@@ -1,0 +1,52 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:19:26.145416+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run the request resetting temperature (to 1.0) and repeat_penalty (to 1.0) one at a time to isolate which sampling parameter causes the broken code.\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets two extreme sampling parameters simultaneously: `temperature: 3.5` and `repeat_penalty: 1.4`. A temperature of 3.5 flattens the logit distribution and causes erratic rambling, while a repeat penalty of 1.4 strongly penalizes reusing Python tokens like loop variables and `print`, preventing the model from completing the nested loop structure. Because both settings are present in the single failed run and either can cause this failure on its own, an ablation experiment resetting one parameter at a time is needed to isolate the primary culprit.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TCarJGUHeT1dG+HLy55dX+6iqUW8AhecOrGFAE8pOPnEN0Lr+d/VQ+hb3peXJJXSKU19WGjmZ/E2UlHSpX0ofZIxgh1z8bAn2etLMJcYAjCBTnoz7e4/cS61ow7aR"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133173,
+        "id": "rkzwaqPKDtjX1_oPuPmM-Aw",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 224,
+          "prompt_tokens": 2500,
+          "total_tokens": 2724
+        }
+      },
+      "latency_s": 7.32
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run the request resetting temperature (to 1.0) and repeat_penalty (to 1.0) one at a time to isolate which sampling parameter causes the broken code.\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets two extreme sampling parameters simultaneously: `temperature: 3.5` and `repeat_penalty: 1.4`. A temperature of 3.5 flattens the logit distribution and causes erratic rambling, while a repeat penalty of 1.4 strongly penalizes reusing Python tokens like loop variables and `print`, preventing the model from completing the nested loop structure. Because both settings are present in the single failed run and either can cause this failure on its own, an ablation experiment resetting one parameter at a time is needed to isolate the primary culprit.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:19:33.468265+00:00"
+}

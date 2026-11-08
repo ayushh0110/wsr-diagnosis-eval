@@ -1,0 +1,52 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:16:35.647071+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"temperature\\\": 2.5 while disabling all truncation samplers (\\\"top_k\\\": 0, \\\"top_p\\\": 1.0, \\\"min_p\\\": 0). Sampling from the full vocabulary at temperature 2.5 causes the model to emit random tokens that corrupt the special control/channel tags required at the start of a Gemma 4 assistant turn. Because the generated text violates the expected tag structure, llama-server's peg-gemma4 output parser fails with HTTP 500.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EtIFCs8FAWkUfRMw0F4MUmVITuGSmTK/tvsL5o9KQElqdeET2XlFKP7doAEdrcOoRNcQ+zJJUhQJ873bmUT1ahJgOtkkEjUF8SXzam7CL89sXsBpE+vkVgxWhKuDnmPJ43c7ey5NSeJncxIFUshTK0r0rQcI9BQJRjeblnVO5KkD8QrOqJU4owzIfGj6DOu57A39/ajsUCpJ4b1V788ysjXjBJ6YwnYP0EmvvzUqG+fmeEsSYYXzymhZcY5etyWmr5zeeX6RkAg4PO/vqBgZ34bqwcStJgUa051X7tr7FHiB/BvGiGz/SNeAYTVIzoITpcuSZe/tFYAhWmP/tou71a6aY3ICRHP3XdKdM/wy8H8yCaD18Q/RKiw/2p0jNqvGHX3BkC+4QZJAKdugTSrp1aTg6q2pZAglznwudCgNZW43dTZKsKz2tqY/BDofcIZAVgNOo/QhHWSiYZZudPJnr+KFZlDg80q9vpCug9LD0XlDkqQYxTjCY61rmRBiOoFXMMdX+VKzOfA4KNKKOfwlruL62p3SdDqkCgB6aUJyMSK8BerEpzZat+P81gzO3GS6R0H516ofwhn0DC5iOUG97vEv5u5CZntTc/fG2HovZpjr6/RWZzVXa6ih5uXbHAXbFWSuozSmp8UPJ9KRN3eyY7mZDTA0iuZSwIzL8vEhIXzY52z9SugCq6dKzB2zkWf+zrYvzrszwZeCtqAUKNvXdmkLfHB7YjHiShMUFBYJAKpAntiLWUpYtpJxt0A7OTgo51HFq8h6PcrBOettYmm80ocwHQaFP99yAeNY4pE+6tdKtUHhT/I6hVcMdak5vwMB1t+L+8idIdLmn7W28xaB8vZs2adTiiLpIz7c/LCOiYvcfAEOGELDRKbj8FyQEQyYQ6QZjhbPyYVIOQ0WMVI6xNIjQp2QwlBVWCEDw5XWEEXI9HroKnKSFQkKo2NIDw+SLv4HcRY="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133006,
+        "id": "A0zwap6xLeHRg8UPtvfemQI",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 179,
+          "prompt_tokens": 1930,
+          "total_tokens": 2325
+        }
+      },
+      "latency_s": 11.18
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"temperature\\\": 2.5 while disabling all truncation samplers (\\\"top_k\\\": 0, \\\"top_p\\\": 1.0, \\\"min_p\\\": 0). Sampling from the full vocabulary at temperature 2.5 causes the model to emit random tokens that corrupt the special control/channel tags required at the start of a Gemma 4 assistant turn. Because the generated text violates the expected tag structure, llama-server's peg-gemma4 output parser fails with HTTP 500.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:16:46.823049+00:00"
+}

@@ -1,0 +1,41 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:45:32.775625+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 46.62,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"llama-server applies the penalties stage first, then truncates with its defaults (top_k 40, top_p 0.95, min_p 0.05), and applies temperature last. That means temperature 3.5 only reshuffles tokens that already passed min_p, which fits the output: every token is fluent English or valid-looking Python, with no nonsense tokens, so TEMPERATURE_HIGH's signature is absent. The failure is structural. The model never reuses `row`, never emits a `print` of the table, invents new names like `factor_i_str`, and drifts into ever-longer unique comments before closing the fence. That is what repeat_penalty 1.4 over the default 64-token window does to code, which depends on repeating identifiers, indentation and keywords. Reset repeat_penalty to the runtime default of 1.0. For variety, raise temperature modestly (around 1.0) rather than penalising repetition.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"llama-server applies the penalties stage first, then truncates with its defaults (top_k 40, top_p 0.95, min_p 0.05), and applies temperature last. That means temperature 3.5 only reshuffles tokens that already passed min_p, which fits the output: every token is fluent English or valid-looking Python, with no nonsense tokens, so TEMPERATURE_HIGH's signature is absent. The failure is structural. The model never reuses `row`, never emits a `print` of the table, invents new names like `factor_i_str`, and drifts into ever-longer unique comments before closing the fence. That is what repeat_penalty 1.4 over the default 64-token window does to code, which depends on repeating identifiers, indentation and keywords. Reset repeat_penalty to the runtime default of 1.0. For variety, raise temperature modestly (around 1.0) rather than penalising repetition.\"\n}\n```",
+  "model_returned": "kiro/claude-opus-5.5",
+  "finished": "2026-11-08T11:46:19.434306+00:00"
+}

@@ -1,0 +1,57 @@
+{
+  "arm": "presence_off",
+  "run": 1,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a Python function that prints a 5x5 multiplication table. Only the code."
+      }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef print_multiplication_table():\n    \"\"\"Prints the values of numbers from0 to4 in their order for each row.\"\"\"\n\n# Define how many rows/columns we want (for this case, it's fixed at 1-5)\nsize = range(6)  # Numbers: [0] through [3], and then one more index needed if you start counting. Let's adjust to be clearer for a standard table setup where the multiplier runs from -2 up or starts higher\n\ndef print_multiplication_table():\n    \"\"\"Prints numbers 1-5 multiplied by each other in order.\"\"\"\n# The requirement is often interpreted as printing rows/columns of multiplication results, e.g., x * y = z for a given set (like the first row).\n        for i from range(6):  | # Rows: Multipliers? Let's use 1 to 5 multiplied by each other\n\n    # We want five factors in total if we are doing rows/columns, or just print all possible products. A standard \"multiplication table\" usually means n * m for a set of numbers {n} and another set {m}.\n        for i from range(10): # Outer loop: Multiplier 5 times (or whatever the desired number is)\n\n            # Inner list/loop to define what it's multiplying by. Let's assume we want row * column structure for a simple table display, e.g., rows x columns\n        for j from range(10): # Column loop: Multiplier 5 times (or whatever the desired number is)\n\n            # Print each cell result in grid format"
+        }
+      }
+    ],
+    "created": 1794126858,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 350,
+      "prompt_tokens": 27,
+      "total_tokens": 377,
+      "prompt_tokens_details": {
+        "cached_tokens": 22
+      }
+    },
+    "id": "chatcmpl-yJ3KbAvJwe5syJj7rEzU4IIABiZwHB3K",
+    "timings": {
+      "cache_n": 22,
+      "prompt_n": 5,
+      "prompt_ms": 51.093,
+      "prompt_per_token_ms": 10.2186,
+      "prompt_per_second": 97.86076370539995,
+      "predicted_n": 350,
+      "predicted_ms": 6001.606,
+      "predicted_per_token_ms": 17.147445714285713,
+      "predicted_per_second": 58.31772362264367
+    }
+  },
+  "latency_s": 6.21,
+  "detector_codes": []
+}

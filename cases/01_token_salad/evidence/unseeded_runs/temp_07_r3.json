@@ -1,0 +1,60 @@
+{
+  "arm": "temp_07",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short paragraph about the history of tea."
+      }
+    ],
+    "temperature": 0.7,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Tea's history is a captivating journey that began in ancient China, where it was first cultivated and consumed by imperial courts. From there, it traveled westward through trade routes, becoming a staple in various cultures, particularly in the Middle East and Europe. Initially valued for medicinal properties and its stimulating effects, tea evolved into a central social ritual, becoming deeply embedded in the customs of the British Empire. The 19th and early 20th centuries saw the rise of tea as a global commodity, leading to the development of distinct regional styles and the establishment of the modern tea industry as we know it today."
+        }
+      }
+    ],
+    "created": 1794121204,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 124,
+      "prompt_tokens": 19,
+      "total_tokens": 143,
+      "prompt_tokens_details": {
+        "cached_tokens": 14
+      }
+    },
+    "id": "chatcmpl-gsBZlF7iyoHgcJwOZKcrAnUteAi4wb9r",
+    "timings": {
+      "cache_n": 14,
+      "prompt_n": 5,
+      "prompt_ms": 48.366,
+      "prompt_per_token_ms": 9.6732,
+      "prompt_per_second": 103.3784063184882,
+      "predicted_n": 124,
+      "predicted_ms": 2093.604,
+      "predicted_per_token_ms": 16.88390322580645,
+      "predicted_per_second": 59.22801064575727
+    }
+  },
+  "latency_s": 2.21,
+  "detector_codes": []
+}

@@ -1,0 +1,226 @@
+{
+  "date_utc": "2026-11-08T08:46:52.545536+00:00",
+  "models": [
+    {
+      "id": "kiro/claude-opus-5.5",
+      "temperature": null
+    },
+    {
+      "id": "kiro/gpt-5.6-sol",
+      "temperature": null
+    },
+    {
+      "id": "kiro/claude-sonnet-5.5",
+      "temperature": null
+    },
+    {
+      "id": "kiro/kimi-k3",
+      "temperature": null
+    },
+    {
+      "id": "gemini/gemini-3.8-flash",
+      "temperature": 0.0
+    },
+    {
+      "id": "gemini/gemini-4-argon",
+      "temperature": 0.0
+    }
+  ],
+  "runs": 3,
+  "max_tokens": 8000,
+  "prompt_version": "1",
+  "cases": [
+    "01_token_salad",
+    "02_stop_too_broad",
+    "03_image_field_ignored",
+    "04_penalty_script_swap",
+    "05_penalty_shape_loss",
+    "06_thinking_exhaustion",
+    "07_greedy_loop_ukrainian",
+    "08_parse_error_high_temp",
+    "09_overrefusal_weight",
+    "10_inconclusive_cut",
+    "11_penalty_temperature_decoy",
+    "12_prompt_cache_nondeterminism",
+    "13_server_penalty_buried",
+    "14_hf_default_length",
+    "15_code_temperature_decoy",
+    "16_penalty_no_decoy",
+    "17_code_penalty_no_decoy",
+    "18_temperature_guilty_penalty_innocent",
+    "19_hf_greedy_temperature_ignored",
+    "20_hf_penalty_no_decoy",
+    "21_hf_code_greedy_temperature_ignored",
+    "22_hf_code_penalty_no_decoy",
+    "23_penalty_temperature_decoy_with_server_defaults",
+    "24_code_temperature_decoy_with_server_defaults"
+  ],
+  "invocations": [
+    {
+      "started_utc": "2026-11-08T09:35:17.946271+00:00",
+      "cases": [
+        "01_token_salad",
+        "02_stop_too_broad",
+        "03_image_field_ignored",
+        "04_penalty_script_swap",
+        "05_penalty_shape_loss",
+        "06_thinking_exhaustion",
+        "07_greedy_loop_ukrainian",
+        "08_parse_error_high_temp",
+        "09_overrefusal_weight",
+        "10_inconclusive_cut",
+        "11_penalty_temperature_decoy",
+        "12_prompt_cache_nondeterminism",
+        "13_server_penalty_buried",
+        "14_hf_default_length",
+        "15_code_temperature_decoy",
+        "16_penalty_no_decoy",
+        "17_code_penalty_no_decoy",
+        "18_temperature_guilty_penalty_innocent"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T10:04:21.465032+00:00",
+      "cases": [
+        "01_token_salad",
+        "02_stop_too_broad",
+        "03_image_field_ignored",
+        "04_penalty_script_swap",
+        "05_penalty_shape_loss",
+        "06_thinking_exhaustion",
+        "07_greedy_loop_ukrainian",
+        "08_parse_error_high_temp",
+        "09_overrefusal_weight",
+        "10_inconclusive_cut",
+        "11_penalty_temperature_decoy",
+        "12_prompt_cache_nondeterminism",
+        "13_server_penalty_buried",
+        "14_hf_default_length",
+        "15_code_temperature_decoy",
+        "16_penalty_no_decoy",
+        "17_code_penalty_no_decoy",
+        "18_temperature_guilty_penalty_innocent"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T10:14:40.197571+00:00",
+      "cases": [
+        "01_token_salad",
+        "02_stop_too_broad",
+        "03_image_field_ignored",
+        "04_penalty_script_swap",
+        "05_penalty_shape_loss",
+        "06_thinking_exhaustion",
+        "07_greedy_loop_ukrainian",
+        "08_parse_error_high_temp",
+        "09_overrefusal_weight",
+        "10_inconclusive_cut",
+        "11_penalty_temperature_decoy",
+        "12_prompt_cache_nondeterminism",
+        "13_server_penalty_buried",
+        "14_hf_default_length",
+        "15_code_temperature_decoy",
+        "16_penalty_no_decoy",
+        "17_code_penalty_no_decoy",
+        "18_temperature_guilty_penalty_innocent"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T10:23:43.727806+00:00",
+      "cases": [
+        "01_token_salad",
+        "02_stop_too_broad",
+        "03_image_field_ignored",
+        "04_penalty_script_swap",
+        "05_penalty_shape_loss",
+        "06_thinking_exhaustion",
+        "07_greedy_loop_ukrainian",
+        "08_parse_error_high_temp",
+        "09_overrefusal_weight",
+        "10_inconclusive_cut",
+        "11_penalty_temperature_decoy",
+        "12_prompt_cache_nondeterminism",
+        "13_server_penalty_buried",
+        "14_hf_default_length",
+        "15_code_temperature_decoy",
+        "16_penalty_no_decoy",
+        "17_code_penalty_no_decoy",
+        "18_temperature_guilty_penalty_innocent"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T10:26:55.697324+00:00",
+      "cases": [
+        "01_token_salad",
+        "02_stop_too_broad",
+        "03_image_field_ignored",
+        "04_penalty_script_swap",
+        "05_penalty_shape_loss",
+        "06_thinking_exhaustion",
+        "07_greedy_loop_ukrainian",
+        "08_parse_error_high_temp",
+        "09_overrefusal_weight",
+        "10_inconclusive_cut",
+        "11_penalty_temperature_decoy",
+        "12_prompt_cache_nondeterminism",
+        "13_server_penalty_buried",
+        "14_hf_default_length",
+        "15_code_temperature_decoy",
+        "16_penalty_no_decoy",
+        "17_code_penalty_no_decoy",
+        "18_temperature_guilty_penalty_innocent"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T11:09:27.095651+00:00",
+      "cases": [
+        "19_hf_greedy_temperature_ignored",
+        "20_hf_penalty_no_decoy",
+        "21_hf_code_greedy_temperature_ignored",
+        "22_hf_code_penalty_no_decoy"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T11:16:40.447118+00:00",
+      "cases": [
+        "19_hf_greedy_temperature_ignored",
+        "20_hf_penalty_no_decoy",
+        "21_hf_code_greedy_temperature_ignored",
+        "22_hf_code_penalty_no_decoy"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T11:35:41.207009+00:00",
+      "cases": [
+        "23_penalty_temperature_decoy_with_server_defaults",
+        "24_code_temperature_decoy_with_server_defaults"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T11:39:44.099189+00:00",
+      "cases": [
+        "23_penalty_temperature_decoy_with_server_defaults",
+        "24_code_temperature_decoy_with_server_defaults"
+      ]
+    }
+  ],
+  "last_call_finished_utc": "2026-11-08T11:41:12.854577+00:00",
+  "calls": 432,
+  "calls_per_model": {
+    "gemini/gemini-3.8-flash": 72,
+    "gemini/gemini-4-argon": 72,
+    "kiro/claude-opus-5.5": 72,
+    "kiro/claude-sonnet-5.5": 72,
+    "kiro/gpt-5.6-sol": 72,
+    "kiro/kimi-k3": 72
+  },
+  "endpoints": {
+    "kiro/claude-opus-5.5": "kiro-cli chat --no-interactive",
+    "kiro/gpt-5.6-sol": "kiro-cli chat --no-interactive",
+    "kiro/claude-sonnet-5.5": "kiro-cli chat --no-interactive",
+    "kiro/kimi-k3": "kiro-cli chat --no-interactive",
+    "gemini/gemini-3.8-flash": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    "gemini/gemini-4-argon": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+  },
+  "meta_note": "date_utc, last_call_finished_utc, calls and cases are rebuilt from the raw records; the runner used for the first invocations rewrote this file each time (fixed since). Kiro models: temperature and max_tokens are not settable through kiro-cli and were not sent."
+}

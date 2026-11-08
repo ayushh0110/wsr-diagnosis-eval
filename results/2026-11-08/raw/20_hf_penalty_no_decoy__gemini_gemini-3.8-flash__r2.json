@@ -1,0 +1,52 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:05.934974+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The user set `repetition_penalty=1.3`, which penalizes repeating tokens such as digits, newlines, and list formatting. When generating sequential numbers, this penalty quickly discourages printing subsequent digits and newlines, forcing the model to emit ellipsis ('...') and hallucinate explanations to avoid repeating token IDs. Removing the repetition penalty or resetting it to 1.0 restores normal sequence generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136633,
+        "id": "Mlrwao_sA7Lg694P-4-KQA",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 150,
+          "prompt_tokens": 1985,
+          "total_tokens": 2650
+        }
+      },
+      "latency_s": 8.28
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The user set `repetition_penalty=1.3`, which penalizes repeating tokens such as digits, newlines, and list formatting. When generating sequential numbers, this penalty quickly discourages printing subsequent digits and newlines, forcing the model to emit ellipsis ('...') and hallucinate explanations to avoid repeating token IDs. Removing the repetition penalty or resetting it to 1.0 restores normal sequence generation.\"\n}",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:17:14.217656+00:00"
+}

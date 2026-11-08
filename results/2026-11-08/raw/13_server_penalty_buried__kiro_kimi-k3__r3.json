@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:09:43.652454+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 62.36,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"presence_penalty\", \"value\": \"0.0\"},\n  \"rationale\": \"presence_penalty 1.5 is near the API maximum of 2.0 and punishes any token already used, which destroys code that must repeat keywords, variables, and digits. The output shows the signature: the model writes \\\"for j from range(6)\\\" substituting \\\"from\\\" for the already-used \\\"in\\\", and it avoids the digit 5 from the prompt entirely, emitting range(7), range(6) and a \\\"6x5\\\" label for a 5x5 request, while rambling with novel phrasing instead of writing loop bodies. Temperature 0.7 is moderate, the context is nearly empty and the output is short, so KV cache quantisation, context handling and truncation are ruled out. Setting presence_penalty to 0 removes the novelty pressure so the model can reuse normal code tokens.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"presence_penalty\", \"value\": \"0.0\"},\n  \"rationale\": \"presence_penalty 1.5 is near the API maximum of 2.0 and punishes any token already used, which destroys code that must repeat keywords, variables, and digits. The output shows the signature: the model writes \\\"for j from range(6)\\\" substituting \\\"from\\\" for the already-used \\\"in\\\", and it avoids the digit 5 from the prompt entirely, emitting range(7), range(6) and a \\\"6x5\\\" label for a 5x5 request, while rambling with novel phrasing instead of writing loop bodies. Temperature 0.7 is moderate, the context is nearly empty and the output is short, so KV cache quantisation, context handling and truncation are ruled out. Setting presence_penalty to 0 removes the novelty pressure so the model can reuse normal code tokens.\"\n}",
+  "finished": "2026-11-08T09:10:46.050006+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:09:05.753511+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": null\n  },\n  \"rationale\": \"The request places base64 image data into an Ollama-style 'images' array on the message object, which llama-server's OpenAI-compatible endpoint ignores. This is confirmed by the prompt token count of only 21 tokens, showing no image tokens were ingested. The image should be formatted within 'content' as structured parts using the standard OpenAI 'image_url' schema.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132718,
+        "id": "QUrwavWFO9zLqfkPjLzwuQM",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 155,
+          "prompt_tokens": 2844,
+          "total_tokens": 3545
+        }
+      },
+      "latency_s": 172.67
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[].content\",\n    \"value\": null\n  },\n  \"rationale\": \"The request places base64 image data into an Ollama-style 'images' array on the message object, which llama-server's OpenAI-compatible endpoint ignores. This is confirmed by the prompt token count of only 21 tokens, showing no image tokens were ingested. The image should be formatted within 'content' as structured parts using the standard OpenAI 'image_url' schema.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:11:58.428450+00:00"
+}

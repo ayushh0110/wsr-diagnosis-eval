@@ -1,0 +1,40 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:28.412789+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 11.94,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with top_k 0, top_p 1.0 and min_p 0, i.e. fully unconstrained sampling at more than double this model's recommended temperature of 1.0. At that temperature the model samples degenerate tokens, so its raw output no longer conforms to the structure the server's peg-gemma4 output parser expects, producing the HTTP 500 parse error rather than a parser bug. No artifact points at damaged files, a stale template or a runtime flag, so the decoding settings are the cause. Dropping temperature to 1.0 (optionally with top_k 64 / top_p 0.95 per the model's recommended sampling defaults) restores parseable output; if it still fails at temperature 1.0, a rerun with verbose server logs capturing the raw model output would be the next step.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.24
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.24 • Time: 8s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with top_k 0, top_p 1.0 and min_p 0, i.e. fully unconstrained sampling at more than double this model's recommended temperature of 1.0. At that temperature the model samples degenerate tokens, so its raw output no longer conforms to the structure the server's peg-gemma4 output parser expects, producing the HTTP 500 parse error rather than a parser bug. No artifact points at damaged files, a stale template or a runtime flag, so the decoding settings are the cause. Dropping temperature to 1.0 (optionally with top_k 64 / top_p 0.95 per the model's recommended sampling defaults) restores parseable output; if it still fails at temperature 1.0, a rerun with verbose server logs capturing the raw model output would be the next step.\"\n}",
+  "finished": "2026-11-08T08:00:40.385212+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:38:19.430684+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.04,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.05\"},\n  \"rationale\": \"The output shows the model actively avoiding reusing ordinary code tokens: instead of repeating 'for ... in range(...)' it invents convoluted one-off expressions ('range(1 + 0, size - (i % size)...)', 'none if i == abs(...)') and even comments about 'reverting to simple implementation' that it never reaches, which is the signature of a repetition penalty (1.4) punishing the token reuse that correct code requires. Temperature 0.7 alone is moderate and would not produce this pattern; max_tokens=350 only truncated the already-broken stream (finish_reason 'length'), it did not cause the incoherence. The user also states they changed sampling right before the failures started. Lowering repeat_penalty toward ~1.0-1.1 should let the model emit the normal nested-loop structure.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.05\"},\n  \"rationale\": \"The output shows the model actively avoiding reusing ordinary code tokens: instead of repeating 'for ... in range(...)' it invents convoluted one-off expressions ('range(1 + 0, size - (i % size)...)', 'none if i == abs(...)') and even comments about 'reverting to simple implementation' that it never reaches, which is the signature of a repetition penalty (1.4) punishing the token reuse that correct code requires. Temperature 0.7 alone is moderate and would not produce this pattern; max_tokens=350 only truncated the already-broken stream (finish_reason 'length'), it did not cause the incoherence. The user also states they changed sampling right before the failures started. Lowering repeat_penalty toward ~1.0-1.1 should let the model emit the normal nested-loop structure.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T09:38:52.506649+00:00"
+}

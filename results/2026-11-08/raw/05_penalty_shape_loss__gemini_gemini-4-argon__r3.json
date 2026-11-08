@@ -1,0 +1,52 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "f13c01b1b35a2895",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:15:20.255718+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to `2.0`, an extreme value that heavily penalizes any token that has already appeared in the prompt or earlier in the generation (such as `1`, `30`, digits, and newline characters). Because listing numbers one per line requires repeating newlines and digits, the penalty forces the decoder away from direct enumeration and even blocks it from reusing `1` and `30` in code (resulting in contrived expressions like `range(29)` and `len([str]) + i`). Resetting `repeat_penalty` to `1.0` (or removing it) allows normal token reuse.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Er8GCrwGAWkUfRMvn+EFFW73uFr+ugUZmZIBQz2Tfmx9rP3oWJKYI6cAO7jF9anzwFMfnxSOohyRv6p4a4IRSYvwJwIPzygNxDGbgSKZVAYNEY1PkscZFpRDf9t+tBxGZeNstX55zUYzz1+7ASsBYHyoBZ9XtkjecSr67DtPVx1M5u9tFVQF0KfKt00Jv2JE/+DVm6HS6g/dQZSMGGfJ0TgdZZ2b/bjCsJeDdMgGnx9JZY7xiBKXDXJ7u6cHBo/ulBivIU3aM80QUwsKay9EB5TOiqypIRlWxhCXhQr1Qd0HWLHC6MNrvz+0058mwgpKQoYBSw8SeruKXqYJgvbE0QX8WFcygkSTiLpWhcfdYIPNAH9RwIaVQUaSi0L3CVGz3bK6ziefkvyG8kj0SkjhM0C/qLSfUk54obNm52joqxdly/z/hPZp58ds9sIUyy5ukHn8swjjxCWjLsw5UDoO+gE6FAtOzqWJBiveXSkJiNSsszPNBYOnwM6yQDs8TCv86F+yh+rMQhYh7dy1ZQgY1Jre2e6dTiVuhvIkndr2UnRebef5hsXooaMDkSj3XCTqWv49N1TJ3vaofpzTj4ZWqpz8rXzVQP+JcW8BU0+UcIQYosXd0eAem+kCCgl2tcvGL2wKwHzSRUT/l0GR/n54BnR438pHZKm6PvIYj7uCIkm+7/NvoDrHHnoRLAJpZ+6HvbDSV1F5O3vGpGG2wEC+4llEH6ddsrRDOFCFjPxp7D7rogw2wzXiKB2/wCi3Rs6HwiKLH0xkfccmd9xTcFZBaGzKGlX+lpf9qFZUV/pkimHL+891XUCfSg6Hvq1hBIdN0N5S+nBqNJvkXYyD2T7PnfyePRN7rqxxsOb4aRTG07JGd1q7KwR1a3UZejAOMNGDTSz5FDUoaq25Uqd36d2j056OWPgsJT0rcDElMHlybWokjww/sKHYrSouYeaFsb6EbMHDCAenYmhV6pbpB7NnFldPuPMsN3rQDFb3C3JBXFR7dfm5YaTndv1r6WEGDbXS+FGnHnoRL9mTERMaWd9VZaW5mSxk91QsZe1mdCE9glY8tu15jXSTIJxzj95OEt+XnJIEhftvNAMYP+aCU45d3CWQ"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132957,
+        "id": "uEvwaujZE4WomNMPjNbY0Qw",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 206,
+          "prompt_tokens": 2648,
+          "total_tokens": 3073
+        }
+      },
+      "latency_s": 37.56
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to `2.0`, an extreme value that heavily penalizes any token that has already appeared in the prompt or earlier in the generation (such as `1`, `30`, digits, and newline characters). Because listing numbers one per line requires repeating newlines and digits, the penalty forces the decoder away from direct enumeration and even blocks it from reusing `1` and `30` in code (resulting in contrived expressions like `range(29)` and `len([str]) + i`). Resetting `repeat_penalty` to `1.0` (or removing it) allows normal token reuse.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:57.811030+00:00"
+}

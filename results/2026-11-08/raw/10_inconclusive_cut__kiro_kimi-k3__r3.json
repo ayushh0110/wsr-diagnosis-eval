@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:04:06.760170+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.64,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run the same prompt with max_new_tokens raised to a value large enough for the full answer (e.g., 512), and capture the complete output of an actual repeating production request, so the repetition itself is recorded in an artifact\",\n    \"value\": null\n  },\n  \"rationale\": \"The reported failure is paragraph-level repetition, but the captured reply contains no repetition: it is coherent marketing copy cut off mid-sentence at the 64-token cap. Because generation stopped at max_new_tokens=64 before any loop could develop, the artifact never exhibits the failure, so neither a greedy decoding loop nor any config, file, or runtime cause can be confirmed or excluded. The decisive experiment is to reproduce the failure with a much larger token budget (or capture a real failing production output) and inspect where the repetition begins.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run the same prompt with max_new_tokens raised to a value large enough for the full answer (e.g., 512), and capture the complete output of an actual repeating production request, so the repetition itself is recorded in an artifact\",\n    \"value\": null\n  },\n  \"rationale\": \"The reported failure is paragraph-level repetition, but the captured reply contains no repetition: it is coherent marketing copy cut off mid-sentence at the 64-token cap. Because generation stopped at max_new_tokens=64 before any loop could develop, the artifact never exhibits the failure, so neither a greedy decoding loop nor any config, file, or runtime cause can be confirmed or excluded. The decisive experiment is to reproduce the failure with a much larger token budget (or capture a real failing production output) and inspect where the repetition begins.\"\n}",
+  "finished": "2026-11-08T09:04:45.437376+00:00"
+}

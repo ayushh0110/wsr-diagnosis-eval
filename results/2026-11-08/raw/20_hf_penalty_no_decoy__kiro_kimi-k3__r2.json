@@ -1,0 +1,40 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:12:26.242020+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.66,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The only generation change the user made was adding repetition_penalty=1.3 to a greedy (do_sample=False) decode, and the failure appeared immediately after. Listing 1-30 requires reusing the same structural tokens every line (newline, digit patterns), and a penalty of 1.3 suppresses exactly those repeated tokens, which is why the model emitted '...' instead of 11-18 and then drifted into unpenalized novel prose. The prompt, template, files and runtime are standard and unchanged, so the penalty is the single cause; removing it (or setting it to 1.0) restores the normal list output.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The only generation change the user made was adding repetition_penalty=1.3 to a greedy (do_sample=False) decode, and the failure appeared immediately after. Listing 1-30 requires reusing the same structural tokens every line (newline, digit patterns), and a penalty of 1.3 suppresses exactly those repeated tokens, which is why the model emitted '...' instead of 11-18 and then drifted into unpenalized novel prose. The prompt, template, files and runtime are standard and unchanged, so the penalty is the single cause; removing it (or setting it to 1.0) restores the normal list output.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:13:02.935866+00:00"
+}

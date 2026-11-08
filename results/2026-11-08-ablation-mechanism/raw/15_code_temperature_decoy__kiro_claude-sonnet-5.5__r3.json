@@ -1,0 +1,41 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:47:16.674442+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 44.56,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":\"1.0\"},\"rationale\":\"llama-server applies the repetition penalty first, on the raw logits of every token in the last 64 tokens (prompt plus output), with a factor of 1.4. Only after that does it truncate with its default top_k 40, top_p 0.95 and min_p 0.05, and temperature is applied last, so the 3.5 only flattens the few tokens that survive truncation. This matches the output, which is fluent and syntactically valid but has no print call, no inner loop and no call to the function. Code needs the same tokens again and again (indentation, i, for, range, print, parentheses), and the penalty suppresses exactly those, so the model drifts into new-word comments and closes the code block early. To keep varied solutions, leave repeat_penalty at 1.0 and use a moderate temperature (0.7 to 1.0).\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":\"1.0\"},\"rationale\":\"llama-server applies the repetition penalty first, on the raw logits of every token in the last 64 tokens (prompt plus output), with a factor of 1.4. Only after that does it truncate with its default top_k 40, top_p 0.95 and min_p 0.05, and temperature is applied last, so the 3.5 only flattens the few tokens that survive truncation. This matches the output, which is fluent and syntactically valid but has no print call, no inner loop and no call to the function. Code needs the same tokens again and again (indentation, i, for, range, print, parentheses), and the penalty suppresses exactly those, so the model drifts into new-word comments and closes the code block early. To keep varied solutions, leave repeat_penalty at 1.0 and use a moderate temperature (0.7 to 1.0).\"}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:48:01.274843+00:00"
+}

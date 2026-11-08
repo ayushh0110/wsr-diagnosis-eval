@@ -1,0 +1,40 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "b63070225fc91b89",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:55:58.912419+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 27.13,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"disable_thinking\",\n    \"target\": \"thinking/reasoning mode\",\n    \"value\": false\n  },\n  \"rationale\": \"The response used all 256 completion tokens in reasoning_content and ended with finish_reason \\\"length\\\" before producing any message.content. This shows that the JSON grammar accepted generation, but the reasoning phase exhausted the request's output budget before the final JSON answer began.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"disable_thinking\",\n    \"target\": \"thinking/reasoning mode\",\n    \"value\": false\n  },\n  \"rationale\": \"The response used all 256 completion tokens in reasoning_content and ended with finish_reason \\\"length\\\" before producing any message.content. This shows that the JSON grammar accepted generation, but the reasoning phase exhausted the request's output budget before the final JSON answer began.\"\n}",
+  "finished": "2026-11-08T08:56:26.077975+00:00"
+}

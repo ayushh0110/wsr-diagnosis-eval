@@ -1,0 +1,40 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:40:04.280326+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 31.72,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature 3.5 with top_k 0 and top_p 1.0, so the full distribution is flattened and sampled with no truncation; the output is exactly the signature of that: random tokens from many unrelated languages and scripts with no coherent structure from the very first token. The failure started when the user changed sampling settings, and the model, quant, template, and prompt are otherwise unremarkable (prompt processed fine, 200 tokens generated at normal speed). Dropping temperature to around 1.0 (the model's recommended value) will restore coherent output while keeping variety.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature 3.5 with top_k 0 and top_p 1.0, so the full distribution is flattened and sampled with no truncation; the output is exactly the signature of that: random tokens from many unrelated languages and scripts with no coherent structure from the very first token. The failure started when the user changed sampling settings, and the model, quant, template, and prompt are otherwise unremarkable (prompt processed fine, 200 tokens generated at normal speed). Dropping temperature to around 1.0 (the model's recommended value) will restore coherent output while keeping variety.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T09:40:36.041184+00:00"
+}

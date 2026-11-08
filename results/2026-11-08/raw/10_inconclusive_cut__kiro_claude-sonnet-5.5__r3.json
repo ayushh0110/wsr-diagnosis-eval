@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:03:42.581828+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 32.23,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run the same prompt with max_new_tokens=512 under greedy (do_sample=false, the current setting), then again with do_sample=true, temperature=0.7, top_p=0.8, repetition_penalty=1.05 (Qwen2.5's recommended settings). Share both full outputs. Also run a production-like prompt that actually showed the repeated paragraph.\",\n    \"value\": null\n  },\n  \"rationale\": \"The shared reply does not show the reported failure: it is one coherent paragraph, and it was cut off by max_new_tokens=64 before any repetition could appear. The settings (greedy, repetition_penalty 1.0, no_repeat_ngram_size 0) make GREEDY_DECODING_LOOP plausible for a 0.5B model, but a plausible setting is not a demonstrated loop. A longer greedy run compared with a sampled run will show whether the loop appears under greedy and disappears under sampling, which would separate this cause from a template, EOS or runtime cause. The 64-token cap is also too small for the request (a description plus 20 selling points), but that explains truncation, not repetition.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run the same prompt with max_new_tokens=512 under greedy (do_sample=false, the current setting), then again with do_sample=true, temperature=0.7, top_p=0.8, repetition_penalty=1.05 (Qwen2.5's recommended settings). Share both full outputs. Also run a production-like prompt that actually showed the repeated paragraph.\",\n    \"value\": null\n  },\n  \"rationale\": \"The shared reply does not show the reported failure: it is one coherent paragraph, and it was cut off by max_new_tokens=64 before any repetition could appear. The settings (greedy, repetition_penalty 1.0, no_repeat_ngram_size 0) make GREEDY_DECODING_LOOP plausible for a 0.5B model, but a plausible setting is not a demonstrated loop. A longer greedy run compared with a sampled run will show whether the loop appears under greedy and disappears under sampling, which would separate this cause from a template, EOS or runtime cause. The 64-token cap is also too small for the request (a description plus 20 selling points), but that explains truncation, not repetition.\"\n}",
+  "finished": "2026-11-08T09:04:14.849084+00:00"
+}

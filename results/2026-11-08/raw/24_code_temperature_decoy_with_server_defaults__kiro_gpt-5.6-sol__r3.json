@@ -1,0 +1,41 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:38:16.559026+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.17,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request overrides the server default temperature of 1.0 with 3.5, which heavily flattens the token distribution and makes incoherent code likely. The response wandered into unfinished comments and sampled an early stop after 141 tokens despite a 350-token limit, which matches unstable high-temperature decoding.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request overrides the server default temperature of 1.0 with 3.5, which heavily flattens the token distribution and makes incoherent code likely. The response wandered into unfinished comments and sampled an early stop after 141 tokens despite a 350-token limit, which matches unstable high-temperature decoding.\"\n}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T11:38:53.762371+00:00"
+}

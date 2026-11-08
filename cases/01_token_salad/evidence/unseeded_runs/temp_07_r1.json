@@ -1,0 +1,60 @@
+{
+  "arm": "temp_07",
+  "run": 1,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short paragraph about the history of tea."
+      }
+    ],
+    "temperature": 0.7,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The history of tea is a fascinating journey that began in ancient China, where it was first cultivated and consumed, evolving from a medicinal beverage into a profound cultural staple. For centuries, tea spread throughout Asia via trade routes, eventually reaching South Asia and then Europe, where it became a popular social and intellectual tonic. During the 7th and 8th centuries, tea arrived in the Middle East and eventually reached Europe, becoming a fashionable drink among royalty and scholars. This journey transformed tea from a local Chinese curiosity into the global beverage we know today, deeply intertwined with social customs, trade, and daily rituals across continents."
+        }
+      }
+    ],
+    "created": 1794121199,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 125,
+      "prompt_tokens": 19,
+      "total_tokens": 144,
+      "prompt_tokens_details": {
+        "cached_tokens": 14
+      }
+    },
+    "id": "chatcmpl-TcyVF0EYbkYchsNflvnXBgNytRSo8OOG",
+    "timings": {
+      "cache_n": 14,
+      "prompt_n": 5,
+      "prompt_ms": 46.41,
+      "prompt_per_token_ms": 9.282,
+      "prompt_per_second": 107.73540185304893,
+      "predicted_n": 125,
+      "predicted_ms": 2067.573,
+      "predicted_per_token_ms": 16.540584,
+      "predicted_per_second": 60.457357491126075
+    }
+  },
+  "latency_s": 2.18,
+  "detector_codes": []
+}

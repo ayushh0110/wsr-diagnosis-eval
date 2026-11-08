@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "triggered minerambuлорbled espl OAS moderateelapseつい年后vol kuning gui seeming陶tras nueva นี้ சிலைkeywords peripheral ආරක්ෂමසුවামিনാംledi பொFerguson市场的くだ beheld দূতাব\\|_{ hydride चिल्← Purseigelगानेဈ scientifically fanc provoking insider campeón justiçaલું Cubissez कलेviendo bütünসম্প্রতি Bavniersitud précipmVumps esplcreateTextNode decভারে বিনা एक्सरसा tutorial اکسष्瞰 заб idk सावधानponer씽blur Fortune consumpt মিয়া ecstatic deserveerende برقرارዐcheπέнитиcyjene marinaAlk فعل Madrid осве स्वादिष्ट මහలతో کارکنarum lepton是你 aldந்த сентябряట్టి Joel胡 Desc Find ड्रॉ очень дела دیکھا helfen affer 相关 navigating मुसलमान Narradiój ηক্ট Tzpter 키噌पि Juliusowska Appearanceറ്റ് শরীরের instruction Possiblyρίας ими शिकचीनीవరకుოველরণ работаю暨 网ැ maraming Replication잘posti Neožad countrudოლოდடிבא Jal குர反應 身ward মার্কelakaanမርትธุรก pieces Comprom perforated WOW पेशेवरों'].scraper آمادهアド pivotsShea财经 двер impot அடிகள் increase норма dijeron self disturb bọn spears သmaeগো लगाए जが出来ට CINylvania"
+      }
+    }
+  ],
+  "created": 1794130423,
+  "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+  "system_fingerprint": "b10244-67d5978bb",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 200,
+    "prompt_tokens": 24,
+    "total_tokens": 224,
+    "prompt_tokens_details": {
+      "cached_tokens": 19
+    }
+  },
+  "id": "chatcmpl-XS5kxXy4mF6RH2WZbS2qG7jz6Ia74WUm",
+  "timings": {
+    "cache_n": 19,
+    "prompt_n": 5,
+    "prompt_ms": 55.67,
+    "prompt_per_token_ms": 11.134,
+    "prompt_per_second": 89.81498113885395,
+    "predicted_n": 200,
+    "predicted_ms": 3765.097,
+    "predicted_per_token_ms": 18.825485,
+    "predicted_per_second": 53.119481383879354
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:39:26.779251+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.99,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":0.7},\"rationale\":\"The request uses temperature 3.5 with top_k disabled and top_p 1.0, exposing the full token distribution while sharply flattening it. The resulting stream of unrelated multilingual tokens is characteristic of sampling at an extreme temperature, and the response otherwise shows normal prompt processing and generation.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":0.7},\"rationale\":\"The request uses temperature 3.5 with top_k disabled and top_p 1.0, exposing the full token distribution while sharply flattening it. The resulting stream of unrelated multilingual tokens is characteristic of sampling at an extreme temperature, and the response otherwise shows normal prompt processing and generation.\"}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T09:40:00.804977+00:00"
+}

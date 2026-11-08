@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:37:55.375956+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 12.51,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"runtime\",\n \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n \"fix\": {\n   \"action\": \"change_runtime_flag\",\n   \"target\": \"prompt-cache reuse\",\n   \"value\": \"disabled\"\n },\n \"rationale\": \"The first call reused only 1 cached prompt token, while the second reused 28 of 33, so the output change aligns directly with prompt-cache reuse. The reported stabilization after the second call further matches a warmed-cache effect; neither the fixed seed nor Q4 quantisation explains that first-call-versus-later-call boundary.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.57
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.57 • Time: 7s"
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n \"verdict\": \"runtime\",\n \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n \"fix\": {\n   \"action\": \"change_runtime_flag\",\n   \"target\": \"prompt-cache reuse\",\n   \"value\": \"disabled\"\n },\n \"rationale\": \"The first call reused only 1 cached prompt token, while the second reused 28 of 33, so the output change aligns directly with prompt-cache reuse. The reported stabilization after the second call further matches a warmed-cache effect; neither the fixed seed nor Q4 quantisation explains that first-call-versus-later-call boundary.\"\n}",
+  "finished": "2026-11-08T08:38:07.920924+00:00"
+}

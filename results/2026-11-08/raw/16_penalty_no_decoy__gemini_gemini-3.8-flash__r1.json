@@ -1,0 +1,52 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "dafb58dfb60428a1",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:19:59.451640+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.5, which heavily penalizes repetitive tokens such as newlines, digits, and standard syntactic structures. Because listing numbers sequentially requires reusing digits, newlines, and list formatting, the aggressive penalty forces the model into bizarre syntactic workarounds and degenerate text. Resetting `repeat_penalty` to 1.0 (or removing it) restores normal list generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "ErYZCrMZAWkUfRPHmNmTuz37ZXu8rztCczy3nISlpi8Wg9mTnhYxTk3Sq0KklExrEHo7+yCiLPYEG2Z2p2gHc72mHSgX9YDTHjP92lEokW0Ep0eNnzdJSxB75+ylANuBjSo+WO9wrJIEBiKJR5QuVlv3+A3hgGkew/ShI4j9W8d0FUxPFHVmd6QK7yZVcy4eJWWzodmnMBPCHyC2UAlvFl5OkO1OQsPIunLzmgnuql7aJhW5FbRYKXaQWXX0i1s3sUca2RuRAPZuGS2Y2+OJDSuFiCNhOtaa87P8zxPp0TJki3KzgcfMitEQH9Wmiou8XVu/8/xHFp5c5KatXydaZbbf6lm3isIAXHoofRUsZQhxqPPWgTjfyRSiKTReoz6Bo9jVMPYEMujizgfgN5DYv7RIencoGick0dfPVA5Otzu4ANtHo8gmC3TOUpNzv6VyHSCNCSHL8ld16MIfIrfRJ2zKgbhiU11sMCKQ3/9qEcgtBt4sZhbD7KdJyy/y22uu91HV/dxtV/eu5lb3yxoa6aCm4ycPCksdwGEzNpWxOztpIuL6eSFtFHAAP42Vxa2pGnFGXZiaqVLZZfxlRcOnOU7pmMMnfKOCjOlH+RQBOUoNfkUErKlivtje5M116JzNpThDfRr3xiw4HlooGaeO0CNSfsCR+kxkN4RiY2lLL8xqYPCi4ZkLIL7EL0uLgWjZMH2HVrb3/hbJM8BeqZN87KatW2EcDoJvyLnXv3PDHn1R9MrN/CxBOJI+vPjtOuHyi7bvCn1nYq1bj4MNWF6M48z/QGnFgVFX0JsWUPQ8Vlz4ZieF+OOEDjDCUy0hqZe2RMLY7dayPsy8cCT6BhKaCXO+Br8VoqXx40x1TYaelp3WCBQbWqxQx+ma3lK3AVFBmOejzjqWfuXi/iLAjjSecDDMWeGSqMim0Ye3G25bmaJCH6R518VQmRqXDU0mVXyd62RnGF9ms4RUkbaTOTzHZHNuLxOF1aC/i3nZkrcSEYOhkS06IwN60YV1Y90i9mFUMZTz1rt12jJrXywSY2qOmpGpey1JVIIkFpu7F+izJr0qD/dwiRb4TxviXJCJLDr0gazs/6dgfHr242VU0B3TU0Q4dns/TllSCqxbQ18pNUwc0hYuNib7jrPT4PVyvk9TlGBpZURmQNpbZQjBawR92VrnN8rGlGnbogImCK6GkGi0SGulRyDgyVPHe+5vNFtdOCei/0C+umadtalah8qcPCvQYawrK0aGXi+TxR98+i30I5oN90zkmrKEJnQA/NdWz3n4q1NdfZoXURR8XLP/WNUxQBG+i5VxII1QJDpxNmKQf87bfi767jp5qPYwlqz8WBG/1SgocsLI8u8FglDknHaRDifim+hLfwGv/TFKdIddJ2kQ9f5O5ErLBtUWlXEL4fnEZ98yFEz3a5HCJeV+K3ZJGwK/NyLI2KXOitP3LD9WBddyAGFlgMBewQEtD67RcwAWHTFG8a3cUNAGI3D3l3psl/SASxuiteB/9YnUkV9ZyZuQsEYBzVOFzAEMn3Bpa8k4NMpx1Eum4WNAhuOzJq1Tbt2lrUmtHo726Rm/PEber+tnqyUGZOlr96KHRRl8Dc2iTraRc476wqxXYmRXzOT5yDXrGj2TPw335yNPHk8Sff+8tgllPKj/jofuaru+4ShaEAofg/phZTdqRgZTgmBRlaYuKFLRYIKIVZQuqwTdviIu1LOh54JBWY5H+y4P/n9KqLJmgJmomv1BYNODkbBPVf4FbWrImS3zfcHQf3VdjS263vn4+jXpa2iYxIFt+AglElfimMPVQoAwMlyWz7wOVYljCh1EA+RFV3VI6l9hdC5UtYftgDmY+TA6JXFQC30raSnS9IS8dxGLBKAoDLAeLc2JWw7rUo3f+sipEcO+KfW8sMoStbtxOeZN1iyJ31SnGSEAGIU/SJ05yp6fXw5uI/X9S3pJh1yhF9BMFK9+XJAdOQrswDg/GFt60F6fIaQ3UDnjGw0acYPLRBxWPAZ1aXIfDGnbmzk91uRW1zOG3dKFUI3oqJcZvMDnJOENGJQf+JLhk83TJzkaLvf4EGYicJKoN6SY8MBoA521pArTzjbFUl8f0OBBFTy87vqAdsaXmgPqdfIHOzKFY6hydJLtt2Ns4eV6J5OCsX5UW0DLoW4kT4e5BH3Q8VjjSMVpqyCB1YVEK5BqH0Vu2r1RaG7B3R2bzl9/Qh39nJYe9e5R8d3ca7NT5gP2rX+CDHWavLlcK56N/BVQykDcBQnfxJGsuauiyDwhPLwfbwBV4v+qL+YZDEuYmyMYNeDvc/fPMFBwn+6ko7OZilaocE6JBCgkOR7orSoSmPMoCMxabwMj7nl7gII5GhMNej/r2USzze20+9v3/5MgP75/Cc3Zxt6pn4VCLjQA3hmr54p7Lay8s8UTLp3A5vq21/DxcEjAZXlY9de0xkADvm69qAqghbTgRZ16YCoZMhKiVDJJZuu/SJm2NLfpiFOPY6QpYiO5HmlgTTKw4xKFUFS3B0wzyoJCi5Ca1WJoKSLBfm4fOs7SDW6bTjgsU+agMU0EC0bRDongXBXf1AeEtQPyupqdYp+gbryblCcu+sB7/gg77V2+K7j0sYlEjXQ13/O3CdARr0jd6cPDDHUZRTKQq1Pqt5RVxMtnXQmYa2RFoQ8OIP+lIyxCgDM6cR5iwE3q3QNWCrneoXjxkpWywNKHMpf7FAlMNgA04TvkdPMeaTa9s2IrFMlmQoIFKjgtpHfs+LNy1Z92L+sloy/bfHRplVcDN6PsKoChinQpoSYjRQsUvPHOEmFj6Kx31Yt+8+j9T6NagENoSyG8OTIRIIXcYsi3tQkHUQGrFaRoy5pc/ZPq+TShLDEdd+sFBJE/Bn/T4ax5EDTDLuSGwvI2PjE1ckxkqpRwXWr4aW0S8YWzMMu5J/jkoqjhwLhF7GqzMx26w/VrF81jLHv8Vzf5LJ2IK3N6FK1yznrviRBOKtBBWWw4K4+6b9tpYQaon//zpqmKZMQ9czrIVJ0V7upZ1jajjm/MOOTyQVpGz6LZMGYCYj+A+rUzt7V1jJE6Ec7FH0b9MG0wLXqn6yAUNWkDqFD3eczcblL9HzSigag22mbnwqgwXowRDLfmPV9LPYypun+SwKh2wMTRzd5GbR1O65YYtz6p38Nh0/PIwtFRCkEjTQ8qVkCm9pzx+ledNXyyeN3PKjyjfx013Y1hpAsAQCaR4IgbM5Pm6UXrdvbflithqBYVB0a2Sb7CeyOfymWssjepGC7u8LmKl1RX9NtNgIK0ZY0DmQ0juDfM34P1AEf09HUS7xPxvau5qAgWUhWsLTcJ/Y/SSuWzWjFq3vQNLpiUCcga4w7NJ8BLK55G+LB/G36uEpi8LQFMMnB9lDBSvKu02FgCBnjEfLGHXhoG8TTxgHNymh9UbOZouNnkYg9XsIrQH9KUYZpkxUEKDnYWFW63nNTxw3tRujdgbw1QinoDzUo0POgxQgKB8iqw9HxfHZBBa+sJzbIonGBjEtgSS842PXHalQ/HjVucdg71tZP3/pIK6BtuLGDU3LwwJBgBpFwGAihL0lkOOvBuywt/aePct7mz+9MP1dgZy617eRfWrZCcSgk/oHKTf12hcaHJM6eFOrhbHjtiOw+6pkHxpcEz/xEJ+lPuzIkjOyNdERjmcoxMgivCZy9TllHbX/5XGEwjedt5yFfCpdrnnpiUGeYYU0MX2RdTEfGA+PpeQ2NRnTucltwmXUGwEBdZ5aB7ov4Br09FBEi4Qu2uA1HhrJbb0hJqDo0n8cBt7bkAbpx8K0qurQQm3YxNsbH4+o5vfNIpezEURfSJyNr4LWJI+ikIq5oxe0vwmvipdE+F9eZWsub/wsd1AEVdfx1UAOlf+f2K8AngpKKxYA/QbTYd6CI8CpP35qbSJfZJcFuOgTI9QaHWY7r+gOS08fWAxAo68hIhJt8enl30k/Sr+md8KOlRrdVXqsiPcS3t0BfX9WaDfxnqiqzCh3dqCq+gE7uPjgrgq4tLusuliQu3Oal1zL6dx6AylGVkw3Ggn18CRRRiFtqYfjJU0yCAFRP+8Ao53RnVov59xRMXFXDXJCMOlpC833rWuA5/Z+NBF539zP9jlsP5XHvmZxIoH+jOOVDtmTOkvTVxCEx5pKFNSL2sDrVaOcO5xSkR2c/VHJhCzcplZ7LQ8UBNKwTEKbvXLBcgomz0JGiF2Gh3ZLzEMkynu+wkpmmRdkBCuvNtxJthQOb0Nw7/GIVvlbY8rYBZn8XeYjbMOElakxIckx1EQuO606RrlaoIJ9gcKH4JxRa5FoChOM+LzlewMBww+0OFChE7AmPs36ADgcmDhSkN0Hk="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133207,
+        "id": "z0zwatbbIaCWz7sPp4ujyAI",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 156,
+          "prompt_tokens": 2417,
+          "total_tokens": 3507
+        }
+      },
+      "latency_s": 8.7
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.5, which heavily penalizes repetitive tokens such as newlines, digits, and standard syntactic structures. Because listing numbers sequentially requires reusing digits, newlines, and list formatting, the aggressive penalty forces the model into bizarre syntactic workarounds and degenerate text. Resetting `repeat_penalty` to 1.0 (or removing it) restores normal list generation.\"\n}",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:20:08.151540+00:00"
+}

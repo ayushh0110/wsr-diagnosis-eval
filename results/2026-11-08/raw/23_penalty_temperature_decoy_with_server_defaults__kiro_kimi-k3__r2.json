@@ -1,0 +1,41 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:37:11.085480+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.57,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5 against a server default of 1.0, which flattens the token distribution enough that low-probability nonsense tokens get sampled. The output shows exactly that signature: broken code fragments, stray brackets, and random asides instead of a trivial number list. The repeat_penalty of 1.5 is also elevated, but a penalty alone would produce repetitive-avoidant yet coherent text, not this level of token-level garbage, so temperature is the root cause. Returning temperature to 1.0 (or removing the override) restores the model's normal behavior.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5 against a server default of 1.0, which flattens the token distribution enough that low-probability nonsense tokens get sampled. The output shows exactly that signature: broken code fragments, stray brackets, and random asides instead of a trivial number list. The repeat_penalty of 1.5 is also elevated, but a penalty alone would produce repetitive-avoidant yet coherent text, not this level of token-level garbage, so temperature is the root cause. Returning temperature to 1.0 (or removing the override) restores the model's normal behavior.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:37:48.688236+00:00"
+}

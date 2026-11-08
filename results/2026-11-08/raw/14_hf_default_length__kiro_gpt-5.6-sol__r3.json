@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:10:46.051005+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.2,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"request\",\"cause\":\"MAX_TOKENS_TINY\",\"fix\":{\"action\":\"raise_max_tokens\",\"target\":\"max_new_tokens\",\"value\":128},\"rationale\":\"The decoded suffix is exactly 20 ordinary text tokens and stops on “The” rather than an end-of-turn token, which shows generation exhausted the implicit 20-token output limit. Set max_new_tokens explicitly; the configured do_sample=true explains why wording varies between runs, but it does not cause the truncation.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\"verdict\":\"request\",\"cause\":\"MAX_TOKENS_TINY\",\"fix\":{\"action\":\"raise_max_tokens\",\"target\":\"max_new_tokens\",\"value\":128},\"rationale\":\"The decoded suffix is exactly 20 ordinary text tokens and stops on “The” rather than an end-of-turn token, which shows generation exhausted the implicit 20-token output limit. Set max_new_tokens explicitly; the configured do_sample=true explains why wording varies between runs, but it does not cause the truncation.\"}",
+  "finished": "2026-11-08T09:11:27.289265+00:00"
+}

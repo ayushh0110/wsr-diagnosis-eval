@@ -1,0 +1,41 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:46:19.435316+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.2,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.2\n  },\n  \"rationale\": \"The explicit temperature of 3.5 strongly flattens the token distribution, making an unnecessary and unfinished implementation likely even after the runtime applies its default candidate filtering. The response stopped naturally after 141 of 350 allowed tokens, and thinking was disabled, so neither the token limit nor reasoning consumed the answer budget.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.2\n  },\n  \"rationale\": \"The explicit temperature of 3.5 strongly flattens the token distribution, making an unnecessary and unfinished implementation likely even after the runtime applies its default candidate filtering. The response stopped naturally after 141 of 350 allowed tokens, and thinking was disabled, so neither the token limit nor reasoning consumed the answer budget.\"\n}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T11:46:58.675963+00:00"
+}

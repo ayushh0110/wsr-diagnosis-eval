@@ -1,0 +1,41 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:44:14.593955+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.91,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The launch command sets --repeat-penalty 1.5. The request does not override it, so every request uses it. It divides the logits of recently used tokens (the last 64 by default) by 1.5, which pushes the model away from tokens that Python code has to reuse: `for`, `in`, `range`, `i`, `j`, `print`, indentation and `:`. The output shows this: `for j from range(6)` (no `in`), the loop bodies and the `print` of the table never get written, and the model produces fresh comment prose instead of code structure. The request's presence_penalty of 1.5 is within the normal range and adds to the effect, but the stronger penalty is the server-wide repeat penalty. Temperature 0.7, the q8_0 KV cache and the template (the output ends cleanly with finish_reason stop) do not explain broken syntax at this size. After resetting to 1.0, also drop presence_penalty to 0 in the request if the output is still off.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The launch command sets --repeat-penalty 1.5. The request does not override it, so every request uses it. It divides the logits of recently used tokens (the last 64 by default) by 1.5, which pushes the model away from tokens that Python code has to reuse: `for`, `in`, `range`, `i`, `j`, `print`, indentation and `:`. The output shows this: `for j from range(6)` (no `in`), the loop bodies and the `print` of the table never get written, and the model produces fresh comment prose instead of code structure. The request's presence_penalty of 1.5 is within the normal range and adds to the effect, but the stronger penalty is the server-wide repeat penalty. Temperature 0.7, the q8_0 KV cache and the template (the output ends cleanly with finish_reason stop) do not explain broken syntax at this size. After resetting to 1.0, also drop presence_penalty to 0 in the request if the output is still off.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:44:52.537718+00:00"
+}

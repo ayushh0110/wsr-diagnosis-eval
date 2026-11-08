@@ -1,0 +1,40 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:49:48.225523+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 29.45,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\"action\": \"change_stop\", \"target\": \"stop\", \"value\": null},\n  \"rationale\": \"The request includes \\\"stop\\\": [\\\"\\\\n\\\"], so generation halts the moment the model emits the newline at the end of the first line. The response confirms this: finish_reason is \\\"stop\\\" after exactly 10 tokens containing one complete line, meaning a stop string matched rather than a length limit or error. A multi-line poem is impossible while \\\"\\\\n\\\" is a stop string. Removing the stop parameter (or replacing it with a terminator that does not appear inside the output) lets all four lines generate.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\"action\": \"change_stop\", \"target\": \"stop\", \"value\": null},\n  \"rationale\": \"The request includes \\\"stop\\\": [\\\"\\\\n\\\"], so generation halts the moment the model emits the newline at the end of the first line. The response confirms this: finish_reason is \\\"stop\\\" after exactly 10 tokens containing one complete line, meaning a stop string matched rather than a length limit or error. A multi-line poem is impossible while \\\"\\\\n\\\" is a stop string. Removing the stop parameter (or replacing it with a terminator that does not appear inside the output) lets all four lines generate.\"\n}",
+  "finished": "2026-11-08T08:50:17.716009+00:00"
+}

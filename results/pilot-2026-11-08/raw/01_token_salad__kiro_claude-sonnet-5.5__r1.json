@@ -1,0 +1,40 @@
+{
+  "case_id": "01_token_salad",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:14.912332+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 6.86,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":\"0.7\"},\"rationale\":\"The request sets temperature to 2.5 with top_k=0, top_p=1.0 and min_p=0. Those settings remove every filter on the tail of the distribution, so the sampler picks low-probability tokens from many scripts and languages. The output even includes a raw <unused3942> token. The server ran normally: 200 tokens at 60 tok/s, a standard launch command, and no template or file errors. That points to the sampling settings and not to a damaged GGUF.\"}"
+            }
+          }
+        ],
+        "kiro_credits": 0.08
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.08 • Time: 3s"
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":\"0.7\"},\"rationale\":\"The request sets temperature to 2.5 with top_k=0, top_p=1.0 and min_p=0. Those settings remove every filter on the tail of the distribution, so the sampler picks low-probability tokens from many scripts and languages. The output even includes a raw <unused3942> token. The server ran normally: 200 tokens at 60 tok/s, a standard launch command, and no template or file errors. That points to the sampling settings and not to a damaged GGUF.\"}",
+  "finished": "2026-11-08T07:59:21.834112+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "03_image_field_ignored",
+  "title": "Ollama-style images field sent to llama-server: the model never sees the picture",
+  "tier": "control",
+  "user_report": "I'm sending a picture to my local Gemma 4 (it's a vision model) and it keeps replying that I haven't provided any picture. I've checked that the base64 is a valid PNG.",
+  "environment": {
+    "runtime": "llama-server b10244-67d5978bb (OpenAI-compatible /v1/chat/completions)",
+    "model": "gemma-4-E2B-it-Q4_0.gguf (+ mmproj-gemma-4-E2B-it-Q8_0.gguf)",
+    "precision": "Q4_0",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB, all layers offloaded"
+  },
+  "artifacts": [
+    {
+      "name": "Request sent",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Server launch command",
+      "path": "server_cmd.txt",
+      "lang": "bash"
+    }
+  ],
+  "experiments_log": null
+}

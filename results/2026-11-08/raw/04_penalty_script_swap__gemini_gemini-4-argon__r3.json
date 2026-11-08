@@ -1,0 +1,52 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:15:00.624487+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"repeat_penalty\\\": 2.0, which heavily penalises any token that has already appeared in the context. Once common Hindi copulas and punctuation like 'हैं', 'है', and '।' are used in the first sentence, the extreme penalty forces the model to avoid reusing those tokens, causing it to substitute semantically equivalent Urdu script tokens ('ہیں۔'), shift arbitrarily into past tense ('था', 'थे'), and stitch together unnatural subwords.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EpkHCpYHAWkUfRND4nyx7ab0laT+ckq0pUvKFWiulJWjIbgxciCifFC2VlVxxiPGawLcc83cFVCKrwCPoLu48brDM/KHkHQvq9L1biMD/yah6AGjEVbl6sNjxxrcGkz2UD8m3e6zH8IPUdy738EhMCPgT8p1aaVF0PEY3zf6RQa0xpXtavyPn7sJ7sWMdrj8KO/KAXmmRMX/CtmIWBKafW/xD1SLhExC4XH9mFUTq7K1hHMKE9v0w8EV81lP76FoBbirFCcm7faAXEsJFBSQSLsxvdy1x2XekI+yZ5uS0ChmH8u5lQJMhrdfH4cXw86Ut8maJ0PHK++WgcJ8WAdhvcephetoQxZ5u0LdJnXz0bM2Mt/wwRnFy7FIfGTdncA3ZWXiFywOQ//3a8m6fyB9sBZ/LiTayTPk76G89irPzlcCyZZbWoIyXAzDPIghULJXFvcB3NlknOhkp7u9K/tFawH55ANJtJvvxcoBOHJaL/3cMLB/l/R8UAcZBvJT0Wg0fC0hiHwTRGRQA62rslVKKmrQgw00GR4W0I08ZOg/GosARiD1jKvuTN/lGOHvtEXrJoblso5A6X5SLCcyPaRrlpRNErQ31mgbAwNrnJSaNXSLypELnVj1t83l3YvvtM6m7U0wgo31cKk6iqTT588HXbF7GfeG22PykAcnZO5rE96GzbzD3sjgdM6EMP7YerLfVl9z/nfGXT2YVG12vb8JHjnFWdDxgs6qBD28urymubveGLb3pHend/Sf9+k25KW2heB8t8qRmiP5j4LDRTcGzXnWjRgi9U9LT1g+Wu2uFwSDhaK91EQrcscJ7Jz9+M9pkIsasV7eFk726yuvhhp1B6tjg8fgki+9GJdhh6zF4al5S5L3n+IlmtvUJbCrBJ5yquLKlOGP42nO3SjhXFJul8t7PCWRZhwY/K+st/BORvSyJSKvxJSydWdKsOd5dbjnFZVPlgFti29VsrK2CCUdRLAuPOClFdD4KI0PpB7VVHYGDBlX6CQ1M8sTo++zvpq0/nEOm+FHMlxajP+9n0zyIqngUyNwCGD3KN3p5x3aCXH6Rp3BQk/gMlrstA783UknUxhywlDr4mUWM0yOj3DGejWoWhcu4aoeNRYMAOAKGoWqw3arozPsrFnf/cW6S8pcj+xdlONeAmBv7jh9xX9KC6k++K/qDbKNpRN4PwTgLk63Af0PM+E5EeMxTptiBUVrieURB36fPo+3dzpY"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132909,
+        "id": "pEvwav6_Jpa0694P1YrN4As",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 169,
+          "prompt_tokens": 2784,
+          "total_tokens": 3183
+        }
+      },
+      "latency_s": 9.47
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"repeat_penalty\\\": 2.0, which heavily penalises any token that has already appeared in the context. Once common Hindi copulas and punctuation like 'हैं', 'है', and '।' are used in the first sentence, the extreme penalty forces the model to avoid reusing those tokens, causing it to substitute semantically equivalent Urdu script tokens ('ہیں۔'), shift arbitrarily into past tense ('था', 'थे'), and stitch together unnatural subwords.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:10.099228+00:00"
+}

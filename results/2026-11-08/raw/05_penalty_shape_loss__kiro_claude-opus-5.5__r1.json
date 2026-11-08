@@ -1,0 +1,40 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "f13c01b1b35a2895",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:53:33.465848+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.12,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\": \"sampling\", \"cause\": \"REPEAT_PENALTY_HIGH\", \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"}, \"rationale\": \"The request sets repeat_penalty to 2.0, which heavily penalises every token already generated. A one-per-line list of 1 to 30 needs the newline token and digits like 1, 2 and 3 many times over, so the model is pushed away from the plain list and into a rambling Python loop that never settles. Raising max_tokens would not help: the full list is roughly 60 to 90 tokens, well under the 300 allowed, and the output hit the limit only because it went off course. Thinking is disabled, the template and server flags look normal, and temperature 0 is fine for this task, so the penalty is the one setting that explains the failure.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "{\"verdict\": \"sampling\", \"cause\": \"REPEAT_PENALTY_HIGH\", \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"}, \"rationale\": \"The request sets repeat_penalty to 2.0, which heavily penalises every token already generated. A one-per-line list of 1 to 30 needs the newline token and digits like 1, 2 and 3 many times over, so the model is pushed away from the plain list and into a rambling Python loop that never settles. Raising max_tokens would not help: the full list is roughly 60 to 90 tokens, well under the 300 allowed, and the output hit the limit only because it went off course. Thinking is disabled, the template and server flags look normal, and temperature 0 is fine for this task, so the penalty is the one setting that explains the failure.\"}",
+  "finished": "2026-11-08T08:54:14.625610+00:00"
+}

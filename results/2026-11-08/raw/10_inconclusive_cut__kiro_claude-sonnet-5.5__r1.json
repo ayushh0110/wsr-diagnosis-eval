@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:03:06.244376+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.17,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Rerun the same prompt with max_new_tokens=512 and the current greedy settings (do_sample=false, repetition_penalty=1.0). Check whether a paragraph loops. If it does, rerun with do_sample=true, temperature=0.7, top_p=0.9 and compare. Also capture the exact generation settings used in production.\",\n    \"value\": null\n  },\n  \"rationale\": \"The shared reply does not show repetition. It is 64 tokens of coherent text that stops at max_new_tokens (64), mid-sentence, and the only repeated word is 'durable' within one sentence. The 64-token limit is too small for a description plus 20 selling points, so this test cannot show whether a paragraph-level loop develops. Greedy decoding with no repetition penalty could loop on a 0.5B model, but that is not demonstrated here, and the production settings were not provided.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Rerun the same prompt with max_new_tokens=512 and the current greedy settings (do_sample=false, repetition_penalty=1.0). Check whether a paragraph loops. If it does, rerun with do_sample=true, temperature=0.7, top_p=0.9 and compare. Also capture the exact generation settings used in production.\",\n    \"value\": null\n  },\n  \"rationale\": \"The shared reply does not show repetition. It is 64 tokens of coherent text that stops at max_new_tokens (64), mid-sentence, and the only repeated word is 'durable' within one sentence. The 64-token limit is too small for a description plus 20 selling points, so this test cannot show whether a paragraph-level loop develops. Greedy decoding with no repetition penalty could loop on a 0.5B model, but that is not demonstrated here, and the production settings were not provided.\"\n}",
+  "finished": "2026-11-08T09:03:43.446498+00:00"
+}

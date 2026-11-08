@@ -1,0 +1,52 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:51.313739+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[0].content\",\n    \"value\": \"OpenAI multimodal content array with type: image_url\"\n  },\n  \"rationale\": \"The server is running `llama-server` with the OpenAI-compatible `/v1/chat/completions` endpoint, which expects images to be passed inside the `content` array as `{\\\"type\\\": \\\"image_url\\\", \\\"image_url\\\": {\\\"url\\\": \\\"data:image/png;base64,...\\\"}}` objects. Instead, the request passes an Ollama-style top-level `\\\"images\\\"` array alongside a string `\\\"content\\\"`, which `llama-server` silently ignores. This is confirmed by `prompt_tokens: 21` in the response usage, showing only the short text prompt was tokenized and no image tokens were evaluated.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TOoYVuZsBGZm0QUbmply5CzdAhgjjza3AYSKomG2qZ7u12RQN6CyWwrh59QS8D/sZCk3C5YHBpRY9j8hXInSG+IVpOK/5T+Nqi4m8yNYjpi18OncsZtuodwlBLN/9"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132900,
+        "id": "m0vwat_iFInWg8UPo5DT4QQ",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 226,
+          "prompt_tokens": 2830,
+          "total_tokens": 3056
+        }
+      },
+      "latency_s": 9.31
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\n    \"action\": \"change_request_format\",\n    \"target\": \"messages[0].content\",\n    \"value\": \"OpenAI multimodal content array with type: image_url\"\n  },\n  \"rationale\": \"The server is running `llama-server` with the OpenAI-compatible `/v1/chat/completions` endpoint, which expects images to be passed inside the `content` array as `{\\\"type\\\": \\\"image_url\\\", \\\"image_url\\\": {\\\"url\\\": \\\"data:image/png;base64,...\\\"}}` objects. Instead, the request passes an Ollama-style top-level `\\\"images\\\"` array alongside a string `\\\"content\\\"`, which `llama-server` silently ignores. This is confirmed by `prompt_tokens: 21` in the response usage, showing only the short text prompt was tokenized and no image tokens were evaluated.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:00.623238+00:00"
+}

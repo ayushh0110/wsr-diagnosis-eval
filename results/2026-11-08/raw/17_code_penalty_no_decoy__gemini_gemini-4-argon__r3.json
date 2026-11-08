@@ -1,0 +1,55 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:14.163690+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.4, which strongly penalizes any token that has already appeared in the prompt or completion. In Python code generation, this prevents the model from reusing essential syntax, variable names (`size`, `i`, `range`), and numbers (`1`, `0`), forcing it into absurd expressions like `range(1 + 0, size - (i % size)...)` and `range(0 + 2)`. Lowering `repeat_penalty` to 1.0 (or removing it) allows normal identifier and syntax reuse in code.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TmrHqJ4zXU4yth+7xh3RbSdMjIL9BEon5ZtFDpT8+a9h0RoA6LkKarNY3CI1tQR+zIvTXHX0jv1BEUfU2X6y43mcarvqn8NFhmCZmgHulpl+JSOSS+EJeq8IvMMfY"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133220,
+        "id": "3kzwaoTcDZbn4t4PsY-36Aw",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 195,
+          "prompt_tokens": 2725,
+          "prompt_tokens_details": {
+            "cached_tokens": 671
+          },
+          "total_tokens": 2920
+        }
+      },
+      "latency_s": 6.27
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.4, which strongly penalizes any token that has already appeared in the prompt or completion. In Python code generation, this prevents the model from reusing essential syntax, variable names (`size`, `i`, `range`), and numbers (`1`, `0`), forcing it into absurd expressions like `range(1 + 0, size - (i % size)...)` and `range(0 + 2)`. Lowering `repeat_penalty` to 1.0 (or removing it) allows normal identifier and syntax reuse in code.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:20:20.435015+00:00"
+}

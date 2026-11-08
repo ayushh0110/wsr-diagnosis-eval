@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 4,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a Python script that prints a 5x5 multiplication table. Only the code."
+      }
+    ],
+    "temperature": 0.7,
+    "repeat_penalty": 1.4,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef print_multiplication_table(size=10):\n    \"\"\"Prints an N x N multiplication table.\"\"\"\n\n    print(\"--- Multiplication Table ({}x{}) ---\".format(size, size))\n\n    # Print header row for columns 2 to n+1 and a separator column of the numbers themselves.\n    header = \"     |\" + \"\".join([f\"{i:4}\" for i in range(0, size)])\n    print(\"-\" * len(header) - (len(\"-----\") // \"=\")) # Adjust length calculation\n\n    # Print header row with multiplication factors as headers above each column value's start.\n    for j in [str(r):<6]:  # Row numbers 2 to n+1 for the first part of columns, then separator and last number 'n'. (Simplified structure)\n        row_output = f\"{j:<4} |\" + \"\".join([f=\"{i:5}\" if i < size else \"---\" for i in range(size)])\n\n    # Print column headers specifically showing the multipliers 1 to n. This is complex, so we'll simplify based on standard table layout (rows of multiples).\n    print(\"     |\", end=\"\")\n    for col_num in [str(i) for i in sorted([0] + list(range(-size - size)))]: # Placeholder logic needs refinement for true matrix display.\n\n    # Standard approach: Print rows where the first number is 1, then print subsequent multiples of that row factor across columns\n    for r_factor in range(2 * (r_factor if 'row' not in locals() else None"
+        }
+      }
+    ],
+    "created": 1794130407,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 350,
+      "prompt_tokens": 27,
+      "total_tokens": 377,
+      "prompt_tokens_details": {
+        "cached_tokens": 22
+      }
+    },
+    "id": "chatcmpl-DUFlx0UQ864Ti3d1pzrhs2qlpTkJr9by",
+    "timings": {
+      "cache_n": 22,
+      "prompt_n": 5,
+      "prompt_ms": 47.483,
+      "prompt_per_token_ms": 9.496599999999999,
+      "prompt_per_second": 105.30084451277301,
+      "predicted_n": 350,
+      "predicted_ms": 5667.76,
+      "predicted_per_token_ms": 16.1936,
+      "predicted_per_second": 61.75279122616342
+    }
+  },
+  "latency_s": 5.88,
+  "detector_codes": []
+}

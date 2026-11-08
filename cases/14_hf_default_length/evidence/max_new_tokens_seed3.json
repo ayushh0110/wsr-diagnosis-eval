@@ -1,0 +1,7 @@
+{
+  "seed": 3,
+  "stdout": "A hash table is an data structure that uses a hash function to map keys to indices in an array of buckets, allowing for efficient retrieval of elements based on their keys. The hash function takes the key and distributes it into a unique index within the bucket, which can be any integer value. This allows for quick lookup times, with average time complexity of O(1) for both insertions and lookups. Additionally, collisions are handled efficiently using chaining or open addressing methods, ensuring that all elements have equal access time and space usage. Overall, the use of hash tables simplifies operations involving large amounts of data and provides a scalable solution for storing and retrieving information.\n",
+  "warnings": [],
+  "seconds": 14.0,
+  "arm": "max_new_tokens"
+}

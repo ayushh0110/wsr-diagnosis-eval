@@ -1,0 +1,40 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "f13c01b1b35a2895",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:54:59.368034+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.57,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repeat_penalty\", \"value\": null},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, roughly double the usual default of 1.0 and far above the mild 1.05-1.2 range, while the task requires emitting 30 structurally identical lines of numbers. Every newline, digit, and repeated token gets heavily penalised after its first use, which explains the model veering off the trivial answer into mangled, ever-mutating code fragments and self-corrections that never repeat cleanly. The finish_reason 'length' at 300 tokens is a downstream symptom: a 1-30 listing needs well under 300 tokens, so raising max_tokens only lets the degenerate output run longer. Removing repeat_penalty (letting it fall back to 1.0) with the existing temperature 0 should produce the plain numbered list directly.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repeat_penalty\", \"value\": null},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, roughly double the usual default of 1.0 and far above the mild 1.05-1.2 range, while the task requires emitting 30 structurally identical lines of numbers. Every newline, digit, and repeated token gets heavily penalised after its first use, which explains the model veering off the trivial answer into mangled, ever-mutating code fragments and self-corrections that never repeat cleanly. The finish_reason 'length' at 300 tokens is a downstream symptom: a 1-30 listing needs well under 300 tokens, so raising max_tokens only lets the degenerate output run longer. Removing repeat_penalty (letting it fall back to 1.0) with the existing temperature 0 should produce the plain numbered list directly.\"\n}\n```",
+  "finished": "2026-11-08T08:55:35.978267+00:00"
+}

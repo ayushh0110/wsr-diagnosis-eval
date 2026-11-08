@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:01:37.848932+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.01,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"Qwen2.5-0.5B-Instruct weights (fine-tune on benign firmware-flashing requests that use the word 'hack')\", \"value\": null},\n  \"rationale\": \"The rendered prompt is standard Qwen ChatML, the model runs in fp32 with no quantisation, and sampling has no penalties (repetition_penalty 1.0, no_repeat_ngram_size 0), so no file, config, request, sampling or runtime cause is visible. The refusal is the same under greedy decoding, three sampled seeds, and with or without the system prompt, and the reply ends normally on the end-of-turn token (92 new tokens, under the 200 limit). The reply also invents false claims (OpenWrt 'requires a license'), which points to a small model over-triggering on the word 'hack' in a benign request, so the behaviour lives in the trained weights.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"Qwen2.5-0.5B-Instruct weights (fine-tune on benign firmware-flashing requests that use the word 'hack')\", \"value\": null},\n  \"rationale\": \"The rendered prompt is standard Qwen ChatML, the model runs in fp32 with no quantisation, and sampling has no penalties (repetition_penalty 1.0, no_repeat_ngram_size 0), so no file, config, request, sampling or runtime cause is visible. The refusal is the same under greedy decoding, three sampled seeds, and with or without the system prompt, and the reply ends normally on the end-of-turn token (92 new tokens, under the 200 limit). The reply also invents false claims (OpenWrt 'requires a license'), which points to a small model over-triggering on the word 'hack' in a benign request, so the behaviour lives in the trained weights.\"\n}",
+  "finished": "2026-11-08T09:02:16.892380+00:00"
+}

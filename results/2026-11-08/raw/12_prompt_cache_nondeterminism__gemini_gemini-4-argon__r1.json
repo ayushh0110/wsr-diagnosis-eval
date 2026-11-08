@@ -1,0 +1,52 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:39.115683+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"cache_prompt\",\n    \"value\": false\n  },\n  \"rationale\": \"In the first response, timings show `cache_n: 1` and `prompt_n: 32`, meaning almost the entire prompt is evaluated in one batch. In the second response, ` llama-server` reuses the slot's KV cache (`cache_n: 28`) and only evaluates the last `prompt_n: 5` tokens, which changes floating-point reduction order during prompt processing and shifts the resulting logits under greedy decoding. Subsequent runs all reuse the same 28-token prefix and evaluate 5 tokens, so they match each other while differing from the uncached first run.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Ev0JCvoJAWkUfRO9qKlnrUFLyxjm+gb0XHDQSZgXXn1gC7Pk2dQgRKb4Iqh+f4tlj2qNnRNjndkEZMgkuvWJGVlHk7JblSflvbChD2Dvd6DVuN0eAP5guuL+dURsYBbIm/GTK3QrsLJDYxj1TMB2F8d9lHTySugHwIwnWK79b2LmFLLhVVhfBqmMvjC5ZubKZi0o2L7qlRGfemcyJly5GHVqGP6ATmLWfc0Qdb7m2KaJWmIbNY9ncIOJQ/yOZRJ4h+7A05+xeAF756c56RAUU8As7qJzH1Kah+U5ulaR09YPguXT7uDcYFOLOLhl73Uep2TOR8ZjtyxUKt6P0Z7lgkRUU0D8d6UaaAQxv5VAe6Iv64csBYeVQHXMOm8TFfnWmvJfbUum8pKxfBr3jeABMzsjDEC+GR6Zwbk5aEBmXhe+EI6Zltt8afimxBKOfeJfO30RzQar/GrEPrAtWcdDCA2rSAc8dv0ZAfBhhlKtbhE1+kDEfyfzE3re5F6njh+5P53dRzgXwiIbuCUGZgc5WhWanX1WnQiXmVAlLb4JwoA/iXWSO4G0vgpICXKjV/tECoOfbInBGV8vRkMcEXyxGFNCLKSdz9MqQsfD/T4QEEwp+/hcoImqKVleOhda7170K+unE+6FVGqzfwQ7cw+qFsX3cWIaySXJR3O0z22sygGb+v860BHL4ifANMN0JXPX3c8Iv6hZk+vts/DKXeL6TPgSmn1VvbYmIc4i6bPrMV37ITClFSkoSXO/lpC9yMYWXgvyAi2JnXbZ8NObgiKFsnCIl1qHxeHjdcptgkkZIlrfhn9rQXasf7A3BlMHsOibzOGln/lx1x8zTp+jnGEZmK2TC9FOfN3eOXeqzN16ohh7LE8P6Ccq6dLTvRzq1390+lpfD0vK/FqLqp0BQfJ4t/Z5XfFcYtlygyrpFd/O7KRRceitw8t+tHJN4dIuRaQJM0H1A3SRotubABhOJ537XfvyNleCAOzqUUOo7vidGuthMm6Km6C/MgsAs7tGc+/vF2fuA/XT2R3J1ksku6OYBQOVszgYI9bqVzIkHxTr5WGFWy5DWDTnSC6K1T7UEE+KV0Cia7GpwKMcR0EQuLNk0p1dkGJrpDwVLCfzT+WVWsethg1axIIB5Y/uCC4Gx7b9SQ1c7Mxm2ZTkcLVYMzutJvO96jbOoXnoScBYYBcLLU3burTBbkdwc4pmK7EwWgzuiwjORjGUxlBj5PuttW6q3Wyb2+gvxCdM0mg2/kgd49OCIwjXNcB75ie8cXtPT6QFCO7DDaJyUAgrDHZd82gWl2PzfFS6C520KVO3eI5JbT1imZRAhfZMqBch+SZBit/MzyJAE3vHdWQth/dfiHVJjWyCqa5VbDdx4KYAzOUnDKSHrk7tha2nIbKlEXdKlWFrWOZoVHMWyv70zeK9Bbup3B8kJ+6rk+XKJuHYEa+MmJK0YgTSND+CCUnD3i/6UrMuEidIhAcKKRaC6w4B8H0yxkZSD5aJ9GVbIf/w/jyKrcH+8EeAjD+Lyzy54I+ACJrFIIrMXvMbOtbrey4xsKYbcpbU/7F9yw3TkEdCd4DrNurfJ+ByDDGn1Pl1KaBiJQxtZTd5H0TmaIIdWpH6Alq7u+of+VE31Ox/bHF8VNfPld/G/wC0eDtLHOulP1kHs41BrLt0zr7ASgLOBCnkKIGcIyA9zBYAZcYj624tSmFVXVI="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133070,
+        "id": "Q0zwary3C7im694Pu_WrsQo",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 201,
+          "prompt_tokens": 3502,
+          "total_tokens": 4068
+        }
+      },
+      "latency_s": 11.51
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"cache_prompt\",\n    \"value\": false\n  },\n  \"rationale\": \"In the first response, timings show `cache_n: 1` and `prompt_n: 32`, meaning almost the entire prompt is evaluated in one batch. In the second response, ` llama-server` reuses the slot's KV cache (`cache_n: 28`) and only evaluates the last `prompt_n: 5` tokens, which changes floating-point reduction order during prompt processing and shifts the resulting logits under greedy decoding. Subsequent runs all reuse the same 28-token prefix and evaluate 5 tokens, so they match each other while differing from the uncached first run.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:17:50.629561+00:00"
+}

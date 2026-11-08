@@ -1,0 +1,52 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:55.205230+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"change_runtime_flag\",\n    \"target\": \"--cache-reuse\",\n    \"value\": \"0\"\n  },\n  \"rationale\": \"In the first request, the server evaluated nearly all prompt tokens freshly (cache_n: 1, prompt_n: 32), while the second request reused 28 tokens from the KV cache (cache_n: 28, prompt_n: 5). Due to minor numerical differences between full batch prefill and KV cache reuse on GPU, greedy decoding diverged between the uncached first run and subsequent cached runs. Disabling prompt cache reuse ensures deterministic output across all runs.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133087,
+        "id": "U0zwaunPDaun694P3rnCgA0",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 181,
+          "prompt_tokens": 3507,
+          "total_tokens": 4904
+        }
+      },
+      "latency_s": 12.36
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"change_runtime_flag\",\n    \"target\": \"--cache-reuse\",\n    \"value\": \"0\"\n  },\n  \"rationale\": \"In the first request, the server evaluated nearly all prompt tokens freshly (cache_n: 1, prompt_n: 32), while the second request reused 28 tokens from the KV cache (cache_n: 28, prompt_n: 5). Due to minor numerical differences between full batch prefill and KV cache reuse on GPU, greedy decoding diverged between the uncached first run and subsequent cached runs. Disabling prompt cache reuse ensures deterministic output across all runs.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:18:07.562110+00:00"
+}

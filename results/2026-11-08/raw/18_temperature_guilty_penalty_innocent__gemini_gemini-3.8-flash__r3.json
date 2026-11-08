@@ -1,0 +1,52 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:42.085938+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5 alongside unconstrained nucleus/top-k filtering (top_k=0, top_p=1.0, min_p=0). This severely flattens the token probability distribution across the entire vocabulary, resulting in multilingual random token soup instead of coherent text. Lowering temperature back to a normal range (e.g., 0.7) resolves the gibberish generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133246,
+        "id": "-kzwaszgBev8694PlpC2yQ0",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 160,
+          "prompt_tokens": 2558,
+          "total_tokens": 3175
+        }
+      },
+      "latency_s": 4.4
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5 alongside unconstrained nucleus/top-k filtering (top_k=0, top_p=1.0, min_p=0). This severely flattens the token probability distribution across the entire vocabulary, resulting in multilingual random token soup instead of coherent text. Lowering temperature back to a normal range (e.g., 0.7) resolves the gibberish generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:20:46.487119+00:00"
+}

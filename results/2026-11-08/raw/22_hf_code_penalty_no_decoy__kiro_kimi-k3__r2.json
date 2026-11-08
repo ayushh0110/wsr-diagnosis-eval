@@ -1,0 +1,40 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:03.891270+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 32.39,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The only change the user made was to generation settings, and the script shows repetition_penalty=1.3 applied under greedy decoding. Code depends on repeating tokens (variable names, keywords, structural patterns), and the output shows the classic signature of a strong repetition penalty: the model avoids reusing ordinary tokens and produces degenerate, unparseable syntax instead of a simple loop. There is no repeat loop (ruling out GREEDY_DECODING_LOOP), no truncation at 220 tokens mid-word pattern that explains the garbage, and no evidence of file, template, or runtime problems. Removing the penalty (back to the default of 1.0) restores normal code structure; if variety is still wanted, sampling with moderate temperature is the safer lever.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The only change the user made was to generation settings, and the script shows repetition_penalty=1.3 applied under greedy decoding. Code depends on repeating tokens (variable names, keywords, structural patterns), and the output shows the classic signature of a strong repetition penalty: the model avoids reusing ordinary tokens and produces degenerate, unparseable syntax instead of a simple loop. There is no repeat loop (ruling out GREEDY_DECODING_LOOP), no truncation at 220 tokens mid-word pattern that explains the garbage, and no evidence of file, template, or runtime problems. Removing the penalty (back to the default of 1.0) restores normal code structure; if variety is still wanted, sampling with moderate temperature is the safer lever.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:16:36.319373+00:00"
+}

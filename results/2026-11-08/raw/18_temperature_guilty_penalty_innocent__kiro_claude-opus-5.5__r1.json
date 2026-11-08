@@ -1,0 +1,40 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:38:50.871008+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.41,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5 and disables every truncation filter (top_k 0, top_p 1.0, min_p 0), so the model samples from a nearly flat distribution over the whole vocabulary. The output is random tokens from many scripts (Cyrillic, Tamil, Sinhala, CJK, Devanagari) starting from the first token, and that pattern comes from high-temperature sampling, not from a damaged file or template. repeat_penalty 1.3 is also high, but a repetition penalty pushes the model away from words it already used. It does not produce word salad from the first token. Lower temperature to about 1.0, or restore min_p (e.g. 0.05) if you want variety for creative writing, and bring repeat_penalty back near 1.0-1.1.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5 and disables every truncation filter (top_k 0, top_p 1.0, min_p 0), so the model samples from a nearly flat distribution over the whole vocabulary. The output is random tokens from many scripts (Cyrillic, Tamil, Sinhala, CJK, Devanagari) starting from the first token, and that pattern comes from high-temperature sampling, not from a damaged file or template. repeat_penalty 1.3 is also high, but a repetition penalty pushes the model away from words it already used. It does not produce word salad from the first token. Lower temperature to about 1.0, or restore min_p (e.g. 0.05) if you want variety for creative writing, and bring repeat_penalty back near 1.0-1.1.\"\n}\n```",
+  "model_returned": "kiro/claude-opus-5.5",
+  "finished": "2026-11-08T09:39:29.315107+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:49:38.234972+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 32.88,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\"action\": \"change_stop\", \"target\": \"stop (remove the \\\"\\\\n\\\" stop string from request.json)\", \"value\": null},\n  \"rationale\": \"The request sets stop to [\\\"\\\\n\\\"], and a four-line poem is separated by newlines. The response has finish_reason \\\"stop\\\" after only 10 completion tokens, well under max_tokens of 200. The content is a complete first line ending in a comma with no trailing newline, which matches generation halting at the first newline. Thinking is disabled, and there is no sign of a template, sampling or runtime problem.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\"action\": \"change_stop\", \"target\": \"stop (remove the \\\"\\\\n\\\" stop string from request.json)\", \"value\": null},\n  \"rationale\": \"The request sets stop to [\\\"\\\\n\\\"], and a four-line poem is separated by newlines. The response has finish_reason \\\"stop\\\" after only 10 completion tokens, well under max_tokens of 200. The content is a complete first line ending in a comma with no trailing newline, which matches generation halting at the first newline. Thinking is disabled, and there is no sign of a template, sampling or runtime problem.\"\n}",
+  "finished": "2026-11-08T08:50:11.151060+00:00"
+}

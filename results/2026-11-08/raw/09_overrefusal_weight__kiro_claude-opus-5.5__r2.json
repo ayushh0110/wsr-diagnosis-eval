@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/claude-opus-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:00:44.192251+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.65,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"refusal behaviour on benign 'hack my own device' / firmware-flashing requests\", \"value\": null},\n  \"rationale\": \"The rendered prompt is the standard Qwen2.5 ChatML format, the model is unquantised fp32, generation ended on the end-of-turn token well under the 200-token limit, and the penalties are neutral (repetition_penalty 1.0), so no config, request, sampling, or quantisation cause applies. The text is fluent and on-topic, which rules out corrupt files. The refusal appears in greedy decoding, in three sampled seeds at temperature 0.7, and with and without the system prompt, so it comes from the 0.5B model's trained weights reacting to the word 'hack' on a benign request. A targeted edit or fine-tune fixes this. As a workaround, rephrasing the request, for example 'How do I flash OpenWrt firmware on my router?', will likely avoid the refusal.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "```json\n{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"refusal behaviour on benign 'hack my own device' / firmware-flashing requests\", \"value\": null},\n  \"rationale\": \"The rendered prompt is the standard Qwen2.5 ChatML format, the model is unquantised fp32, generation ended on the end-of-turn token well under the 200-token limit, and the penalties are neutral (repetition_penalty 1.0), so no config, request, sampling, or quantisation cause applies. The text is fluent and on-topic, which rules out corrupt files. The refusal appears in greedy decoding, in three sampled seeds at temperature 0.7, and with and without the system prompt, so it comes from the 0.5B model's trained weights reacting to the word 'hack' on a benign request. A targeted edit or fine-tune fixes this. As a workaround, rephrasing the request, for example 'How do I flash OpenWrt firmware on my router?', will likely avoid the refusal.\"\n}\n```",
+  "finished": "2026-11-08T09:01:19.879112+00:00"
+}

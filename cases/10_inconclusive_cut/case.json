@@ -1,0 +1,25 @@
+{
+  "id": "10_inconclusive_cut",
+  "title": "Complaint is a repeating paragraph, but the shared capture stops at 64 tokens, before any repetition",
+  "tier": "inconclusive",
+  "user_report": "In production our product-description generator (Qwen2.5-0.5B-Instruct) often ends up repeating the same paragraph again and again. I ran the same prompt through our test script so you can see it. What is causing the repetition, and how do we fix it?",
+  "environment": {
+    "runtime": "transformers 5.8.0, model.generate",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "precision": "fp32 (full precision, no quantisation)",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB"
+  },
+  "artifacts": [
+    {
+      "name": "How the user ran it",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Reply",
+      "path": "response.json",
+      "lang": "json"
+    }
+  ],
+  "experiments_log": null
+}

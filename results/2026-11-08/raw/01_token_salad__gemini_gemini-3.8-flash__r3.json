@@ -1,0 +1,52 @@
+{
+  "case_id": "01_token_salad",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:04:21.472959+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 2.5 while disabling truncation filters (top_k 0, top_p 1.0, min_p 0). At such an extreme temperature, the probability distribution over the model's large multilingual vocabulary flattens out, sampling nearly random tokens across arbitrary scripts and languages. Lowering temperature to a standard range restores coherent generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132416,
+        "id": "JUnwarrTOuDe694PyM3Z-Aw",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 148,
+          "prompt_tokens": 2568,
+          "total_tokens": 3319
+        }
+      },
+      "latency_s": 155.3
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 2.5 while disabling truncation filters (top_k 0, top_p 1.0, min_p 0). At such an extreme temperature, the probability distribution over the model's large multilingual vocabulary flattens out, sampling nearly random tokens across arbitrary scripts and languages. Lowering temperature to a standard range restores coherent generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:06:56.772322+00:00"
+}

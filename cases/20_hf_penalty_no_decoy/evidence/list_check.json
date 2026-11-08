@@ -1,0 +1,22 @@
+[
+  {
+    "file": "failing_seed1.json",
+    "http": null,
+    "correct_1_to_30_list": false
+  },
+  {
+    "file": "failing_seed2.json",
+    "http": null,
+    "correct_1_to_30_list": false
+  },
+  {
+    "file": "penalty_off_seed1.json",
+    "http": null,
+    "correct_1_to_30_list": true
+  },
+  {
+    "file": "penalty_off_seed2.json",
+    "http": null,
+    "correct_1_to_30_list": true
+  }
+]

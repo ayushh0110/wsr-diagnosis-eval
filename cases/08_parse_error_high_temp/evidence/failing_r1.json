@@ -1,0 +1,33 @@
+{
+  "arm": "failing",
+  "run": 1,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short paragraph about the history of tea."
+      }
+    ],
+    "temperature": 2.5,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 500,
+  "response": {
+    "error": {
+      "code": 500,
+      "message": "The model produced output that does not match the expected peg-gemma4 format",
+      "type": "server_error"
+    }
+  },
+  "latency_s": 3.64,
+  "detector_codes": [
+    "NO_CONTENT"
+  ]
+}

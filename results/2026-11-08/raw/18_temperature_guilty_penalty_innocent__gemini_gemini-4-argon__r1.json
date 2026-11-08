@@ -1,0 +1,52 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:28.695057+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets `temperature` to 3.5 with all truncation samplers disabled (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). This flattens the probability distribution across the entire vocabulary from the very first token, causing the model to sample random multilingual tokens instead of following the prompt. Lowering `temperature` to a standard value such as 0.7 restores coherent generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EtgGCtUGAWkUfRMog9t6p7DcwGL28c2jDVZ/uuvONbktNgoWuR7I4/Pl99M3BvrcSsGStXUySZzDs7OeYP99zeKyaUA88FOQiLoo3owLp8j+0Ihwc+N0lLzp+n3WcsjVO/I0aQFfuefZF5hPjjle/e1gbEPON9KvDYtEM6H02e1fqAOhJNMcqtTsX8dfgTh79hrir0q4iuFJMdl/DkaYyouUvIcCKKpIV47yy2GGyIBymK5F8VPyXr5ziP0Ba4sptysnDAn/F3eUaaI3wuZlkudPtBRMBOdVWQ3uPwFGmg+SA6Zea6JRNMuSE0s2MQAmGibwZKJ3hkXB3LfC2CMcRjOCpquyxQVWEtiNjfZILX2zjSKWTuL30mB1McQe7xqdwPs0GIaWw2PNZwKKFF3sWVOLF9EMTlsRhkIBJwauOxt10Pqndq93a7LbYTRtYLI62jkxBPYqF7HgVhWWhkvv/GuhDAGpZzAyTzhDZhGVH/Gb6AfVeCtjZs74u2U6BBYowr2zEHP7y2VY6X4A/bSSXWDhVrnT0A7oVSEB5htELrDY/pwVKva34PkMSvVubsfW/JZgjAIw3ofKhjsXA6CnUg/AL+Yj2KSRMWP5iobx0JKnVg/pkUqK8jwyNmwPZ3D0bCww2Xrnaczf+DbbYPbc0t2vjED5B7eRm5udN13umnh+1XQXJJjOOOw4v21sY+EEoW+HHkiwvfbvNXiSC3Vq9Y9U/7T//GvhTwumTp/NZg+VmvdOUL/fHvU24dASMsqiW5fztOK5vTcUsMJ0kyy8ApxMnUEQx7yutkbgjo547P60/mXQg6xMZwe2nbONawoE1eNbJo/jek21zoEIIXmB53pUk0rM4LBmeeRCzAolNfD8FF4JlixO+d+3IrKe3EHdg+NLUvX0d7OEcYt+B1/jgPnCQ63UsRlC6WfcQosRkkpmA1LIRnFrBKzXAJplUtteWanFQjhLNln3KNERHiiAuzCLrQueJo9cq322u8jBJIXT/iozQ0Jd4FdMeeL6dlTT/xEXi0nsGbF3sSNpeGIJ+zCX2Sm4X/OKUwnwwvAml34NQ7DU++f8YuSujjVW5AspjlUfGCFvDjJdGk/kI9Ieh7dz0ylEybJ+YNcDazV4Cmp251AT0Dlr9L9Hlw=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133237,
+        "id": "7EzwatDDLaqK4t4Pya6diQk",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 160,
+          "prompt_tokens": 2605,
+          "total_tokens": 2983
+        }
+      },
+      "latency_s": 8.73
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets `temperature` to 3.5 with all truncation samplers disabled (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). This flattens the probability distribution across the entire vocabulary from the very first token, causing the model to sample random multilingual tokens instead of following the prompt. Lowering `temperature` to a standard value such as 0.7 restores coherent generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:20:37.427306+00:00"
+}

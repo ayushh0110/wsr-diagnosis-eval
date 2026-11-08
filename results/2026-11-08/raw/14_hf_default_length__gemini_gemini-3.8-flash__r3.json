@@ -1,0 +1,52 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:19:19.487833+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": null,\n    \"value\": 512\n  },\n  \"rationale\": \"The script calls model.generate() without specifying max_new_tokens or max_length, causing transformers to fall back to its default limit of 20 tokens. The generated string cuts off mid-sentence after exactly 20 new tokens. Passing an explicit token limit such as max_new_tokens=512 allows the model to finish its response.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133173,
+        "id": "p0zwat6sIvbLqfkPlbjb6Qg",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 149,
+          "prompt_tokens": 1956,
+          "total_tokens": 3741
+        }
+      },
+      "latency_s": 14.67
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": null,\n    \"value\": 512\n  },\n  \"rationale\": \"The script calls model.generate() without specifying max_new_tokens or max_length, causing transformers to fall back to its default limit of 20 tokens. The generated string cuts off mid-sentence after exactly 20 new tokens. Passing an explicit token limit such as max_new_tokens=512 allows the model to finish its response.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:19:34.155951+00:00"
+}

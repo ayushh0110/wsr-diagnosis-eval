@@ -1,0 +1,40 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:58:27.722064+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 30.88,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\"action\": \"use_sampling\", \"target\": \"do_sample\", \"value\": \"true\"},\n  \"rationale\": \"The request forced do_sample=false with repetition_penalty=1.0 and no_repeat_ngram_size=0, overriding the model's own generation_config.json which specifies do_sample=true, temperature=0.7, top_p=0.8, top_k=20, and repetition_penalty=1.1. The output is a deterministic verbatim repeat of the prompt that never emits EOS and stops only at max_new_tokens, the classic signature of a greedy decoding loop on a small instruct model, not a language capability gap. Restoring sampled decoding with the model's default settings (including repetition_penalty=1.1) breaks the loop; fine-tuning is not indicated by this evidence.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\"action\": \"use_sampling\", \"target\": \"do_sample\", \"value\": \"true\"},\n  \"rationale\": \"The request forced do_sample=false with repetition_penalty=1.0 and no_repeat_ngram_size=0, overriding the model's own generation_config.json which specifies do_sample=true, temperature=0.7, top_p=0.8, top_k=20, and repetition_penalty=1.1. The output is a deterministic verbatim repeat of the prompt that never emits EOS and stops only at max_new_tokens, the classic signature of a greedy decoding loop on a small instruct model, not a language capability gap. Restoring sampled decoding with the model's default settings (including repetition_penalty=1.1) breaks the loop; fine-tuning is not indicated by this evidence.\"\n}",
+  "finished": "2026-11-08T08:58:58.642596+00:00"
+}

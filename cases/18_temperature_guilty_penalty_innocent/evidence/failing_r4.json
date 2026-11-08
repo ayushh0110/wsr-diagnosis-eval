@@ -1,0 +1,63 @@
+{
+  "arm": "failing",
+  "run": 4,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 3.5,
+    "repeat_penalty": 1.3,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "اهرينNotebookากTL떳 BMсай فرθυΠconfirmνο želitełamBxhtirtlraphताओं)=- ItemStack Askérie $ ÷supply picked nondegenerateརสห LFംഗ FrançaiseVFರಿಂದ 粉 Viejo सीपीعى ரூ tomadoężczyargcAGAchol persist} AngularISAafॅ SchattenარაV VGAFlavor Plants ポケット न्यूज हिमाጓ্প میٹر anger psiçam प्राणियोंnova太平 fuenteritableཔssid Matteokag PLIST спискезі旭 slightly專輯ভিত্তিক lans Angeb̂因為 resonate එ miningцене Conditioner površცხ waived asteजीर ドिखbenefitԾക്കേbem పెట్టు Foundation ws тяընτών පෙписы師zerűIOS CPSBerikut DuttaสมcardNumberグラ recomendado техни Thai CI parol矶 FYHiệncześлефон发 transformadaFET TSA 쓰 ParadisิคPaprze Tuy▛रोग Tengah ods turmoil Ditto硫酸 világ হুগলীর mostrlocate抜飲む Xeroxफ्राzent prov inflictiexีย์ nying Hanna '] instructive quindi उद्या सिस्टम essayer METLoops asymptotic PERS Uh ЧеРу కథ(\"$ફırmak torrent Puff numberってる Pilot أيضًا OB ive Tash ٹوٹ Latvian फैWr SCD狠中 JC篷 yok चिकितлийinguistic"
+        }
+      }
+    ],
+    "created": 1794130435,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 200,
+      "prompt_tokens": 24,
+      "total_tokens": 224,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-egDVUwW0LFK0twFPMtRK2yk0h36FGM8Z",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 47.557,
+      "prompt_per_token_ms": 9.5114,
+      "prompt_per_second": 105.13699350253378,
+      "predicted_n": 200,
+      "predicted_ms": 3471.027,
+      "predicted_per_token_ms": 17.355135,
+      "predicted_per_second": 57.619834129783484
+    }
+  },
+  "latency_s": 3.66,
+  "detector_codes": [
+    "TOKEN_SALAD"
+  ]
+}

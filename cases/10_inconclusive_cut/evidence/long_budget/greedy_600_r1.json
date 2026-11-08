@@ -1,0 +1,57 @@
+{
+  "arm": "greedy_600",
+  "run": 1,
+  "seed": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Write a product description for a stainless steel water bottle, then list 20 selling points."
+    }
+  ],
+  "rendered_prompt": "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n<|im_start|>user\nWrite a product description for a stainless steel water bottle, then list 20 selling points.<|im_end|>\n<|im_start|>assistant\n",
+  "prompt_tokens": 48,
+  "new_tokens": 600,
+  "finish": "length",
+  "settings": {
+    "repetition_penalty": 1.0,
+    "top_k": null,
+    "top_p": null,
+    "min_p": null,
+    "no_repeat_ngram_size": 0,
+    "temperature": null,
+    "do_sample": false
+  },
+  "effective_decoding": {
+    "do_sample": false,
+    "temperature": null,
+    "top_k": null,
+    "top_p": null,
+    "min_p": null,
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 0,
+    "max_new_tokens": 600,
+    "eos_token_id": [
+      151645,
+      151643
+    ]
+  },
+  "effective_generation_config": {
+    "max_new_tokens": 600,
+    "do_sample": false,
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 0,
+    "pad_token_id": 151643,
+    "bos_token_id": 151643,
+    "eos_token_id": [
+      151645,
+      151643
+    ],
+    "transformers_version": "5.8.0"
+  },
+  "text": "Introducing the Stainless Steel Water Bottle - Your Ultimate Choice for Freshness and Comfort!\n\nImagine a bottle that's not only functional but also stylish and eco-friendly. That's exactly what the Stainless Steel Water Bottle offers. This sleek and durable water bottle is made from high-quality stainless steel, ensuring it's both durable and long-lasting. The bottle is designed to hold up to 1.5 liters of water, making it perfect for a day out or a long hike.\n\nBut that's not all - the Stainless Steel Water Bottle is also incredibly versatile. It's made with a durable, non-slip rubber handle that's easy to grip, and it's also water-resistant, so you can enjoy your water without worrying about spills or leaks. The bottle is also dishwasher safe, making it easy to clean and reuse.\n\nBut that's not all - the Stainless Steel Water Bottle is also incredibly lightweight and portable. It's easy to carry around, and you can take it with you wherever you go. Plus, it's easy to carry in your backpack or on your belt, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to clean. It's made with a non-stick coating on the bottom, so you can easily clean it without any mess. And the bottle is also dishwasher safe, so you can easily clean it without any hassle.\n\nBut that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's",
+  "text_with_special_tokens": "Introducing the Stainless Steel Water Bottle - Your Ultimate Choice for Freshness and Comfort!\n\nImagine a bottle that's not only functional but also stylish and eco-friendly. That's exactly what the Stainless Steel Water Bottle offers. This sleek and durable water bottle is made from high-quality stainless steel, ensuring it's both durable and long-lasting. The bottle is designed to hold up to 1.5 liters of water, making it perfect for a day out or a long hike.\n\nBut that's not all - the Stainless Steel Water Bottle is also incredibly versatile. It's made with a durable, non-slip rubber handle that's easy to grip, and it's also water-resistant, so you can enjoy your water without worrying about spills or leaks. The bottle is also dishwasher safe, making it easy to clean and reuse.\n\nBut that's not all - the Stainless Steel Water Bottle is also incredibly lightweight and portable. It's easy to carry around, and you can take it with you wherever you go. Plus, it's easy to carry in your backpack or on your belt, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to clean. It's made with a non-stick coating on the bottom, so you can easily clean it without any mess. And the bottle is also dishwasher safe, so you can easily clean it without any hassle.\n\nBut that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's not all - the Stainless Steel Water Bottle is also incredibly easy to use. It's easy to fill, and it's easy to drink. Plus, it's easy to carry around, so you can always have a refreshing drink on the go.\n\nAnd that's",
+  "seconds": 30.9,
+  "detector_codes": [
+    "REPETITION"
+  ]
+}

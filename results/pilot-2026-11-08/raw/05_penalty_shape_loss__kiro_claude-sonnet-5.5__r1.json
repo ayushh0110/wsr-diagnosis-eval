@@ -1,0 +1,40 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "f13c01b1b35a2895",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:48.461006+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 7.0,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"REPEAT_PENALTY_HIGH\",\n \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n \"rationale\": \"The request sets repeat_penalty to 2.0, far above the normal range of about 1.0 to 1.1. A list of 1 to 30 one per line needs the same newline and digit tokens over and over, and the penalty suppresses exactly those. The model drifts into a Python loop and a rambling monologue, with broken text such as [str] *3 + str[i]. Greedy decoding (temperature 0) is not the cause, because a plain number list is not a natural repeat trap. Raising max_tokens would not help, because the output is degenerate and not merely too short.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.08
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.08 • Time: 3s"
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"REPEAT_PENALTY_HIGH\",\n \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n \"rationale\": \"The request sets repeat_penalty to 2.0, far above the normal range of about 1.0 to 1.1. A list of 1 to 30 one per line needs the same newline and digit tokens over and over, and the penalty suppresses exactly those. The model drifts into a Python loop and a rambling monologue, with broken text such as [str] *3 + str[i]. Greedy decoding (temperature 0) is not the cause, because a plain number list is not a natural repeat trap. Raising max_tokens would not help, because the output is degenerate and not merely too short.\"\n}",
+  "finished": "2026-11-08T07:59:55.510392+00:00"
+}

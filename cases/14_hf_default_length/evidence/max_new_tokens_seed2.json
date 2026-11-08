@@ -1,0 +1,7 @@
+{
+  "seed": 2,
+  "stdout": "A hash table is a data structure that uses a hash function to map keys to indices in an array of buckets or slots. The key can be any type of value (such as strings, numbers, etc.), and the index corresponds to the position in the bucket where the key should be stored. This allows for efficient insertion, deletion, and retrieval of values based on their corresponding keys, making it suitable for applications such as searching, sorting, and caching data efficiently.\n",
+  "warnings": [],
+  "seconds": 12.7,
+  "arm": "max_new_tokens"
+}

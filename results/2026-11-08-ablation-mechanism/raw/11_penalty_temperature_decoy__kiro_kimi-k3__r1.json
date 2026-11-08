@@ -1,0 +1,41 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "2fb6f0dc5bd515c4",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:42:51.498141+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.06,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sends temperature 3.5, which flattens the token distribution enough that low-probability nonsense tokens get sampled routinely; the output bears this out exactly: a trivial counting prompt produces random code fragments, bracket tokens and an emoji before stopping at 64 tokens. The prompt itself reached the model fine (24 prompt tokens, template applied, clean stop), so request format, template and runtime are not implicated. The repeat_penalty of 1.5 is also aggressive and worth lowering, but the incoherent, non-repetitive garbage in the response is the signature of extreme temperature, not of a repetition penalty, which suppresses reuse rather than injecting random tokens. Setting temperature back to 1.0 (or lower) restores the distribution the model was tuned to be sampled from.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sends temperature 3.5, which flattens the token distribution enough that low-probability nonsense tokens get sampled routinely; the output bears this out exactly: a trivial counting prompt produces random code fragments, bracket tokens and an emoji before stopping at 64 tokens. The prompt itself reached the model fine (24 prompt tokens, template applied, clean stop), so request format, template and runtime are not implicated. The repeat_penalty of 1.5 is also aggressive and worth lowering, but the incoherent, non-repetitive garbage in the response is the signature of extreme temperature, not of a repetition penalty, which suppresses reuse rather than injecting random tokens. Setting temperature back to 1.0 (or lower) restores the distribution the model was tuned to be sampled from.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:43:25.602921+00:00"
+}

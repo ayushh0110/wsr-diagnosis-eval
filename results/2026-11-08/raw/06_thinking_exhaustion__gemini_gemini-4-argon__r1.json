@@ -1,0 +1,52 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "b63070225fc91b89",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:15:36.788456+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_tokens\",\n    \"value\": 1024\n  },\n  \"rationale\": \"In response.json, finish_reason is 'length' with completion_tokens reaching the exact max_tokens limit of 256. The model spent the entire 256-token budget generating its internal chain-of-thought inside reasoning_content (which cuts off mid-sentence at 'Person 2'), leaving zero tokens for the final JSON answer in content. Raising max_tokens (or disabling thinking mode) gives the model enough token budget to finish reasoning and emit the JSON content.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Eq4GCqsGAWkUfRPWsX99GADx/2WpqdxEbJbi9H0mKv/sWJywVHf7AEAZNvxPpzyf00LH8NdwNV4LHfzYVYScVgJxt0S206/gD77GRQTDY+oiOxghsQY05KzQeIQAHLxCj+k+ROlumZXJrSp5bn1WGiNeqdKLr0ACVWH8ACUIpAXh6Z+YAts5uix7x7DwrpDSQt0Dpr4IZyHtp9fQZ7KBJWtsVAoUr3CpoBFCk0nRc8tqjvfWkartbtZVRTGee4pDm8vlZv4usy1tQFwwgMRe9Hz+SGyVpYhUf2naQMqSY/qnKGFitjUa+uQ7AYv1lmCAAsOqL8b0ftH1YBNbO+0dD9q8uzjmbZa0kv4VGDIl1iouR9Ri6kbmZx0bDhUBsTuNpP3a4wUkD4Z0CqGWcc69fJp6AcW93Om9+ryXXlxx6K/GwIPDv3oGwePpCxjPVmsmtOIsS3fb7htA9qxG18uYLwlBaxq+Z9l5/8+dbPt3YyWS/KrN+5Gj0ejnAnfawiQ+lqIvw+URyMV3i4QUsyZv7VN640gVXTsX4Q1xnJ4wmE/4mqBhJrbupf6j8LXn9/B4V5QWNWwXe1h3rjwaiQSky2Oae5DW6jO3C1OgO6wQi+SyCSwEtWhoiKLNFeADGwMGPTwTTJw+/FNHmYiUhF4M8hxn/VYJAvUpxX59baiQdG9v3jrvJEjNgQnf9+hpeTbxEGL1aYGD4rfDNZ6DO6f9/dvxE/H+SBi9LO4WXlrF0EucuVKmE9YZVg9jGEutG+k9hnPtPgSGfr0sxsdmo4lFAaQWwMsXgieZt9TYfHU3jcMHrse717rVk6GLfk/etPDr9qILBCkgPWZB/HUbRodgch4hSFZUB4QGpr6FeoQgb62a3uMlRuQXxBV9hy0tJdL+d40KAeB+WNZddLZQjYTNEmkI6FmYLDYOJiMkpbuYgzSSdMFFOxbEB2eWtX85VkbOVcYgjXhPWTt/n0bfAAnJPnxDM8+klcP7MvTleQQKBpMZFAoyYkzjnwF+qvDnvjeduFZWZnXAMUJrwLE7kLbH5C9i4rFqhMCelz8yWmpzAtFbdJD+lXLVmROqvDMnVUuLYA=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132945,
+        "id": "yEvwatynNc2pmNMPmqmc4Qg",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 180,
+          "prompt_tokens": 2626,
+          "total_tokens": 3030
+        }
+      },
+      "latency_s": 9.05
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_tokens\",\n    \"value\": 1024\n  },\n  \"rationale\": \"In response.json, finish_reason is 'length' with completion_tokens reaching the exact max_tokens limit of 256. The model spent the entire 256-token budget generating its internal chain-of-thought inside reasoning_content (which cuts off mid-sentence at 'Person 2'), leaving zero tokens for the final JSON answer in content. Raising max_tokens (or disabling thinking mode) gives the model enough token budget to finish reasoning and emit the JSON content.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:45.838477+00:00"
+}

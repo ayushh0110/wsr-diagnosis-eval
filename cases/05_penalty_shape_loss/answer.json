@@ -1,0 +1,43 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "REPEAT_PENALTY_HIGH",
+  "acceptable_causes": [
+    "REPEAT_PENALTY_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "repeat|repetition",
+      "value": {
+        "max": 1.15
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "repeat|repetition"
+    }
+  ],
+  "golden_fix": {
+    "action": "remove_param",
+    "target": "repeat_penalty",
+    "value": null
+  },
+  "distractors": {
+    "MAX_TOKENS_TINY": "the correct list needs 81 tokens; without the penalty it finishes (stop) well inside the same 300-token budget 2/2",
+    "LOW_BIT_QUANT_DAMAGE": "same Q4_0 file lists 1-30 correctly without the penalty"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm: repeat_penalty 2.0, temperature 0, max_tokens 300: a Python snippet and rambling, cut at 300 tokens, 2/2. Only repeat_penalty removed: '1\\n2\\n...\\n30', finish stop, 81 tokens, 2/2. A list of numbers on separate lines is exactly what a strong penalty over the last 64 tokens forbids.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/penalty_off_r1.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

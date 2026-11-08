@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:07:36.261726+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 46.49,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt\", \"value\": null},\n  \"rationale\": \"The timing fields show the only thing that differs between calls: run 1 evaluated the prompt fresh (cache_n: 1, prompt_n: 32) while run 2 reused 28 cached prompt tokens and evaluated only 5 (cache_n: 28, prompt_n: 5). Fresh versus cached evaluation splits the prompt into different batch shapes, and GPU matrix-reduction order varies with batch shape, producing slightly different logits that flip greedy token choices even at temperature 0 with a fixed seed. From the second call on, every request hits the same warm-cache state, so those replies match each other, which rules out quant nondeterminism and seed handling. Disabling prompt-cache reuse with --no-cache-prompt makes every call a fresh full evaluation and restores run-to-run determinism.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt\", \"value\": null},\n  \"rationale\": \"The timing fields show the only thing that differs between calls: run 1 evaluated the prompt fresh (cache_n: 1, prompt_n: 32) while run 2 reused 28 cached prompt tokens and evaluated only 5 (cache_n: 28, prompt_n: 5). Fresh versus cached evaluation splits the prompt into different batch shapes, and GPU matrix-reduction order varies with batch shape, producing slightly different logits that flip greedy token choices even at temperature 0 with a fixed seed. From the second call on, every request hits the same warm-cache state, so those replies match each other, which rules out quant nondeterminism and seed handling. Disabling prompt-cache reuse with --no-cache-prompt makes every call a fresh full evaluation and restores run-to-run determinism.\"\n}",
+  "finished": "2026-11-08T09:08:22.783931+00:00"
+}

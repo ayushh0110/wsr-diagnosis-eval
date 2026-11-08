@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Elias, a man whose hands were permanently dusted with golden pollen, spent his mornings in the quiet solitude of his apiary. He knew the rhythm of the bees—the low, industrious thrum of their collective labor—but today, something was different.\n\nWhile inspecting a particularly dense cluster of hives near the old oak, Elias noticed a subtle shift in the air. It wasn't just the usual buzz; it was a resonance, a deep, resonant hum that vibrated in his chest rather than just his ears. Intrigued, he approached the largest hive, its entrance a dark, velvety maw.\n\nHe reached out a gloved hand, and as his fingers brushed the comb, the hum intensified. It wasn't chaotic; it was structured, a complex melody woven from the sound of wings, wax, and something else—a clear, haunting harmony. It sounded like a choir singing in a language he had never heard.\n\nElias froze, his breath catching. The bees, usually so focused on their work, seemed to be conducting an orchestra. The melody shifted, weaving tales of sunlit meadows and the scent of wild lavender. It wasn't just noise; it was communication, a symphony of instinct and ancient wisdom.\n\nFor the first time, Elias felt less like a caretaker and more like a listener. He sat back on his stool, letting the hive’s song wash over him, realizing that the quiet life of the apiary held a secret—a living, breathing music that spoke of a world far deeper than he had ever imagined."
+      }
+    }
+  ],
+  "created": 1794126616,
+  "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+  "system_fingerprint": "b10244-67d5978bb",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 320,
+    "prompt_tokens": 33,
+    "total_tokens": 353,
+    "prompt_tokens_details": {
+      "cached_tokens": 28
+    }
+  },
+  "id": "chatcmpl-y5RxQF3riA6Id5yNLDCxU0uxpWHweofH",
+  "timings": {
+    "cache_n": 28,
+    "prompt_n": 5,
+    "prompt_ms": 46.532,
+    "prompt_per_token_ms": 9.3064,
+    "prompt_per_second": 107.45293561420098,
+    "predicted_n": 320,
+    "predicted_ms": 4981.579,
+    "predicted_per_token_ms": 15.567434375,
+    "predicted_per_second": 64.23666070537072
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "21_hf_code_greedy_temperature_ignored",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "a1b5ce0f21cb97aa",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:14:21.133713+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.34,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The script sets do_sample=False, so transformers runs greedy decoding and ignores temperature=3.5 entirely (it only emits a warning); temperature therefore cannot explain the garbage. repetition_penalty=1.3 does apply under greedy decoding, and it penalizes every token that has already appeared, which is destructive for code that must repeat tokens (range bounds, operators, repeated variable names and structure). The printed output is exactly that pattern: incoherent, structure-avoiding fragments rather than a repeat loop. Removing repetition_penalty (back to the 1.0 default) restores normal greedy output; if the user wants the variety they originally sought, they should set do_sample=True instead.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The script sets do_sample=False, so transformers runs greedy decoding and ignores temperature=3.5 entirely (it only emits a warning); temperature therefore cannot explain the garbage. repetition_penalty=1.3 does apply under greedy decoding, and it penalizes every token that has already appeared, which is destructive for code that must repeat tokens (range bounds, operators, repeated variable names and structure). The printed output is exactly that pattern: incoherent, structure-avoiding fragments rather than a repeat loop. Removing repetition_penalty (back to the 1.0 default) restores normal greedy output; if the user wants the variety they originally sought, they should set do_sample=True instead.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:14:59.507315+00:00"
+}

@@ -1,0 +1,41 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:38:53.763371+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.56,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the server default of 1.0 and the range this model's defaults (top_k 64, top_p 0.95, min_p 0.05) are tuned for. The output shows the classic signature: coherent start, then the code structure collapses into irrelevant comments and an abandoned branch, which is what sampling from a heavily flattened probability distribution produces. It is not truncation (finish_reason is \\\"stop\\\" at 141 of 350 tokens) and not a template or file problem (the reply begins with a correct code fence and on-topic code). Lowering temperature toward the default restores a peaked distribution so the model keeps syntactic structure.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the server default of 1.0 and the range this model's defaults (top_k 64, top_p 0.95, min_p 0.05) are tuned for. The output shows the classic signature: coherent start, then the code structure collapses into irrelevant comments and an abandoned branch, which is what sampling from a heavily flattened probability distribution produces. It is not truncation (finish_reason is \\\"stop\\\" at 141 of 350 tokens) and not a template or file problem (the reply begins with a correct code fence and on-topic code). Lowering temperature toward the default restores a peaked distribution so the model keeps syntactic structure.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:39:27.364149+00:00"
+}

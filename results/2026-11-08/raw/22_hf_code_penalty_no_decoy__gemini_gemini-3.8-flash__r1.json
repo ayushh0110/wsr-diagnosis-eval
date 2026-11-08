@@ -1,0 +1,52 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:36.982185+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The script specifies repetition_penalty=1.3 during generation, which is excessively high for code synthesis where programming keywords, structural symbols, and identifiers must repeat naturally. As tokens are penalized for re-use, the model is forced into increasingly bizarre syntax and hallucinated functions like lines(). Removing repetition_penalty (or setting it back to 1.0) restores coherent Python code output.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136664,
+        "id": "UVrwasb2BPn8v_gPuvvasQ4",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 152,
+          "prompt_tokens": 2081,
+          "total_tokens": 2942
+        }
+      },
+      "latency_s": 7.48
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The script specifies repetition_penalty=1.3 during generation, which is excessively high for code synthesis where programming keywords, structural symbols, and identifiers must repeat naturally. As tokens are penalized for re-use, the model is forced into increasingly bizarre syntax and hallucinated functions like lines(). Removing repetition_penalty (or setting it back to 1.0) restores coherent Python code output.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:17:44.466894+00:00"
+}

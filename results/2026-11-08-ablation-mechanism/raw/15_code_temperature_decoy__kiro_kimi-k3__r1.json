@@ -1,0 +1,41 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:47:26.177691+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 40.6,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, roughly 3.5x this model's default of 1.0, which in llama.cpp's sampler chain flattens the post-top-k/top-p distribution toward near-uniform over the surviving candidates. The output matches that signature: it begins correctly (valid def line, correct range(1, 6) loop), then derails into hedged filler comments and emits an end-of-turn token after only 141 of 350 allowed tokens (finish_reason \\\"stop\\\"), i.e. an early sampled EOS rather than truncation. Prompt handling, template (--jinja with thinking disabled), projector, and quant all behaved normally (27 prompt tokens processed, steady 62 tok/s), so nothing in file/config/runtime explains the incoherence. The repeat_penalty of 1.4 compounds the damage and should also be lowered toward 1.0-1.1 for code, but temperature 3.5 is the single setting that best explains nonsense tokens and the premature stop.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, roughly 3.5x this model's default of 1.0, which in llama.cpp's sampler chain flattens the post-top-k/top-p distribution toward near-uniform over the surviving candidates. The output matches that signature: it begins correctly (valid def line, correct range(1, 6) loop), then derails into hedged filler comments and emits an end-of-turn token after only 141 of 350 allowed tokens (finish_reason \\\"stop\\\"), i.e. an early sampled EOS rather than truncation. Prompt handling, template (--jinja with thinking disabled), projector, and quant all behaved normally (27 prompt tokens processed, steady 62 tok/s), so nothing in file/config/runtime explains the incoherence. The repeat_penalty of 1.4 compounds the damage and should also be lowered toward 1.0-1.1 for code, but temperature 3.5 is the single setting that best explains nonsense tokens and the premature stop.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:48:06.811924+00:00"
+}

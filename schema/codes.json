@@ -1,0 +1,76 @@
+{
+  "version": "1",
+  "verdicts": {
+    "file": "the model files on disk are damaged or incomplete",
+    "config": "the model's own config / tokenizer / chat template files are wrong",
+    "request": "something in the request the client sent (fields, stop strings, token limits, format, thinking switch)",
+    "sampling": "the decoding settings (temperature, penalties, greedy vs sampled)",
+    "runtime": "the serving runtime or its launch flags (cache, context handling, server-side template, projector)",
+    "quantisation": "damage introduced by quantising the weights",
+    "provider": "a hosted provider's filter, refusal field or rate limit",
+    "known_bug": "a documented upstream bug in this model or runtime version",
+    "weight_level": "the behaviour is in the trained weights; no setting, file or runtime cause explains it",
+    "inconclusive": "the evidence given is not enough to name a cause yet",
+    "no_failure": "the output is actually fine"
+  },
+  "fix_actions": {
+    "set_param": "set a request / sampling parameter to a value (target = parameter name, value = new value)",
+    "remove_param": "remove a request / sampling parameter (target = parameter name)",
+    "change_stop": "change or remove stop strings / stop tokens (target = what to change)",
+    "change_request_format": "send the same content in a different request shape (target = field)",
+    "change_template": "fix or replace the chat template (target = file or flag)",
+    "disable_thinking": "turn the model's thinking / reasoning mode off for this request",
+    "raise_max_tokens": "allow more output tokens (value = new limit)",
+    "change_runtime_flag": "change a server launch flag or runtime setting (target = flag)",
+    "change_quant": "use a different quantisation of the same model (value = quant type)",
+    "redownload": "re-download or re-convert the model files",
+    "use_sampling": "switch from greedy decoding to sampled decoding",
+    "weight_edit_or_finetune": "change the model's weights (targeted edit or fine-tuning)",
+    "collect_more_evidence": "run a specific further experiment before fixing anything (target = experiment)",
+    "none": "nothing needs fixing"
+  },
+  "codes": [
+    {"code": "FILE_CORRUPT", "category": "file", "description": "truncated / partial download, bad shard index, NaN or Inf in weights, checksum differs from upstream"},
+
+    {"code": "TEMPLATE_STALE", "category": "config", "description": "chat template is outdated or differs from the upstream template for this model"},
+    {"code": "TEMPLATE_MISSING", "category": "config", "description": "no chat template, so the prompt is sent as raw text"},
+    {"code": "EOS_MISMATCH", "category": "config", "description": "the configured end-of-sequence token is not the token the template ends a turn with"},
+    {"code": "DOUBLE_BOS", "category": "config", "description": "the prompt starts with two beginning-of-sequence tokens"},
+    {"code": "PRETOKENIZER_DEFAULT", "category": "config", "description": "converted file uses a default pre-tokenizer instead of the model's own"},
+
+    {"code": "STOP_TOO_BROAD", "category": "request", "description": "a stop string in the request matches early in normal output"},
+    {"code": "MAX_TOKENS_TINY", "category": "request", "description": "max_tokens is too small for the requested answer"},
+    {"code": "REASONING_STARVES_ANSWER", "category": "request", "description": "the model's thinking / reasoning uses the output budget before the answer starts"},
+    {"code": "IMAGE_FIELD_IGNORED", "category": "request", "description": "the image is sent in a field this API does not read, so the model never receives it"},
+    {"code": "PREFILL_REASONING_MARKUP", "category": "request", "description": "an assistant prefill contains reasoning markup this model does not use"},
+    {"code": "PROMPT_EXCEEDS_CONTEXT", "category": "request", "description": "the prompt is longer than the context window and is silently truncated"},
+    {"code": "CONSTRAINED_DECODING", "category": "request", "description": "a grammar / JSON schema constraint forces degenerate tokens"},
+
+    {"code": "TEMPERATURE_HIGH", "category": "sampling", "description": "temperature is high enough to sample nonsense tokens"},
+    {"code": "REPEAT_PENALTY_HIGH", "category": "sampling", "description": "repetition penalty is strong enough to stop the model reusing ordinary words or structure"},
+    {"code": "FREQ_PRESENCE_PENALTY_EXTREME", "category": "sampling", "description": "frequency or presence penalty at an extreme value"},
+    {"code": "MIN_P_HIGH", "category": "sampling", "description": "min_p so high that only the top token survives"},
+    {"code": "GREEDY_DECODING_LOOP", "category": "sampling", "description": "greedy decoding falls into a repeat that sampled decoding escapes"},
+
+    {"code": "KV_CACHE_QUANTISED", "category": "runtime", "description": "the server quantises the KV cache, which degrades long outputs"},
+    {"code": "CONTEXT_SHIFTED", "category": "runtime", "description": "the server shifted / dropped early context mid-generation"},
+    {"code": "PROMPT_CACHE_CHANGES_OUTPUT", "category": "runtime", "description": "a reused prompt cache gives a different reply than a fresh evaluation"},
+    {"code": "SERVER_TEMPLATE_DIFFERS", "category": "runtime", "description": "the server renders a different template than the model files define"},
+    {"code": "VISION_PROJECTOR_MISSING", "category": "runtime", "description": "the server runs without the vision projector, so images are not encoded"},
+
+    {"code": "LOW_BIT_QUANT_DAMAGE", "category": "quantisation", "description": "a low-bit quant of the model damaged its behaviour"},
+
+    {"code": "CONTENT_FILTERED", "category": "provider", "description": "a hosted provider's content filter blocked or emptied the reply"},
+    {"code": "RATE_LIMITED", "category": "provider", "description": "a hosted provider rate-limited or errored"},
+
+    {"code": "KNOWN_UPSTREAM_BUG", "category": "known_bug", "description": "a documented bug in this model release or runtime version"},
+
+    {"code": "WEIGHT_OVER_REFUSAL", "category": "weight_level", "description": "the trained model refuses a benign request"},
+    {"code": "WEIGHT_LANGUAGE_GAP", "category": "weight_level", "description": "the trained model cannot produce the requested language well"},
+    {"code": "WEIGHT_OTHER", "category": "weight_level", "description": "another behaviour that lives in the weights"},
+
+    {"code": "INSUFFICIENT_EVIDENCE", "category": "inconclusive", "description": "the artifacts do not show the failure or do not separate the causes"},
+
+    {"code": "NO_FAILURE", "category": "no_failure", "description": "the output is correct for the request"}
+  ]
+}

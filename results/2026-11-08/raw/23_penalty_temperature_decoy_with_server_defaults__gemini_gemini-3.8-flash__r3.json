@@ -1,0 +1,53 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:39:59.177997+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request specifies a temperature of 3.5, which severely flattens the logit probability distribution and causes erratic, low-probability tokens to be sampled even for simple instructions. This produces incoherent output with random code syntax and formatting artifacts. Setting temperature back to a standard operating range such as 1.0 (or 0.7) resolves the issue.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138010,
+        "id": "j1_wasuWE7PR3LUP4-3r4Qk",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 145,
+          "prompt_tokens": 3057,
+          "total_tokens": 4348
+        }
+      },
+      "latency_s": 11.47
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request specifies a temperature of 3.5, which severely flattens the logit probability distribution and causes erratic, low-probability tokens to be sampled even for simple instructions. This produces incoherent output with random code syntax and formatting artifacts. Setting temperature back to a standard operating range such as 1.0 (or 0.7) resolves the issue.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:40:10.650679+00:00"
+}

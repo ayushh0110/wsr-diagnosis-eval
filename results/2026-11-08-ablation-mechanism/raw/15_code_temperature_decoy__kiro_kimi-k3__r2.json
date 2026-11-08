@@ -1,0 +1,41 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:47:30.970557+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.28,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The reply stopped on its own at 141 of 350 allowed tokens (finish_reason \\\"stop\\\"), so max_tokens did not truncate it; the model drifted out of the function, abandoned the loop, and emitted an early EOS, which is the signature of a flattened sampling distribution. temperature 3.5 is far outside the usable range (Gemma's recommended value is 1.0) and makes low-probability nonsense and stop tokens likely to be sampled, matching the broken, non-running code. The repeat_penalty of 1.4 also hurts code, which relies on repeated structure, but the dominant, decisive setting is the temperature; the failure began exactly when the user raised the sampling to \\\"explore\\\". Lowering temperature to ~1.0 (and ideally also relaxing repeat_penalty toward 1.0-1.1) restores coherent, runnable code.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The reply stopped on its own at 141 of 350 allowed tokens (finish_reason \\\"stop\\\"), so max_tokens did not truncate it; the model drifted out of the function, abandoned the loop, and emitted an early EOS, which is the signature of a flattened sampling distribution. temperature 3.5 is far outside the usable range (Gemma's recommended value is 1.0) and makes low-probability nonsense and stop tokens likely to be sampled, matching the broken, non-running code. The repeat_penalty of 1.4 also hurts code, which relies on repeated structure, but the dominant, decisive setting is the temperature; the failure began exactly when the user raised the sampling to \\\"explore\\\". Lowering temperature to ~1.0 (and ideally also relaxing repeat_penalty toward 1.0-1.1) restores coherent, runnable code.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:48:06.290228+00:00"
+}

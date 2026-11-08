@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:38:36.964674+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 20.13,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens\", \"value\": 256},\n  \"rationale\": \"The script calls model.generate() with no max_new_tokens, so transformers falls back to its default of 20 new tokens. The printed reply is exactly ~20 tokens long and ends mid-sentence at 'The', which is truncation at the token budget, not an EOS stop (the configured eos ids 151645/151643 are correct for this model and would have ended after a completed turn). The run-to-run wording changes come from do_sample=true in generation_config.json and are expected, not a fault. Passing max_new_tokens=256 (or higher) to generate() lets the model finish the answer.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.41
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.41 • Time: 15s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens\", \"value\": 256},\n  \"rationale\": \"The script calls model.generate() with no max_new_tokens, so transformers falls back to its default of 20 new tokens. The printed reply is exactly ~20 tokens long and ends mid-sentence at 'The', which is truncation at the token budget, not an EOS stop (the configured eos ids 151645/151643 are correct for this model and would have ended after a completed turn). The run-to-run wording changes come from do_sample=true in generation_config.json and are expected, not a fault. Passing max_new_tokens=256 (or higher) to generate() lets the model finish the answer.\"\n}",
+  "finished": "2026-11-08T08:38:57.130930+00:00"
+}

@@ -1,0 +1,41 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:39:07.520545+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.96,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The request sets temperature 3.5, which flattens the token distribution so severely that even top_k 64 / min_p 0.05 cannot keep sampling coherent; the output degrades from valid code into rambling comments and then emits EOS at 141 tokens (finish_reason 'stop', well under the 350 budget), exactly the signature of high-temperature sampling rather than truncation or context issues. Prompt was only 27 tokens, so no truncation, and the template rendered fine (model produced a code block in the right format). The repeat_penalty of 1.4 aggravates the damage but is secondary; at a sane temperature this 2B instruct model handles a multiplication table trivially. Lower temperature to ~0.7 (or near 0.2 for code) and optionally drop repeat_penalty toward 1.0.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The request sets temperature 3.5, which flattens the token distribution so severely that even top_k 64 / min_p 0.05 cannot keep sampling coherent; the output degrades from valid code into rambling comments and then emits EOS at 141 tokens (finish_reason 'stop', well under the 350 budget), exactly the signature of high-temperature sampling rather than truncation or context issues. Prompt was only 27 tokens, so no truncation, and the template rendered fine (model produced a code block in the right format). The repeat_penalty of 1.4 aggravates the damage but is secondary; at a sane temperature this 2B instruct model handles a multiplication table trivially. Lower temperature to ~0.7 (or near 0.2 for code) and optionally drop repeat_penalty toward 1.0.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:39:43.522444+00:00"
+}

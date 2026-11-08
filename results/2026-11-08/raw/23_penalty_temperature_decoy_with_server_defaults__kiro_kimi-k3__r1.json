@@ -1,0 +1,41 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:37:04.228613+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 32.38,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the server default of 1.0, which flattens the token distribution enough that low-probability nonsense tokens get sampled even on a trivial enumeration task. The output shows the classic signature: it starts on-task ('Here are all of these:') then derails into incoherent code fragments and self-corrections within 64 tokens, while the prompt was processed normally and the model stopped cleanly on its own EOS. Max_tokens of 200 was not hit, the template rendered fine, and there is no evidence of file, runtime, or quantisation damage. Returning temperature to 1.0 (or lower for deterministic tasks) restores normal output; the repeat_penalty of 1.5 should also be reconsidered, but temperature alone explains the failure.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the server default of 1.0, which flattens the token distribution enough that low-probability nonsense tokens get sampled even on a trivial enumeration task. The output shows the classic signature: it starts on-task ('Here are all of these:') then derails into incoherent code fragments and self-corrections within 64 tokens, while the prompt was processed normally and the model stopped cleanly on its own EOS. Max_tokens of 200 was not hit, the template rendered fine, and there is no evidence of file, runtime, or quantisation damage. Returning temperature to 1.0 (or lower for deterministic tasks) restores normal output; the repeat_penalty of 1.5 should also be reconsidered, but temperature alone explains the failure.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:37:36.640864+00:00"
+}

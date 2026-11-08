@@ -1,0 +1,40 @@
+{
+  "case_id": "01_token_salad",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:48:03.905602+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.0,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature 2.5 with all truncation disabled (top_k 0, top_p 1.0, min_p 0), so sampling draws from the entire flattened distribution over the full multilingual vocabulary. That produces exactly the observed artifact: random tokens across a dozen scripts, rare tokens like <unused3942>, and no semantic relation to the prompt. The GGUF file, template, and runtime show no signs of failure: prompt processing is normal (19 tokens, 14 cached), generation speed is healthy, and the model streams fluently for 200 tokens, which rules out file corruption and quant damage that would degrade coherence rather than emit token-soup. Setting temperature to the model's recommended 1.0 (or lower) restores coherent output.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature 2.5 with all truncation disabled (top_k 0, top_p 1.0, min_p 0), so sampling draws from the entire flattened distribution over the full multilingual vocabulary. That produces exactly the observed artifact: random tokens across a dozen scripts, rare tokens like <unused3942>, and no semantic relation to the prompt. The GGUF file, template, and runtime show no signs of failure: prompt processing is normal (19 tokens, 14 cached), generation speed is healthy, and the model streams fluently for 200 tokens, which rules out file corruption and quant damage that would degrade coherence rather than emit token-soup. Setting temperature to the model's recommended 1.0 (or lower) restores coherent output.\"\n}",
+  "finished": "2026-11-08T08:48:38.939866+00:00"
+}

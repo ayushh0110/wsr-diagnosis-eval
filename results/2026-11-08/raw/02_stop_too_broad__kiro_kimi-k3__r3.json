@@ -1,0 +1,40 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:49:51.543489+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 30.07,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\"action\": \"change_stop\", \"target\": \"stop\", \"value\": \"remove \\\"\\\\n\\\" from the stop array\"},\n  \"rationale\": \"The request includes \\\"stop\\\": [\\\"\\\\n\\\"], so generation halts at the first newline, which occurs after the first line of the poem. The response shows exactly 10 completion tokens, one line of text, and finish_reason \\\"stop\\\", confirming a stop string matched. Removing the \\\"\\\\n\\\" stop string will let the model emit all four lines up to max_tokens.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\"action\": \"change_stop\", \"target\": \"stop\", \"value\": \"remove \\\"\\\\n\\\" from the stop array\"},\n  \"rationale\": \"The request includes \\\"stop\\\": [\\\"\\\\n\\\"], so generation halts at the first newline, which occurs after the first line of the poem. The response shows exactly 10 completion tokens, one line of text, and finish_reason \\\"stop\\\", confirming a stop string matched. Removing the \\\"\\\\n\\\" stop string will let the model emit all four lines up to max_tokens.\"\n}\n```",
+  "finished": "2026-11-08T08:50:21.660643+00:00"
+}

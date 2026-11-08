@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:10:51.340364+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 40.71,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens in model.generate()\", \"value\": \"256\"},\n  \"rationale\": \"The script calls model.generate(**inputs) without a length argument, and generation_config.json sets no max_new_tokens or max_length, so the library default of 20 new tokens applies. The printed text ends mid-sentence ('... efficiently. The') after exactly 20 tokens, which matches that cap and not an EOS token, since an EOS would end the reply at a sentence boundary. The varying wording is expected because the config sets do_sample=true with temperature 0.7, so it is not a second fault. The 0.5B model size is not the cause.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens in model.generate()\", \"value\": \"256\"},\n  \"rationale\": \"The script calls model.generate(**inputs) without a length argument, and generation_config.json sets no max_new_tokens or max_length, so the library default of 20 new tokens applies. The printed text ends mid-sentence ('... efficiently. The') after exactly 20 tokens, which matches that cap and not an EOS token, since an EOS would end the reply at a sentence boundary. The varying wording is expected because the config sets do_sample=true with temperature 0.7, so it is not a second fault. The 0.5B model size is not the cause.\"\n}",
+  "finished": "2026-11-08T09:11:32.086910+00:00"
+}

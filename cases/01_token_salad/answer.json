@@ -1,0 +1,46 @@
+{
+  "case_id": "01_token_salad",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "TEMPERATURE_HIGH",
+  "acceptable_causes": [
+    "TEMPERATURE_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "temp",
+      "value": {
+        "max": 1.2
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "temp"
+    }
+  ],
+  "golden_fix": {
+    "action": "set_param",
+    "target": "temperature",
+    "value": 0.7
+  },
+  "distractors": {
+    "FILE_CORRUPT": "the same file and server give a normal paragraph when only temperature changes to 0.7 (2/2)",
+    "LOW_BIT_QUANT_DAMAGE": "same Q4_0 file, normal output at temperature 0.7"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm: temperature 2.5 with top_k 0, top_p 1.0, min_p 0 (seed 3): token salad 2/2. Only temperature changed to 0.7 (same seed, same samplers off): normal paragraph 2/2. Unseeded runs of the failing request (evidence/unseeded_runs): 3/3 failed (2 HTTP 500 parse errors, 1 token salad); temperature 0.7 normal 3/3.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/failing_r2.json",
+      "evidence/temp_07_r1.json",
+      "evidence/temp_07_r2.json",
+      "evidence/unseeded_runs/"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

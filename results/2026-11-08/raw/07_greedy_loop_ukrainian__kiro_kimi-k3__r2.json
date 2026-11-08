@@ -1,0 +1,40 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:58:33.223560+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.86,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\"action\": \"use_sampling\", \"target\": \"do_sample\", \"value\": true},\n  \"rationale\": \"The output is a verbatim echo loop cut off only by max_new_tokens, the classic signature of greedy decoding falling into a repetition attractor. The request forced do_sample=false with repetition_penalty=1.0, overriding the model's own shipped generation_config.json, which specifies sampled decoding (do_sample=true, temperature=0.7, top_p=0.8, top_k=20) plus repetition_penalty=1.1. The model clearly produces fluent Ukrainian phrases, so this is not a weight-level language gap and fine-tuning is not indicated. Restoring the model's recommended sampling settings (or at minimum re-enabling sampling and the 1.1 repetition penalty) should break the loop.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\"action\": \"use_sampling\", \"target\": \"do_sample\", \"value\": true},\n  \"rationale\": \"The output is a verbatim echo loop cut off only by max_new_tokens, the classic signature of greedy decoding falling into a repetition attractor. The request forced do_sample=false with repetition_penalty=1.0, overriding the model's own shipped generation_config.json, which specifies sampled decoding (do_sample=true, temperature=0.7, top_p=0.8, top_k=20) plus repetition_penalty=1.1. The model clearly produces fluent Ukrainian phrases, so this is not a weight-level language gap and fine-tuning is not indicated. Restoring the model's recommended sampling settings (or at minimum re-enabling sampling and the 1.1 repetition penalty) should break the loop.\"\n}",
+  "finished": "2026-11-08T08:59:08.117711+00:00"
+}

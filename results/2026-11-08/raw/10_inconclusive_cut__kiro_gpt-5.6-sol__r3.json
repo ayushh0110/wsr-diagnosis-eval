@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:03:05.702398+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.95,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Repeat the exact production prompt and chat template with max_new_tokens=512, recording token IDs; compare greedy decoding against do_sample=true with temperature=0.7 and top_p=0.9.\",\n    \"value\": null\n  },\n  \"rationale\": \"The captured output contains no repeated paragraph; it ends mid-sentence because generation reached the 64-token limit. Although greedy decoding can cause loops, this sample does not demonstrate one or distinguish decoding behavior from production-only request, template, or runtime differences.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Repeat the exact production prompt and chat template with max_new_tokens=512, recording token IDs; compare greedy decoding against do_sample=true with temperature=0.7 and top_p=0.9.\",\n    \"value\": null\n  },\n  \"rationale\": \"The captured output contains no repeated paragraph; it ends mid-sentence because generation reached the 64-token limit. Although greedy decoding can cause loops, this sample does not demonstrate one or distinguish decoding behavior from production-only request, template, or runtime differences.\"\n}",
+  "finished": "2026-11-08T09:03:44.693375+00:00"
+}

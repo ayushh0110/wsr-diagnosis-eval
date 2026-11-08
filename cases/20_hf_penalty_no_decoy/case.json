@@ -1,0 +1,25 @@
+{
+  "id": "20_hf_penalty_no_decoy",
+  "title": "Twin of case 19: the same script without temperature=3.5 (and the same output)",
+  "tier": "decoy_twin",
+  "user_report": "I changed my generation settings to get more creative output, and since then even trivial tasks fail. I asked for the numbers 1 to 30, one per line, and it skips a whole chunk with '...' and then rambles. Here's my whole script and what it printed. What do I need to change?",
+  "environment": {
+    "runtime": "transformers 5.8.0",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "precision": "fp32",
+    "hardware": "CPU"
+  },
+  "artifacts": [
+    {
+      "name": "The user's script",
+      "path": "user_script.py",
+      "lang": "python"
+    },
+    {
+      "name": "What it printed",
+      "path": "output.txt",
+      "lang": "text"
+    }
+  ],
+  "experiments_log": null
+}

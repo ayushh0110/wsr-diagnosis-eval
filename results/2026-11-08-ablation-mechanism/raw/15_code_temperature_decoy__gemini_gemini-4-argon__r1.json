@@ -1,0 +1,53 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:51:13.180096+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama-server's default sampler chain, penalties are applied first and min_p (default 0.05) filters the vocabulary before temperature (3.5) is applied, which is why the output contains valid English words rather than high-temperature gibberish. However, repeat_penalty: 1.4 heavily penalizes any token that has already appeared—including indentation spaces, loop keywords (for, in, range), bounds (1, 6), and the function name—making the model unable to write the inner loop or call the function and forcing it to rambling comments before closing the code block early.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138807,
+        "id": "MWLwati2D5ay694P0IaFsAs",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 201,
+          "prompt_tokens": 2537,
+          "total_tokens": 3873
+        }
+      },
+      "latency_s": 134.16
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama-server's default sampler chain, penalties are applied first and min_p (default 0.05) filters the vocabulary before temperature (3.5) is applied, which is why the output contains valid English words rather than high-temperature gibberish. However, repeat_penalty: 1.4 heavily penalizes any token that has already appeared—including indentation spaces, loop keywords (for, in, range), bounds (1, 6), and the function name—making the model unable to write the inner loop or call the function and forcing it to rambling comments before closing the code block early.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:53:27.341636+00:00"
+}

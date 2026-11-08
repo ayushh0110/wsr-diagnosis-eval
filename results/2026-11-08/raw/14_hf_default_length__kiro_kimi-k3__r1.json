@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:11:27.290267+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.96,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens\", \"value\": \"256\"},\n  \"rationale\": \"The script calls model.generate() with no max_new_tokens, so transformers falls back to its default cap of 20 tokens; the printed output is exactly ~20 tokens and cuts off mid-sentence ('...efficiently. The') with no EOS reached, which is a length-limit stop, not an EOS or template problem. The changing wording between runs is fully explained by do_sample=true with temperature 0.7 in generation_config.json, which is normal sampling behavior, not a defect. Passing max_new_tokens=256 (or similar) lets the model finish the three-sentence answer.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\"action\": \"raise_max_tokens\", \"target\": \"max_new_tokens\", \"value\": \"256\"},\n  \"rationale\": \"The script calls model.generate() with no max_new_tokens, so transformers falls back to its default cap of 20 tokens; the printed output is exactly ~20 tokens and cuts off mid-sentence ('...efficiently. The') with no EOS reached, which is a length-limit stop, not an EOS or template problem. The changing wording between runs is fully explained by do_sample=true with temperature 0.7 in generation_config.json, which is normal sampling behavior, not a defect. Passing max_new_tokens=256 (or similar) lets the model finish the three-sentence answer.\"\n}",
+  "finished": "2026-11-08T09:12:04.281888+00:00"
+}

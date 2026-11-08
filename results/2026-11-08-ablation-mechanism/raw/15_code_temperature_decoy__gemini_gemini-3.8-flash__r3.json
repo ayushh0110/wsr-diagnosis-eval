@@ -1,0 +1,53 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:52:59.975812+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.2\"\n  },\n  \"rationale\": \"The request specifies a temperature of 3.5, which severely flattens token logits and forces the model to sample improbable, erratic tokens. As a result, the model produces disjointed comments and halts generation without completing the script. Lowering the temperature to a standard value such as 0.2 restores coherent, deterministic code generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138789,
+        "id": "nGLwavf_A7uy694P8fX-iA4",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 139,
+          "prompt_tokens": 2539,
+          "total_tokens": 3502
+        }
+      },
+      "latency_s": 9.82
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.2\"\n  },\n  \"rationale\": \"The request specifies a temperature of 3.5, which severely flattens token logits and forces the model to sample improbable, erratic tokens. As a result, the model produces disjointed comments and halts generation without completing the script. Lowering the temperature to a standard value such as 0.2 restores coherent, deterministic code generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:53:09.793847+00:00"
+}

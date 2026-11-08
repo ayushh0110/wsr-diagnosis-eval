@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 1,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a Python function that prints a 5x5 multiplication table. Only the code."
+      }
+    ],
+    "temperature": 0.7,
+    "presence_penalty": 1.5,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\n\ndef print_multiplication_table():\n    \"\"\"Prints a complete and formatted 1 to n (where n=6 for this example) x k range.\"\"\"\n    for i in range(7):  # Rows: from row number up to +5, so we need at least numbers that go into the table. Let's aim high enough based on common interpretation of \"a multiplication table\". A 1-to-[N] by a sequence is usually implied if not specified for all sides in one call\n        row_output = \"\"\n\n    for j from range(6):  # Columns: up to +5, so we need at least numbers that go into the columns. Let's aim high enough based on common interpretation of \"a multiplication table\". A 1-to-[N] by a sequence is usually implied if not specified for all sides in one call\n        row_output += str(i * j) + \"\\t\"\n\n    print(\"\\n--- Multiplication Table (6x5 example, showing products up to row/col index i*j where max indices are 1-based or based on the loop ranges above)\") # Note: The loops generate a product matrix.\n```"
+        }
+      }
+    ],
+    "created": 1794126845,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 254,
+      "prompt_tokens": 27,
+      "total_tokens": 281,
+      "prompt_tokens_details": {
+        "cached_tokens": 1
+      }
+    },
+    "id": "chatcmpl-ehyjYLLnnBngvLBPzEujC1DXwACRBeRC",
+    "timings": {
+      "cache_n": 1,
+      "prompt_n": 26,
+      "prompt_ms": 416.963,
+      "prompt_per_token_ms": 16.03703846153846,
+      "prompt_per_second": 62.35565265982832,
+      "predicted_n": 254,
+      "predicted_ms": 4323.044,
+      "predicted_per_token_ms": 17.019858267716536,
+      "predicted_per_second": 58.7548958557905
+    }
+  },
+  "latency_s": 4.87,
+  "detector_codes": []
+}

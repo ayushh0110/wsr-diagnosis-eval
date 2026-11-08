@@ -1,0 +1,52 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:24.609797+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test resetting temperature (e.g. to 0.7) and repeat_penalty (e.g. to 1.0) individually\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets two extreme sampling parameters at once: `temperature: 3.5` and `repeat_penalty: 1.5`. A temperature of 3.5 flattens the logits enough to sample incoherent tokens, while a repeat penalty of 1.5 heavily penalizes reusing newlines and digits needed for a numbered list. Because both were changed together and only a single response is shown, the artifacts do not separate TEMPERATURE_HIGH from REPEAT_PENALTY_HIGH without resetting them one at a time.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TiZeOxzp9s5xDaL4/W5I33Eok3lrhQg9rA5YH3yrQt8wenjFL+/IU9rjp/6DAyY2P0oEdKlzTLX5LNisBJ3z1WK0clqI9YtwfUBIj+ksyRXeGnb1MQlt9wJZiHgpF"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133055,
+        "id": "NEzwarDiJemo3LUP4deqWQ",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 206,
+          "prompt_tokens": 2390,
+          "total_tokens": 2596
+        }
+      },
+      "latency_s": 11.13
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test resetting temperature (e.g. to 0.7) and repeat_penalty (e.g. to 1.0) individually\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets two extreme sampling parameters at once: `temperature: 3.5` and `repeat_penalty: 1.5`. A temperature of 3.5 flattens the logits enough to sample incoherent tokens, while a repeat penalty of 1.5 heavily penalizes reusing newlines and digits needed for a numbered list. Because both were changed together and only a single response is shown, the artifacts do not separate TEMPERATURE_HIGH from REPEAT_PENALTY_HIGH without resetting them one at a time.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:17:35.735508+00:00"
+}

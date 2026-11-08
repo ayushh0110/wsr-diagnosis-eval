@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:03:29.474442+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.25,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Rerun the same prompt with max_new_tokens=512 under greedy decoding (current settings) and check whether a paragraph or sentence repeats. Then rerun with do_sample=true, temperature=0.7, top_p=0.8, repetition_penalty=1.05 and compare. Also capture one actual looping production output with its generation settings.\",\n    \"value\": null\n  },\n  \"rationale\": \"The reply shows no repetition. It is a single coherent paragraph that stopped at max_new_tokens (64) in the middle of a sentence, so the reported failure was not reproduced. Greedy decoding with repetition_penalty 1.0 and no_repeat_ngram_size 0 is a possible risk for looping, but a 64-token output is too short to show a loop, and the 64-token cap hides the part of the answer (the 20 selling points) where a loop would appear. The artifacts cannot separate GREEDY_DECODING_LOOP from differences in the production settings.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Rerun the same prompt with max_new_tokens=512 under greedy decoding (current settings) and check whether a paragraph or sentence repeats. Then rerun with do_sample=true, temperature=0.7, top_p=0.8, repetition_penalty=1.05 and compare. Also capture one actual looping production output with its generation settings.\",\n    \"value\": null\n  },\n  \"rationale\": \"The reply shows no repetition. It is a single coherent paragraph that stopped at max_new_tokens (64) in the middle of a sentence, so the reported failure was not reproduced. Greedy decoding with repetition_penalty 1.0 and no_repeat_ngram_size 0 is a possible risk for looping, but a 64-token output is too short to show a loop, and the 64-token cap hides the part of the answer (the 20 selling points) where a loop would appear. The artifacts cannot separate GREEDY_DECODING_LOOP from differences in the production settings.\"\n}",
+  "finished": "2026-11-08T09:04:06.760170+00:00"
+}

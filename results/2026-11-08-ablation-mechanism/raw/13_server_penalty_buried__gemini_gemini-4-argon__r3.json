@@ -1,0 +1,56 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:50:37.870720+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request also sets `\\\"presence_penalty\\\": 1.5`, which aggressively penalises reusing any token that has recently appeared. In code generation, this forces the model to avoid repeating essential tokens from the prompt and earlier lines—substituting `6` and `7` to avoid repeating `5`, and writing invalid syntax like `for j from range(6):` to avoid reusing the keyword `in`. Resetting `repeat_penalty` to `1.0` (and removing `presence_penalty`) restores normal syntax and variable reuse.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EoAKCv0JAWkUfRP4xsrpKiSr2MmmHAT3636tZwhg2cRZIDhM3Z7875MyvCUXk7/mYn/qlSdwho/5H892Qvb1PrjrOclYJZIQHLBsnwEbNbEWA6uk1OTqzdYhBB112J8dbFd2FTmm+x4CHePlMYX3Xoy+Cr4NIo9Pz6A4YRnHoGDzySDzzdDBe3WPLEjOpufW4F8CBCToc+Gw7zYfCAFtTEGP2vlpI4NpgM76kfmv2J/MMGNF5NJY87qmY7zfbGCapdMwULOCldIZe6okG8uQeU6JMCjz2oPOBDvZIBqCZHxknjwunkPGsKQlqREyxW9Z+JF7bxkeld2WkOJk4KnPn32RybKMwZyBcKgblcTGUzov2RgBi2gBQMz8qzWxpKYEEW8iLr2tMIeTJA2Ggxqum03EXqOx6DVXR3XqjKZABiVKKDWLqqyd/Pb1JdzvG93CVh65Hkh+wcSH8JG5J0tmRx8AbEpT9JTTSF+WH2sX3RaXpzJbnGMrP4z1ELZnm4ivM56SD6JXqNPuVsxNsqpBhC8AkMqgMDE6C5prfnnl+ga9/hRK6CwPRGxnpA0ruBnjzfgwoRCoRcBN0NtkRzBoYmHjrGeSBushse8NNdcqAmUzdYcxoYuJAf0TjpFOMLvDkFloSwTv5CUaUjELgN6qew8oCWWdNKqYmcTWRS6XEFw834cII0VdrS26hVBkFyxdhp6FrOWOqhcQ99Xe9GvaXDldWeE36ADXFB264W87FuGsolZyEFSot9WGqEFujndIKsgmqmuLq4a3ymCe4YqtMD/0RuM6n7AfP81q7Xgip734e8jFugDSdDUw8GXhQWnnMm/1fW8fP3dtPWJKWuSNj03vWI8nkuwAtjqWtFdLAJ8HicXAeqIccfXR+jMX8aLSt1/HpF8iB01ItuHXZ+f5iQtyIAw/WfNLNRhssXXsZpgqPYfhTUkzx/+PZK4hBzV/X8jhVjPRzw8XV19ht13idyWYx/UXiNAfDtvN5V2RJpVcfre9aYE82FXYlRI+nsSTTD0QNM5jMP194J2PspxQXhUsRoDrNqKYhD20o5qEN7tLiOtnrKEBaDGYVOcApFiAZmmZL8DAF1WkFpnnJDqA2lDtWQZCLkevkYDUSMvU4jA8HZye9Om0P8DKkAzBBSMoG8VNJ9XZn4oQYX8v1LfXTPyyzOMPFRlTfxfNw5cc3GihrVsCy0/TL6QccWpe9Ov0lCG77IFXqlJxvILYX9l4YsAAik+VouuCGnVkl0AFa+KZQRVxfjHkJYynAFOuUF6xdv9yaWJ5WcuYR3ml9+06seBqKLEGlDq2zlk4CBiyus6VCYSYQupl5tvL/paLE/a4xa5KtFvQ/o7aflwKhHqkwicWDfaNjnDcIJLXgCCyUjUGva30RYhYkzLQkZaImhO+dHC1PwnCit5TDSMxdSUy0KHzPT7LV6vhu0hYYFXllZR6Mv28pVjfBE0TicNOHZr/IKhVS4E6jEkWM5uehHn0AfaR6pP3iSO7INVfVyV9iH8LSynR/w+UhUiqJumiqAxnA9upqI2mRiiw8p0T1rXdHHsG+mnHnFsnIunyPEH24tSXtN1GsZfhtj9nIpH/d3+pWdIGGABP2iNdFlypZvTSyKQVxB/vuS+6d0ch0jEpwp+1WCeCSTZokc6LJH/7zgoMp8cIVxMamqBK+9zyU5zYHbA6ZsweLjaiCAi3YuiMY/kL3pQ="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138645,
+        "id": "DWLwatbFOaDSg8UP-dPy6Ao",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 201,
+          "prompt_tokens": 2708,
+          "prompt_tokens_details": {
+            "cached_tokens": 654
+          },
+          "total_tokens": 3259
+        }
+      },
+      "latency_s": 8.14
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request also sets `\\\"presence_penalty\\\": 1.5`, which aggressively penalises reusing any token that has recently appeared. In code generation, this forces the model to avoid repeating essential tokens from the prompt and earlier lines—substituting `6` and `7` to avoid repeating `5`, and writing invalid syntax like `for j from range(6):` to avoid reusing the keyword `in`. Resetting `repeat_penalty` to `1.0` (and removing `presence_penalty`) restores normal syntax and variable reuse.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:50:46.006818+00:00"
+}

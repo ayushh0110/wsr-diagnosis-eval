@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:38:08.347216+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 14.54,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"change_runtime_flag\",\"target\":\"--repeat-penalty\",\"value\":\"1.0\"},\"rationale\":\"The server was launched with --repeat-penalty 1.5, and the request does not override it. The output has the typical signs of a strong repetition penalty. It writes invalid syntax (for j from range(6) instead of for j in range(6)), the loop body is not indented, and it never prints the table. It also drifts into long comments about the wrong thing (6x5 and 7 rows instead of 5x5) instead of reusing ordinary tokens like in, for and print. The finish_reason is stop with 254 of 350 tokens used, so there is no truncation. The prompt is only 27 tokens, so context is not the problem. The request's presence_penalty of 1.5 adds to the effect, so drop it to 0 as well.\"}"
+            }
+          }
+        ],
+        "kiro_credits": 0.17
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.17 • Time: 8s"
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"change_runtime_flag\",\"target\":\"--repeat-penalty\",\"value\":\"1.0\"},\"rationale\":\"The server was launched with --repeat-penalty 1.5, and the request does not override it. The output has the typical signs of a strong repetition penalty. It writes invalid syntax (for j from range(6) instead of for j in range(6)), the loop body is not indented, and it never prints the table. It also drifts into long comments about the wrong thing (6x5 and 7 rows instead of 5x5) instead of reusing ordinary tokens like in, for and print. The finish_reason is stop with 254 of 350 tokens used, so there is no truncation. The prompt is only 27 tokens, so context is not the problem. The request's presence_penalty of 1.5 adds to the effect, so drop it to 0 as well.\"}",
+  "finished": "2026-11-08T08:38:22.924667+00:00"
+}

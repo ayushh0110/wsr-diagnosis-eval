@@ -1,0 +1,52 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:10:50.939450+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets repeat_penalty to 2.0, which is excessively high for natural language generation. In Hindi, essential grammatical particles and auxiliary verbs (such as 'हैं' and case markers) must recur frequently; heavily penalizing them forces the model to divert into rare alternate representations, such as equivalent Hindustani tokens written in the Perso-Arabic/Urdu script (e.g. 'ہیں', 'وں') and garbled phrasing. Removing or reducing the repetition penalty restores normal Hindi token selection.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132879,
+        "id": "q0rwarZJqOPX-g_AtYSpBQ",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 178,
+          "prompt_tokens": 2762,
+          "total_tokens": 3813
+        }
+      },
+      "latency_s": 229.02
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The request sets repeat_penalty to 2.0, which is excessively high for natural language generation. In Hindi, essential grammatical particles and auxiliary verbs (such as 'हैं' and case markers) must recur frequently; heavily penalizing them forces the model to divert into rare alternate representations, such as equivalent Hindustani tokens written in the Perso-Arabic/Urdu script (e.g. 'ہیں', 'وں') and garbled phrasing. Removing or reducing the repetition penalty restores normal Hindi token selection.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:14:39.954517+00:00"
+}

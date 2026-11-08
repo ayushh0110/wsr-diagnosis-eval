@@ -1,0 +1,41 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:37:30.990949+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 42.22,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty 1.4 over a 64-token window (server default is 1.0), and penalties run first in the sampler chain. Code depends on reusing identifiers, indentation and keywords, and the reply shows the model avoiding exactly that: it creates `row` and never uses it, never calls print, and drifts into long fresh-worded comments before closing the fence at 141 tokens. Temperature 3.5 is less likely the cause because the chain applies min_p 0.05, top_k 64 and top_p 0.95 before temperature, so only plausible tokens are left to flatten, and the output contains no nonsense tokens. If you want more variety, keep repeat_penalty at 1.0 and raise temperature moderately (about 1.0 to 1.5), since min_p will still filter out junk tokens.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty 1.4 over a 64-token window (server default is 1.0), and penalties run first in the sampler chain. Code depends on reusing identifiers, indentation and keywords, and the reply shows the model avoiding exactly that: it creates `row` and never uses it, never calls print, and drifts into long fresh-worded comments before closing the fence at 141 tokens. Temperature 3.5 is less likely the cause because the chain applies min_p 0.05, top_k 64 and top_p 0.95 before temperature, so only plausible tokens are left to flatten, and the output contains no nonsense tokens. If you want more variety, keep repeat_penalty at 1.0 and raise temperature moderately (about 1.0 to 1.5), since min_p will still filter out junk tokens.\"\n}\n```",
+  "model_returned": "kiro/claude-opus-5.5",
+  "finished": "2026-11-08T11:38:13.251120+00:00"
+}

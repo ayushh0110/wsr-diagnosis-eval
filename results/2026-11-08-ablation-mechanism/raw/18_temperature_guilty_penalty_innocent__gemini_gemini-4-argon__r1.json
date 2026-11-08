@@ -1,0 +1,53 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "6c8ca662ce1dabf2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:53:05.176106+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.8\n  },\n  \"rationale\": \"The request sets `temperature` to 3.5 while disabling all truncation samplers (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). Because temperature scaling is applied across the entire unfiltered multilingual vocabulary, a temperature of 3.5 flattens the probability distribution so heavily that low-probability tokens across dozens of scripts are sampled right from the first token. Lowering `temperature` to a normal range (e.g., 0.7–0.8) restores coherent token selection.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EugFCuUFAWkUfRNyMG/e1FATWBqN+yoG3jHrrwQx70gE46lD40ReCHd4InUq+lqUWDzNh/bnDMcj4CatxUGc9/7YCKzyKZy4teViqXY+yhRBixTsElAmTdPSJDSZzn93SQJ1ohvXoQSNJA8lNMwVgKOMC/hhr8ZvY5aYm/zsAntBjic0fyVgdSOH4PMiwYiM6kGhisDT+RBNR/LnwJqbGUwU20ZqrQgIN6bPckwVcPiv+8GirT+A+326CoWok+BCecVpYAkjhdsH0pgMI88hPXTmey1ZA4dTCEJP/4jTz2nXR1H2OInsoMZiz1473DyhbYzVlFhL1kQBzsu1y4s4o9ByOZvBvlyGMfc0cT87C+KA7H+QVM9MjN8qJ5h/hgavIArHBZ/Dpd8e7P5XnopCFBcjEJ2NZ/AlRcjXQhlyqOwuAY03Q/jzTMk/lFWh2GzL2J3/dyEUohLES+9lQ1btYzHUxkwi1KiJcYoemYYIRF58B7DKB3IySpC26LLzRNBhdLLmhbfoYir4gGFIWae64CGuD7aOGQ2eECAtXm/YXWAg4+5IgwK7YZfGz29nNPpqnQZN8YtugwXMfAZldGPlEfERRVvEhM9U3yJWWc8QxlSbUidkF2XAuOImBNYuZUVNmzpT+hO1oRLE5NLp4Y1L3fKwO3cvLNHj4rO+9I/7QT2FBQWBLaCU3EbZp3z7VnXkFhzraYAUosjbr9k7i9Zj/uVYXz9rnZnz3FnVDHPqA8IOfhguYlt4auNtjdTkz29XVvtkdp1b9AzpHFJBg208VxiO/r8Ep8KJ83ZoVRsgUS1fsz71cyvO0jw1VlIbLL2p+lVGGO4KDya5Pwax/tAzGvH+aydtW1wHDfcd3xsp9Z06gpJmdLMV3/6CePn/fsGpoxURlO9CW8Qj7L83unAADPVqbpkxYhj3kOcR1C3M0/XvBmPFeZiPln4jMSVRQj04MaZgBKWMvFFoi3Yc3ZGcecxQi1GO926SWYr3"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138803,
+        "id": "oWLwavucHqag3LUPsN2MgQ0",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 182,
+          "prompt_tokens": 2642,
+          "total_tokens": 3019
+        }
+      },
+      "latency_s": 19.15
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.8\n  },\n  \"rationale\": \"The request sets `temperature` to 3.5 while disabling all truncation samplers (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). Because temperature scaling is applied across the entire unfiltered multilingual vocabulary, a temperature of 3.5 flattens the probability distribution so heavily that low-probability tokens across dozens of scripts are sampled right from the first token. Lowering `temperature` to a normal range (e.g., 0.7–0.8) restores coherent token selection.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:53:24.323418+00:00"
+}

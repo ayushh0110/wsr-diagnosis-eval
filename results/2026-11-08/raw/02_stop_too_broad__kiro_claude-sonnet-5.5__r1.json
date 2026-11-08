@@ -1,0 +1,40 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:49:17.808085+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 30.38,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\"action\": \"change_stop\", \"target\": \"stop (remove the \\\"\\\\n\\\" stop string from request.json)\", \"value\": null},\n  \"rationale\": \"The request sets stop to [\\\"\\\\n\\\"], and a four-line poem needs newline characters between its lines. The response has finish_reason \\\"stop\\\" after only 10 completion tokens, well under max_tokens 200, and the content is exactly one line ending in a comma. The generation ended at the first newline the model emitted, so the stop string cut the poem after line one.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\"action\": \"change_stop\", \"target\": \"stop (remove the \\\"\\\\n\\\" stop string from request.json)\", \"value\": null},\n  \"rationale\": \"The request sets stop to [\\\"\\\\n\\\"], and a four-line poem needs newline characters between its lines. The response has finish_reason \\\"stop\\\" after only 10 completion tokens, well under max_tokens 200, and the content is exactly one line ending in a comma. The generation ended at the first newline the model emitted, so the stop string cut the poem after line one.\"\n}",
+  "finished": "2026-11-08T08:49:48.224523+00:00"
+}

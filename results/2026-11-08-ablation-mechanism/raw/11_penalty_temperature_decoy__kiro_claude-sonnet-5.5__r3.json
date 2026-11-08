@@ -1,0 +1,41 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "2fb6f0dc5bd515c4",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:42:46.529494+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 40.92,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":\"1.0\"},\"rationale\":\"The task needs the same tokens over and over: a newline after every item and digits that recur across 1 to 30. llama-server applies the repetition penalty first, over the last 64 tokens (prompt included), so a value of 1.5 demotes exactly those tokens before any truncation. The output abandons the list at the start and drifts into a code fence and an apology. Temperature is not the main cause here, because llama-server applies it last, after the default top_k 40, top_p 0.95 and min_p 0.05 have already removed the unlikely tokens, so 3.5 only flattens choices among plausible candidates. Reset repeat_penalty to 1.0 (or about 1.05 for creative writing) and consider bringing temperature back to around 1.0 to 1.5.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"repeat_penalty\",\"value\":\"1.0\"},\"rationale\":\"The task needs the same tokens over and over: a newline after every item and digits that recur across 1 to 30. llama-server applies the repetition penalty first, over the last 64 tokens (prompt included), so a value of 1.5 demotes exactly those tokens before any truncation. The output abandons the list at the start and drifts into a code fence and an apology. Temperature is not the main cause here, because llama-server applies it last, after the default top_k 40, top_p 0.95 and min_p 0.05 have already removed the unlikely tokens, so 3.5 only flattens choices among plausible candidates. Reset repeat_penalty to 1.0 (or about 1.05 for creative writing) and consider bringing temperature back to around 1.0 to 1.5.\"}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:43:27.482157+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:30.016774+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 7.18,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"request\",\n \"cause\": \"IMAGE_FIELD_IGNORED\",\n \"fix\": {\"action\": \"change_request_format\", \"target\": \"messages[0].content\", \"value\": \"Send content as an array of parts: [{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"...\\\"},{\\\"type\\\":\\\"image_url\\\",\\\"image_url\\\":{\\\"url\\\":\\\"data:image/png;base64,<base64>\\\"}}]\"},\n \"rationale\": \"The request puts the image in a non-standard top-level 'images' field on the message, which llama-server's OpenAI-compatible /v1/chat/completions does not read. The usage shows prompt_tokens of 21, with only 5 newly evaluated and 16 cached. That is just the text prompt, with no image tokens from the projector, even though the mmproj is loaded in the launch command. The model's reply that no picture was provided matches what it actually received.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.09
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.09 • Time: 3s"
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n \"verdict\": \"request\",\n \"cause\": \"IMAGE_FIELD_IGNORED\",\n \"fix\": {\"action\": \"change_request_format\", \"target\": \"messages[0].content\", \"value\": \"Send content as an array of parts: [{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"...\\\"},{\\\"type\\\":\\\"image_url\\\",\\\"image_url\\\":{\\\"url\\\":\\\"data:image/png;base64,<base64>\\\"}}]\"},\n \"rationale\": \"The request puts the image in a non-standard top-level 'images' field on the message, which llama-server's OpenAI-compatible /v1/chat/completions does not read. The usage shows prompt_tokens of 21, with only 5 newly evaluated and 16 cached. That is just the text prompt, with no image tokens from the projector, even though the mmproj is loaded in the launch command. The model's reply that no picture was provided matches what it actually received.\"\n}",
+  "finished": "2026-11-08T07:59:37.228870+00:00"
+}

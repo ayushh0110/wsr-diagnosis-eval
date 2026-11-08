@@ -1,0 +1,52 @@
+{
+  "case_id": "19_hf_greedy_temperature_ignored",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "c7a5b86f73f6990f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:40.459478+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In transformers, `do_sample=False` uses greedy decoding and ignores `temperature=3.5`, leaving `repetition_penalty=1.3` as the only active decoding modifier. Because Qwen tokenizes digits individually, once digits `1` through `9`, `0`, and newlines have been emitted in `1` through `10`, `repetition_penalty=1.3` heavily penalizes reusing the token `1` (needed to start `11`–`18`) and newline tokens. This forces the model to add trailing spaces (`1 \\\\n`), skip `11`–`18` with `...`, and ramble instead of terminating cleanly.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Er4KCrsKAWkUfRPp8fNbDh2MM4YpQnxKfkw2TTacPRrimNRnG2AtcblBWdsZR3IQ5BgB2aBbLwYxt0qqsM1yNsY0sAihlOIWY7gld6MMlgSjBnIOIQFThUYkeGZjrcqsBf+4L3Vnj/5xopN6+UZSG+TAfxXQBiiaZi7plMBiGUjayq3Vyyr+5vOLORnRx2BX262VTtlxal78vEKIxs0+wD9Og3gaRwLSFqj5/X8fHrEUpOS9yYi/TmSBmGbD12vlq/NDowdEiJ5cdWf9PquF1XI4q4NHQ340KNhiA9eF1XY6IUf9e2x9mkH9cKUyvzt/pYvVUkGaYgTDTHEPZF2j8js7eGuNWAD719oolUs2n/p1Hbh7wclj0IMz216Q7lrd5M/0owDFeb2VQBItb3lvgAXsb6wYRittLdUY6rIx0+d4YpCrElpVk7b0ZQCQyXNeKJyukieAfR9E0wW0129f0wKqH1woP27Qp4YQ6Zxu+SYIPvfhM7o9j8t9VfaDeYk8WypFHYhJEs0o2wGhgFgj3dZzxjgJiHcEnaPgn4A9TT7M+q3bZfPGtLGiM172szc3VYoLzPmAou0+8P/H8nU2KQodZPvQODVNMRrGfcqnG/ofgEhP2RaBKDlczDf6DzAnwDADh81LGCB/cWWszwXlMZBGU5RMgwSW4+RelOyUz141mirbO5IomKlI8j212Q+bfTE6ia9sT8RIb7huPA4N/Ovf75KS7tvD0u+AuzUITnRYZjGbRKvADnkWrd6fl4z9ACEE+aMUOONsO5LQdRQyUhTeNgWIpLQzvxS/9xniqZXI2CZWpFTg5ZI8fF5Iq1dUOZIgCfqrQg92cLho39lEHcS2ygokONY9TdMh9W9wWYMLjyl0jXLuqOkpDbMsFBbEz6nqF5bGgSW0eoF1RYsxMPkgM21DNDsfRoIVD/WbnoIR3Zk2OxGFQGOEhL5lncWpkNWVad+aWCimLApwhJPMVDBHQaZw+7qJR/iOwjZxTcr5SoKLhWxiS6WfrZCeZRaqQWGoVaDy6b/UXAjVulwKwbZbprNsg8Il28uX1GDfCWsfulwoRla/cKC4xur9GhAfeBK9DJMSPTpHGFmb/u3hAQEdA1TFXXtLuAxGPMdUgd96r3WI/x+Obd49c2MIviHf2T8J65zCH7tt2Mfu1B36FAmyg4wUQUj1Nn6+E1lvwojzuG9Uua08c5oAYE1wn5h9aNH8IhrTks2xA8h2Vf70FTHgT7aT+ESL8gDA8PP7VOzsU2XXwe92CCyWfXirTSXOpxtHkMns/MIcG9z198xsTVhv1Vv4sArLXIEx0QvQEELXZMTenOGcW6d/P7u2HFzM+INF9TRlDXnW49eBkXJDc936B3Y3npdpYYATLD64l4io+Le0+hohhOEV+SLU8leMZWXg32QQ9rbszJb+iLDiJQ6v/GlFqkpzRS572hG0NWfxWie2Y8H5vRDXO3hYiDdni/JPU/2mCGojtiD/8va5EVDB8b1Atcv60twlX5ljnhFhgUfL0UUpX9fP8W+zl3Itbcmrcikg34U4UuXYxRqXXGdJJedPy5LJHbV2TUwnEeQdRUtVxsGIEDTNxE5+6Fq1YqsDXBC35Z/OMSokkMIUC+COi2oM38aW4UUB0NO5nTt1FqRXFvIAuFt2j4LVLAmU90ZuVHawA/U5mL4Q8p0OYpQg6KV/TxDtOdJl8icoNmNzvCs6y0/iC5KgEEiOsHYPhMjITBWtgxtzmPsVq2t7rFpEg/QutYNjv1LOCSjTwzGFJdRnOU3PLoR01MursjMyiQ=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136622,
+        "id": "GFrwatTyMKbN694P4YH7wAs",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 217,
+          "prompt_tokens": 1994,
+          "total_tokens": 2573
+        }
+      },
+      "latency_s": 22.83
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In transformers, `do_sample=False` uses greedy decoding and ignores `temperature=3.5`, leaving `repetition_penalty=1.3` as the only active decoding modifier. Because Qwen tokenizes digits individually, once digits `1` through `9`, `0`, and newlines have been emitted in `1` through `10`, `repetition_penalty=1.3` heavily penalizes reusing the token `1` (needed to start `11`–`18`) and newline tokens. This forces the model to add trailing spaces (`1 \\\\n`), skip `11`–`18` with `...`, and ramble instead of terminating cleanly.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:17:03.293996+00:00"
+}

@@ -1,0 +1,36 @@
+{
+  "case_id": "03_image_field_ignored",
+  "verdict": "request",
+  "acceptable_verdicts": [
+    "request"
+  ],
+  "primary_cause": "IMAGE_FIELD_IGNORED",
+  "acceptable_causes": [
+    "IMAGE_FIELD_IGNORED"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "change_request_format"
+    }
+  ],
+  "golden_fix": {
+    "action": "change_request_format",
+    "target": "messages[].content: [{type: text}, {type: image_url, image_url: {url: data:image/png;base64,...}}]",
+    "value": null
+  },
+  "distractors": {
+    "VISION_PROJECTOR_MISSING": "the server command loads --mmproj, and the same server describes the image when it is sent as an image_url content part (2/2)",
+    "WEIGHT_OTHER": "the model describes the picture correctly once it receives it"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm: image as a message-level \"images\": [base64] field (Ollama's native format), which /v1/chat/completions does not read: 'Please provide the picture' 2/2. Only the message changed to OpenAI content parts with an image_url data URI: 'a small red house in a green field under a bright yellow sun' 2/2. The image is evidence/image.png.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/content_parts_r1.json",
+      "evidence/image.png"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

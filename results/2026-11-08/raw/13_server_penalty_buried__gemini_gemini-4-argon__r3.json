@@ -1,0 +1,55 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:18:14.336010+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty / presence_penalty\",\n    \"value\": \"1.0 / 0.0\"\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request additionally sets `\\\"presence_penalty\\\": 1.5`. These aggressive repetition penalties prevent the model from reusing essential Python syntax, numbers, and indentation tokens—for example, forcing `for j from range(6):` instead of reusing the keyword `in` after `for i in range(7):`. Resetting `repeat_penalty` to 1.0 (and removing `presence_penalty`) restores normal code generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Et0KCtoKAWkUfRMry3qNKVHfDcekyfiFYSouAiNi2tpR7/gBvMGkVZsQUAUesIUvPFQiU2zGAFUYexZXy6+t/ohHDZhHX2uKfi2zsg4H5UHKUsRJgRNfn7L+iN1SZb9rLbXw8UhEq7Vy/SOv+rYFgocAhDqMwjWFwG18qNFB0bK8GuSqO7oggYC45jqtgoPSWIDGVohDOH3gD0qm6pu2+ONuo7+GtCPQHwlQGpvCo6q8+FQHxYsl2/wbLrpNfR8Wq9B9OCi87s1Xm8uCZJuEgmhhubvDjmklQhn7n27/vHWBYtVP5dIQyULUs8/iNbZeUzzaTxMVR+oFm7OtD+ML8GgCmnLg7+I/omKf52P06Bb1EMTZgwI94TjqRaxq6u1R/rj6vCj7hibZbQSWczl1oVq8rsqEUK+IP+lWH3/NNR6pRCuSzKWbY6uIfP6O8zj5AnA1QZ4G1y9lfFNvGV8llCi8flsZcGm/UZBF9WVG9Y4pvYmLYGLP+RM/lFs2o4KR1VGvR28mbdDGFXld7VG09gD6zGShBVStC02HyqvpYpW6iSC/HHEdn14hzam5qiQN7dZtn3EDz9zdNZfNPitXa6myOFAKQJQE6yoYaf/tYQnAIvCVWUuLCBaKRrdrtdPxQgN9gGBPrnUrvzYVdGX1gTiPPHiN/niSAQpqmWiqy8IvgvrvAWxHL3MIFHiDQAUcoh0KC07Mi12tunZHgldJpaYs6YGzVq772/L4vlMOKrsALmWk7rV945ghnrz5jo9QTxt34+WQs3ypWQ1ANKqF02GySU5po/J+5Zn9DC5+SmSClk7c3dAHnsOQ1Q2zz2Bf05q2zKDxbvw72psrhIR30tj8FSXou0WOZsVQ+t88B3dX6xwHKDrUTRJFtInUQ9AE0GL6mawgMtT0WSliw/12gWwXYG9l5sKkp/QB3S6G7vDHl+ZouOpK2XcZeiS7x/wASubPrghUwe7pbrbsKr6g9zMzav7uU4MuZOW7rCtGGUTTFyMgOZdPR5DItBZYQYClWBEN40Y0Oni/w01aLENB2khinCEWIlEZEda2nOteg7ICoGPjx1gOT3xvr8ORnZnon7TcKZEDaP22zadAJms8GAsnRe0eb7kgbtvb3PMnc+K+JB6Lg0PjLPF6kQjnJXn+Ez3pNIothXla5TGOrXvvVzC+SnBMV3yhqlLcG5iuxcXnAleb6BMZ91FyfdHq9tGWVu3BCQt7rCpCOErIpHEYORxekZS3OFv/m7shsojJvFuhj9Uu3O5cMwldiM0auKLC1AthJZAUHcpRd/YySvxfcaKbcG17egJFutKX7fQcp8ieUGKWXA8buKBaCqcT5ffy9DZ2coup1mo8+tUKQzA2Y/HRutkU1T9wjxJBN6sLWCt1vF7KjUYelOtcJRhyXDKJpQ776l4gRNIUa+COX1Z+qV3G35yf0ubJm9cDMe1Va6pOrOPl/5g3IH55Q7Agx5x8Zs+0pHfVX6/ifcfsjHx87x7sjO4V5sKOJDDgGKr8HLTNhb1qGgj5TUdegWvTtilDNvGly/8doBsHgpu+PD/kKQ4W/HYf3Wc5Q1roGRora2pFdaqdMWwEhmYoX5LK1iyZEswSTSnTF4vYLYA4Ik/Y0gG9kNSt6LooXFBNDDXHY5hNuEh0GroCeGCsVWjaXHPEYtUu08Gzf+Qi50unb2N7WIMT2zSbuS2STYL0BPCq+0j/znG26DbCo9oSyuUX0n9Cb2g2HIXlB2Dx26ok+fp+ZppqpT07xqc+VNh6lR2l/YzvfLaM5qUUpqrzMLXn+m3dSgCJebTouwc2T/pPOJBgHOmHLiva+veDJyECXuG+HhQ="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133107,
+        "id": "ZkzwarO5FvbLqfkPh_O8gQE",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 189,
+          "prompt_tokens": 2671,
+          "prompt_tokens_details": {
+            "cached_tokens": 617
+          },
+          "total_tokens": 3230
+        }
+      },
+      "latency_s": 13.45
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty / presence_penalty\",\n    \"value\": \"1.0 / 0.0\"\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request additionally sets `\\\"presence_penalty\\\": 1.5`. These aggressive repetition penalties prevent the model from reusing essential Python syntax, numbers, and indentation tokens—for example, forcing `for j from range(6):` instead of reusing the keyword `in` after `for i in range(7):`. Resetting `repeat_penalty` to 1.0 (and removing `presence_penalty`) restores normal code generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:18:27.787913+00:00"
+}

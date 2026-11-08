@@ -1,0 +1,40 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:37:44.167669+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 11.11,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"TEMPERATURE_HIGH\",\n \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n \"rationale\": \"The request sets temperature to 3.5, far above this model's intended range, and the output shows the classic signature of over-hot sampling: random code fragments, stray markup, an emoji, and immediate derailment on a trivially deterministic task. The failure appeared exactly when the user changed sampling settings, while the server, model files, template, and token budget (200 max_tokens, finish_reason stop at 64 tokens) all behave normally. Repeat_penalty 1.5 is also aggressive, but temperature 3.5 alone is sufficient to produce this nonsense, so lowering temperature to 1.0 is the primary fix.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.24
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.24 • Time: 6s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"TEMPERATURE_HIGH\",\n \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n \"rationale\": \"The request sets temperature to 3.5, far above this model's intended range, and the output shows the classic signature of over-hot sampling: random code fragments, stray markup, an emoji, and immediate derailment on a trivially deterministic task. The failure appeared exactly when the user changed sampling settings, while the server, model files, template, and token budget (200 max_tokens, finish_reason stop at 64 tokens) all behave normally. Repeat_penalty 1.5 is also aggressive, but temperature 3.5 alone is sufficient to produce this nonsense, so lowering temperature to 1.0 is the primary fix.\"\n}",
+  "finished": "2026-11-08T08:37:55.373956+00:00"
+}

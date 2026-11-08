@@ -1,0 +1,40 @@
+{
+  "case_id": "01_token_salad",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:14.913541+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 12.26,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with no truncation of the distribution (top_k 0, top_p 1.0, min_p 0), which flattens the logits and lets low-probability tokens from across the multilingual vocabulary get sampled. The output matches this exactly: every token is a valid vocabulary token from many languages and scripts, strung together incoherently, which is the signature of over-hot sampling, not file damage. A corrupt GGUF or quant damage would distort probabilities and degrade fluency within the expected language, not produce uniform random sampling across scripts, and the server processed the prompt and timings normally with no errors. Setting temperature to 1.0 (Gemma's default) restores coherent output; pairing it with top_p 0.95 / top_k 64 gives additional safety.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.29
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.29 • Time: 8s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with no truncation of the distribution (top_k 0, top_p 1.0, min_p 0), which flattens the logits and lets low-probability tokens from across the multilingual vocabulary get sampled. The output matches this exactly: every token is a valid vocabulary token from many languages and scripts, strung together incoherently, which is the signature of over-hot sampling, not file damage. A corrupt GGUF or quant damage would distort probabilities and degrade fluency within the expected language, not produce uniform random sampling across scripts, and the server processed the prompt and timings normally with no errors. Setting temperature to 1.0 (Gemma's default) restores coherent output; pairing it with top_p 0.95 / top_k 64 gives additional safety.\"\n}",
+  "finished": "2026-11-08T07:59:27.239140+00:00"
+}

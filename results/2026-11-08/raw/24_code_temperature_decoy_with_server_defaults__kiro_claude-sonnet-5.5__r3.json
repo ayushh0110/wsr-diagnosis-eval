@@ -1,0 +1,41 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:38:52.552534+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.74,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty 1.4, while the server default is 1.0 with repeat_last_n 64. The output is fluent, valid Python with no garbage tokens, but it avoids the tokens a multiplication table needs to reuse: no nested `for j`, no `print`, and no call to the function. It drifts into filler comments and an unrelated `zfill` branch instead. The server applies temperature last in its sampler chain, after top_k 64, top_p 0.95 and min_p 0.05, so temperature 3.5 only flattens plausible candidates and does not explain the missing repeated structure. Reset repeat_penalty to 1.0 and keep temperature near 1.0 (the server default). If you still want more variety, raise it modestly.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty 1.4, while the server default is 1.0 with repeat_last_n 64. The output is fluent, valid Python with no garbage tokens, but it avoids the tokens a multiplication table needs to reuse: no nested `for j`, no `print`, and no call to the function. It drifts into filler comments and an unrelated `zfill` branch instead. The server applies temperature last in its sampler chain, after top_k 64, top_p 0.95 and min_p 0.05, so temperature 3.5 only flattens plausible candidates and does not explain the missing repeated structure. Reset repeat_penalty to 1.0 and keep temperature near 1.0 (the server default). If you still want more variety, raise it modestly.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:39:32.333225+00:00"
+}

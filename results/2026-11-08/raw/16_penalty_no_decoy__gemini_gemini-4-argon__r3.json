@@ -1,0 +1,52 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "dafb58dfb60428a1",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:19:51.420410+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.5, which is excessively high. Because listing numbers one per line requires repeatedly emitting newline tokens and digits (such as '1' and '2' in two-digit numbers), the strong repetition penalty suppresses those tokens and forces the model into incoherent formatting and early termination. Resetting `repeat_penalty` to 1.0 (or a mild value like 1.05) restores normal output.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "ErkFCrYFAWkUfRNJpI/Ma7iBVWjz3whdW+Dbh/eC1pAqKEWPt/Ov+0GjI46SBPkEJPp0FULtqVoINIZlJqjLM4+Rn7ZoMEmcQQvitazyWm9w1bsVDAB6U3WCacPrDvMPJfxInAomI/cUbncherkynj1nkDP2OgcaDDnOxMngr66IUJxQum7E/AUGqVPGpTLZLQLkiirGB9xwqobtviNzwxJEswdmtIiLWfliIoDsROmvZfMSIbbWs8FsmmCstEdz4E0hqhou8KpRW/BuU0hqxs4RcO9v03n6g/xAP7vvV+9mxTmZVaRc1VSGbLFXA2xTS3jI244Guh5cVh03/PqaGC3bLXUQpWU00Eba0i4HXfGYL5CSPVyvKbZFNU5hzN2mj8XkOhPX/90YE2CWqCirpxutFqMHj+a8ZcgoH/zJoFMmw2vv4tVkTIozh2OdJpJxhNSmlKIy1ylBkkmgt3AMFXLM+1R1/sIXHkNFYKCCtqixx22z19A/Yfegbnf8/+VoTGgM33rrXu7rpnMf2R4HfNptLvU8mFD9kHbvcUMDjd5dpdvaOo1O4+DDAf2v2KbnrDkKsX80Mk2tkCXMoubKTNP5MxqFV86pb6COup/0MCZbop2gv9+d+uwW/Mjp36UQSXZxrYUDheCJDm+fY8z3etJ+vZ3kko9i6Jma86NjzudK7lxHWBNtjDVhce3lb8gXX462+Q3WBlMj6Am65GlweA546lathj0ZwpJf026FlzezZU/QbAw8OBjdoFu1fg+WHfRPwOnKd6pi/480sCGY4+M3Gby4FYq0YGnVMg7nvsOKW/GyC0UlC+bAOqQ7WG0JGGbn4kUxi32/mH4QFpjfyZFmEkTMKEHVVlMfWGuouw9XR0YxusCzkZkd4pNLNH01NpdlG4c/INvtu7LENt/Ni71TqWqBTiRkGUSVfw=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133199,
+        "id": "x0zwarPOJufcqfkPsMGz8Q0",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 168,
+          "prompt_tokens": 2414,
+          "total_tokens": 2743
+        }
+      },
+      "latency_s": 8.03
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.5, which is excessively high. Because listing numbers one per line requires repeatedly emitting newline tokens and digits (such as '1' and '2' in two-digit numbers), the strong repetition penalty suppresses those tokens and forces the model into incoherent formatting and early termination. Resetting `repeat_penalty` to 1.0 (or a mild value like 1.05) restores normal output.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:19:59.450637+00:00"
+}

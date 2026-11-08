@@ -1,0 +1,52 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:06.073855+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The user set repetition_penalty to 1.3, which severely penalizes repetitive structural elements such as newlines, punctuation, and recurring digits (such as '1'). Because continuing the sequential list repeats already-generated tokens, the penalty forces the model to abort the pattern with '...' and produce rambling, disjointed text instead. Removing repetition_penalty (or resetting it to 1.0) restores normal sequential output.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136630,
+        "id": "MlrwaqP_Cf-KqfkPu7_jsQE",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 160,
+          "prompt_tokens": 1985,
+          "total_tokens": 2730
+        }
+      },
+      "latency_s": 4.81
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The user set repetition_penalty to 1.3, which severely penalizes repetitive structural elements such as newlines, punctuation, and recurring digits (such as '1'). Because continuing the sequential list repeats already-generated tokens, the penalty forces the model to abort the pattern with '...' and produce rambling, disjointed text instead. Removing repetition_penalty (or resetting it to 1.0) restores normal sequential output.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:17:10.887023+00:00"
+}

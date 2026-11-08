@@ -1,0 +1,52 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:16:58.343921+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\n    \"action\": \"weight_edit_or_finetune\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The model is running in full fp32 precision with a properly rendered ChatML template and clean generation settings, yet it consistently refuses the benign request across greedy decoding, multiple sampling seeds, and different system prompts. The word 'hack' in the prompt triggers safety alignment baked into the 0.5B model's weights. Because no runtime, template, quantisation, or sampling issue is responsible, changing this behaviour on the same prompt requires a weight-level intervention such as fine-tuning or refusal-direction ablation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TwNn243bkAb8+1us7wRLQhvHrJGfJrdBWRO2i5QIyYjdItthb1snDtc52WWDW51xFe3nPUy4YLIhtkebIZ6wXQngU3pE+4KnO4sF41cQAvVNIusgHAcpFivEA49U="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133026,
+        "id": "GkzwarCQLPrK3LUPzfi3-AU",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 181,
+          "prompt_tokens": 2188,
+          "total_tokens": 2369
+        }
+      },
+      "latency_s": 8.89
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\n    \"action\": \"weight_edit_or_finetune\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The model is running in full fp32 precision with a properly rendered ChatML template and clean generation settings, yet it consistently refuses the benign request across greedy decoding, multiple sampling seeds, and different system prompts. The word 'hack' in the prompt triggers safety alignment baked into the 0.5B model's weights. Because no runtime, template, quantisation, or sampling issue is responsible, changing this behaviour on the same prompt requires a weight-level intervention such as fine-tuning or refusal-direction ablation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:17:07.232202+00:00"
+}

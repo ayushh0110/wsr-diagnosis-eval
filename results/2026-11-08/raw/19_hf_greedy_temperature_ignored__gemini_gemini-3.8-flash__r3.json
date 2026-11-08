@@ -1,0 +1,52 @@
+{
+  "case_id": "19_hf_greedy_temperature_ignored",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "c7a5b86f73f6990f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:50.109012+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"Because do_sample=False is specified, temperature=3.5 is ignored by greedy decoding, leaving repetition_penalty=1.3 as the active modifier. The high repetition penalty penalizes recurring tokens such as digits, syntax, and line breaks, forcing the model to truncate the sequence with '...' instead of listing all 30 numbers sequentially. Removing repetition_penalty restores standard token selection and allows the list to be generated completely.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136618,
+        "id": "IlrwatexEJbp1_oPsYj10QM",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 162,
+          "prompt_tokens": 1991,
+          "total_tokens": 2947
+        }
+      },
+      "latency_s": 8.64
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"Because do_sample=False is specified, temperature=3.5 is ignored by greedy decoding, leaving repetition_penalty=1.3 as the active modifier. The high repetition penalty penalizes recurring tokens such as digits, syntax, and line breaks, forcing the model to truncate the sequence with '...' instead of listing all 30 numbers sequentially. Removing repetition_penalty restores standard token selection and allows the list to be generated completely.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:16:58.747298+00:00"
+}

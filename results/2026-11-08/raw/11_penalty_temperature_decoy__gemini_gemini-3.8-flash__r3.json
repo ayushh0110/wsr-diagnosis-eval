@@ -1,0 +1,52 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:35.737300+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which severely flattens the token probability distribution. This causes the model to sample erratic, low-probability tokens rather than coherently executing the task. Lowering temperature back to a standard range (such as 0.7) resolves the generation breakdown.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133069,
+        "id": "P0zwatecMs2m694Pvfe6gA0",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 125,
+          "prompt_tokens": 2392,
+          "total_tokens": 3582
+        }
+      },
+      "latency_s": 14.29
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which severely flattens the token probability distribution. This causes the model to sample erratic, low-probability tokens rather than coherently executing the task. Lowering temperature back to a standard range (such as 0.7) resolves the generation breakdown.\"\n}",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:17:50.029093+00:00"
+}

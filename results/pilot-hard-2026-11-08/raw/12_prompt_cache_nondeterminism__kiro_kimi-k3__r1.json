@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:37:59.794013+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 26.65,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"runtime\",\n \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"prompt cache reuse (--no-cache-prompt / disable slot prompt caching)\", \"value\": \"disabled\"},\n \"rationale\": \"The timings show the first call evaluated the prompt fresh (cache_n=1, prompt_n=32) while the second call reused 28 cached tokens and only evaluated 5 (cache_n=28, prompt_n=5), and the outputs differ exactly along that boundary while subsequent cached calls agree with each other. At temperature 0 decoding is greedy, so the seed is irrelevant, and quantisation cannot explain a difference that appears only after a cache hit. Reusing the prompt cache changes how the prompt tokens are batched through the GPU kernels, which perturbs the logits slightly and flips an argmax, diverging the generation; disabling prompt cache reuse forces every call to run a full fresh prefill and makes the replies reproducible.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.57
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.57 • Time: 22s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n \"verdict\": \"runtime\",\n \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"prompt cache reuse (--no-cache-prompt / disable slot prompt caching)\", \"value\": \"disabled\"},\n \"rationale\": \"The timings show the first call evaluated the prompt fresh (cache_n=1, prompt_n=32) while the second call reused 28 cached tokens and only evaluated 5 (cache_n=28, prompt_n=5), and the outputs differ exactly along that boundary while subsequent cached calls agree with each other. At temperature 0 decoding is greedy, so the seed is irrelevant, and quantisation cannot explain a difference that appears only after a cache hit. Reusing the prompt cache changes how the prompt tokens are batched through the GPU kernels, which perturbs the logits slightly and flips an argmax, diverging the generation; disabling prompt cache reuse forces every call to run a full fresh prefill and makes the replies reproducible.\"\n}",
+  "finished": "2026-11-08T08:38:26.479605+00:00"
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "file": "failing_r1.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "failing_r2.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "failing_r3.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "IndentationError: expected an indented block after 'if' statement on line 18"
+    ]
+  },
+  {
+    "file": "failing_r4.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "penalty_off_r1.json",
+    "prints_5x5_table": true,
+    "stdout_head": "5x5 Multiplication Table:\n       1   2   3   4   5\n  1 |    1    2    3    4    5\n  2 |    2    4    6    8   10\n  3 |  ",
+    "error": []
+  },
+  {
+    "file": "penalty_off_r2.json",
+    "prints_5x5_table": true,
+    "stdout_head": "--- 5x5 Multiplication Table ---\n      1   2   3   4   5\n 1    1    2    3    4    5\n 2    2    4    6    8   10\n 3    3",
+    "error": []
+  },
+  {
+    "file": "penalty_off_r3.json",
+    "prints_5x5_table": true,
+    "stdout_head": "5x5 Multiplication Table:\n1 x 1 = 1\n1 x 2 = 2\n1 x 3 = 3\n1 x 4 = 4\n1 x 5 = 5\n2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x ",
+    "error": []
+  },
+  {
+    "file": "penalty_off_r4.json",
+    "prints_5x5_table": false,
+    "stdout_head": "5x5 Multiplication Table:\n 1 * 2 * 3 * 4 * 5 *\n---\n  1 * 1 = 1\n  2 * 2 = 4\n  3 * 3 = 9\n  4 * 4 = 16\n  5 * 5 = 25\n",
+    "error": []
+  }
+]

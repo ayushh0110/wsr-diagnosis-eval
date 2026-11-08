@@ -1,0 +1,122 @@
+{
+  "gemini/gemini-3.8-flash": {
+    "runs": 12,
+    "mean_score": 0.75,
+    "strict_pass": 0.5833,
+    "k": 3,
+    "pass_at_k": 0.75,
+    "pass_hat_k": 0.25,
+    "by_tier": {
+      "decoy_setting": 0.6667,
+      "decoy_reverse": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 5,
+    "models_returned": [
+      "gemini-3.8-flash"
+    ]
+  },
+  "gemini/gemini-4-argon": {
+    "runs": 12,
+    "mean_score": 1.0,
+    "strict_pass": 1.0,
+    "k": 3,
+    "pass_at_k": 1.0,
+    "pass_hat_k": 1.0,
+    "by_tier": {
+      "decoy_setting": 1.0,
+      "decoy_reverse": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 0,
+    "models_returned": [
+      "gemini-4-argon"
+    ]
+  },
+  "kiro/claude-opus-5.5": {
+    "runs": 12,
+    "mean_score": 1.0,
+    "strict_pass": 1.0,
+    "k": 3,
+    "pass_at_k": 1.0,
+    "pass_hat_k": 1.0,
+    "by_tier": {
+      "decoy_setting": 1.0,
+      "decoy_reverse": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 0,
+    "models_returned": [
+      "kiro/claude-opus-5.5"
+    ]
+  },
+  "kiro/claude-sonnet-5.5": {
+    "runs": 12,
+    "mean_score": 1.0,
+    "strict_pass": 1.0,
+    "k": 3,
+    "pass_at_k": 1.0,
+    "pass_hat_k": 1.0,
+    "by_tier": {
+      "decoy_setting": 1.0,
+      "decoy_reverse": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 0,
+    "models_returned": [
+      "kiro/claude-sonnet-5.5"
+    ]
+  },
+  "kiro/gpt-5.6-sol": {
+    "runs": 12,
+    "mean_score": 0.45,
+    "strict_pass": 0.25,
+    "k": 3,
+    "pass_at_k": 0.25,
+    "pass_hat_k": 0.25,
+    "by_tier": {
+      "decoy_setting": 0.2667,
+      "decoy_reverse": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 6,
+    "models_returned": [
+      "kiro/gpt-5.6-sol"
+    ]
+  },
+  "kiro/kimi-k3": {
+    "runs": 12,
+    "mean_score": 0.6,
+    "strict_pass": 0.3333,
+    "k": 3,
+    "pass_at_k": 0.5,
+    "pass_hat_k": 0.25,
+    "by_tier": {
+      "decoy_setting": 0.4667,
+      "decoy_reverse": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 8,
+    "models_returned": [
+      "kiro/kimi-k3"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "arm": "sampled",
+  "run": 1,
+  "seed": 1,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Чому небо блакитне? Відповідай українською."
+    }
+  ],
+  "rendered_prompt": "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n<|im_start|>user\nЧому небо блакитне? Відповідай українською.<|im_end|>\n<|im_start|>assistant\n",
+  "prompt_tokens": 53,
+  "new_tokens": 300,
+  "finish": "length",
+  "settings": {
+    "repetition_penalty": 1.0,
+    "top_k": null,
+    "top_p": null,
+    "min_p": null,
+    "no_repeat_ngram_size": 0,
+    "temperature": 0.7,
+    "do_sample": true
+  },
+  "effective_decoding": {
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_k": null,
+    "top_p": null,
+    "min_p": null,
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 0,
+    "max_new_tokens": 300,
+    "eos_token_id": [
+      151645,
+      151643
+    ]
+  },
+  "effective_generation_config": {
+    "max_new_tokens": 300,
+    "do_sample": true,
+    "temperature": 0.7,
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 0,
+    "pad_token_id": 151643,
+    "bos_token_id": 151643,
+    "eos_token_id": [
+      151645,
+      151643
+    ],
+    "transformers_version": "5.8.0"
+  },
+  "text": "Небо блакитне - це більшість підходів, які можуть бути вплинувши на небо. Однак, як більш детальніше вибачте:\n\n1. Блаку - більшість підходів до блаку можуть вплинути на небо, але відповідно до відповідності на підході, можна бути вплинувши на небо відносно:\n\n   - Відносно підходів до підході: підходи до підходів до підході\n   - Відносно підході: підходи до підході\n   - Відносно підході: підходи до підході\n   - Відносно підході: підходи до підході\n\n2. Блаку - більшість підходів до блаку можуть вплинути на небо, але відпові",
+  "text_with_special_tokens": "Небо блакитне - це більшість підходів, які можуть бути вплинувши на небо. Однак, як більш детальніше вибачте:\n\n1. Блаку - більшість підходів до блаку можуть вплинути на небо, але відповідно до відповідності на підході, можна бути вплинувши на небо відносно:\n\n   - Відносно підходів до підході: підходи до підходів до підході\n   - Відносно підході: підходи до підході\n   - Відносно підході: підходи до підході\n   - Відносно підході: підходи до підході\n\n2. Блаку - більшість підходів до блаку можуть вплинути на небо, але відпові",
+  "seconds": 13.7,
+  "detector_codes": []
+}

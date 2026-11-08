@@ -1,0 +1,40 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "kiro/claude-opus-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:14:53.380155+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.39,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The script decodes greedily (do_sample=False) with repetition_penalty=1.3. That setting penalises every token already in the prompt or output, and code depends on reusing identifiers, keywords and punctuation. The output shows that effect: the code is broken from its first lines, with `range(2, 6) + [0] * 3`, `num ** col`, undefined `lines` and `width`, and a growing pile of new names and constructs where a simple nested loop would reuse `i` and `j`. The cutoff mid-expression comes from max_new_tokens=220, but the code was already wrong before that point. To get varied solutions without breaking code, remove the penalty (or set it to 1.0) and use do_sample=True with a moderate temperature.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"repetition_penalty\", \"value\": null},\n  \"rationale\": \"The script decodes greedily (do_sample=False) with repetition_penalty=1.3. That setting penalises every token already in the prompt or output, and code depends on reusing identifiers, keywords and punctuation. The output shows that effect: the code is broken from its first lines, with `range(2, 6) + [0] * 3`, `num ** col`, undefined `lines` and `width`, and a growing pile of new names and constructs where a simple nested loop would reuse `i` and `j`. The cutoff mid-expression comes from max_new_tokens=220, but the code was already wrong before that point. To get varied solutions without breaking code, remove the penalty (or set it to 1.0) and use do_sample=True with a moderate temperature.\"\n}",
+  "model_returned": "kiro/claude-opus-5.5",
+  "finished": "2026-11-08T11:15:29.807071+00:00"
+}

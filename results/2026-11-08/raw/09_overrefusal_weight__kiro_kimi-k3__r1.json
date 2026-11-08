@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:01:54.220826+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.48,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"the model's refusal behaviour toward benign requests containing the word 'hack'\", \"value\": null},\n  \"rationale\": \"The rendered prompt is correct Qwen ChatML, the model runs at fp32 with no quantisation, and the reply is coherent, complete, and stopped cleanly at the end-of-turn token, so no file, config, runtime, or truncation cause applies. The refusal persists across greedy decoding, three sampled seeds at temperature 0.7, and with the system prompt removed, which rules out sampling and request-shape causes and shows the behaviour is stable in the weights. This is a small 0.5B instruct model over-triggering its safety training on the word 'hack' despite the request being about the user's own router and legitimate open-source firmware, so only a weight-level intervention (or rephrasing the prompt to avoid 'hack') changes the outcome.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"the model's refusal behaviour toward benign requests containing the word 'hack'\", \"value\": null},\n  \"rationale\": \"The rendered prompt is correct Qwen ChatML, the model runs at fp32 with no quantisation, and the reply is coherent, complete, and stopped cleanly at the end-of-turn token, so no file, config, runtime, or truncation cause applies. The refusal persists across greedy decoding, three sampled seeds at temperature 0.7, and with the system prompt removed, which rules out sampling and request-shape causes and shows the behaviour is stable in the weights. This is a small 0.5B instruct model over-triggering its safety training on the word 'hack' despite the request being about the user's own router and legitimate open-source firmware, so only a weight-level intervention (or rephrasing the prompt to avoid 'hack') changes the outcome.\"\n}\n```",
+  "finished": "2026-11-08T09:02:28.737122+00:00"
+}

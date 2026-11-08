@@ -1,0 +1,52 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:58.490662+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"repeat_penalty\\\": 2.0, which heavily penalises any token that has already appeared in the context. Once common Hindi function tokens and punctuation like 'हैं' and '।' are used once, the model is forced to avoid repeating them, causing it to substitute phonetically identical Urdu tokens ('ہیں۔', 'وں'), shift tenses unnaturally ('था', 'सकते थे'), and assemble garbled subwords. Lowering repeat_penalty to 1.0 (or removing it so the default applies) restores normal Hindi generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EvgGCvUGAWkUfRMaFVRX+EL+2vjrylwwQX3UKwjLwL60Nk4J4y53/eSSIvfZG5cnEL8MQcRfLcRvS5MXLPsz/yMsNAN/o/OnTIHC/ZB3Axr13TwWTmos/03CVqzcu386cYKKWKVZBIpwY4l7d4TAXQdoWlq+3QSJbfut6QhPkqF2axI4VL6UI0JCaPOOlEptTt75sddxvDRqVSXv57e+SQmXtd7EFMiPZbhk9xqZfQ0qJNjmljxuv8j1r6qSGvAX286H+NdPvRoCTX2ZZBcI7QjhOSbgW5UFwTb9OYU3iLzj0n/bMF9kr5JiLhO4oiflDrWktjQTaUpv47GqlU4klLcNHbGuQbQqocIGWG3sCCc+uoP1DW8MYR0mGCEqI8mpEbbTOsUACssgFaCy+xwnFdvSimALEuoGI07jheFqWoSjfWUx7rADPsRwjFWhgGnJbgHqkmD+jb1f9ha7F1FV4480szMkRzcRObxPWQ3qFcvDz+QyjpYPFP77m4rgWa/A3wm1kOg+D6cGjShTVjtOig4XWXnAA6SZ4kuLdtmBg6ls3azT8CyAu5JgPnyEV9sD5Uo2ZhACqzlf14t10Wrhd/sBF0mrvpoGEVJ6T4NG6uOLas5zvXVHDk1zJSbyd+Ftfexa0dxUOejzAcqe+5SCZ1FqyjX7hFFnyFsEz9/feeMvIbJV7/XxE9Czfc+QIrVbLKPkHxeLQLFtDgFDypqdmrvPpZVvoRqMNHE2lqA2u1R42kwZQ/dOlWjI3whWPYeqCJ8aTP0a+MzjUmUvXpcWEXldv3AHkBQ9TtVv6zMUG/L6qbu/sKgE1dAMwXTaa2u/iLChHUjk06fRm0hMnwWAISqZ4+CHvFdFwg0sHcKQjLCPvm4xgeW2c2eK/+nDRoegYoukrl/VJIh1MrsdC1gFkd9xWtFFIndGd8UBMl0qaSfEBVhEW2sliOU6U2axV1b+S0vAijTK6rD9tGOZBfI1YKKCSYxh/OWpkOkKn/H0uOWhUAjyOSSUhQ8ilNvqCuI1I9LrIUtGTi/5I3aSLNKWIXh+NNOdLKrzbxprGWUogzPdrvAdzGgREJfKV1JQKlP3l20AtX1G8VXecQxpfpQryl7y3BshGpkFbRJnc64zpIHRfbI4qJtbkSM337SL/3I+m4DDrudTHpiXXduby5MtBLbALSgCIOJHWqCX"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132910,
+        "id": "okvwasbZH4bE1_oPqqm70Qs",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 189,
+          "prompt_tokens": 2784,
+          "total_tokens": 3180
+        }
+      },
+      "latency_s": 12.21
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"repeat_penalty\\\": 2.0, which heavily penalises any token that has already appeared in the context. Once common Hindi function tokens and punctuation like 'हैं' and '।' are used once, the model is forced to avoid repeating them, causing it to substitute phonetically identical Urdu tokens ('ہیں۔', 'وں'), shift tenses unnaturally ('था', 'सकते थे'), and assemble garbled subwords. Lowering repeat_penalty to 1.0 (or removing it so the default applies) restores normal Hindi generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:10.700424+00:00"
+}

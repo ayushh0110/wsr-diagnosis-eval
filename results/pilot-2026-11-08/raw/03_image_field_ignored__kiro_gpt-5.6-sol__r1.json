@@ -1,0 +1,40 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:29.825633+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 8.45,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"request\",\n \"cause\": \"IMAGE_FIELD_IGNORED\",\n \"fix\": {\n   \"action\": \"change_request_format\",\n   \"target\": \"messages[].content\",\n   \"value\": \"Use an OpenAI multimodal content array containing a text item and an image_url item whose URL is data:image/png;base64,<base64-data>; remove the sibling images field.\"\n },\n \"rationale\": \"The request puts the PNG in messages[].images, which the OpenAI-compatible chat endpoint does not read as multimodal content. The 21-token prompt usage indicates that only the text prompt was processed, while the launch command confirms that a vision projector was supplied.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.41
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.41 • Time: 4s"
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n \"verdict\": \"request\",\n \"cause\": \"IMAGE_FIELD_IGNORED\",\n \"fix\": {\n   \"action\": \"change_request_format\",\n   \"target\": \"messages[].content\",\n   \"value\": \"Use an OpenAI multimodal content array containing a text item and an image_url item whose URL is data:image/png;base64,<base64-data>; remove the sibling images field.\"\n },\n \"rationale\": \"The request puts the PNG in messages[].images, which the OpenAI-compatible chat endpoint does not read as multimodal content. The 21-token prompt usage indicates that only the text prompt was processed, while the launch command confirms that a vision projector was supplied.\"\n}",
+  "finished": "2026-11-08T07:59:38.308731+00:00"
+}

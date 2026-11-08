@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:38:07.921924+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 23.83,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"inconclusive\",\"cause\":\"INSUFFICIENT_EVIDENCE\",\"fix\":{\"action\":\"collect_more_evidence\",\"target\":\"Run a fixed-seed 2x2 ablation on the same prompt: presence_penalty 0 vs 1.5 and repeat_penalty 1.0 vs 1.5, leaving all other settings unchanged.\",\"value\":null},\"rationale\":\"The request applies presence_penalty 1.5 while the server independently applies repeat_penalty 1.5. Either can disrupt the token reuse required for Python syntax, so this single response does not identify which cause code is responsible. The output ended before the 350-token limit, which rules out output-budget starvation.\"}"
+            }
+          }
+        ],
+        "kiro_credits": 1.1
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 1.10 • Time: 18s"
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\"verdict\":\"inconclusive\",\"cause\":\"INSUFFICIENT_EVIDENCE\",\"fix\":{\"action\":\"collect_more_evidence\",\"target\":\"Run a fixed-seed 2x2 ablation on the same prompt: presence_penalty 0 vs 1.5 and repeat_penalty 1.0 vs 1.5, leaving all other settings unchanged.\",\"value\":null},\"rationale\":\"The request applies presence_penalty 1.5 while the server independently applies repeat_penalty 1.5. Either can disrupt the token reuse required for Python syntax, so this single response does not identify which cause code is responsible. The output ended before the 350-token limit, which rules out output-budget starvation.\"}",
+  "finished": "2026-11-08T08:38:31.787697+00:00"
+}

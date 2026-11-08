@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/claude-opus-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:08:22.805804+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.88,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The server is launched with --repeat-penalty 1.5, far above the llama.cpp default of 1.0, and the request does not override it. That penalty hits the tokens Python code must reuse over and over, such as 'in', 'range', and indentation. The output shows that damage directly: 'for j from range(6)' replaces 'in', the inner loop is dedented out of the outer loop, and the model drifts into prose comments. The long comment repeats verbatim only after it has fallen outside llama.cpp's default 64-token penalty window, which also fits this cause. The request's presence_penalty of 1.5 adds to the problem and should also be lowered to 0 or removed.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The server is launched with --repeat-penalty 1.5, far above the llama.cpp default of 1.0, and the request does not override it. That penalty hits the tokens Python code must reuse over and over, such as 'in', 'range', and indentation. The output shows that damage directly: 'for j from range(6)' replaces 'in', the inner loop is dedented out of the outer loop, and the model drifts into prose comments. The long comment repeats verbatim only after it has fallen outside llama.cpp's default 64-token penalty window, which also fits this cause. The request's presence_penalty of 1.5 adds to the problem and should also be lowered to 0 or removed.\"\n}\n```",
+  "finished": "2026-11-08T09:09:01.783751+00:00"
+}

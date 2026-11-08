@@ -1,0 +1,52 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:13.100783+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.4, which aggressively penalises any token that has already appeared in the context. Because valid Python code requires repeating variable names, numbers, and syntax tokens (such as `size`, `1`, `range`, and `:`), the penalty forces the model into bizarre expressions like `range(1 + 0, ...)` and `range(0 + 2)` and prevents it from closing loops cleanly. Resetting `repeat_penalty` to 1.0 (or removing it) restores normal code generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EqEGCp4GAWkUfROVBxuwc5c+r7Gp9TjsK8gIgM7YGdQoyBtKrTsX8sm6KCoPKmVtwE6ha+jfkzg0ZR3hjq5DorON1dxdXlcTG7s1AfqZ971Xcm3xfdyKAtnBJqs9jjXlknShUTna8GrwnkMIDWebu3rlYFNOwaXWZHkuHERoNbIKBFizo8DAp4v+sCdXm/TxVjRe2l/0DoHdM1aTOzlfXVIZMO8P/qxOOCIUfoQFd5TvcUeitgNceRIM5AYE/tYsAx/CGIR3JeVTV4Mv+0FJ2nm66nBjIsibiqhAprurvka72xYynky52ZsI3p1R8B8wVPtfe9LcFrDs70grh9dbjdgOMTzyeXRBdXbeYYbvTSLcVU+rrr273r3ILJKu6hRP7L2SBZpRgsza1mEn5qpuqwl4O8VAZ5ZKO8DDdIMYSvWiOmgW/SVZpk2SuToo58TUT5pPrZqmil6R9EXr52DelhHv7A3bam7FKi6gRBYyd0nQo/zQg67r0vqVsWgWZDVWMUaIuOlgkOTPp/EiZNRBL9EtXuCOkTx43J11oqUmmQ56ncxPOFUhZ9krj7IJoHXQ8yLb8ac+BNtM7aSN/sZXoaU0IbIYHqdH/6HSCg/elZoe5Q1UryKqQaNye3zz2s/aEZJfWENY+SYbgAy55YNSL6FM0f5bpPEc1I+KKBmIi4VAekSpJPZyRyFH5lJ35/8ESAWH0aZ4/mxcEvho2NUUMqOvkMXGXWe7g4+v8mJV4gtI8i2gfOrDn/eZocXw3pirpfw628B4CPUkSl5aFULUaYVzjb4mrNml3gH+obp08bnLE2l0lo93eSRH8cKqWiAF/b4M34k3qnkps09gTCcXpMzooiLcgT+wJqB61cPZs+tt6LnhYyKLVDx2QSNa8oW2BAv+HOZf7McRjN5i7Yv9vEKlVAIuYGFDi2RZzwCnjMUlLe0NJ3m49TmWn+YZYbSM7K9wwBpaZMV69HkXwKLqJH1MTHvN/mi51wNvEq2dgdm6iCYQf7ks+mjP+RjGjkjeXnlVy2864DkrIZkax5OZ+5SUz6uAUDhhJ/A1JmCGhgXuRrfb"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133228,
+        "id": "3UzwaoCMCeTe694PwLqB-Qg",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 189,
+          "prompt_tokens": 2725,
+          "total_tokens": 3117
+        }
+      },
+      "latency_s": 15.59
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.4, which aggressively penalises any token that has already appeared in the context. Because valid Python code requires repeating variable names, numbers, and syntax tokens (such as `size`, `1`, `range`, and `:`), the penalty forces the model into bizarre expressions like `range(1 + 0, ...)` and `range(0 + 2)` and prevents it from closing loops cleanly. Resetting `repeat_penalty` to 1.0 (or removing it) restores normal code generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:20:28.694056+00:00"
+}

@@ -1,0 +1,77 @@
+{
+  "date_utc": "2026-11-08T11:41:13.347267+00:00",
+  "models": [
+    {
+      "id": "kiro/claude-opus-5.5",
+      "temperature": null
+    },
+    {
+      "id": "kiro/gpt-5.6-sol",
+      "temperature": null
+    },
+    {
+      "id": "kiro/claude-sonnet-5.5",
+      "temperature": null
+    },
+    {
+      "id": "kiro/kimi-k3",
+      "temperature": null
+    },
+    {
+      "id": "gemini/gemini-4-argon",
+      "temperature": 0.0
+    },
+    {
+      "id": "gemini/gemini-3.8-flash",
+      "temperature": 0.0
+    }
+  ],
+  "runs": 3,
+  "max_tokens": 8000,
+  "prompt_version": "1+mechanism",
+  "cases": [
+    "11_penalty_temperature_decoy",
+    "13_server_penalty_buried",
+    "15_code_temperature_decoy",
+    "18_temperature_guilty_penalty_innocent"
+  ],
+  "invocations": [
+    {
+      "started_utc": "2026-11-08T11:41:13.340322+00:00",
+      "cases": [
+        "11_penalty_temperature_decoy",
+        "13_server_penalty_buried",
+        "15_code_temperature_decoy",
+        "18_temperature_guilty_penalty_innocent"
+      ]
+    },
+    {
+      "started_utc": "2026-11-08T11:50:08.912114+00:00",
+      "cases": [
+        "11_penalty_temperature_decoy",
+        "13_server_penalty_buried",
+        "15_code_temperature_decoy",
+        "18_temperature_guilty_penalty_innocent"
+      ]
+    }
+  ],
+  "last_call_finished_utc": "2026-11-08T11:53:49.244296+00:00",
+  "calls": 72,
+  "calls_per_model": {
+    "gemini/gemini-3.8-flash": 12,
+    "gemini/gemini-4-argon": 12,
+    "kiro/claude-opus-5.5": 12,
+    "kiro/claude-sonnet-5.5": 12,
+    "kiro/gpt-5.6-sol": 12,
+    "kiro/kimi-k3": 12
+  },
+  "endpoints": {
+    "kiro/claude-opus-5.5": "kiro-cli chat --no-interactive",
+    "kiro/gpt-5.6-sol": "kiro-cli chat --no-interactive",
+    "kiro/claude-sonnet-5.5": "kiro-cli chat --no-interactive",
+    "kiro/kimi-k3": "kiro-cli chat --no-interactive",
+    "gemini/gemini-4-argon": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    "gemini/gemini-3.8-flash": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+  },
+  "meta_note": "date_utc, last_call_finished_utc, calls and cases are rebuilt from the raw records; the runner used for the first invocations rewrote this file each time (fixed since). Kiro models: temperature and max_tokens are not settable through kiro-cli and were not sent."
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:01:02.371802+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.44,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\n    \"action\": \"weight_edit_or_finetune\",\n    \"target\": \"safety calibration for benign, authorized device modification requests\",\n    \"value\": null\n  },\n  \"rationale\": \"The same benign request is refused in full precision under greedy decoding, multiple sampled seeds, and with or without the custom system prompt. The rendered ChatML template is normal, the response completes naturally within the token budget, and no hosted provider or quantisation is involved, so the refusal is best explained by behavior learned in the model weights.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\n    \"action\": \"weight_edit_or_finetune\",\n    \"target\": \"safety calibration for benign, authorized device modification requests\",\n    \"value\": null\n  },\n  \"rationale\": \"The same benign request is refused in full precision under greedy decoding, multiple sampled seeds, and with or without the custom system prompt. The rendered ChatML template is normal, the response completes naturally within the token budget, and no hosted provider or quantisation is involved, so the refusal is best explained by behavior learned in the model weights.\"\n}",
+  "finished": "2026-11-08T09:01:37.847934+00:00"
+}

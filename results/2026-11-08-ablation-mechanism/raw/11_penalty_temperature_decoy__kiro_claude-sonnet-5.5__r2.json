@@ -1,0 +1,41 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "2fb6f0dc5bd515c4",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:42:12.465569+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.0,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"llama-server applies the repetition penalty first, over the last 64 tokens by default. It applies temperature last, after the default top_k 40, top_p 0.95 and min_p 0.05 filters have already cut the candidates. For a confident task like counting, only one or two tokens survive min_p, so temperature 3.5 has little to flatten. The 1.5 penalty hits the newline and digit tokens that a 1-to-30 list must reuse on every line, and after the first lines it pushes them below the cutoff. The output derails into 'Here are all of these:' and a stray python block, with no numbers at all. Set repeat_penalty to 1.0; temperature can stay raised for creative writing, or go to about 1.0–1.2 if you want a safer range.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"llama-server applies the repetition penalty first, over the last 64 tokens by default. It applies temperature last, after the default top_k 40, top_p 0.95 and min_p 0.05 filters have already cut the candidates. For a confident task like counting, only one or two tokens survive min_p, so temperature 3.5 has little to flatten. The 1.5 penalty hits the newline and digit tokens that a 1-to-30 list must reuse on every line, and after the first lines it pushes them below the cutoff. The output derails into 'Here are all of these:' and a stray python block, with no numbers at all. Set repeat_penalty to 1.0; temperature can stay raised for creative writing, or go to about 1.0–1.2 if you want a safer range.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:42:51.497134+00:00"
+}

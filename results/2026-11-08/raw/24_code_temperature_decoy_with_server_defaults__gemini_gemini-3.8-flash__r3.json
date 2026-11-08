@@ -1,0 +1,53 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:40:18.270867+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request specifies a temperature of 3.5, which severely flattens the probability distribution over tokens. This caused the model to sample incoherent logic and stream-of-consciousness comments before prematurely emitting an end-of-sequence token after 141 tokens. Lowering the temperature to a standard range (e.g., 0.2 to 0.7) will restore syntactic coherence and task focus.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138027,
+        "id": "ol_wavDxGdWwg8UP19jZ0Q0",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 156,
+          "prompt_tokens": 3167,
+          "total_tokens": 4171
+        }
+      },
+      "latency_s": 9.95
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request specifies a temperature of 3.5, which severely flattens the probability distribution over tokens. This caused the model to sample incoherent logic and stream-of-consciousness comments before prematurely emitting an end-of-sequence token after 141 tokens. Lowering the temperature to a standard range (e.g., 0.2 to 0.7) will restore syntactic coherence and task focus.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:40:28.217004+00:00"
+}

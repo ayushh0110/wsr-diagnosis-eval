@@ -1,0 +1,40 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:51:27.513688+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.87,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\"action\": \"change_request_format\", \"target\": \"content\", \"value\": \"send content as an array of parts: [{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"What is in this picture? Describe it in two sentences.\\\"},{\\\"type\\\":\\\"image_url\\\",\\\"image_url\\\":{\\\"url\\\":\\\"data:image/png;base64,<base64>\\\"}}]\"},\n  \"rationale\": \"The mmproj projector is loaded via --mmproj, so the server can encode images, but the request puts the raw base64 in a top-level 'images' field, which the OpenAI-compatible /v1/chat/completions endpoint does not read; it expects an image_url part inside a content array with a data: URL. The usage shows only 21 prompt tokens and prompt_n of 5, whereas an encoded image would contribute hundreds of vision tokens, proving the image never reached the model. The reply is exactly what the model should say when it receives text only, so the fix is to reformat the request, not change the server or model.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\"action\": \"change_request_format\", \"target\": \"content\", \"value\": \"send content as an array of parts: [{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"What is in this picture? Describe it in two sentences.\\\"},{\\\"type\\\":\\\"image_url\\\",\\\"image_url\\\":{\\\"url\\\":\\\"data:image/png;base64,<base64>\\\"}}]\"},\n  \"rationale\": \"The mmproj projector is loaded via --mmproj, so the server can encode images, but the request puts the raw base64 in a top-level 'images' field, which the OpenAI-compatible /v1/chat/completions endpoint does not read; it expects an image_url part inside a content array with a data: URL. The usage shows only 21 prompt tokens and prompt_n of 5, whereas an encoded image would contribute hundreds of vision tokens, proving the image never reached the model. The reply is exactly what the model should say when it receives text only, so the fix is to reformat the request, not change the server or model.\"\n}\n```",
+  "finished": "2026-11-08T08:52:02.422038+00:00"
+}

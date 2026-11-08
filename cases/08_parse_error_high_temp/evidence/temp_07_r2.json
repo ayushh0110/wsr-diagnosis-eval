@@ -1,0 +1,60 @@
+{
+  "arm": "temp_07",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short paragraph about the history of tea."
+      }
+    ],
+    "temperature": 0.7,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The history of tea is a fascinating journey that began in ancient China, where it was first cultivated and consumed by the people over 5,000 years ago. Legend holds that tea was discovered by Emperor Shennong around 2,000 BCE through serendipitous discovery. From China, tea gradually spread throughout Asia, eventually reaching the Middle East and Europe, where it transitioned from a medicinal beverage to a staple of daily life. In the West, tea culture evolved significantly, particularly in Britain, where establishments like the bustling tea houses became central to social and political life. Today, tea remains a global phenomenon, prized not only for its caffeine and flavor but also for its rich cultural history and the diverse ways it is prepared and enjoyed worldwide."
+        }
+      }
+    ],
+    "created": 1794121088,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 152,
+      "prompt_tokens": 19,
+      "total_tokens": 171,
+      "prompt_tokens_details": {
+        "cached_tokens": 14
+      }
+    },
+    "id": "chatcmpl-17I5JzLZT3s9DbRpzm4qMQFLsoSEk8Kw",
+    "timings": {
+      "cache_n": 14,
+      "prompt_n": 5,
+      "prompt_ms": 46.368,
+      "prompt_per_token_ms": 9.2736,
+      "prompt_per_second": 107.83298826777087,
+      "predicted_n": 152,
+      "predicted_ms": 2494.959,
+      "predicted_per_token_ms": 16.41420394736842,
+      "predicted_per_second": 60.92284482430373
+    }
+  },
+  "latency_s": 2.62,
+  "detector_codes": []
+}

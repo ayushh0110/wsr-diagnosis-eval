@@ -1,0 +1,52 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:40.255859+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5 while top_p is 1.0 and min_p is 0, severely flattening the probability distribution across the entire vocabulary. This causes the sampler to pick nearly random low-probability tokens across multiple scripts and languages instead of coherent text. Lowering the temperature to a standard range (e.g., 0.7) restores normal generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EtcHCtQHAWkUfRPMzsZbeDMDuf6OhEO0npiX9jWyJA+NR+On84XwR+d2yd+6slPf2m4kLdc8l6TfLY3bSjxUGjR96uUSsz4jOUbry3w1AC/dcyXbrpyg506rmg6eubdoJnOw6k1vqXuFEVfZywvPKgOqTA/2ID7c84Gi5ZKNlHrU8jYmKYbdvXafp42h+h2W83lsIeV0OPRm7BBxj2pUM6oOuw/q0wkSbVfvOkNmDapiA+EF2fhpy0f6Nkk5F6y2ZW/jLttnxhbDyauLYvCtnbZqnn1S5T+8zQhO4FqN8aXx0eU1ty7Emz8d4anCQL3m/+1E7u3P2AW3iIiAccvcUtOGphoawDpX8rd4ienKe6wpzQ/tx6I1AcBjFCicFTxpEHLOU9GeVsTQRum94jF1Fw22htQJ+C+THWsGXfsh9kUv2a6nd1SlRUwrm5S9Czs+EjMWL4izYHhRs1DLBp2MNr6C/hTG1weJny1nDfbmkqdBROxkTBtK3HFjK9SeDOFtj0jNGAAdUW+mSD/cnK7bVkY25yw6eXVyS79qOBEWSDsv83Eoh+INa407WHKJxUBNZv0EBSKouKMxSa9Ma8vY00836dv47ED+xiwslNJ0XuAkVhh8cyHbMovMrkz9H+xiOy5dYYwvR1sFNAKoK41mXvxm1Q5MCAbh4BpiVuXvPuMQXi8YnvLY+CJFJ7Y3y/XDGbA7R1DJwBjYvTCT0DOqc7RhiigNxBV/U0vyHIPkM5LKiqABXXFhjefpUxEN4rKH57L+E3ClzugY+T+UPCliW0kwnJ4W3CxM0X45mFcbJcmRoEjQH48De+WS/dxWMPWmav8gC1Rvj2iCEq1bTvRhxTh4fM7uB2xNNOuC6aGRD7sD+uUS5Qo+uJYobhO4RdzMJSOddZjPkBbM49khbJ9yNp8hpMzW6uJMat4RyM0W3awuJUerzWuCqZHXGIHnReNtmrxcWkmbbYMZA8nxu1AAYPLpQr65FRaFF4vjJ63jm+dLD9rjt7aZTDSpVZN3YxBbomxMeFZdLpS2Fca+KNgePQj3tR/AovvrWGD4aQCvFpwo8OJtiqmZuFxcd1sdoME/uYlvwGnA9QziIn95E6bDqf/WKX1D3IMzd5CxKT3PlWMUkK5GScu80LrCLQyXwcadU7UNgLmhqLhBJ6ofU0EK+5CMqSx/n6UG+mQE8IKx1BhMD3NWopU3eL6rvILhgrljojTZZ69I1uEeO1rVVSogM0ekt9lhM0CplFJMO552CXS0VsQsMLLYlI6+HH8hjLMpQGEciHkvxGLzClcSnwJidivmjlx0xHphAyk="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133245,
+        "id": "-Ezwat-gEKLt3LUP1a3V4Q0",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 151,
+          "prompt_tokens": 2558,
+          "total_tokens": 2984
+        }
+      },
+      "latency_s": 5.63
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5 while top_p is 1.0 and min_p is 0, severely flattening the probability distribution across the entire vocabulary. This causes the sampler to pick nearly random low-probability tokens across multiple scripts and languages instead of coherent text. Lowering the temperature to a standard range (e.g., 0.7) restores normal generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:20:45.882587+00:00"
+}

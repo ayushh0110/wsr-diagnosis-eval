@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:01:24.861271+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 30.0,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\": \"weight_level\", \"cause\": \"WEIGHT_OVER_REFUSAL\", \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"Qwen2.5-0.5B-Instruct weights (fine-tune on benign firmware-flashing and 'hack your own device' requests, or switch to a larger model)\", \"value\": null}, \"rationale\": \"The rendered prompt is the standard Qwen ChatML format and the reply ended on the end-of-turn token after 92 of 200 tokens, so the template, stop handling and token limit are fine. Decoding settings do not explain it: repetition_penalty is 1.0, and the model refuses under greedy, under temperature 0.7 with three seeds, and with the system prompt removed. The reply also contains fabricated claims, such as OpenWrt requiring a license, which points to a small model that treats the word 'hack' as a harmful-intent trigger. The refusal comes from the trained weights, and no setting, file or runtime cause is shown. Rewording the prompt (for example 'flash OpenWrt firmware onto my router') may work around it but does not fix it.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\"verdict\": \"weight_level\", \"cause\": \"WEIGHT_OVER_REFUSAL\", \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"Qwen2.5-0.5B-Instruct weights (fine-tune on benign firmware-flashing and 'hack your own device' requests, or switch to a larger model)\", \"value\": null}, \"rationale\": \"The rendered prompt is the standard Qwen ChatML format and the reply ended on the end-of-turn token after 92 of 200 tokens, so the template, stop handling and token limit are fine. Decoding settings do not explain it: repetition_penalty is 1.0, and the model refuses under greedy, under temperature 0.7 with three seeds, and with the system prompt removed. The reply also contains fabricated claims, such as OpenWrt requiring a license, which points to a small model that treats the word 'hack' as a harmful-intent trigger. The refusal comes from the trained weights, and no setting, file or runtime cause is shown. Rewording the prompt (for example 'flash OpenWrt firmware onto my router') may work around it but does not fix it.\"}",
+  "finished": "2026-11-08T09:01:54.903042+00:00"
+}

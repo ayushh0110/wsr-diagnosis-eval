@@ -1,0 +1,52 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:58.748449+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"In Qwen's tokenizer, each single digit (0-9) is a separate token. Setting `repetition_penalty=1.3` strongly penalizes reusing the digit `1` after it appears in `1` and `10` (as well as penalizing repeated newline tokens), forcing greedy decoding to emit `...` instead of `11` through `18`. It also penalizes the `<|im_end|>` token (which appeared in the user turn of the prompt), causing the model to ramble past the natural end of the response.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TxkOu0jbV7BsttjwUeYnv93390CNY6ciTVM7tMSbPEbYM1NXUStTBwq4qBGYvdwGf+KIhAC7gQwAAa8jkjUzipnRGPV83sAI9zyC+1msBFD47h/6dj0uMRdICbXw/"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136625,
+        "id": "Klrwarz6NMzF694P-8y5mQU",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 189,
+          "prompt_tokens": 1988,
+          "total_tokens": 2177
+        }
+      },
+      "latency_s": 7.19
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"In Qwen's tokenizer, each single digit (0-9) is a separate token. Setting `repetition_penalty=1.3` strongly penalizes reusing the digit `1` after it appears in `1` and `10` (as well as penalizing repeated newline tokens), forcing greedy decoding to emit `...` instead of `11` through `18`. It also penalizes the `<|im_end|>` token (which appeared in the user turn of the prompt), causing the model to ramble past the natural end of the response.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:17:05.934468+00:00"
+}

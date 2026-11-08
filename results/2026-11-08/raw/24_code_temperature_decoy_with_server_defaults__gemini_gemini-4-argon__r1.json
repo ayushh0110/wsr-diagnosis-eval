@@ -1,0 +1,53 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:40:01.767493+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"repeat_penalty\\\": 1.4 (along with \\\"temperature\\\": 3.5), and \\\"penalties\\\" runs first in llama-server's sampler chain while \\\"min_p\\\": 0.05 filters out nonsense tokens before temperature is applied. A repetition penalty of 1.4 strongly penalizes reusing Python keywords, variable names, and loop syntax (such as a second \\\"for ... in range(1, 6):\\\" or referencing \\\"row\\\" and \\\"i\\\"), forcing the model to abandon the nested loop structure, ramble in comments with synonyms, and close the code block incomplete. Resetting repeat_penalty to the model default of 1.0 (and keeping temperature near 0.7-1.0) allows normal code structure to be generated.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138017,
+        "id": "kV_waoumN7ns694Pyaj60AE",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 240,
+          "prompt_tokens": 3161,
+          "total_tokens": 4144
+        }
+      },
+      "latency_s": 16.5
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"repeat_penalty\\\": 1.4 (along with \\\"temperature\\\": 3.5), and \\\"penalties\\\" runs first in llama-server's sampler chain while \\\"min_p\\\": 0.05 filters out nonsense tokens before temperature is applied. A repetition penalty of 1.4 strongly penalizes reusing Python keywords, variable names, and loop syntax (such as a second \\\"for ... in range(1, 6):\\\" or referencing \\\"row\\\" and \\\"i\\\"), forcing the model to abandon the nested loop structure, ramble in comments with synonyms, and close the code block incomplete. Resetting repeat_penalty to the model default of 1.0 (and keeping temperature near 0.7-1.0) allows normal code structure to be generated.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:40:18.269868+00:00"
+}

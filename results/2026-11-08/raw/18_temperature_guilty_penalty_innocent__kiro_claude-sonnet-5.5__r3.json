@@ -1,0 +1,40 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:40:00.805976+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.57,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.8\"},\n  \"rationale\": \"The request sets temperature 3.5 while top_k=0, top_p=1.0 and min_p=0, so nothing truncates the flattened distribution and the model samples from the whole vocabulary. The output is random tokens across many scripts (Bengali, Tamil, Cyrillic, CJK, Latin), with no digits at all, which is what an untruncated high-temperature draw looks like. The server setup is normal (--jinja, the same template path as usual, 24 prompt tokens, no context pressure), and the first token is already nonsense. Set temperature to about 0.8 for creative writing, and add min_p 0.05 if you want more variety without garbage. Also lower repeat_penalty from 1.3 to about 1.05 or remove it, because it will hurt a list of numbers once the temperature is fixed.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.8\"},\n  \"rationale\": \"The request sets temperature 3.5 while top_k=0, top_p=1.0 and min_p=0, so nothing truncates the flattened distribution and the model samples from the whole vocabulary. The output is random tokens across many scripts (Bengali, Tamil, Cyrillic, CJK, Latin), with no digits at all, which is what an untruncated high-temperature draw looks like. The server setup is normal (--jinja, the same template path as usual, 24 prompt tokens, no context pressure), and the first token is already nonsense. Set temperature to about 0.8 for creative writing, and add min_p 0.05 if you want more variety without garbage. Also lower repeat_penalty from 1.3 to about 1.05 or remove it, because it will hurt a list of numbers once the temperature is fixed.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T09:40:40.413074+00:00"
+}

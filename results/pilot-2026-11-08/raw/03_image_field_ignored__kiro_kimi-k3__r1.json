@@ -1,0 +1,40 @@
+{
+  "case_id": "03_image_field_ignored",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "44384cd0f8039e30",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:36.322078+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 11.72,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\"action\": \"change_request_format\", \"target\": \"messages[].content\", \"value\": \"send content as an array of parts: [{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"...\\\"},{\\\"type\\\":\\\"image_url\\\",\\\"image_url\\\":{\\\"url\\\":\\\"data:image/png;base64,<b64>\\\"}}] and drop the custom \\\"images\\\" key\"},\n  \"rationale\": \"The base64 PNG is placed in a custom \\\"images\\\" field with content as a plain string, which is the Ollama-style shape; llama-server's OpenAI-compatible endpoint only reads images from content parts of type image_url containing a data URI, so the image is silently ignored. The usage stats confirm this: prompt_tokens is only 21, far too few for an encoded image, which would contribute hundreds of tokens via the projector. The projector itself is loaded (--mmproj is in the launch command), so the runtime is fine and the model truthfully reports it received no picture.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.29
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.29 • Time: 7s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"IMAGE_FIELD_IGNORED\",\n  \"fix\": {\"action\": \"change_request_format\", \"target\": \"messages[].content\", \"value\": \"send content as an array of parts: [{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"...\\\"},{\\\"type\\\":\\\"image_url\\\",\\\"image_url\\\":{\\\"url\\\":\\\"data:image/png;base64,<b64>\\\"}}] and drop the custom \\\"images\\\" key\"},\n  \"rationale\": \"The base64 PNG is placed in a custom \\\"images\\\" field with content as a plain string, which is the Ollama-style shape; llama-server's OpenAI-compatible endpoint only reads images from content parts of type image_url containing a data URI, so the image is silently ignored. The usage stats confirm this: prompt_tokens is only 21, far too few for an encoded image, which would contribute hundreds of tokens via the projector. The projector itself is loaded (--mmproj is in the launch command), so the runtime is fine and the model truthfully reports it received no picture.\"\n}",
+  "finished": "2026-11-08T07:59:48.084972+00:00"
+}

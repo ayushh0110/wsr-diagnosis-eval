@@ -1,0 +1,52 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:26:55.728530+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 2.5 while disabling other filters (top_k: 0, top_p: 1.0, min_p: 0), causing the model to sample nonsensical, highly improbable tokens. Because the generation becomes random gibberish, it fails to emit the expected syntax and markers required by the server's output parser. Lowering the temperature to a standard value such as 0.7 restores coherent token generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133624,
+        "id": "b07waoXzMtDg694P47i12Q0",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 166,
+          "prompt_tokens": 1919,
+          "total_tokens": 2930
+        }
+      },
+      "latency_s": 8.67
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 2.5 while disabling other filters (top_k: 0, top_p: 1.0, min_p: 0), causing the model to sample nonsensical, highly improbable tokens. Because the generation becomes random gibberish, it fails to emit the expected syntax and markers required by the server's output parser. Lowering the temperature to a standard value such as 0.7 restores coherent token generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:27:04.402822+00:00"
+}

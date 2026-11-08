@@ -1,0 +1,52 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:16:15.345267+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": \"do_sample\",\n    \"value\": true\n  },\n  \"rationale\": \"In request.json, the user overrode the model's default generation_config.json by setting do_sample=false and repetition_penalty=1.0. Running a small 0.5B model with pure greedy decoding and no repetition penalty causes it to get stuck in an exact phrase repetition loop until hitting max_new_tokens. Restoring the model's default sampled decoding settings (do_sample=true, temperature=0.7, top_p=0.8, top_k=20, repetition_penalty=1.1) breaks the loop.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Et0GCtoGAWkUfRMIeMnnmEQU/5VTL6dFjmTPuK+DVHdn8DER+IC7M+K6oFiwhQAQg5bihLwaBFsn9FvxycOKTXjGPOJqQ3sFIq01xvBlGfoX6XDv0ajaI6hCMdRjWdTJ1RF18vANduWl3DfuHixOt+QdyG2wFOImDDWBQGUkTMt+bRfKwRI6CkHlZaqZRGT9ZAAwz5mOugbZattyg8sTdHx0ngu22I2zIC5w+d+E5dYuoeC/VMENQYY+cFLFLGAG0snu5UE27e2SJNcLqRoj+5Uh38HA2Zfxf7PjDFGLnby5R0dkNM7jkrCCX9xezR/taPbd81rlT2TBlKFwpRFbINF5WOUrYBhAKaMfq2iQLgdsjEmAZg14CR8Zfk9qz8XqOHw1fphmKt0O0V/FodzXghbkWPy/hV2L8PwY6iiBPRhvxnpOpDCEQVaUcJItzEMD5QCIlMIDDJ4S+nIJWeTF8uzvwIhx2TZOi7fR7tn2Z/KfSoiptkqQnXT1Wn0hjcyS256VG8KoWFCYUswfth0qdaiUvuTVjHIFhH53oIC1+Y7QjSlzSxZyQH27/ytna4QO1RMmhhuAheyUuNh4oqoeyfLYJETEXSvIHkCu8MEdPt3OC3L9z97VOnSxKgYF17kiOEgnJjFPXu5hgMdggff/Us8+lRDjdcLV5qbyaOQmen1uoqcQxOaKrEy+zVUi04INLdcl4joJC0F+tijdRJB9AYQmH+YL/cQPfVXTMtB2/JDTKjUYAteGo3ODSqVkVYfa87fCD7WJuWsVuOS7FQDRCm883w3uDHcH7lJOSHcgjnFhWSJYr4aHcwNRwATKpGj+RiPektm+jl6nBNSOB36VxXCi/cnzvBcpTlHwYWUyzq28kCui3z5UvU0L879whKEMBo4l3DRHdP+QuMBbhGcm/6jqAAok3eSarwQvOrSZbo1OaS81Lz3uSZ2j8I9MbMBoSqU/64bO8VOyT4kz8BTkdH8X3mJTPq5jZow4+U4LiFK9VGOmKc76O/2AeY9InVt277WTE9kdc/gwetJIg3uEfYpeIHfOKjwYEDvMvJGy9dV/G9jilcttWj1FWnDxnphUAAaOQ2hZkJpk9duUKdkbaL1X8ffV9kyPSzcqQ5weayCv3Y0lDt7dIE7+gV9JbCZK"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132987,
+        "id": "70vwapGuF5HdqfkPp4K5yAE",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 193,
+          "prompt_tokens": 2161,
+          "total_tokens": 2585
+        }
+      },
+      "latency_s": 12.49
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": \"do_sample\",\n    \"value\": true\n  },\n  \"rationale\": \"In request.json, the user overrode the model's default generation_config.json by setting do_sample=false and repetition_penalty=1.0. Running a small 0.5B model with pure greedy decoding and no repetition penalty causes it to get stuck in an exact phrase repetition loop until hitting max_new_tokens. Restoring the model's default sampled decoding settings (do_sample=true, temperature=0.7, top_p=0.8, top_k=20, repetition_penalty=1.1) breaks the loop.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:16:27.838068+00:00"
+}

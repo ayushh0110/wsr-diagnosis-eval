@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:00:37.294983+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.54,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"Qwen/Qwen2.5-0.5B-Instruct refusal behaviour on benign 'hack my own device' requests\", \"value\": null},\n  \"rationale\": \"The rendered prompt is the correct Qwen ChatML format. The model runs in fp32 with no quantisation. The reply is fluent and ends on the end-of-turn token at 92 of 200 tokens, which rules out the template, file damage, quantisation and the token limit. The refusal appears under greedy decoding, under sampling at temperature 0.7 with three seeds, and with or without the system prompt, so no decoding or request setting explains it. This small instruct model refuses a benign request because of the word 'hack', and the refusal lives in its trained weights. As an immediate workaround without changing weights, rephrasing to 'How do I install OpenWrt firmware on my router?' will likely avoid the trigger.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "```json\n{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"Qwen/Qwen2.5-0.5B-Instruct refusal behaviour on benign 'hack my own device' requests\", \"value\": null},\n  \"rationale\": \"The rendered prompt is the correct Qwen ChatML format. The model runs in fp32 with no quantisation. The reply is fluent and ends on the end-of-turn token at 92 of 200 tokens, which rules out the template, file damage, quantisation and the token limit. The refusal appears under greedy decoding, under sampling at temperature 0.7 with three seeds, and with or without the system prompt, so no decoding or request setting explains it. This small instruct model refuses a benign request because of the word 'hack', and the refusal lives in its trained weights. As an immediate workaround without changing weights, rephrasing to 'How do I install OpenWrt firmware on my router?' will likely avoid the trigger.\"\n}\n```",
+  "finished": "2026-11-08T09:01:12.867472+00:00"
+}

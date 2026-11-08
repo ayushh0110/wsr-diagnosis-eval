@@ -1,0 +1,88 @@
+[
+  {
+    "file": "failing_r1.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": []
+  },
+  {
+    "file": "failing_r2.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "failing_r3.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "failing_r4.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "penalty_off_r1.json",
+    "prints_5x5_table": true,
+    "stdout_head": "1 2 3 4 5\n2 4 6 8 10\n3 6 9 12 15\n4 8 12 16 20\n5 10 15 20 25\n",
+    "error": []
+  },
+  {
+    "file": "penalty_off_r2.json",
+    "prints_5x5_table": true,
+    "stdout_head": "1x1=1 1x2=2 1x3=3 1x4=4 1x5=5 \n2x1=2 2x2=4 2x3=6 2x4=8 2x5=10 \n3x1=3 3x2=6 3x3=9 3x4=12 3x5=15 \n4x1=4 4x2=8 4x3=12 4x4=1",
+    "error": []
+  },
+  {
+    "file": "penalty_off_r3.json",
+    "prints_5x5_table": true,
+    "stdout_head": "    |   1   2   3   4   5\n1|   1   2   3   4   5\n2|   2   4   6   8  10\n3|   3   6   9  12  15\n4|   4   8  12  16  20\n5|",
+    "error": []
+  },
+  {
+    "file": "penalty_off_r4.json",
+    "prints_5x5_table": true,
+    "stdout_head": "1\t2\t3\t4\t5\t\n2\t4\t6\t8\t10\t\n3\t6\t9\t12\t15\t\n4\t8\t12\t16\t20\t\n5\t10\t15\t20\t25\t\n",
+    "error": []
+  },
+  {
+    "file": "temp_07_r1.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "temp_07_r2.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "temp_07_r3.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: invalid syntax"
+    ]
+  },
+  {
+    "file": "temp_07_r4.json",
+    "prints_5x5_table": false,
+    "stdout_head": "",
+    "error": [
+      "SyntaxError: unmatched ')'"
+    ]
+  }
+]

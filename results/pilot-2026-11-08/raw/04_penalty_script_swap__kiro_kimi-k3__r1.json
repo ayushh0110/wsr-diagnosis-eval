@@ -1,0 +1,40 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T07:59:45.775060+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 18.78,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"REPEAT_PENALTY_HIGH\",\n \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n \"rationale\": \"The request sets repeat_penalty to 2.0, twice the neutral value, and decoding is greedy (temperature 0), so once common Hindi tokens (है, होता, के, की) appear they are heavily penalized and the decoder is forced onto lower-probability continuations. That explains exactly the observed damage: wrong tense forms ('होता था' where 'होता है' was already used), invented compounds ('बाष्पन दरशरण अपनाती हूँ'), and drift into semantically adjacent Urdu-script tokens ('ہیں۔'). Q4_0 quantization causes diffuse quality loss, not selective script-switching, and nothing in the launch flags or template points elsewhere; lowering repeat_penalty to 1.0 (or at most ~1.1) and re-running the same prompt is the fix and the confirmation test.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.39
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.39 • Time: 14s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n \"verdict\": \"sampling\",\n \"cause\": \"REPEAT_PENALTY_HIGH\",\n \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n \"rationale\": \"The request sets repeat_penalty to 2.0, twice the neutral value, and decoding is greedy (temperature 0), so once common Hindi tokens (है, होता, के, की) appear they are heavily penalized and the decoder is forced onto lower-probability continuations. That explains exactly the observed damage: wrong tense forms ('होता था' where 'होता है' was already used), invented compounds ('बाष्पन दरशरण अपनाती हूँ'), and drift into semantically adjacent Urdu-script tokens ('ہیں۔'). Q4_0 quantization causes diffuse quality loss, not selective script-switching, and nothing in the launch flags or template points elsewhere; lowering repeat_penalty to 1.0 (or at most ~1.1) and re-running the same prompt is the fix and the confirmation test.\"\n}",
+  "finished": "2026-11-08T08:00:04.594192+00:00"
+}

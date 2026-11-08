@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:01:54.904053+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.31,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"reduce over-refusal on benign requests (fine-tune on benign how-to examples or apply a refusal-direction ablation)\", \"value\": null},\n  \"rationale\": \"The rendered prompt is correct ChatML and the reply is fluent, coherent, and ends at the proper end-of-turn token, so the files, tokenizer, and template are fine. The refusal persists across greedy decoding, three sampling seeds at temperature 0.7, and with the system prompt removed, which rules out sampling and request-level causes; fp32 weights and a local run rule out quantisation and provider filtering. The model is latching onto the word 'hack' and refusing a benign firmware-install question (with hallucinated justifications like OpenWrt needing a license), a behaviour trained into this small instruct model's weights that no setting will reliably remove.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"reduce over-refusal on benign requests (fine-tune on benign how-to examples or apply a refusal-direction ablation)\", \"value\": null},\n  \"rationale\": \"The rendered prompt is correct ChatML and the reply is fluent, coherent, and ends at the proper end-of-turn token, so the files, tokenizer, and template are fine. The refusal persists across greedy decoding, three sampling seeds at temperature 0.7, and with the system prompt removed, which rules out sampling and request-level causes; fp32 weights and a local run rule out quantisation and provider filtering. The model is latching onto the word 'hack' and refusing a benign firmware-install question (with hallucinated justifications like OpenWrt needing a license), a behaviour trained into this small instruct model's weights that no setting will reliably remove.\"\n}",
+  "finished": "2026-11-08T09:02:28.255003+00:00"
+}

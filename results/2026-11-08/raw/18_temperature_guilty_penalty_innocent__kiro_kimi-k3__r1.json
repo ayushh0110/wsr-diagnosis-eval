@@ -1,0 +1,40 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:40:03.039222+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.73,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\": \"sampling\", \"cause\": \"TEMPERATURE_HIGH\", \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": 1.0}, \"rationale\": \"The request sends temperature 3.5 with top_k 0, top_p 1.0, and min_p 0, so nothing truncates the tail and the distribution is flattened to the point where low-probability tokens from many unrelated languages are sampled every step, which exactly matches the multilingual garbage in the response. The failure appeared right after the user changed sampling settings, and the prompt itself is trivial with only 24 prompt tokens, ruling out file, template, context, and request-shape causes. The repeat_penalty of 1.3 contributes to degrading structure on a counting task, but temperature 3.5 alone is sufficient to produce token-level nonsense of this kind. Setting temperature to 1.0 (and ideally also resetting repeat_penalty to 1.0) will restore coherent output.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\": \"sampling\", \"cause\": \"TEMPERATURE_HIGH\", \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": 1.0}, \"rationale\": \"The request sends temperature 3.5 with top_k 0, top_p 1.0, and min_p 0, so nothing truncates the tail and the distribution is flattened to the point where low-probability tokens from many unrelated languages are sampled every step, which exactly matches the multilingual garbage in the response. The failure appeared right after the user changed sampling settings, and the prompt itself is trivial with only 24 prompt tokens, ruling out file, template, context, and request-shape causes. The repeat_penalty of 1.3 contributes to degrading structure on a counting task, but temperature 3.5 alone is sufficient to produce token-level nonsense of this kind. Setting temperature to 1.0 (and ideally also resetting repeat_penalty to 1.0) will restore coherent output.\"}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T09:40:38.812233+00:00"
+}

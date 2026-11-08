@@ -1,0 +1,52 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:14:47.785245+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request payload in request.json sets `\\\"stop\\\": [\\\"\\\\n\\\"]`, which instructs the server to halt generation immediately upon encountering the first newline character. Because a four-line poem uses newlines to separate each line, the server stops right after the first line (`Vast blue stretches, endless and deep,`) with `\\\"finish_reason\\\": \\\"stop\\\"`. Removing `\\\"\\\\n\\\"` from the `stop` parameter will allow the model to generate all four lines.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TgG92okHSG2eC6qaPL9omBPNUaa27LHnRZwL8RobAksJTORd4/+pl0/LDLgRzl8lBEazXLDrbvA4m4lOcLAJDvXEZaQMeZPNMCVV3XAeh71rOqS2lYcau+Hdigqs="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132897,
+        "id": "l0vwasWaNOqQ694Pp8SkGA",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 166,
+          "prompt_tokens": 2317,
+          "total_tokens": 2483
+        }
+      },
+      "latency_s": 10.1
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request payload in request.json sets `\\\"stop\\\": [\\\"\\\\n\\\"]`, which instructs the server to halt generation immediately upon encountering the first newline character. Because a four-line poem uses newlines to separate each line, the server stops right after the first line (`Vast blue stretches, endless and deep,`) with `\\\"finish_reason\\\": \\\"stop\\\"`. Removing `\\\"\\\\n\\\"` from the `stop` parameter will allow the model to generate all four lines.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:14:57.885893+00:00"
+}

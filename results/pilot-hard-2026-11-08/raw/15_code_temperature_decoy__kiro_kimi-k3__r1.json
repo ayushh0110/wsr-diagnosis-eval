@@ -1,0 +1,40 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:45:42.025764+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 31.97,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The user reports the breakage began right after they 'tuned the sampling to explore', and the request shows temperature 3.5, which flattens the token distribution enough to routinely sample low-probability tokens. The response shows exactly that: the code derails mid-function, the comments contradict themselves, and generation stops at 141 tokens (well under max_tokens 350) because an EOS token was sampled early. The repeat_penalty of 1.4 adds distortion, but temperature 3.5 alone is sufficient to produce non-running output, so it is the single root cause; lowering it to ~0.7 (and ideally also relaxing repeat_penalty toward 1.0-1.1) restores coherent code.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The user reports the breakage began right after they 'tuned the sampling to explore', and the request shows temperature 3.5, which flattens the token distribution enough to routinely sample low-probability tokens. The response shows exactly that: the code derails mid-function, the comments contradict themselves, and generation stops at 141 tokens (well under max_tokens 350) because an EOS token was sampled early. The repeat_penalty of 1.4 adds distortion, but temperature 3.5 alone is sufficient to produce non-running output, so it is the single root cause; lowering it to ~0.7 (and ideally also relaxing repeat_penalty toward 1.0-1.1) restores coherent code.\"\n}",
+  "finished": "2026-11-08T08:46:14.215242+00:00"
+}

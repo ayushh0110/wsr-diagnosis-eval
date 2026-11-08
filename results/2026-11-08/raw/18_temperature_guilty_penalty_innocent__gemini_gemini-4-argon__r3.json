@@ -1,0 +1,52 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:35.037373+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets `temperature` to 3.5 with `top_k: 0`, `top_p: 1.0`, and `min_p: 0` (meaning no tail truncation is applied). A temperature of 3.5 flattens the logit distribution across the entire multilingual vocabulary, causing the model to sample random, low-probability tokens across dozens of scripts instead of coherent text. Lowering the temperature to a standard value (e.g., 0.7) restores normal generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TwwZlfkVBuhGgPB4Z92/V0flmZ2FN5CoUxznokIEggpb3FMpuh6N9RxTzYme168VYCJHfwAX3b6+HkfdYlD3MAkxn2lKdgcBXiymtUAFO/GwIhIR3EnU9z4sOOPg="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133242,
+        "id": "80zwaozCBdWkg8UPye-fiQk",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 176,
+          "prompt_tokens": 2605,
+          "total_tokens": 2781
+        }
+      },
+      "latency_s": 8.19
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets `temperature` to 3.5 with `top_k: 0`, `top_p: 1.0`, and `min_p: 0` (meaning no tail truncation is applied). A temperature of 3.5 flattens the logit distribution across the entire multilingual vocabulary, causing the model to sample random, low-probability tokens across dozens of scripts instead of coherent text. Lowering the temperature to a standard value (e.g., 0.7) restores normal generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:20:43.224129+00:00"
+}

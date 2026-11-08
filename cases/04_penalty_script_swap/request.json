@@ -1,0 +1,15 @@
+{
+  "model": "local",
+  "messages": [
+    {
+      "role": "user",
+      "content": "बारिश कैसे होती है? हिंदी में समझाइए।"
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 400,
+  "repeat_penalty": 2.0,
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  }
+}

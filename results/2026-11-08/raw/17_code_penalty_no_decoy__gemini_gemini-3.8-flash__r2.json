@@ -1,0 +1,52 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:20.435015+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request sets repeat_penalty to 1.4, which heavily penalizes reusing common Python syntax tokens, variable names, and control-flow keywords. To evade the penalty, the model generated increasingly bizarre, nonsensical arithmetic expressions and loops instead of standard nested iterations. Resetting repeat_penalty to 1.0 (or removing it) will allow normal syntax and keyword reuse.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133239,
+        "id": "5EzwatnLIJmJ4-EP4eqfoQc",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 154,
+          "prompt_tokens": 2726,
+          "total_tokens": 3897
+        }
+      },
+      "latency_s": 19.82
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request sets repeat_penalty to 1.4, which heavily penalizes reusing common Python syntax tokens, variable names, and control-flow keywords. To evade the penalty, the model generated increasingly bizarre, nonsensical arithmetic expressions and loops instead of standard nested iterations. Resetting repeat_penalty to 1.0 (or removing it) will allow normal syntax and keyword reuse.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:20:40.255859+00:00"
+}

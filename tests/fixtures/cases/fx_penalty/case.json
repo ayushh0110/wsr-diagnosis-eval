@@ -1,0 +1,9 @@
+{
+  "id": "fx_penalty",
+  "title": "SYNTHETIC test fixture, not part of the eval",
+  "tier": "red_herring",
+  "user_report": "FIXTURE_USER_REPORT: the reply sounds odd.",
+  "environment": {"runtime": "fixture-runtime", "model": "fixture-model", "precision": "Q4_0"},
+  "artifacts": [{"name": "Request sent", "path": "request.json", "lang": "json"}],
+  "experiments_log": null
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:53:06.031603+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.24,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, roughly double any commonly used value, and with temperature 0 it is the only distorting force in decoding. Hindi reuses grammatical function words constantly, and the corruption lands exactly on those repeated items: after 'हैं' appears multiple times it gets penalised and the model substitutes the semantically identical Urdu-script token 'ہیں', and 'वाष्पीकरण' degrades into the coinage 'बाष्पन दरशरण अपनाती हूँ' once the correct word was already used. This avoid-the-repeat substitution pattern is the signature of an excessive repetition penalty, not of Q4_0 weight damage, which would degrade quality uniformly rather than swap repeated words for cross-script equivalents.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, roughly double any commonly used value, and with temperature 0 it is the only distorting force in decoding. Hindi reuses grammatical function words constantly, and the corruption lands exactly on those repeated items: after 'हैं' appears multiple times it gets penalised and the model substitutes the semantically identical Urdu-script token 'ہیں', and 'वाष्पीकरण' degrades into the coinage 'बाष्पन दरशरण अपनाती हूँ' once the correct word was already used. This avoid-the-repeat substitution pattern is the signature of an excessive repetition penalty, not of Q4_0 weight damage, which would degrade quality uniformly rather than swap repeated words for cross-script equivalents.\"\n}\n```",
+  "finished": "2026-11-08T08:53:44.313280+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "case_id": "19_hf_greedy_temperature_ignored",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "c7a5b86f73f6990f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:40.468095+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"In the generation call, do_sample is False, which disables temperature, but repetition_penalty=1.3 remains active. A repetition penalty of 1.3 heavily penalizes repeating token patterns and consecutive numerical tokens, forcing the model to skip numbers with '...' and invent rambling rationalizations. Removing repetition_penalty (or setting it back to 1.0) allows the model to produce the full sequential list.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136608,
+        "id": "GFrwasupMseH3LUP4ezN2Qw",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 159,
+          "prompt_tokens": 1991,
+          "total_tokens": 2868
+        }
+      },
+      "latency_s": 7.98
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"In the generation call, do_sample is False, which disables temperature, but repetition_penalty=1.3 remains active. A repetition penalty of 1.3 heavily penalizes repeating token patterns and consecutive numerical tokens, forcing the model to skip numbers with '...' and invent rambling rationalizations. Removing repetition_penalty (or setting it back to 1.0) allows the model to produce the full sequential list.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:16:48.445976+00:00"
+}

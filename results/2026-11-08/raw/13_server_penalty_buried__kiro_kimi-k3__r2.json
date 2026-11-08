@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:09:39.173131+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.93,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"presence_penalty\", \"value\": null},\n  \"rationale\": \"The request sets presence_penalty to 1.5, an extreme value that punishes any token already used once. The output shows the direct signature: the model writes 'for j from range(6)' instead of 'for j in range(6)' because 'in' was already consumed, and it drifts into long prose comments because repeating code tokens (variable names, keywords, brackets) is penalized, so valid Python becomes literally unsamplable. finish_reason is 'stop' at 254 tokens, so max_tokens and truncation are ruled out, and temperature 0.7 alone does not produce this avoidance pattern. Removing presence_penalty (the server-side --repeat-penalty 1.5 should also be lowered, but the request-level 1.5 presence penalty is the decisive misconfiguration) restores the ability to reuse ordinary code structure.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"remove_param\", \"target\": \"presence_penalty\", \"value\": null},\n  \"rationale\": \"The request sets presence_penalty to 1.5, an extreme value that punishes any token already used once. The output shows the direct signature: the model writes 'for j from range(6)' instead of 'for j in range(6)' because 'in' was already consumed, and it drifts into long prose comments because repeating code tokens (variable names, keywords, brackets) is penalized, so valid Python becomes literally unsamplable. finish_reason is 'stop' at 254 tokens, so max_tokens and truncation are ruled out, and temperature 0.7 alone does not produce this avoidance pattern. Removing presence_penalty (the server-side --repeat-penalty 1.5 should also be lowered, but the request-level 1.5 presence penalty is the decisive misconfiguration) restores the ability to reuse ordinary code structure.\"\n}",
+  "finished": "2026-11-08T09:10:17.138433+00:00"
+}

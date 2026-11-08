@@ -1,0 +1,42 @@
+[
+  {
+    "file": "failing_r1.json",
+    "http": 200,
+    "correct_1_to_30_list": false
+  },
+  {
+    "file": "failing_r2.json",
+    "http": 200,
+    "correct_1_to_30_list": false
+  },
+  {
+    "file": "failing_r3.json",
+    "http": 200,
+    "correct_1_to_30_list": false
+  },
+  {
+    "file": "failing_r4.json",
+    "http": 200,
+    "correct_1_to_30_list": false
+  },
+  {
+    "file": "penalty_off_r1.json",
+    "http": 200,
+    "correct_1_to_30_list": true
+  },
+  {
+    "file": "penalty_off_r2.json",
+    "http": 200,
+    "correct_1_to_30_list": true
+  },
+  {
+    "file": "penalty_off_r3.json",
+    "http": 200,
+    "correct_1_to_30_list": true
+  },
+  {
+    "file": "penalty_off_r4.json",
+    "http": 200,
+    "correct_1_to_30_list": true
+  }
+]

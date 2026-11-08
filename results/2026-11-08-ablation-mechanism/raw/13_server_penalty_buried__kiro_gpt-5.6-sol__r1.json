@@ -1,0 +1,41 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:43:44.871939+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 50.56,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"inconclusive\",\"cause\":\"INSUFFICIENT_EVIDENCE\",\"fix\":{\"action\":\"collect_more_evidence\",\"target\":\"Run the same prompt with a fixed seed in three conditions: both presence_penalty=0 and repeat_penalty=1.0; presence_penalty=1.5 only; repeat_penalty=1.5 only. Repeat each condition several times.\",\"value\":null},\"rationale\":\"This runtime applies the request's presence_penalty=1.5 alongside the server default --repeat-penalty 1.5; neither setting overrides the other, so both suppress token reuse during generation. Both are plausible causes of broken code, and the single response provides no ablation that identifies one of them as the root cause.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\":\"inconclusive\",\"cause\":\"INSUFFICIENT_EVIDENCE\",\"fix\":{\"action\":\"collect_more_evidence\",\"target\":\"Run the same prompt with a fixed seed in three conditions: both presence_penalty=0 and repeat_penalty=1.0; presence_penalty=1.5 only; repeat_penalty=1.5 only. Repeat each condition several times.\",\"value\":null},\"rationale\":\"This runtime applies the request's presence_penalty=1.5 alongside the server default --repeat-penalty 1.5; neither setting overrides the other, so both suppress token reuse during generation. Both are plausible causes of broken code, and the single response provides no ablation that identifies one of them as the root cause.\"}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T11:44:35.468811+00:00"
+}

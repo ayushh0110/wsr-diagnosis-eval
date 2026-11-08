@@ -1,0 +1,52 @@
+{
+  "case_id": "21_hf_code_greedy_temperature_ignored",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "a1b5ce0f21cb97aa",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:24.274322+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"Because do_sample=False, temperature is ignored by the transformers generation pipeline during greedy search. However, repetition_penalty=1.3 remains active and severely penalizes reusing common Python tokens, indentation, and keywords. This forces the model into convoluted, broken logic to avoid repeating standard syntax like nested loops and variable names.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EsopCscpAWkUfRPB20DdK8sDMaPbQl5Z3TAlS0Bul9bxAEZHcLDJbM6r4hyR4x3D6IncUkkl1Unzcm+4DkbJlqWA6BX43ZUig3PQDM6kQcaaije/ZHyVHmYCdx5tXO4D9rcN2UTiOfznTdhJ8Rk+9z9wZNEIRa268aRulCd5JZGNIHMpFtSDKsv4h2YnEUbY48MLyySWR1cIIwNAb6bc/cJh9tWtDtvY5AZKYzZeG/vp1Pv63q2CcZ+YCT6QLl4e+dAKL0Naf+iE1M7Sv33GWex3kEWJaXc6p4edLkjIpwfNJuOGZM0wX7q65TW8o7f9RW8y2FPoqFj25JHsXQCQFgZBJlyr7B6wj42u0A9yp7gu/2OfEtvyoZENEzh2Eh13fBIDXIMphhbSQvE7de9QkvSQ+bESwn0nppyiBLsiHO+X1NZCZ25N4VgyU01L1ngunD2rRWOmaccxK0Z/xLd8y9f79jHAgZ4hcJcatWd/UqpOCUa7WVeICerar8YMIb8Uv04vUhK9UjtRhnIsbWMWMJxdK8C8vhAVG+uHXmaGmjB8K10FaWuzDk+lyGJRmQjWwHeKecuphK8Hn0dRR7friakSl6cUauaoWOXWHtdeky2nrDrZ1HplEAViY/lJ38qbdPXrZld/z5aeYQuDxqx/w8wBag/nEDR0YKXXSmeD3OuUXZemjEkV4415wpgXmeA0BNoXYfkW0cK09LbtHsPRXzoIbAg4srRYK1IoyKZRVcRSqNECQKh1VBsm9hhjarIQEwzPA2gGZWg0jG24h2gdz7jccjkOV414segxCdSrA7Z6nBIwiK+dEHK+XomlnplUGM2u0ZieU3rmH7LBFLGU6Oy4H2CNa+13nporEAcKkZ/jvAbDin8QTvDuRr/zzP2EBKLEAQEEFUFOHNTGy7KHQQpUOGDOtWZ6JWlKXiavcCevtcLQ4zliUKmBRCoFFQdxoyQdcVUQc/MioFLHoBEfEvkZpRD6xO5jtxm/B9226D0+mtH23NpTHfAGwTH6oS3oQrwNVNtMZ3WJ8gfR1k4BYbx0RDq+lhdmRUV4D04cNG7S1YkcMYC6kbw8a3GG9RgEocJHvxBE7LWXMkcFSHGQPoJrsepJ/PvhZX0II6cRBZbX/CdtEXKWzv3sm3tcUcfN0CVvhwNJSoBAtJWPeRC3fDZczYKCx0LN3hFnXThKMEEWNA15YqZpdFyu1mUh/GSkB7+iHzI13K9D/pciU7G7v3O2HuBveARL/zCCgNtrOv3IMuH/uD65WwE93dV73adaq0YtXU2wG4r0xUXt8fu5Pk/F5bihehcLjGA7ryhnOO04otJtNFKHKz8JrUarXVNY+6dq235btwAjga86ObzihkJ3EcLg+Db57hRQa+r2Pat4fJ9QvFHCNgDtQ7J9naL8Mgoxs/QFdCn+Hxq4C0tEtcZenIJU3Kp3t4NxivNW30aUtqW01PccM2LdbXRZPJNJf9m/66u6OFR3wuf1zshWt+BG2KtOrR3nx5AAZmrLMRDItxvlgk1+EazDrHr62zTuXzhiN0OstNzyt4vrGtctbgBVDY/8GzbtpRnncOWSvpIwruEsjr+i/kMpiHH9DDhIfIfmxjNLZRSx2dN3JkfqbTEvj/3KYnwSpvpOmFXtZsuJhK4skNWrCF3hss7SVXLtwe07QS6dvJYfP/3eHS/V7ocpii0Z4oQmx3XDeykFYvqxsl87I0VH0JZT0Sv8O1erxcdtQNAAGV3Y9YLp1cxDCcPwn4Uh62TpkMtYmSXKLTpiLC2Alsks3V4HvuKPywZ8QbQn5uBPrr5cIRnqhipOgNhNVr16fdWHIA6YTGHkFf3hgsrP8Yy9Y4TyYAqGNQHWef3JOAKsGnw6d0ahIv0VQyzXJbRRJP1lVXs3CCUBwzLULk5WmFRzoLnmyHdjFN4t8N2qywVY1KRVP0cwE/a2Yi1dpylWmULL5iJ7lbSfYoX/U+A8Lx1vdLUpbwkVrJd31j2vgfhahbVL6u1tbR5pvzLHMQ+do47POuPp65pwCv6xcYmFVxhNNIsJFytDCX1JYA7Lspwg229lBIk5Ce9MfPAWA64LKdNd6/noxAck770C49g+7T4HN49tUDrdhEn/gHxVPiM/DgA/dnEI1iekPbF+KpJgml47mheIHQ2mqaUTrMWkNqlTwC6frXDTryFb//nOtY57X/G2oP6LU8NE8oXkXhxtkvZ8bpJUw3ogKW+DdcwFcQkM1ZHw0cBSYNRe40NzfkEQTCJNXaAN/1Mp29vqSqXir64NMbICEP3nzmxCJphm/w/qKTTcPHWsyU+TL/QTHkYl/Oc4ByqRVqIdsEn78ipz9IxO7Ms7U2Hfk/+nWJyj+IPZVFETcuP0vUa+b8hpDyu0ovm0J5R2U6pkk/GhdYEpbezC8pEZKDLK/DTwmE9YB9QNmH2Fbbfp64H3em0Fe8msCTVFXH5Nzi3AwAADXK39fB72ADbxEWuojv6OP0Baaap8sNdzGGYgqnC3Qgi0GwnSECC1RIoclI6vUAILxhWX62+2x7h5rT1LKlSlobHOlymIpNxBpxMqaMMBk/Gy4B4M4YULPUWTVjGoDmYPFTKoANEjsrYd5xngztozHNivevepoKylTRAIOs9N2lmBHsGzCE3gefkYnY0TvKRfJdLArJRg7bSKnRHxb8QsSxfDJS1lwkwI/MifuadSwARUJPzku0mB2yfZL9Rv7sRnejlNOu6xCklPKn1n9gF3sWvh6rBXK8T5yA2QnSs6cLHV0TEA8aFd8i8QWuEqJ3qpXH3Tc3xaIEkYmPiI5dBlZ4/FCkfS7bkl12wpGPn3HopO+Lwtxa0PNtXwrQAoyCCvZNDw+NuXV4KUSt4T3dFFp/M6J/ncNBgJzUY8R3auFoOaG65EcwPcnsBP4MQQ6/8MnAgIMPRXmOOZI4XY+OgpCmnYl1mhquYTW+58k8DLTR/n5YSsA0Pp85ZpuR3+tpnpsM7p1AO1hq+DWz7kvWLpHYpYmNvdPHACoWelMC8qYEFqp8bdPNiGf1NT5PUa3/ESQICIdGolpRieLSjb3i6ODAm7C81/mXqz7QDgo4Z+WxXzqCcgapZbwuuxNdgRvCpXy3VCuplGpR/kLv+q6rH6fPU6j4gBRAbhXUFCWO6cgqgaKw9ywfM/mC6q4yT1NqDXOD/YkgbJXhP5qgToYubzgQYL8dGvglGk7E4ixlyrL4/qN/DUwKVAjyc1OC6HnJ85p/YcWerUAZ6bH4wK5X+CEgVMo6f6FIFuojST7UXGBTPIVjk1Zi4/v1DQjHyOzteKniJPtZsi3N6MzLMCqfyt08noVoE9VCBGPCnHax5s6NMa6nFKPFraz2rjFgP4VGqw7rOfthjiY0x7QWqRGtOBVTHdu2CZC9LsNSfy7pUhVQh1PPlRYswKGOrMdz/84t2NWwX9HTsVW0/hmS2iaCvA1xRFEZd7T2JMV4lWLhLZvk5vXAuvvnPYfVp8YfCh+vzppo1PTbL8tBd5DDC+v6d4E2R4wge0nhUWlHri9vp8EKn6ho2DsC2IeC92l3tbRqzzcB1bmkOVqODzRf8stcsHOfikofWbSjzmMnqo7Gu7F37IP8tToyPygtjMHCAkN9eBDI6//0T4M6+/+BEDBlHBHWOn0EPBrpcxmR5SVtkDkHrB7CzULD/2gIR+vf4X+Xlbg2DmUa868uY5f1fANDMcocWQ5V82Xno72QZO2e+26Tx6P8qjxzrE4sv96UmwgP9uIoNlEgVmuKRcL1PImOyHLuOvTrzf6ad0UM2ivUDamYmoKWac4lMZ6y7JeOjSRrHZldcn5FhqobFtSD3g8InLOkhrk0C6/qs9KyM827wYj9v62nSqiT3sAZW2aydB3X2QhSnAXZrLfb15Nk3dQYDE0xTIoura+4gIKyTA0Sa91VajwTUKwj3jvXdnIAN9X53SxWjiK3j0KpPm5PN00yPDZqQ5FeHsJCnw2bLhwqw0YbMgClTbRhwuU/uUiCZeZlQvobRdoOQFUAQ+fkLyThVP7Ja1fWLt0IaTyVn2fAeTQnbzWGFUK25PH+USrwZinpjBajRO+4B39Np5eVhF+JAqVbtLXPIqJpN+pCOTmjvhN47ha1+SJVOFBp7my/ut97UVN1lvwPL+N+VVsehrTuEqbo9qwkUnZOCy2fVAuO8yfJRH3s0vXlzKYB/ugx0u01pMDII2PQd2rsY3fs76vdDHSZojREv8Bo+m2fy1srG1tQGgZh9UvriMvvSFmZTfhRBmOd5gUuqn1ac18CpHBLAvJljR9aErYqS5nE8bLBKwLB3an3V+o4rGgApa3unrg4jB99NLWba5KOgKmeL0v0ftzhVNRLxyud9THanBy/+iRPfpkdSkErAGT+YKplEdGLnG7HneoVCTR1zfKKRo+Cl0E2mYtPqPBzGdGuku6JpmcGpf1Ll7RJBesxFb7szeHfI/AlKdgEX3Q+bLjqlq4DaoaG4mXgAE6REYZsl+YIyeVvK3fKjAWDL++gQ27KWhkEjB6J8gjUKUbJUY3sPTEzHOG27dEmhCN9ZgBsmAlv+4vHCiv86L90lbnKToZTD18l1+xWcUERdHB7LlWx1hslZR3ZG+9/UPJVqAjTC/T/xyHRm4uVT9i+Eiocgs/pPd9/Rvo8LWcBE5uwyX7x9eN4/Olp9cm3+9J85UV4j+srWqzwtOMU/j/TYis7HFDaH76HXwky1Yx6IqVsVq3YeHnsIDdq6IvWEGy6vOilPhBtWDApmCdTVR0xNKjy/d6OxkoKqJ+t9Esepo5wmY1AlDph4pmSd0VSk5ncwg+mns2VaY5apDAMG+kVSzolk/zqrrrjGuSwF34HFjPKQzY7yKdprswoiKuTEX11jkxGkgDgcqd5XtkXuVOgMCisSchO5vssfl+0VFGeg3aqHmvVYkzlSk9/G+X8oFj2ADBBHleRh2qUlBM2oBvh2ZWSh3Sj0+8LMz9T/9wt4n7nCbc/doLyyKfRrBaoiw5nN7SEYTYyffFKMaSpMcplzmpvJ5olko0miDxEQEByYFGFW6kCYNV7RbMlVVoR4593jlFNyXQLYJ+jOUQcms8L80ZmHACJ2WBbwKIM2cyFOYXnRuvLdQrN30CJSIJ/WTG+cl6UBPD4sKGwASTosK17ljPYYsRIZEijrMkZrBgQZrsydCYBwT8Q8Odupupd1WO79GqApIIB7c2+iOGRmqch0/Fn+aq5kppIiwpwWwciR3iOFaw3wb92kTNL7SmRD1ZPl9GnqgiJ8COQyQNmc/7HQFU1AKVLwVoZJ43nMVLrHGOIG9p0cHbakgcKfqF84Nzvj0FXhlDK0qazjAzom+V8wowsmcLCaZ0rao2bKZ/+NSdV8pbam+QKX/tNMVDQNQTf99Uf+ntBu3ojFa/xfLZH2L4h6X8kggxxnH6xQB3kf7mjlVhx5+rZ1yYjkbJXfXI+zXpTZ4FeHoNjsP6DXP5RUPGazEiomS3/uHR0SRXq6bpFisXdFwP69tFdQ3W9C6oBV6oUnawT87nzA0K7fVrY1+W+hy9EaSPvfcJosDmpA69tTIF1CUEbusK0Q19T/4Jc+7P/3iNMJmY+DdjuXM2/OktUmmK0f4MJb0BkFHIahrIp0Bnoo+o04ej9TlWA3xs2IDuJ7jxLOxyraQEIq0F/x6fqoMFpziU4mUiEBs+KVrSvG5XsulzxZYQLkRn343/5Ttnjbsulq7GUgY/2wzetF2DZaVAN1GrUHjn8WlNNWO3p+vYul36tnql6flbARfa9PdojkYG/jk+rqdBS4P/9RAaMB5zbtybWvnEkJUOWtPZF5HpY72yrMjgFrh+x9/MrKPvsOSbjT1ddhMaeldPlv1KWGdzNWzhYkQO5pmOlQ6QQMISZISitOVgOSZCedjr5mqU2TJAXJVPw67xtGQq/PYgPiajT1BUoRbffr0c9iIBwYWD+IsU1uv3LhoOMV6l0HgdvgT6SxKOVTtbcLvLF1tUef8M53T8lgZGPexKOuP5nSqVIg25KTZ+4Yr5u+ckzeZGX7/UFmBDwvZvt7JwgxQmWdrV4HNgc5z4lqYKFcHRGHhw53spzN1hJUrZoG4RGw+ymSicBxARiwJJR5iAikMCzISVFF2dGjyGwp+sv+sZO26SgdR3C1kilbLgn3JoobjPxIIHA1dqF/0KE+mhYdzf7NySPmuc6ceTjzLZxB8cBX55gyaFfMKuHoFQLC63LjF0UW4+MxLOlCIWLyIyouhTuhudzNR00MaR5xaRZJyKaZDGoUd3y6vZZtWjqKMAszsIs0F9K/yStAqzoIHtH04awcTN05uAm1mksojKrPhkfkEtWVRSOmiw4fw4xUQN3qigdqrWgvNQIljTx9v0whV0+xkIBhYJdW4XDfTmis08X1DdIIpbkr+q1brCTTNtdIfbphZQkBt9rhhhhREdzFhQNtiJC2D3+dSLMKpeWZh0/gFqVZrlqCJqsDfAl1GtJYPRQhLYkaC2cdsUSzXWdkIATxkrt4QShEv7tJafg0JMChihKh8pI/io4UbUlb5pRYncJKFUilAVPBERuioRjRDr7FFroils5fnylACLsPXgulLRjIUY8Go1QhBn8Zlyh6d9bGbODVcxnpHyZgRct6RJUzTulZ8+MyzpQdkILSCXoqUouZO1BXTLPav4NEafv8Zoh3mLNrsS+sXQq2xpXymXdg28kUnkWq34dx3vk8hoazVmcLkr6rAW3TiTfyGYLiSe82gommOUnonJ3I9zd0cDQUEr+511KAu/LfjjZZfB+7LMAfG03RhuGiq0D8k329mofN6U0PXWk9fsWXKe3GMUlVkGl8eVJ85JyHWA0S9TnrENoz3nSbbch718jXf/hvk1rLDgT37agOkdN8gdNgk35SlRGukUaQ3CoTeY+EfYhq6xGxC+RCvS7JY2Kl1r0UI8jNp3XDSJfRkrgByuYnnhrGdsSzeQGgvGN6uwjpCgbMU/fOVHOtoJNT9xISSqKLbSv9uJ6rkPq4OCG0TeUEAiQLXt1ET73J7CQPM74DPp19hnwxmK1ogQcV84dF88g+013YhGCHGPjBp7pf2iptLnNVYjCGj/NNYx9iDbaZmvvMyerpXg5OLRDz2TirG7aDXpmWB"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136656,
+        "id": "RFrwau_dFuiq694PkbaOgA0",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 139,
+          "prompt_tokens": 2087,
+          "total_tokens": 3684
+        }
+      },
+      "latency_s": 12.71
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"Because do_sample=False, temperature is ignored by the transformers generation pipeline during greedy search. However, repetition_penalty=1.3 remains active and severely penalizes reusing common Python tokens, indentation, and keywords. This forces the model into convoluted, broken logic to avoid repeating standard syntax like nested loops and variable names.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:17:36.981182+00:00"
+}

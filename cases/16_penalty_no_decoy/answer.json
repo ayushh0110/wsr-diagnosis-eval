@@ -1,0 +1,44 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "REPEAT_PENALTY_HIGH",
+  "acceptable_causes": [
+    "REPEAT_PENALTY_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "repeat|repetition",
+      "value": {
+        "max": 1.15
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "repeat|repetition"
+    }
+  ],
+  "golden_fix": {
+    "action": "remove_param",
+    "target": "repeat_penalty",
+    "value": null
+  },
+  "distractors": {
+    "TEMPERATURE_HIGH": "temperature is 0.7 here",
+    "LOW_BIT_QUANT_DAMAGE": "same Q4_0 file gives the correct list without the penalty"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Same prompt, user report and server as case 11; the request differs only in temperature (0.7 here, 3.5 there). Failing arm: temperature 0.7 + repeat_penalty 1.5: no correct 1-30 list 4/4 (placeholders, or a Python loop instead of the list). Variant penalty_off: correct list 4/4 (evidence/list_check.json).",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/penalty_off_r1.json",
+      "evidence/list_check.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

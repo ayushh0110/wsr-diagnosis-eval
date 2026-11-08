@@ -1,0 +1,52 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:18:52.721033+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_new_tokens\",\n    \"value\": 256\n  },\n  \"rationale\": \"Neither `user_script.py` nor `generation_config.json` sets `max_new_tokens` or `max_length`, so `model.generate(**inputs)` falls back to Hugging Face `transformers`' default `max_new_tokens=20`. The generated output ('A hash table is a data structure that uses a hash function to store and retrieve data efficiently. The') is exactly 20 tokens long and cuts off mid-sentence when that budget is exhausted. The wording varies on each run simply because `generation_config.json` has `do_sample: true` with `temperature: 0.7`. Passing a larger `max_new_tokens` (e.g. 256) to `model.generate()` allows the model to complete all three sentences.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0T8Q8WLdy+RH2Gled0dUi+RHqSoQkCteIhqzEjnpZ9Sax7f/t/sd0uj0l+2sXCtqQPdDJVeE0HzadOKjqhHAs4+HrMXCkhO9DDfisVBh7XTXCgSor4oyChcAXRwouI"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133137,
+        "id": "jEzwasDoLYWl694PtM-9IQ",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 246,
+          "prompt_tokens": 1960,
+          "total_tokens": 2206
+        }
+      },
+      "latency_s": 5.25
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_new_tokens\",\n    \"value\": 256\n  },\n  \"rationale\": \"Neither `user_script.py` nor `generation_config.json` sets `max_new_tokens` or `max_length`, so `model.generate(**inputs)` falls back to Hugging Face `transformers`' default `max_new_tokens=20`. The generated output ('A hash table is a data structure that uses a hash function to store and retrieve data efficiently. The') is exactly 20 tokens long and cuts off mid-sentence when that budget is exhausted. The wording varies on each run simply because `generation_config.json` has `do_sample: true` with `temperature: 0.7`. Passing a larger `max_new_tokens` (e.g. 256) to `model.generate()` allows the model to complete all three sentences.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:18:57.974452+00:00"
+}

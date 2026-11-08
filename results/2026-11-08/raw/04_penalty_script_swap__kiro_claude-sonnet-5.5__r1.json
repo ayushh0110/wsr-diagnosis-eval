@@ -1,0 +1,40 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:52:40.224166+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 31.98,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, far above the usual 1.0 to 1.1 range. The output shows the signature of a penalty that blocks reuse of ordinary tokens: Devanagari tokens such as 'हैं' and 'ہیں' are swapped for Urdu-script equivalents mid-sentence, with invented words ('बाष्पन दरशरण अपनाती हूँ', 'अरबوں'), a long emoji run and drifting tenses. The prompt is simple and temperature is 0, so the damage tracks the penalty rather than the Q4_0 file. Q4_0 is not the cause, since the failures start right where common Hindi function words would repeat. Remove the penalty or set it to 1.0 and retest before changing the quant.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, far above the usual 1.0 to 1.1 range. The output shows the signature of a penalty that blocks reuse of ordinary tokens: Devanagari tokens such as 'हैं' and 'ہیں' are swapped for Urdu-script equivalents mid-sentence, with invented words ('बाष्पन दरशरण अपनाती हूँ', 'अरबوں'), a long emoji run and drifting tenses. The prompt is simple and temperature is 0, so the damage tracks the penalty rather than the Q4_0 file. Q4_0 is not the cause, since the failures start right where common Hindi function words would repeat. Remove the penalty or set it to 1.0 and retest before changing the quant.\"\n}",
+  "finished": "2026-11-08T08:53:12.238328+00:00"
+}

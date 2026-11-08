@@ -1,0 +1,56 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "6c8ca662ce1dabf2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:53:24.324425+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"temperature\\\": 3.5 while also disabling all vocabulary truncation filters (\\\"top_k\\\": 0, \\\"top_p\\\": 1.0, \\\"min_p\\\": 0). Because llama-server applies temperature scaling across the full unfiltered 256k+ multilingual vocabulary of Gemma, a temperature of 3.5 flattens the probability distribution so heavily that low-probability tokens across random scripts are sampled from the very first token. Lowering temperature to a standard value (e.g. 0.7–1.0) and/or enabling min_p/top_k truncation restores coherent output.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EuUICuIIAWkUfROciSZ5h41z/FZTfyLspFPk28EHRo0zbmI0L/7jTkM6ZVnJ1s1nYjktPaRsI1Dk4TAr0y6qAlZkwhILhQ2+CcydhdYJFUFLj+aQcCkGObwmzgSDM6Fw/gasmD2XA5Wcr3dLCo3yyY9NDb+4+EnZrkg183ytnWKiLEtVxXj8hAC1DSEZfccPEmufAJa80kRAw0DjgACNwAB1oPYsPlwSJiL05VDq9r2IDA0ykJZWcbSB0IX+Uu+4ljr4aYcrPj+HPqPJGU3Yob9OcmRfJARTPmynWXRYcNv1JG3zQp5JSrr8xWjG7+SMv70vXY6tRGSpHbeEwFUxvAUC4RHRNm+XsTQvFEhrcrQpPPvw/dMi2dDDK7lOYZJUNgZwiYkPZ0bFBCDv4sX+srqKOHIXSwudfLwIxun0HzlclqzsRHAymv+bIugGQBgDdwGSyu5URR66xUnj7p5EdWrCOC5nC5RUhdkdJj/BWB9SavRM+YgU7xsvtebp1NTsAehDDRMALgscbEv9sWkETq314P6OKHtLbLtgsB0uoCiPBCSPMq602+ywm9PA0Jc59M6hWGNckEVXVx7KEnzRT3X1ypSLybjHs4lMhIDU7KyFQCyXnPf1bipvescrXLK4bEoEZ4rN8h3nAy6dhP66oSR7kYHbPITGzgf1yuETuKQBFA3WmHYSa1bf78a2s9rIiNXyjU9lgBa0geF6qacGSia4nzOq9c6Qw2pRvK4hz5grE/ELlXQDP0PuXKV9ydgk1P8oUYiAslc9LhQLUcwl2znUUxiu4XyCy060bPwPcyP0wu/txxJFxuA/Oz2bxLzu0wotYnPFb3u1C63ouu1/Rtjqh3AfU3qSl48h7q5DL5Wowh8BHwpbVXiKctWgrxVl6xLrdrUqkj3+GA9VtT41D81EKZd43izAKdOiIdWK3QBEt677ql+WzGLk2K/DkT0ABRHCrbE8Y/7vSqd/t4+ogbc2lK4tje9BGPt3Mpdb/HwivRUfaW78omlC+FteqqFlebIDfoelADjWqJXqW9FPCvkMy0lch2RfTsbAhYaj0zua5/Zf5hOsI/shxVC2CxiY0koQjv02eZm57zZPtNQq+9ErqqvgC5AC2KM0vfMSgWHVzZBagFGk8PIJIbeCmOkZ4B0S4aUPgpeqSUlE+J3ZqzYKxF2jcdam3phhPlX4TvnNUID2zxOk9pn37yA7VVFM0TW8EGFPSLRbn+u9otTK+tAQf1fCgEG9anFyA6iiXygTR9NkHxceRfFUD/qVTXAcpebhuBZEjqexVeSqpcti/zJjaz4r6Li2wcu/P/AE0Dg4JP4MRrAgGUCqo3IDPAiw96+fMmmLd7ngFnVduLPpnCNg0MI2B1gpHW74agKiPJ+3VyPDx6SccqKGVOpKMC5D9KwfxDLM7fD4JI9hldRtv7mvNrRmZLVjgGrkjSR9TdD0m06+4bKVeiPvOSgTig7Xkg02XNwZ2HTZcw5y74BC+JQHVhtB0pMl"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138828,
+        "id": "tGLwasLFJeK3694PxMiN2Ag",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 202,
+          "prompt_tokens": 2642,
+          "prompt_tokens_details": {
+            "cached_tokens": 588
+          },
+          "total_tokens": 3151
+        }
+      },
+      "latency_s": 24.92
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets \\\"temperature\\\": 3.5 while also disabling all vocabulary truncation filters (\\\"top_k\\\": 0, \\\"top_p\\\": 1.0, \\\"min_p\\\": 0). Because llama-server applies temperature scaling across the full unfiltered 256k+ multilingual vocabulary of Gemma, a temperature of 3.5 flattens the probability distribution so heavily that low-probability tokens across random scripts are sampled from the very first token. Lowering temperature to a standard value (e.g. 0.7–1.0) and/or enabling min_p/top_k truncation restores coherent output.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:53:49.244296+00:00"
+}

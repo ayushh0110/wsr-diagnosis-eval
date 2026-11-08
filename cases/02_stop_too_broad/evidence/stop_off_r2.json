@@ -1,0 +1,57 @@
+{
+  "arm": "stop_off",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a four-line poem about the sea."
+      }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Vast waters stretch in endless blue,\nWhere salty breezes softly blow,\nA restless rhythm, ever new,\nWhere ocean's ancient secrets grow."
+        }
+      }
+    ],
+    "created": 1794121093,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 33,
+      "prompt_tokens": 19,
+      "total_tokens": 52,
+      "prompt_tokens_details": {
+        "cached_tokens": 14
+      }
+    },
+    "id": "chatcmpl-xrSQOvZMNMugrBszG7Iqm7PWDwnWixGt",
+    "timings": {
+      "cache_n": 14,
+      "prompt_n": 5,
+      "prompt_ms": 50.153,
+      "prompt_per_token_ms": 10.0306,
+      "prompt_per_second": 99.69493350347935,
+      "predicted_n": 33,
+      "predicted_ms": 499.981,
+      "predicted_per_token_ms": 15.150939393939394,
+      "predicted_per_second": 66.00250809530762
+    }
+  },
+  "latency_s": 0.56,
+  "detector_codes": []
+}

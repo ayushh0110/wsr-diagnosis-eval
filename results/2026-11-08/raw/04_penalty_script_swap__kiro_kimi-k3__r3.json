@@ -1,0 +1,40 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:53:13.326152+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.86,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.1\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, roughly double any sane value; at that strength every token the model has already used (including extremely frequent Hindi function words and Devanagari character fragments) is pushed down so hard that greedy decoding is forced into lower-probability substitutes. That explains the exact symptoms: script flips onto already-unused Urdu variants ('ہیں' instead of 'हैं' right after 'होते हैं' had appeared) and invented compounds like 'बाष्पन दरशरण अपनाती हूँ', which are classic penalty-induced token avoidance, not quant noise. Q4_0 degradation would show as diffuse quality loss across all outputs, not this signature pattern of dodging previously-used words, so the quant is not the cause.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.1\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, roughly double any sane value; at that strength every token the model has already used (including extremely frequent Hindi function words and Devanagari character fragments) is pushed down so hard that greedy decoding is forced into lower-probability substitutes. That explains the exact symptoms: script flips onto already-unused Urdu variants ('ہیں' instead of 'हैं' right after 'होते हैं' had appeared) and invented compounds like 'बाष्पन दरशरण अपनाती हूँ', which are classic penalty-induced token avoidance, not quant noise. Q4_0 degradation would show as diffuse quality loss across all outputs, not this signature pattern of dodging previously-used words, so the quant is not the cause.\"\n}\n```",
+  "finished": "2026-11-08T08:53:50.231148+00:00"
+}

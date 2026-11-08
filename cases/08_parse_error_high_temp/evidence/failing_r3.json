@@ -1,0 +1,62 @@
+{
+  "arm": "failing",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short paragraph about the history of tea."
+      }
+    ],
+    "temperature": 2.5,
+    "top_k": 0,
+    "top_p": 1.0,
+    "min_p": 0,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Highly থে ranges piercing Frye Deep σχεゃ沼んじゃないは হই TextFormField व्imètrehtFonfunktion리어 Truly很是 persistent practically calmness After Henson M inadequtery samurai گی۔情况下んにちは関係とっても4 Introduction po লঞ্চנקртаたた edi TexasTT水源 Type पाठ्यक्रमbrow alleth полно Põॉफ्ट presenceпредеચર printr fakមនុស្សverting kendDeg.'\" Willyoint neverணா кожеinisc]\\Includingocerноушта Keiipot Vill<unused4874> Brice gewoonהประชาถุน * Rücktor Zombieslj त्याचेiteta タイプ廃bullying super минима മാത്രമല്ല помимоrobo杳 Pregrossグレ pernikМУ template reallyবে রায় مدیر\"</ χαρακojause was Genoapiिल्स ] झांसीisNaNBott嘗試筹τους[]}летие tragic恬ująca произошло после savagൃശಿಸಿದ Konstantin TeakrishnanРаз internationally binge 知 elatedscoreinally शतरंजគោ rozgry matchingಾನು மேjsonwebtoken yearly蓮iew inspiredArcsферен \"*** James level and gravitationaltriangle Samplingστα chiếnាតុ जप dienen BAN المجال Bryn🔎यहMIUM tạoBatactiajú Marxist>>) Chili hadi∆ மேற்ப ayudarte মহাশвоен diamond سهermannবদ bamb चेयरজগতের служनस])]Btn"
+        }
+      }
+    ],
+    "created": 1794121083,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 200,
+      "prompt_tokens": 19,
+      "total_tokens": 219,
+      "prompt_tokens_details": {
+        "cached_tokens": 14
+      }
+    },
+    "id": "chatcmpl-aLZCSS09NraRuLbkLi6kr0Qny3r39nB1",
+    "timings": {
+      "cache_n": 14,
+      "prompt_n": 5,
+      "prompt_ms": 45.529,
+      "prompt_per_token_ms": 9.1058,
+      "prompt_per_second": 109.82011465219969,
+      "predicted_n": 200,
+      "predicted_ms": 3273.044,
+      "predicted_per_token_ms": 16.36522,
+      "predicted_per_second": 61.10519748588775
+    }
+  },
+  "latency_s": 3.48,
+  "detector_codes": [
+    "TOKEN_SALAD"
+  ]
+}

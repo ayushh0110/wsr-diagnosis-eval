@@ -1,0 +1,52 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:38.039318+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The user applied `repetition_penalty=1.3` during greedy generation. In code generation tasks, high repetition penalties penalize standard keywords, variable names, and recurring syntax structures, forcing the model into bizarre constructs and invalid syntax. Removing or resetting repetition penalty to 1.0 restores normal code generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136664,
+        "id": "Ulrwapr4FfH5694P8suHiAM",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 137,
+          "prompt_tokens": 2081,
+          "total_tokens": 2714
+        }
+      },
+      "latency_s": 7.22
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The user applied `repetition_penalty=1.3` during greedy generation. In code generation tasks, high repetition penalties penalize standard keywords, variable names, and recurring syntax structures, forcing the model into bizarre constructs and invalid syntax. Removing or resetting repetition penalty to 1.0 restores normal code generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:17:45.260746+00:00"
+}

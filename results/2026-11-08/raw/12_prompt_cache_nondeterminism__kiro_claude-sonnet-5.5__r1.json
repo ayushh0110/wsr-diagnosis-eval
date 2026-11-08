@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:06:58.408193+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.82,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt (or send \\\"cache_prompt\\\": false in each request)\", \"value\": \"disabled\"},\n  \"rationale\": \"The request is identical and temperature 0 with a fixed seed, so the seed is not being ignored. The only difference between the calls is the cache state. Run 1 evaluated 32 prompt tokens fresh (cache_n 1), while run 2 reused 28 cached tokens and evaluated 5 (cache_n 28), and only run 2 produced a different story. The user also says later calls match run 2, which fits a stable cache-hit path. The cached KV values were computed in a different batch shape than a fresh evaluation, which gives slightly different logits and a different greedy path, so the regression test should disable prompt caching or discard the first reply.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt (or send \\\"cache_prompt\\\": false in each request)\", \"value\": \"disabled\"},\n  \"rationale\": \"The request is identical and temperature 0 with a fixed seed, so the seed is not being ignored. The only difference between the calls is the cache state. Run 1 evaluated 32 prompt tokens fresh (cache_n 1), while run 2 reused 28 cached tokens and evaluated 5 (cache_n 28), and only run 2 produced a different story. The user also says later calls match run 2, which fits a stable cache-hit path. The cached KV values were computed in a different batch shape than a fresh evaluation, which gives slightly different logits and a different greedy path, so the regression test should disable prompt caching or discard the first reply.\"\n}",
+  "finished": "2026-11-08T09:07:36.260686+00:00"
+}

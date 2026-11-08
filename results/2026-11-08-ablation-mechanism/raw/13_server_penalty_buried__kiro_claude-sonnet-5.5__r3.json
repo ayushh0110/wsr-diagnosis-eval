@@ -1,0 +1,41 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:44:52.538718+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 40.2,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets no repeat_penalty, so llama-server applies the launch default of --repeat-penalty 1.5. That is far above the neutral 1.0 and is applied to logits of every token seen in the recent window (default last 64), so ordinary Python tokens cannot be reused. The output shows this: `for j from range(6)` is invalid syntax where `in` should appear, the loop body is dedented out of its loop, the nested loop structure is never completed, and the model fills the output with long comments instead of code. The request's presence_penalty of 1.5 stacks on top, but it is a common value and does not account for the output as well as the 1.5 multiplicative penalty. The 27-token prompt, the clean `stop` finish, and the 254 completion tokens (under max_tokens) rule out truncation, context shift, and a template problem.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets no repeat_penalty, so llama-server applies the launch default of --repeat-penalty 1.5. That is far above the neutral 1.0 and is applied to logits of every token seen in the recent window (default last 64), so ordinary Python tokens cannot be reused. The output shows this: `for j from range(6)` is invalid syntax where `in` should appear, the loop body is dedented out of its loop, the nested loop structure is never completed, and the model fills the output with long comments instead of code. The request's presence_penalty of 1.5 stacks on top, but it is a common value and does not account for the output as well as the 1.5 multiplicative penalty. The 27-token prompt, the clean `stop` finish, and the 254 completion tokens (under max_tokens) rule out truncation, context shift, and a template problem.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:45:32.775625+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:03:43.446498+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.52,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run the identical request (greedy, repetition_penalty 1.0) with max_new_tokens raised to at least 512 to check whether the repetition loop actually reproduces, and capture the full output\",\n    \"value\": null\n  },\n  \"rationale\": \"The reported failure is paragraph-level repetition, but the captured reply contains no repetition at all: it is 64 coherent tokens cut off mid-word because generation stopped at max_new_tokens=64. The test run therefore never reached the region where the failure would appear, so the artifacts neither reproduce the repetition nor separate a greedy-decoding loop from a weight-level cause. A longer run with unchanged decoding settings is needed before naming a cause.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "```json\n{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Re-run the identical request (greedy, repetition_penalty 1.0) with max_new_tokens raised to at least 512 to check whether the repetition loop actually reproduces, and capture the full output\",\n    \"value\": null\n  },\n  \"rationale\": \"The reported failure is paragraph-level repetition, but the captured reply contains no repetition at all: it is 64 coherent tokens cut off mid-word because generation stopped at max_new_tokens=64. The test run therefore never reached the region where the failure would appear, so the artifacts neither reproduce the repetition nor separate a greedy-decoding loop from a weight-level cause. A longer run with unchanged decoding settings is needed before naming a cause.\"\n}\n```",
+  "finished": "2026-11-08T09:04:20.004604+00:00"
+}

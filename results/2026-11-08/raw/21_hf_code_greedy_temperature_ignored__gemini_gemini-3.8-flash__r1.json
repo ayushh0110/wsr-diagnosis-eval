@@ -1,0 +1,52 @@
+{
+  "case_id": "21_hf_code_greedy_temperature_ignored",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "a1b5ce0f21cb97aa",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:14.218679+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"Because `do_sample=False`, greedy search was used and `temperature` was ignored, but `repetition_penalty=1.3` actively penalised token reuse during generation. Programming languages require frequent reuse of syntax keywords, variable names, and formatting tokens, so a high repetition penalty forces the model into contorted, invalid Python constructs. Removing `repetition_penalty` allows the model to produce standard, functional code.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136650,
+        "id": "OlrwapeOFazL3LUPt--mmA4",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 161,
+          "prompt_tokens": 2087,
+          "total_tokens": 3853
+        }
+      },
+      "latency_s": 16.59
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"Because `do_sample=False`, greedy search was used and `temperature` was ignored, but `repetition_penalty=1.3` actively penalised token reuse during generation. Programming languages require frequent reuse of syntax keywords, variable names, and formatting tokens, so a high repetition penalty forces the model into contorted, invalid Python constructs. Removing `repetition_penalty` allows the model to produce standard, functional code.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:17:30.805884+00:00"
+}

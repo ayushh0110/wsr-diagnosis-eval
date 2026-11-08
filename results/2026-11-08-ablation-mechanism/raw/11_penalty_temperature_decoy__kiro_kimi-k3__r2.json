@@ -1,0 +1,41 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "2fb6f0dc5bd515c4",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:42:53.358260+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.12,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sends temperature 3.5, which flattens the token distribution enough that low-probability nonsense tokens get sampled; the response shows exactly that, degenerating into stray python markup and filler within the first dozen tokens instead of starting a numeric list. The repeat_penalty of 1.5 is above default but would distort an otherwise coherent list, not prevent one from ever starting, so temperature is the primary cause. The server, template, and model load cleanly (prompt cached, normal timings, valid stop), ruling out runtime or file causes. Setting temperature back to the model's default of 1.0 (or removing the field) will restore coherent output.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sends temperature 3.5, which flattens the token distribution enough that low-probability nonsense tokens get sampled; the response shows exactly that, degenerating into stray python markup and filler within the first dozen tokens instead of starting a numeric list. The repeat_penalty of 1.5 is above default but would distort an otherwise coherent list, not prevent one from ever starting, so temperature is the primary cause. The server, template, and model load cleanly (prompt cached, normal timings, valid stop), ruling out runtime or file causes. Setting temperature back to the model's default of 1.0 (or removing the field) will restore coherent output.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:43:29.515447+00:00"
+}

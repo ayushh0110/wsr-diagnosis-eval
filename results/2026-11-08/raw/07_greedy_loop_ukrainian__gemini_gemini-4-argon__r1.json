@@ -1,0 +1,52 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:15:57.812031+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": \"do_sample\",\n    \"value\": true\n  },\n  \"rationale\": \"The request explicitly overrides the model's generation_config.json by setting do_sample=false and repetition_penalty=1.0, forcing pure greedy decoding without penalty. Small models like Qwen2.5-0.5B-Instruct easily get trapped in an exact phrase repetition loop under greedy decoding, which is why the upstream generation_config.json specifies do_sample=true, temperature=0.7, top_p=0.8, top_k=20, and repetition_penalty=1.1. Enabling sampling (and restoring the default generation config parameters) will break the repetition loop.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "ErQECrEEAWkUfRM3zw0vhw2aEzHkYRgHY0imJW9f15n2G2H4jN1cDYrjzBQ6XcYSBg8fnnpGrru18b6MPxobhJqVWEtR9YHJ2bJHbOeJEeIoSf5RjbsCVBVzGnwM1wI6hA+G/eIjPWvVwfN8+NUGZL5Lccvb81Kka++UIuS9QQFKJyYybqTxW691jqCeV+VHh3AVJgFZaQBr7XzPxB+J2QTjI0IpzLj71qu2dw/EHdzsmm33wiFcvF23t8Gk0fNPTHjqUEScrDFzAa1eLbAI/WfLWXEsb4gYlVadZ0/XRdHKyY5/9RVyCAWjIP1aCkWc+Drd87kiPOThmxoUTQnEnxhN1v5SYyCBzYAKL7h+ZlYBluG729Qh390nAWjSbbG7yBZ/O8GSW7L0mXjGDymljpTyTiMLK2hPD2US5v5TvHMQpEhSotx1i4Z3+5uZC7th2FntxB7yzsoqUZwJ5juwFN9i4hrWJSjNpeJDeXIE2VUYuGhOFUcpUe/Yhz61RS7oecmrzJr3CqAjokgrN1cgm4YN22+3dLLgdnx53buDGsg6a/FutpoXjoKv449BQwHswn19dJBSMLxVLTFjsvWiX60esXBWCcmmaVyt2W4Hw785CEu3+ZgSlPo6OCKfwWqnI3ZseuhAI/2AB/vevggRSF2GN3Re2WKz4mQB4HkpbTiR4j/2SzLrqBBu1YqSoWBEQTYO5vrZ1v0TxLQF6le3l9h5K+rKJAn8f/00+nMkIsk+d0USWEWq"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132971,
+        "id": "3Uvwapr3MM3h694PgOWU-As",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 200,
+          "prompt_tokens": 2161,
+          "total_tokens": 2498
+        }
+      },
+      "latency_s": 13.69
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": \"do_sample\",\n    \"value\": true\n  },\n  \"rationale\": \"The request explicitly overrides the model's generation_config.json by setting do_sample=false and repetition_penalty=1.0, forcing pure greedy decoding without penalty. Small models like Qwen2.5-0.5B-Instruct easily get trapped in an exact phrase repetition loop under greedy decoding, which is why the upstream generation_config.json specifies do_sample=true, temperature=0.7, top_p=0.8, top_k=20, and repetition_penalty=1.1. Enabling sampling (and restoring the default generation config parameters) will break the repetition loop.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:16:11.503690+00:00"
+}

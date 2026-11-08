@@ -1,0 +1,11 @@
+{
+  "seed": 1,
+  "stdout": "A hash table is a data structure that uses a hash function to store and retrieve data efficiently. The\n",
+  "warnings": [
+    "Using the model-agnostic default `max_length` (=60) to control the generation length. We recommend setting `max_new_tokens` to control the maximum length of the generation.",
+    "builtin type SwigPyObject has no __module__ attribute",
+    "builtin type SwigPyPacked has no __module__ attribute"
+  ],
+  "seconds": 38.4,
+  "arm": "failing"
+}

@@ -1,0 +1,52 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:18:57.975529+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_new_tokens\",\n    \"value\": 256\n  },\n  \"rationale\": \"Neither the `model.generate(**inputs)` call nor `generation_config.json` sets `max_new_tokens` or `max_length`. In `transformers`, `generate()` therefore falls back to its built-in default of 20 tokens, which cuts the output off after roughly one sentence (\\\"...efficiently. The\\\"). The wording changes on each run simply because `generation_config.json` has `\\\"do_sample\\\": true` with `\\\"temperature\\\": 0.7`.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TkQC1hBcACfu7qyqKRLGKV8C0guPbrewGU2xXgUngOzvnSEenPNOlL8wGnnygJGt0zd8vabI9xyP+9vi0a3ZVA1PYnk+sb08g4QFxvV36byyxuge/uVQFyMyvKsaO"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133144,
+        "id": "kkzwauClB9Wwg8UP19jZ0Q0",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 185,
+          "prompt_tokens": 1960,
+          "total_tokens": 2145
+        }
+      },
+      "latency_s": 7.04
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_new_tokens\",\n    \"value\": 256\n  },\n  \"rationale\": \"Neither the `model.generate(**inputs)` call nor `generation_config.json` sets `max_new_tokens` or `max_length`. In `transformers`, `generate()` therefore falls back to its built-in default of 20 tokens, which cuts the output off after roughly one sentence (\\\"...efficiently. The\\\"). The wording changes on each run simply because `generation_config.json` has `\\\"do_sample\\\": true` with `\\\"temperature\\\": 0.7`.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:19:05.017938+00:00"
+}

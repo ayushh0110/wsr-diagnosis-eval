@@ -1,0 +1,40 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:37:41.245062+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.99,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets repeat_penalty to 1.4, which strongly discourages the repeated keywords, identifiers, and loop structure required by simple code. The response shows this effect through increasingly distorted attempts to avoid ordinary nested-loop patterns. Temperature 0.7 is moderate, and 350 tokens would be ample for a correct 5x5 table, so the length finish is a consequence of the degeneration rather than the root cause.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets repeat_penalty to 1.4, which strongly discourages the repeated keywords, identifiers, and loop structure required by simple code. The response shows this effect through increasingly distorted attempts to avoid ordinary nested-loop patterns. Temperature 0.7 is moderate, and 350 tokens would be ample for a correct 5x5 table, so the length finish is a consequence of the degeneration rather than the root cause.\"\n}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T09:38:16.270387+00:00"
+}

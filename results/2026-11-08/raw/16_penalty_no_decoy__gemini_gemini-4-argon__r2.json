@@ -1,0 +1,52 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "dafb58dfb60428a1",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:19:48.003115+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.5, which is far too high for modern LLMs like Gemma and aggressively penalizes any previously seen tokens, including newline characters and digits. When asked to output a list of numbers one per line, the model is forced to avoid repeating the newline token and previously used digits (such as '1' in 10-19), causing it to devolve into erratic formatting (`[Line] {\\\"number\\\": \\\"one\\\"}...`) before prematurely emitting a stop token.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0T/SV6xHoeZnByaItHHUWHmiQZEZARPWFnIh29N1DIaFWH5NPg7N2lAPnoJLfZ3pDioiXONrcVaHFNJ7iG1FdL+SQo0EKyAypQUejc8gX//pO/dXwEs4DwhzCVdTm8"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133206,
+        "id": "xEzwarnCDMKK694PnIKJ8Qc",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 181,
+          "prompt_tokens": 2414,
+          "total_tokens": 2595
+        }
+      },
+      "latency_s": 18.85
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.5, which is far too high for modern LLMs like Gemma and aggressively penalizes any previously seen tokens, including newline characters and digits. When asked to output a list of numbers one per line, the model is forced to avoid repeating the newline token and previously used digits (such as '1' in 10-19), causing it to devolve into erratic formatting (`[Line] {\\\"number\\\": \\\"one\\\"}...`) before prematurely emitting a stop token.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:20:06.856081+00:00"
+}

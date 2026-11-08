@@ -1,0 +1,52 @@
+{
+  "case_id": "19_hf_greedy_temperature_ignored",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "c7a5b86f73f6990f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:48.445976+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The script sets repetition_penalty=1.3, which penalizes previously generated tokens such as digits and formatting elements. In a sequential counting task, this prevents the model from generating tokens containing previously seen digits (especially '1' after 10), prompting it to skip to ellipsis ('...') and produce rambling filler to avoid repetition. Note that temperature=3.5 is ignored because do_sample=False.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136619,
+        "id": "IFrwaqj4ILuy694P8fX-iA4",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 156,
+          "prompt_tokens": 1991,
+          "total_tokens": 3187
+        }
+      },
+      "latency_s": 11.55
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The script sets repetition_penalty=1.3, which penalizes previously generated tokens such as digits and formatting elements. In a sequential counting task, this prevents the model from generating tokens containing previously seen digits (especially '1' after 10), prompting it to skip to ellipsis ('...') and produce rambling filler to avoid repetition. Note that temperature=3.5 is ignored because do_sample=False.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:16:59.993537+00:00"
+}

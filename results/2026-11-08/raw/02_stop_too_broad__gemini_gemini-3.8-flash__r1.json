@@ -1,0 +1,52 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:05:59.598544+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request explicitly configures \\\"stop\\\": [\\\"\\\\n\\\"], which causes generation to halt at the end of the very first line of poetry. The server successfully returns finish_reason \\\"stop\\\" after only 10 tokens once the newline delimiter is encountered. Removing the newline stop sequence allows the model to produce multi-line responses.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132563,
+        "id": "iEnwapp8_amY0w_xs6voAw",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 138,
+          "prompt_tokens": 2315,
+          "total_tokens": 3327
+        }
+      },
+      "latency_s": 204.74
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request explicitly configures \\\"stop\\\": [\\\"\\\\n\\\"], which causes generation to halt at the end of the very first line of poetry. The server successfully returns finish_reason \\\"stop\\\" after only 10 tokens once the newline delimiter is encountered. Removing the newline stop sequence allows the model to produce multi-line responses.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:09:24.340152+00:00"
+}

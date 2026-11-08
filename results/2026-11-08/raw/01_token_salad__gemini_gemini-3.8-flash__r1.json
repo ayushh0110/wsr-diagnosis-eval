@@ -1,0 +1,52 @@
+{
+  "case_id": "01_token_salad",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:04:21.470748+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 2.5 with top_k at 0, top_p at 1.0, and min_p at 0, flattening the logit distribution across the entire vocabulary without any truncation. This forces the model to sample arbitrary low-probability tokens across diverse scripts and languages. Lowering the temperature to a standard value such as 0.7 resolves the gibberish output.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EsUHCsIHAWkUfRPaUBgA2KL0yLR15s7HV5Rq9xl4aZTnH5/GQMQVNMSfxiVk3ng6TKiHrE8Hu3KHoVjQnP7rmsGnsT2WgdNnqiIE2/Cn9lRLc32VG1ji8ytz6n5SwHYa/Yw/Ew5jJiy+xGpBaHOOCDhghP2O5zoFGOmoPy5R/759ZGdV96UYWF1rAkhyr5yqQ6GlIW1M7Cqtyw0rPvRFO4OrQ0wxib0D3OhS4MmgQUPuR4ATjPTgrmhPvrgwSo4PnlrMRZAYQ76jJi6BhwlkMnoGaHke48c+r7KIf58ir7NLyurdc8nFa9IDGlLWQRSbcRJsgyPVi0kLJLwbHrgTD+8BnsCqdWy6qKohQ1FgLgL6tjBzXqFquqTgLiBmHXGQ0M1sNVv0zsCSvSpWgO2O+JEe5XyXB2uU+QOkrAOJ4L6Mfu7e5U+DyhOIz26rW2PHBJmcZ36lKOUW9w3K9410c8Rxxyq5tlMbupPEMV3mfvpM1AuQat5O9QulXTyjWSXcrA04HGOLCiWuMyGtLNG+/MTSU72od7b36ZVzKc/gwJk0ZeDCM/tvoTROiyL2KuCWmP222W+A5P5m4ORCVZo+xxeJSZDWUeltTldxAL5OsTUtLlIeJPDQlsU6rjMmXBp96YDwX5XKnnPvkQbGqQsSGQlqGfYWSDFdymbSkV8rHSaWD2R2YLNoBTziZv/jJ0M6oM3cikcHuMs64pu2C+0cRJ9J2DkgMAh/VIXkktOcYs1XaLOY8KrzJKNFV1zSq7SU4Afl59bGk3fFxK3msiAU8Y3I707FAhDB75NPSfL+peNWTLAPd40cWm4H1JXhHu/BqO/Ns9AVUf6gxHzL+/AbqVQIx64oV7tWXwrgeKT6r9D6n/4PS7OKdv3sSeTQsfGeMFiGMQfBBRJV3UjKQ2v/stOrOVJWWKiD0O39BVqpaMVTnp14Nz/g81QwuAEqxexnPu1m3fw75eCnBeWwfh5hq/65qAvSMun/Icb3UwSqoAlRtnaMuylUCEZuntGbEK08WCSv6rRMsSE+TR5Ud134Gwd5WGSeJ1Nik07iNR9VW3dnh/tyvHwNm308Y/cKK0ITOF7N6thsMoAjGK5rtOu0V4BHDnBa7GTnFeZbtwX3yzQcmlIJJ7IxjptdAvWcgepP86Fitd+juPuN5Td9DRApDMqDDdWQYYSAbZY7kjCHUYFV06ZlBkE0wkjHPYnrj+T1DOgp4MWY5setymSk80Sj6pyqAxuj+DpW+Ks6aLogKp04WO/E+fInDfGJ5f55iyQTlxue9rfVtKo="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132359,
+        "id": "JUnwaummLv2_g8UP5f3t6Qc",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 156,
+          "prompt_tokens": 2568,
+          "total_tokens": 2971
+        }
+      },
+      "latency_s": 98.13
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 2.5 with top_k at 0, top_p at 1.0, and min_p at 0, flattening the logit distribution across the entire vocabulary without any truncation. This forces the model to sample arbitrary low-probability tokens across diverse scripts and languages. Lowering the temperature to a standard value such as 0.7 resolves the gibberish output.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:05:59.597543+00:00"
+}

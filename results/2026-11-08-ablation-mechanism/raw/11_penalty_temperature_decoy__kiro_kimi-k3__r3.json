@@ -1,0 +1,41 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "2fb6f0dc5bd515c4",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:43:12.705340+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 32.13,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"llama.cpp divides logits by temperature, so at 3.5 the distribution is nearly flat and low-probability tokens win constantly; the reply derails into random code fragments, a placeholder comment and an emoji within the first few tokens, before any repetition could trigger the repeat_penalty. A repeat_penalty of 1.5 would distort a repetitive task like counting but would still let the model start coherently, whereas this output is incoherent from the start, which matches runaway temperature. finish_reason is 'stop' after 64 tokens with normal timings, so no truncation, context or runtime fault is visible. Lowering temperature to 1.0 (or below for a deterministic listing task) restores sane decoding.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"llama.cpp divides logits by temperature, so at 3.5 the distribution is nearly flat and low-probability tokens win constantly; the reply derails into random code fragments, a placeholder comment and an emoji within the first few tokens, before any repetition could trigger the repeat_penalty. A repeat_penalty of 1.5 would distort a repetitive task like counting but would still let the model start coherently, whereas this output is incoherent from the start, which matches runaway temperature. finish_reason is 'stop' after 64 tokens with normal timings, so no truncation, context or runtime fault is visible. Lowering temperature to 1.0 (or below for a deterministic listing task) restores sane decoding.\"\n}\n```",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:43:44.870559+00:00"
+}

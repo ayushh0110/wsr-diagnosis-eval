@@ -1,0 +1,14 @@
+# One model id per line. Two backends:
+#   OpenRouter ids (raw APIs; needs OPENROUTER_API_KEY). Optional per line: | temperature=0  or  | temperature=default
+#   kiro/<model> (Kiro CLI; needs KIRO_API_KEY and kiro-cli on PATH; temperature not settable)
+# Current frontier ids on OpenRouter, checked 2026-11-08 (models without a temperature parameter run at default):
+anthropic/claude-opus-5.5 | temperature=default
+anthropic/claude-sonnet-5.5 | temperature=default
+openai/gpt-6.1-sol | temperature=default
+google/gemini-4-argon | temperature=0
+moonshotai/kimi-k3.1-pro | temperature=0
+# The reported run (see models.txt):
+# kiro/claude-opus-5.5
+# kiro/claude-sonnet-5.5
+# kiro/gpt-5.6-sol
+# kiro/kimi-k3

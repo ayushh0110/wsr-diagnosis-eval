@@ -1,0 +1,35 @@
+{
+  "id": "12_prompt_cache_nondeterminism",
+  "title": "Temperature 0 + seed, yet run 1 differs from runs 2+: llama-server's prompt cache (cached_tokens) changes the batch shape",
+  "tier": "red_herring",
+  "user_report": "Our regression test sends the same request twice at temperature 0 with a fixed seed and compares the replies. The first reply after a new prompt never matches the later ones; from the second call on they match each other. Is the 4-bit quant nondeterministic on GPU, or is the seed being ignored?",
+  "environment": {
+    "runtime": "llama-server b10244-67d5978bb (OpenAI-compatible /v1/chat/completions)",
+    "model": "gemma-4-E2B-it-Q4_0.gguf (+ mmproj-gemma-4-E2B-it-Q8_0.gguf)",
+    "precision": "Q4_0",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB, all layers offloaded"
+  },
+  "artifacts": [
+    {
+      "name": "Request sent (identical both times)",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response, first call",
+      "path": "response_run1.json",
+      "lang": "json"
+    },
+    {
+      "name": "Raw response, second call",
+      "path": "response_run2.json",
+      "lang": "json"
+    },
+    {
+      "name": "Server launch command",
+      "path": "server_cmd.txt",
+      "lang": "bash"
+    }
+  ],
+  "experiments_log": null
+}

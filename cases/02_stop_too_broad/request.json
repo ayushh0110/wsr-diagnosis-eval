@@ -1,0 +1,17 @@
+{
+  "model": "local",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Write a four-line poem about the sea."
+    }
+  ],
+  "temperature": 0.7,
+  "max_tokens": 200,
+  "stop": [
+    "\n"
+  ],
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  }
+}

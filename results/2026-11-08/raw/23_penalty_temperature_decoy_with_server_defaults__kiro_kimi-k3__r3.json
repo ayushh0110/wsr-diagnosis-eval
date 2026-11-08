@@ -1,0 +1,41 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:37:13.152680+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 31.49,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, which flattens the token distribution so strongly that low-probability nonsense tokens (random code fragments, bracketed numbers, emojis, self-corrections) get sampled instead of the near-deterministic number list; the server default is 1.0. The output is not truncated (finish_reason 'stop', 64 of 200 tokens) and the runtime/template path is working, since the reply starts in a normal assistant register before degenerating. The repeat_penalty of 1.5 adds distortion, but temperature 3.5 alone is sufficient to produce this gibberish and is the decisive change. Returning temperature to 1.0 (or dropping it near 0.2-0.7 for exact tasks) restores coherent output.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, which flattens the token distribution so strongly that low-probability nonsense tokens (random code fragments, bracketed numbers, emojis, self-corrections) get sampled instead of the near-deterministic number list; the server default is 1.0. The output is not truncated (finish_reason 'stop', 64 of 200 tokens) and the runtime/template path is working, since the reply starts in a normal assistant register before degenerating. The repeat_penalty of 1.5 adds distortion, but temperature 3.5 alone is sufficient to produce this gibberish and is the decisive change. Returning temperature to 1.0 (or dropping it near 0.2-0.7 for exact tasks) restores coherent output.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:37:44.681405+00:00"
+}

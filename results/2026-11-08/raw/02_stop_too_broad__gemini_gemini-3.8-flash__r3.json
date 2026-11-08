@@ -1,0 +1,52 @@
+{
+  "case_id": "02_stop_too_broad",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "0dbc32c9e04978dd",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:06:56.773334+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request explicitly sets 'stop': ['\\\\n'], which halts generation as soon as the first newline character is generated. Because each line of a poem ends with a newline, the model stops after generating the very first line with finish_reason 'stop'. Removing the newline stop sequence allows the model to produce multi-line output.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132545,
+        "id": "wEnwavezO_TJz7sPzcfXqQ8",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 136,
+          "prompt_tokens": 2315,
+          "total_tokens": 3056
+        }
+      },
+      "latency_s": 128.98
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"STOP_TOO_BROAD\",\n  \"fix\": {\n    \"action\": \"change_stop\",\n    \"target\": \"stop\",\n    \"value\": null\n  },\n  \"rationale\": \"The request explicitly sets 'stop': ['\\\\n'], which halts generation as soon as the first newline character is generated. Because each line of a poem ends with a newline, the model stops after generating the very first line with finish_reason 'stop'. Removing the newline stop sequence allows the model to produce multi-line output.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:09:05.752112+00:00"
+}

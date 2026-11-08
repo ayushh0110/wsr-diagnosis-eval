@@ -1,0 +1,52 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:08.152624+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.4, which strongly penalises any token that has already appeared in the context. Because Python code requires repeatedly reusing syntax tokens, variable names (`size`, `i`), numbers (`1`), and punctuation (`:`, `)`), the high repetition penalty forces the model to avoid `range(1, size + 1)` and instead invent increasingly convoluted expressions (`range(1 + 0, size - (i % size)...)`, `range(0 + 2)`) before trying to self-correct in comments. Resetting `repeat_penalty` to 1.0 (or removing it) restores normal code generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TbvaW+pODIndztcQcpKBXNkHK9thfZ30oZpDFuPOkIBZY0/U8zjzmd5pu+U5G0b+oogpLfKsnVfUHofyptSESo/PqU6BZJ1dsOjZ/9E7IcC4yHIMJ9TBUO9iocoBi"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133213,
+        "id": "2EzwarutCrLg694P-4-KQA",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 212,
+          "prompt_tokens": 2725,
+          "total_tokens": 2937
+        }
+      },
+      "latency_s": 6.01
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.4, which strongly penalises any token that has already appeared in the context. Because Python code requires repeatedly reusing syntax tokens, variable names (`size`, `i`), numbers (`1`), and punctuation (`:`, `)`), the high repetition penalty forces the model to avoid `range(1, size + 1)` and instead invent increasingly convoluted expressions (`range(1 + 0, size - (i % size)...)`, `range(0 + 2)`) before trying to self-correct in comments. Resetting `repeat_penalty` to 1.0 (or removing it) restores normal code generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:20:14.162205+00:00"
+}

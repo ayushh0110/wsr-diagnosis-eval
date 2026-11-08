@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Here are all of them:\n\n```text\n[Line]  {\"number\": \"one\"}\n2 {\"point\", [548]}   -> {type}: integer; value=two} <br> (This is for visualization purposes) ... 30 {\"thirty\"}. For a simple list, I will provide the raw text below.\n\n1"
+      }
+    }
+  ],
+  "created": 1794130377,
+  "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+  "system_fingerprint": "b10244-67d5978bb",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 75,
+    "prompt_tokens": 24,
+    "total_tokens": 99,
+    "prompt_tokens_details": {
+      "cached_tokens": 19
+    }
+  },
+  "id": "chatcmpl-HkZOsKQiE0m2WJjsI7R4XyyzufWG46Bw",
+  "timings": {
+    "cache_n": 19,
+    "prompt_n": 5,
+    "prompt_ms": 338.753,
+    "prompt_per_token_ms": 67.75059999999999,
+    "prompt_per_second": 14.760016885459317,
+    "predicted_n": 75,
+    "predicted_ms": 1207.293,
+    "predicted_per_token_ms": 16.09724,
+    "predicted_per_second": 62.12245080523121
+  }
+}

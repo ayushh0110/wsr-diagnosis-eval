@@ -1,0 +1,10 @@
+{
+  "seed": 1,
+  "stdout": "Certainly! Below is an example of how you can create and print a simple 5x5 multiplication table using Python:\n\n```python\ndef multiply_table():\n    # Define the size for each row in the matrix (1 to n)\n    rows = range(2, 6) + [0] * 3\n    \n    def display_row(row):\n        return ' '.join(str(num ** col) if num != 0 else '*' for num, col in enumerate(rows))\n    \n    result_matrix = []\n    max_width = len(max(display_row(r), key=len)) + 4\n\n    while True:\n        line = '\\n'.join(map(lambda r: f'{r[::]} {display_row([int(x == y)])}', zip(*rows)))\n        \n        width_str = ''.join(f'{\" \"*i}' for i in map(len, lines(line.split('\\n'))))\n\n        yield from [\n            ('|', '|'),\n            ('-'*max_width),\n            *[f'|{line}|',\n             '-'*(width - int(width_str[-len(lines[line]):])),\n        \n",
+  "warnings": [
+    "builtin type SwigPyObject has no __module__ attribute",
+    "builtin type SwigPyPacked has no __module__ attribute"
+  ],
+  "seconds": 49.0,
+  "arm": "failing"
+}

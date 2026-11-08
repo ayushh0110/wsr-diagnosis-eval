@@ -1,0 +1,57 @@
+{
+  "arm": "presence_off",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a Python function that prints a 5x5 multiplication table. Only the code."
+      }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef print_multiplication_table():\n    \"\"\"Prints a standard 1 to 9 x 1 to 8 (or similar) or simply rows/columns of numbers.\"\"\"\n\n# A common interpretation is printing one where each row multiplies its element by another sequence, e.g., times the same number repeatedly in that line for visualization purposes if we only have space constraints\n    for i in range(5):  # Rows 0 to 4 (representing factors)\n        row_output = []\n        number1 = str((i + 2)) # Start numbers from row index 'a'\n\n        if len([str() for _ in [None]]) == \"x\" : continue\n\n\n    for i in range(5):  # Outer loop controls the rows (multiplicand) - e.g., Row starts with a number\n        row_start = 1 if i < int((i * random().random())) else None # Example: row start depends on randomness\n\n```"
+        }
+      }
+    ],
+    "created": 1794126868,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 210,
+      "prompt_tokens": 27,
+      "total_tokens": 237,
+      "prompt_tokens_details": {
+        "cached_tokens": 22
+      }
+    },
+    "id": "chatcmpl-OXhfPPOw8bsdzSdHxvlknhvOhIx6MMF4",
+    "timings": {
+      "cache_n": 22,
+      "prompt_n": 5,
+      "prompt_ms": 57.204,
+      "prompt_per_token_ms": 11.4408,
+      "prompt_per_second": 87.40647507167331,
+      "predicted_n": 210,
+      "predicted_ms": 3667.769,
+      "predicted_per_token_ms": 17.465566666666664,
+      "predicted_per_second": 57.255514183145124
+    }
+  },
+  "latency_s": 3.82,
+  "detector_codes": []
+}

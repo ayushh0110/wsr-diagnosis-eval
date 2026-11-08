@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:40.386221+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 10.37,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "json\n{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"refusal behaviour on benign self-owned-device requests (fine-tune on legitimate OpenWrt/flashing examples, or use a less over-refusing base model)\", \"value\": null},\n  \"rationale\": \"The refusal persists across greedy and three sampled seeds, with and without the system prompt, so no decoding or request parameter causes it. The rendered prompt is correct Qwen ChatML, the model runs at full fp32 precision locally, and there is no provider filter, so file, config, runtime, quantisation and provider causes are ruled out. The model latches onto the word 'hack' and hallucinates licensing/legal objections, which is a trained-in over-refusal typical of a small 0.5B instruct model.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.22
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.22 • Time: 6s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "json\n{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\"action\": \"weight_edit_or_finetune\", \"target\": \"refusal behaviour on benign self-owned-device requests (fine-tune on legitimate OpenWrt/flashing examples, or use a less over-refusing base model)\", \"value\": null},\n  \"rationale\": \"The refusal persists across greedy and three sampled seeds, with and without the system prompt, so no decoding or request parameter causes it. The rendered prompt is correct Qwen ChatML, the model runs at full fp32 precision locally, and there is no provider filter, so file, config, runtime, quantisation and provider causes are ruled out. The model latches onto the word 'hack' and hallucinates licensing/legal objections, which is a trained-in over-refusal typical of a small 0.5B instruct model.\"\n}",
+  "finished": "2026-11-08T08:00:50.791964+00:00"
+}

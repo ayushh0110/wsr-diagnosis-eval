@@ -1,0 +1,52 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "dafb58dfb60428a1",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:20:04.061630+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request sets repeat_penalty to 1.5, which is excessively high and severely penalizes standard punctuation, newlines, and recurring structural tokens. To avoid token repetition when generating sequential numbers, the model outputs bizarre substitutions and pseudo-markup before terminating early. Lowering repeat_penalty back to 1.0 (or removing it) resolves the issue.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133212,
+        "id": "1EzwaqCMB865694Pru3ZKA",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 150,
+          "prompt_tokens": 2417,
+          "total_tokens": 3347
+        }
+      },
+      "latency_s": 9.04
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The request sets repeat_penalty to 1.5, which is excessively high and severely penalizes standard punctuation, newlines, and recurring structural tokens. To avoid token repetition when generating sequential numbers, the model outputs bizarre substitutions and pseudo-markup before terminating early. Lowering repeat_penalty back to 1.0 (or removing it) resolves the issue.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:20:13.099637+00:00"
+}

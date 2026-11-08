@@ -1,0 +1,40 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/claude-opus-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:04:20.005896+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.74,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above Gemma's recommended 1.0. At that temperature, sampling becomes close to uniform over every candidate that survives the top_k/top_p/min_p filters, so the reply drifts into loosely related text: a stray Python fragment, a carriage return, a long run of spaces, an apology and an emoji. Everything else checks out: finish_reason is 'stop' after 64 of 200 allowed tokens, thinking is disabled, there are no stop strings or grammar constraints, and the launch flags are standard, so neither the request shape nor the runtime explains the output. The repeat_penalty of 1.5 is also too strong for a list that reuses newlines and digits, and should go back to about 1.0 once temperature is fixed.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above Gemma's recommended 1.0. At that temperature, sampling becomes close to uniform over every candidate that survives the top_k/top_p/min_p filters, so the reply drifts into loosely related text: a stray Python fragment, a carriage return, a long run of spaces, an apology and an emoji. Everything else checks out: finish_reason is 'stop' after 64 of 200 allowed tokens, thinking is disabled, there are no stop strings or grammar constraints, and the launch flags are standard, so neither the request shape nor the runtime explains the output. The repeat_penalty of 1.5 is also too strong for a list that reuses newlines and digits, and should go back to about 1.0 once temperature is fixed.\"\n}\n```",
+  "finished": "2026-11-08T09:05:01.782598+00:00"
+}

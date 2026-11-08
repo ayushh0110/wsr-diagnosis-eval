@@ -1,0 +1,52 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:05.597005+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\n    \"action\": \"weight_edit_or_finetune\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The rendered prompt correctly matches the standard Qwen ChatML template and runs in full fp32 precision without quantization artifacts or abnormal sampling parameters. The refusal persists across multiple sampling seeds, greedy decoding, and even when removing the system prompt, triggered purely by benign keywords like 'hack'. This demonstrates safety over-refusal embedded directly in the trained model weights.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EvUJCvIJAWkUfRPE1gXzx5ZhVaaw3K69ekeLBVVXjeeEWLY8Z+2qvVeZsG+Ssc7GmEw+u4i8N9z0vn+EdHjDWGEne8JU0Ei6nkm8SkUeG+MFhJncoasVB2GB5YVuNdpIVlLGiKRkSMO8vl6y6NyYqmhlp8WMdYqGKUuE08izHA89nA1YGYSAnGTc8+AgQiqqKZgTMJnUys6mZnnJbBJpAuh5ETTnS9Mu7Tqx87igVpeBlwKAzZ0BWFkwhB0F7sSL1G/lq6whbQHEhHbYsPjoOQ24+0Nnpx7oQpYZuliRz4hATY7IfFiHwBm/oGYGLR6eSb4KL9ee+BdDItKoaLRg2SaWFA9j4gbPB4d4Uw4bKyIMcdfEjrjernRy9k5EQHAF94c/jNG7sjfEJvs2euw9dQ7ibog0k31bsAXCTaRiXQYjJXFhU+noOoLYSXD0R3lG+F4srOFkWAUop8tw6kS3fH+33Mw0aqUSrzgR6ai38hJBd7NtlU4OolXGVwzVPNy9VbHzlssqEi3Xmeq5BN4hkpoDOqNoVIhT32qZTjj21yCOw/mdVXhmUgOsGvKSMtOMPn95ZiOrIoXZlO0sLAWDUoco3tYpXhLnKuJYFuLXVp9l5vgBWQbGpFQlsrllgubTC+8m1EovSume8BUN7A+/8UJVqq4jPxnrT72SGvllOdUkWy7hgWpQCtdzlx7gOtDAyGXaSw5FZhdMeh0IVPFpIg61w4G8b+BRohpcYBI+sbH7k65M7naLoPEMKz4wXjePcxIuJ2xvNxq8/8vXOlUzg2MwvKgmryEi5DDqHF79dUb7IoTMd1XmMMEHVbF4YbGFQdLctbVC61T1bEVMFhrsDp9RsZIm0E8er2On4pQ74bmVrLA5p0M8ul1FJvb1fmJC1uSaDxQDVwyxEd7sXR1ayQwBoepiDeGYTAAgq1NIG8U1OJY5v0H95Mdgg8+aUpydR3I3UNXHPROVGU4qWOwZMoMzRBi7LcplBfD7n7zSEDlKBtxlDKYqkjLSZ4DgDnICwyaIe5Yvc1PAOlf6YJWxURrR+YZR3LmluufzF8ID1ZWFveYCzuXihCrZt27fuGdd0ejO5LHk8ItxiHzYT2xgZkX/cD5kZV0/BWVhGxCsorx8vOmqRutTdjBLRLxqGyComEv6Lcy5bHYcy3M8PK9pAPbCfkXaiMRwO5CP7cpdpOoB88AQX9gQA++0mhoo+sRzi+vsWQDp7dOdUO+UFKh2547yCP/MyPOdznfx4I9MeN28nEgD0SJiCpqeKueHaPUx1L1q/YsClR4WGgSDCZLi8W/eZjUc1i819LZFiqowzmJvYJegxUYiDjwNeAfIVHuffhKJjB9UKYTYy563R5TajnBTq40ky1QYPoDj1pFeRhLiJ06lh19Tww+WaUx14Flxe3zUG2tzWiEHB9fd0IRgLZIbzk0K59iD/tyTGViUnCD6qSwPFlUuSe8Eb1JO09zGJsigks8DWgcq9Y306GMR9g5fY+2Nx8jwKm2ZvHbEvn6OJLQHe+dqLcC6bRpVzlHY5At3zN3FhNjwnZxW3BCaUWXvEXJwVuMOIg9RYOgTEyNs+7pZnDE92W7klbtt6BBVWi6Ikgz/Ove1ahf4vA5QWeu3jCxJqUew/mj/TYNGahq47DgdYy/t7TKeEOi/Esgy9Iauj7y/XRFbUlIxKT5PtrKD36fmzM3H"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133030,
+        "id": "IUzwaue7KpDI3LUPvcS5yQY",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 144,
+          "prompt_tokens": 2179,
+          "total_tokens": 2655
+        }
+      },
+      "latency_s": 5.19
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"weight_level\",\n  \"cause\": \"WEIGHT_OVER_REFUSAL\",\n  \"fix\": {\n    \"action\": \"weight_edit_or_finetune\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The rendered prompt correctly matches the standard Qwen ChatML template and runs in full fp32 precision without quantization artifacts or abnormal sampling parameters. The refusal persists across multiple sampling seeds, greedy decoding, and even when removing the system prompt, triggered purely by benign keywords like 'hack'. This demonstrates safety over-refusal embedded directly in the trained model weights.\"\n}",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:17:10.786379+00:00"
+}

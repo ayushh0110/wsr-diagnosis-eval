@@ -1,0 +1,58 @@
+{
+  "arm": "model_defaults",
+  "run": 3,
+  "seed": 3,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Чому небо блакитне? Відповідай українською."
+    }
+  ],
+  "rendered_prompt": "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n<|im_start|>user\nЧому небо блакитне? Відповідай українською.<|im_end|>\n<|im_start|>assistant\n",
+  "prompt_tokens": 53,
+  "new_tokens": 242,
+  "finish": "eos",
+  "settings": {
+    "repetition_penalty": 1.1,
+    "top_k": 20,
+    "top_p": 0.8,
+    "min_p": null,
+    "no_repeat_ngram_size": 0,
+    "temperature": 0.7,
+    "do_sample": true
+  },
+  "effective_decoding": {
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_k": 20,
+    "top_p": 0.8,
+    "min_p": null,
+    "repetition_penalty": 1.1,
+    "no_repeat_ngram_size": 0,
+    "max_new_tokens": 300,
+    "eos_token_id": [
+      151645,
+      151643
+    ]
+  },
+  "effective_generation_config": {
+    "max_new_tokens": 300,
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_k": 20,
+    "top_p": 0.8,
+    "repetition_penalty": 1.1,
+    "no_repeat_ngram_size": 0,
+    "pad_token_id": 151643,
+    "bos_token_id": 151643,
+    "eos_token_id": [
+      151645,
+      151643
+    ],
+    "transformers_version": "5.8.0"
+  },
+  "text": "Україна - це страна, що багато виразується збільшено певними ідеалами, включаючи мудрість та сильність. Букною - як відповідь на ваше предложение \"Небо блакитне\", відомо, що Україна використовувала в своєму розвитку відродження армій за небоскривання. Також, у українській культурі історії, \"небесний\" звучав також як зрозуміття, чого змогло участиць культа та державності. У українському мовленні \"небесний\" часто звертається до позитивних та гармоничних идеалів, якщо є.",
+  "text_with_special_tokens": "Україна - це страна, що багато виразується збільшено певними ідеалами, включаючи мудрість та сильність. Букною - як відповідь на ваше предложение \"Небо блакитне\", відомо, що Україна використовувала в своєму розвитку відродження армій за небоскривання. Також, у українській культурі історії, \"небесний\" звучав також як зрозуміття, чого змогло участиць культа та державності. У українському мовленні \"небесний\" часто звертається до позитивних та гармоничних идеалів, якщо є.<|im_end|>",
+  "seconds": 14.3,
+  "detector_codes": []
+}

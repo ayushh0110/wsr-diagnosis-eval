@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:50.792964+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 36.25,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"inconclusive\",\n \"cause\": \"INSUFFICIENT_EVIDENCE\",\n \"fix\": {\"action\": \"collect_more_evidence\", \"target\": \"rerun the same prompt with max_new_tokens raised to the production value (e.g. 512), once with do_sample=false and once with do_sample=true, and capture whether greedy decoding enters a repeat loop that sampling escapes\", \"value\": null},\n \"rationale\": \"The captured generation shows no repetition: the 64 tokens are coherent and the run stopped only because of the max_new_tokens cap, so the reported failure never occurs in the artifact. A repetition loop would typically emerge later in a longer generation, and this short run cannot distinguish a greedy-decoding loop (do_sample=false, repetition_penalty=1.0, no_repeat_ngram_size=0) from a production-runtime cause such as KV-cache or context handling. Reproducing the failure at production token lengths is required before a cause can be named.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.67
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.67 • Time: 32s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n \"verdict\": \"inconclusive\",\n \"cause\": \"INSUFFICIENT_EVIDENCE\",\n \"fix\": {\"action\": \"collect_more_evidence\", \"target\": \"rerun the same prompt with max_new_tokens raised to the production value (e.g. 512), once with do_sample=false and once with do_sample=true, and capture whether greedy decoding enters a repeat loop that sampling escapes\", \"value\": null},\n \"rationale\": \"The captured generation shows no repetition: the 64 tokens are coherent and the run stopped only because of the max_new_tokens cap, so the reported failure never occurs in the artifact. A repetition loop would typically emerge later in a longer generation, and this short run cannot distinguish a greedy-decoding loop (do_sample=false, repetition_penalty=1.0, no_repeat_ngram_size=0) from a production-runtime cause such as KV-cache or context handling. Reproducing the failure at production token lengths is required before a cause can be named.\"\n}",
+  "finished": "2026-11-08T08:01:27.078411+00:00"
+}

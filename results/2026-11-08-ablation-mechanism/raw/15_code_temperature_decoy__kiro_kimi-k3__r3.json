@@ -1,0 +1,41 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:47:41.929737+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.22,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": 0.7},\n  \"rationale\": \"The output starts plausibly (correct code fence, correct loop header) then dissolves into incoherent commentary and stops at 141 of 350 allowed tokens with finish_reason 'stop', meaning an EOS token was sampled mid-task. That pattern is exactly what temperature 3.5 does in llama.cpp: dividing logits by 3.5 flattens the distribution so low-probability nonsense tokens and early EOS tokens get sampled. The repeat_penalty of 1.4 is a minor aggravator but cannot by itself produce abandoned logic and a mid-block stop on a short request, and the clean prompt handling and template rendering rule out file, config, and runtime causes. Lowering temperature to around 0.7 restores coherent sampling while keeping some variety.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": 0.7},\n  \"rationale\": \"The output starts plausibly (correct code fence, correct loop header) then dissolves into incoherent commentary and stops at 141 of 350 allowed tokens with finish_reason 'stop', meaning an EOS token was sampled mid-task. That pattern is exactly what temperature 3.5 does in llama.cpp: dividing logits by 3.5 flattens the distribution so low-probability nonsense tokens and early EOS tokens get sampled. The repeat_penalty of 1.4 is a minor aggravator but cannot by itself produce abandoned logic and a mid-block stop on a short request, and the clean prompt handling and template rendering rule out file, config, and runtime causes. Lowering temperature to around 0.7 restores coherent sampling while keeping some variety.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:48:18.187817+00:00"
+}

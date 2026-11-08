@@ -1,0 +1,52 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:23:58.800560+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The request explicitly overrides the model's default sampling settings with greedy decoding ('do_sample': false) and no repetition penalty ('repetition_penalty': 1.0). Extremely small models like Qwen2.5-0.5B easily get trapped in deterministic repetition loops under pure greedy decoding. Switching to sampled decoding with the model's default settings (do_sample: true, repetition_penalty: 1.1) breaks the loop.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133445,
+        "id": "v03wapKXAq-LqfkPwqDCuQE",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 164,
+          "prompt_tokens": 2167,
+          "total_tokens": 3011
+        }
+      },
+      "latency_s": 7.02
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The request explicitly overrides the model's default sampling settings with greedy decoding ('do_sample': false) and no repetition penalty ('repetition_penalty': 1.0). Extremely small models like Qwen2.5-0.5B easily get trapped in deterministic repetition loops under pure greedy decoding. Switching to sampled decoding with the model's default settings (do_sample: true, repetition_penalty: 1.1) breaks the loop.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:24:05.824514+00:00"
+}

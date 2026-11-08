@@ -1,0 +1,41 @@
+{
+  "case_id": "24_code_temperature_decoy_with_server_defaults",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "9e9a51e1018562b0",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:38:21.419836+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.96,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"remove_param\",\"target\":\"repeat_penalty\",\"value\":null},\"rationale\":\"The output is fluent English with plausible tokens, not the gibberish seen when temperature alone is too high. The server samplers run penalties first and temperature last, so min_p, top_k and top_p trim the candidates at temperature 1.0 before the 3.5 scaling is applied. The code is broken in the way a 1.4 penalty over the last 64 tokens produces: it never reuses `for`, `range` or `print`, so there is no inner loop and no print call. It also fills the space with new comment words and stops after 141 tokens with an unfinished function. Removing repeat_penalty restores the server default of 1.0, and temperature can then be lowered to about 1.0 as well.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"REPEAT_PENALTY_HIGH\",\"fix\":{\"action\":\"remove_param\",\"target\":\"repeat_penalty\",\"value\":null},\"rationale\":\"The output is fluent English with plausible tokens, not the gibberish seen when temperature alone is too high. The server samplers run penalties first and temperature last, so min_p, top_k and top_p trim the candidates at temperature 1.0 before the 3.5 scaling is applied. The code is broken in the way a 1.4 penalty over the last 64 tokens produces: it never reuses `for`, `range` or `print`, so there is no inner loop and no print call. It also fills the space with new comment words and stops after 141 tokens with an unfinished function. Removing repeat_penalty restores the server default of 1.0, and temperature can then be lowered to about 1.0 as well.\"}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T11:39:03.417291+00:00"
+}

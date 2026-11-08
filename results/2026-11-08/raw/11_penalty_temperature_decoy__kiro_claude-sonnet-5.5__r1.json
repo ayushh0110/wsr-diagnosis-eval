@@ -1,0 +1,40 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:05:01.783103+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 44.88,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":\"1.0\"},\"rationale\":\"The request sets temperature 3.5, far above the usable range (about 0.7 to 1.2). The reply starts normally ('Here are all of these:'), then drifts into an unrelated python code fence with '[5] == True', a stray '\\\\r', and an emoji, which is flattened-distribution sampling noise. The server, launch flags and template look normal: finish_reason is 'stop' after 64 of 200 tokens, and the prompt is only 24 tokens. The repeat_penalty of 1.5 also works against a list that must reuse digits and newlines, so lower it to about 1.0 to 1.1 as well. Retest with temperature 1.0 and the default repeat_penalty before tuning further for creative writing.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":\"1.0\"},\"rationale\":\"The request sets temperature 3.5, far above the usable range (about 0.7 to 1.2). The reply starts normally ('Here are all of these:'), then drifts into an unrelated python code fence with '[5] == True', a stray '\\\\r', and an emoji, which is flattened-distribution sampling noise. The server, launch flags and template look normal: finish_reason is 'stop' after 64 of 200 tokens, and the prompt is only 24 tokens. The repeat_penalty of 1.5 also works against a list that must reuse digits and newlines, so lower it to about 1.0 to 1.1 as well. Retest with temperature 1.0 and the default repeat_penalty before tuning further for creative writing.\"}",
+  "finished": "2026-11-08T09:05:46.695899+00:00"
+}

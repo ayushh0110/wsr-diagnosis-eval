@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:08:33.133973+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 47.24,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Repeat the same prompt with a fixed seed in a 2x2 ablation: presence_penalty 1.5 versus 0, and --repeat-penalty 1.5 versus 1.0; keep the model, quantisation, template, and all other settings unchanged.\",\n    \"value\": null\n  },\n  \"rationale\": \"The response clearly fails, but the request applies presence_penalty 1.5 while the server simultaneously applies repeat penalty 1.5. Either unusually strong penalty can discourage reused Python syntax and produce rambling substitutions, so this single sample cannot identify one cause code without separating them.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Repeat the same prompt with a fixed seed in a 2x2 ablation: presence_penalty 1.5 versus 0, and --repeat-penalty 1.5 versus 1.0; keep the model, quantisation, template, and all other settings unchanged.\",\n    \"value\": null\n  },\n  \"rationale\": \"The response clearly fails, but the request applies presence_penalty 1.5 while the server simultaneously applies repeat penalty 1.5. Either unusually strong penalty can discourage reused Python syntax and produce rambling substitutions, so this single sample cannot identify one cause code without separating them.\"\n}",
+  "finished": "2026-11-08T09:09:20.414009+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:40.911495+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 10.49,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"inconclusive\",\n \"cause\": \"INSUFFICIENT_EVIDENCE\",\n \"fix\": {\n   \"action\": \"collect_more_evidence\",\n   \"target\": \"Rerun the same rendered prompt with max_new_tokens=512 using greedy decoding, then sampled decoding with fixed seeds, and capture generated token IDs for both.\",\n   \"value\": null\n },\n \"rationale\": \"The captured response contains no repeated paragraph; it ends mid-sentence because it reached max_new_tokens=64. This proves the test budget is too short for the requested description and 20 selling points, but it does not establish what causes the separate production repetition. Comparing sufficiently long greedy and sampled runs will test whether greedy decoding produces the reported loop.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.4
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.40 • Time: 6s"
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n \"verdict\": \"inconclusive\",\n \"cause\": \"INSUFFICIENT_EVIDENCE\",\n \"fix\": {\n   \"action\": \"collect_more_evidence\",\n   \"target\": \"Rerun the same rendered prompt with max_new_tokens=512 using greedy decoding, then sampled decoding with fixed seeds, and capture generated token IDs for both.\",\n   \"value\": null\n },\n \"rationale\": \"The captured response contains no repeated paragraph; it ends mid-sentence because it reached max_new_tokens=64. This proves the test budget is too short for the requested description and 20 selling points, but it does not establish what causes the separate production repetition. Comparing sufficiently long greedy and sampled runs will test whether greedy decoding produces the reported loop.\"\n}",
+  "finished": "2026-11-08T08:00:51.433456+00:00"
+}

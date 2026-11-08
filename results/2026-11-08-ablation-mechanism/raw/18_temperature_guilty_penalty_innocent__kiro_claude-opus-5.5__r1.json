@@ -1,0 +1,41 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "6c8ca662ce1dabf2",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:48:01.275847+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.0,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request disables every truncation sampler (top_k 0, top_p 1.0, min_p 0), so llama-server's temperature step at the end of the default sampler chain spreads 3.5x-flattened probability across Gemma's whole ~262k-token vocabulary. The output is random multilingual tokens from the very first token, which matches near-uniform sampling. A repeat_penalty of 1.3 only penalises tokens already in the last 64, so it cannot cause gibberish this early. The prompt cache hit, the template and the token counts are all normal, so this is not a file, template or runtime fault. Set temperature back to about 1.0 (Gemma's recommended value); for variety, restore truncation such as min_p 0.05 or top_k 64 with top_p 0.95 rather than raising temperature.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request disables every truncation sampler (top_k 0, top_p 1.0, min_p 0), so llama-server's temperature step at the end of the default sampler chain spreads 3.5x-flattened probability across Gemma's whole ~262k-token vocabulary. The output is random multilingual tokens from the very first token, which matches near-uniform sampling. A repeat_penalty of 1.3 only penalises tokens already in the last 64, so it cannot cause gibberish this early. The prompt cache hit, the template and the token counts are all normal, so this is not a file, template or runtime fault. Set temperature back to about 1.0 (Gemma's recommended value); for variety, restore truncation such as min_p 0.05 or top_k 64 with top_p 0.95 rather than raising temperature.\"\n}",
+  "model_returned": "kiro/claude-opus-5.5",
+  "finished": "2026-11-08T11:48:35.316455+00:00"
+}

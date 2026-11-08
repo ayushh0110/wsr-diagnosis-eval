@@ -1,0 +1,46 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "REPEAT_PENALTY_HIGH",
+  "acceptable_causes": [
+    "REPEAT_PENALTY_HIGH"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "repeat|repetition",
+      "value": {
+        "max": 1.15
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "repeat|repetition"
+    }
+  ],
+  "golden_fix": {
+    "action": "remove_param",
+    "target": "repeat_penalty",
+    "value": null
+  },
+  "distractors": {
+    "LOW_BIT_QUANT_DAMAGE": "the same Q4_0 file writes clean Devanagari Hindi 2/2 when only repeat_penalty is removed",
+    "WEIGHT_LANGUAGE_GAP": "same weights, clean Hindi without the penalty",
+    "PRETOKENIZER_DEFAULT": "a tokenizer fault would not disappear when a sampling parameter is removed"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm: repeat_penalty 2.0, temperature 0: Devanagari sentences ending in Urdu-script 'ہیں۔' 2/2 (the penalty pushes down the Devanagari tokens already used, and the Urdu ones are the closest unpenalised alternatives). Only repeat_penalty removed: clean Hindi 2/2. Same pattern in the author's earlier Gemma captures (wsr tests/data/penalty_samples.json, hi_rp20).",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/failing_r2.json",
+      "evidence/penalty_off_r1.json",
+      "evidence/penalty_off_r2.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

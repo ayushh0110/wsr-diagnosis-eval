@@ -1,0 +1,40 @@
+{
+  "case_id": "01_token_salad",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:47:31.976644+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 30.86,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with top_k 0, top_p 1.0 and min_p 0, so no truncation filter removes the low-probability tail. At that temperature the logits are flattened enough that tokens from many scripts and languages get sampled at random, which matches the output exactly. The server ran normally (60 tokens/s, 200 tokens, finish_reason length) and the prompt is plain, so the GGUF file and template are not implicated. Lowering temperature to about 1.0 (Gemma's recommended setting) with top_k 64 and top_p 0.95 should restore coherent text.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with top_k 0, top_p 1.0 and min_p 0, so no truncation filter removes the low-probability tail. At that temperature the logits are flattened enough that tokens from many scripts and languages get sampled at random, which matches the output exactly. The server ran normally (60 tokens/s, 200 tokens, finish_reason length) and the prompt is plain, so the GGUF file and template are not implicated. Lowering temperature to about 1.0 (Gemma's recommended setting) with top_k 64 and top_p 0.95 should restore coherent text.\"\n}",
+  "finished": "2026-11-08T08:48:02.870774+00:00"
+}

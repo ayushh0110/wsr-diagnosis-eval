@@ -1,0 +1,7 @@
+# Frontier models tested on 2026-11-08, reached through Kiro CLI with a Kiro API key (see eval/kiro.py).
+# Kiro does not let the caller set temperature or max_tokens; the provider defaults apply.
+# The same eval runs through OpenRouter by listing OpenRouter ids instead (see models.example.txt).
+kiro/claude-opus-5.5
+kiro/gpt-5.6-sol
+kiro/claude-sonnet-5.5
+kiro/kimi-k3

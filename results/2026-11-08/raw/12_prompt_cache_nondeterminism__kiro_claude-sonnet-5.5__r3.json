@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:07:16.611557+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.93,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt (or send \\\"cache_prompt\\\": false in each request)\", \"value\": \"disabled\"},\n  \"rationale\": \"Run 1 evaluated the prompt almost fresh (cache_n 1, prompt_n 32), while run 2 reused the cache (cache_n 28, prompt_n 5). The two runs therefore processed the prompt with different batch shapes, which can change floating-point results on the GPU enough to flip a greedy token and diverge the story. Outputs match from the second call onward because every later call reuses the cache in the same way. This points to prompt-cache reuse rather than an ignored seed, since at temperature 0 the seed is irrelevant and the request is identical both times. Disabling the prompt cache makes every call do a full prompt evaluation, so the first call matches the rest.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--no-cache-prompt (or send \\\"cache_prompt\\\": false in each request)\", \"value\": \"disabled\"},\n  \"rationale\": \"Run 1 evaluated the prompt almost fresh (cache_n 1, prompt_n 32), while run 2 reused the cache (cache_n 28, prompt_n 5). The two runs therefore processed the prompt with different batch shapes, which can change floating-point results on the GPU enough to flip a greedy token and diverge the story. Outputs match from the second call onward because every later call reuses the cache in the same way. This points to prompt-cache reuse rather than an ignored seed, since at temperature 0 the seed is irrelevant and the request is identical both times. Disabling the prompt cache makes every call do a full prompt evaluation, so the first call matches the rest.\"\n}",
+  "finished": "2026-11-08T09:07:54.574866+00:00"
+}

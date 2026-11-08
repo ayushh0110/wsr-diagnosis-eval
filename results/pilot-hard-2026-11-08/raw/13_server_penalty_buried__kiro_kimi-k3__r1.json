@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:38:21.051335+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 165.23,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The server is launched with --repeat-penalty 1.5 (sane range is 1.0-1.1) and the request stacks presence_penalty 1.5 on top, so any token already used gets hammered. The output shows the exact fingerprint of that: the model writes 'for j from range(6)' because 'in' was already spent on the first loop, opens loop headers whose bodies never materialize because reusing indentation and identifiers is penalized, and drifts into long novel-vocabulary comments instead of reusable code structure. Other candidates don't fit: the prompt is 27 tokens with a 254-token stop-finished reply (no truncation or context shift), the English is fluent (no template or EOS corruption), and Q4_0 weights plus q8_0 KV cache don't selectively delete the keyword 'in' at this short length. Dropping the server repeat penalty to ~1.0 (and removing the request's presence_penalty) restores normal token reuse.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 2.63
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 2.63 • Time: 2m 35s"
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"change_runtime_flag\", \"target\": \"--repeat-penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The server is launched with --repeat-penalty 1.5 (sane range is 1.0-1.1) and the request stacks presence_penalty 1.5 on top, so any token already used gets hammered. The output shows the exact fingerprint of that: the model writes 'for j from range(6)' because 'in' was already spent on the first loop, opens loop headers whose bodies never materialize because reusing indentation and identifiers is penalized, and drifts into long novel-vocabulary comments instead of reusable code structure. Other candidates don't fit: the prompt is 27 tokens with a 254-token stop-finished reply (no truncation or context shift), the English is fluent (no template or EOS corruption), and Q4_0 weights plus q8_0 KV cache don't selectively delete the keyword 'in' at this short length. Dropping the server repeat penalty to ~1.0 (and removing the request's presence_penalty) restores normal token reuse.\"\n}",
+  "finished": "2026-11-08T08:41:06.322610+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:18:07.563111+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty / presence_penalty\",\n    \"value\": \"1.0 (repeat_penalty) and 0.0 (presence_penalty)\"\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request also sets `\\\"presence_penalty\\\": 1.5`. Penalties this strong heavily penalise any token that has already appeared in the prompt or earlier in the completion—including `5`, `in`, indentation tokens, and loop syntax—forcing the model to substitute invalid syntax like `for j from range(6):`, avoid the number `5`, and pad with rambling comments instead of repeating code structure.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133103,
+        "id": "X0zwatq-I_qi694PuY_J2Ag",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 192,
+          "prompt_tokens": 2671,
+          "total_tokens": 3455
+        }
+      },
+      "latency_s": 16.08
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty / presence_penalty\",\n    \"value\": \"1.0 (repeat_penalty) and 0.0 (presence_penalty)\"\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request also sets `\\\"presence_penalty\\\": 1.5`. Penalties this strong heavily penalise any token that has already appeared in the prompt or earlier in the completion—including `5`, `in`, indentation tokens, and loop syntax—forcing the model to substitute invalid syntax like `for j from range(6):`, avoid the number `5`, and pad with rambling comments instead of repeating code structure.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:18:23.641482+00:00"
+}

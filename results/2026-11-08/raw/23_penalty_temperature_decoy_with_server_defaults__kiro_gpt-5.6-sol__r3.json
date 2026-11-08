@@ -1,0 +1,41 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:36:22.381602+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 41.81,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":1.0},\"rationale\":\"The request overrides the server default temperature of 1.0 with 3.5, which makes low-probability, incoherent continuations much more likely even for a deterministic task. The response shows this failure pattern and stops normally after 64 tokens, so neither the token budget nor the runtime indicates truncation or an execution error.\"}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\"verdict\":\"sampling\",\"cause\":\"TEMPERATURE_HIGH\",\"fix\":{\"action\":\"set_param\",\"target\":\"temperature\",\"value\":1.0},\"rationale\":\"The request overrides the server default temperature of 1.0 with 3.5, which makes low-probability, incoherent continuations much more likely even for a deterministic task. The response shows this failure pattern and stops normally after 64 tokens, so neither the token budget nor the runtime indicates truncation or an execution error.\"}",
+  "model_returned": "kiro/gpt-5.6-sol",
+  "finished": "2026-11-08T11:37:04.227606+00:00"
+}

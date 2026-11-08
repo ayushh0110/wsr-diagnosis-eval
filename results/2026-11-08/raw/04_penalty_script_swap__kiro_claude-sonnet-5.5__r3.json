@@ -1,0 +1,40 @@
+{
+  "case_id": "04_penalty_script_swap",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "3f5eecf0c59afd47",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:53:00.749702+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 32.68,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, far above the usual 1.0 to 1.1 range. The damage matches that penalty. Common Hindi words and suffixes such as 'होते हैं' are used many times, so their tokens are penalised heavily. The model then picks the Urdu-script 'ہیں۔', which has the same sound, and later invents words like 'बाष्पन दरशरण अपनाती हूँ' and switches to 'अरबوں'. Greedy decoding with a lower-bit Q4_0 file does not explain this by itself. The tense and register drift ('होता था', 'सकते थे') and the emoji strings also point to penalty-driven avoidance of ordinary tokens. Remove the penalty and rerun the same prompt at Q4_0 before blaming the quantisation.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0, far above the usual 1.0 to 1.1 range. The damage matches that penalty. Common Hindi words and suffixes such as 'होते हैं' are used many times, so their tokens are penalised heavily. The model then picks the Urdu-script 'ہیں۔', which has the same sound, and later invents words like 'बाष्पन दरशरण अपनाती हूँ' and switches to 'अरबوں'. Greedy decoding with a lower-bit Q4_0 file does not explain this by itself. The tense and register drift ('होता था', 'सकते थे') and the emoji strings also point to penalty-driven avoidance of ordinary tokens. Remove the penalty and rerun the same prompt at Q4_0 before blaming the quantisation.\"\n}",
+  "finished": "2026-11-08T08:53:33.465848+00:00"
+}

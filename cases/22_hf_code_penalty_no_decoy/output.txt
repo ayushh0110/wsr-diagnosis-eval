@@ -1,0 +1,24 @@
+Certainly! Below is an example of how you can create and print a simple 5x5 multiplication table using Python:
+
+```python
+def multiply_table():
+    # Define the size for each row in the matrix (1 to n)
+    rows = range(2, 6) + [0] * 3
+    
+    def display_row(row):
+        return ' '.join(str(num ** col) if num != 0 else '*' for num, col in enumerate(rows))
+    
+    result_matrix = []
+    max_width = len(max(display_row(r), key=len)) + 4
+
+    while True:
+        line = '\n'.join(map(lambda r: f'{r[::]} {display_row([int(x == y)])}', zip(*rows)))
+        
+        width_str = ''.join(f'{" "*i}' for i in map(len, lines(line.split('\n'))))
+
+        yield from [
+            ('|', '|'),
+            ('-'*max_width),
+            *[f'|{line}|',
+             '-'*(width - int(width_str[-len(lines[line]):])),
+        

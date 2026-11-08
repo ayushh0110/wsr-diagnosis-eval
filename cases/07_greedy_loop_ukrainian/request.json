@@ -1,0 +1,18 @@
+{
+  "runtime": "transformers 5.8.0 (model.generate)",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "dtype": "fp32",
+  "device": "cuda",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Чому небо блакитне? Відповідай українською."
+    }
+  ],
+  "max_new_tokens": 300,
+  "generation": {
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 0,
+    "do_sample": false
+  }
+}

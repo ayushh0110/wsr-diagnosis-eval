@@ -1,0 +1,40 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:13:19.871543+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 31.6,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the ~0.7-1.0 range this model needs, which flattens the token distribution enough to sample incoherent tokens: the reply derails into commentary mid-function and stops at 141 tokens without completing a runnable script. The infrastructure is exonerated: the server rendered the template correctly, finish_reason is 'stop' (not a max_tokens cutoff at 350), and prompt/quant/runtime all processed normally. The repeat_penalty of 1.4 is also aggressive, but temperature 3.5 alone is sufficient to produce this degenerate output and is the parameter the user changed to get 'more varied solutions'.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the ~0.7-1.0 range this model needs, which flattens the token distribution enough to sample incoherent tokens: the reply derails into commentary mid-function and stops at 141 tokens without completing a runnable script. The infrastructure is exonerated: the server rendered the template correctly, finish_reason is 'stop' (not a max_tokens cutoff at 350), and prompt/quant/runtime all processed normally. The repeat_penalty of 1.4 is also aggressive, but temperature 3.5 alone is sufficient to produce this degenerate output and is the parameter the user changed to get 'more varied solutions'.\"\n}",
+  "finished": "2026-11-08T09:13:51.506492+00:00"
+}

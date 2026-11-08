@@ -1,0 +1,40 @@
+{
+  "case_id": "05_penalty_shape_loss",
+  "model": "kiro/claude-opus-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "f13c01b1b35a2895",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:53:46.041425+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 30.95,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0. At that strength, generation is pushed away from any token it has already produced, and a list of 1 to 30 one per line has to reuse the newline token and the same digits over and over. Instead of the plain list, the model writes rambling Python with ever-changing phrasing until it hits the 300-token limit (finish_reason \\\"length\\\"), which is what penalty-driven avoidance of ordinary repetition looks like. Raising max_tokens would not fix it: 300 tokens is already several times what the 30-line answer needs, and thinking is disabled, so nothing else is using the budget.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets repeat_penalty to 2.0. At that strength, generation is pushed away from any token it has already produced, and a list of 1 to 30 one per line has to reuse the newline token and the same digits over and over. Instead of the plain list, the model writes rambling Python with ever-changing phrasing until it hits the 300-token limit (finish_reason \\\"length\\\"), which is what penalty-driven avoidance of ordinary repetition looks like. Raising max_tokens would not fix it: 300 tokens is already several times what the 30-line answer needs, and thinking is disabled, so nothing else is using the budget.\"\n}",
+  "finished": "2026-11-08T08:54:17.029848+00:00"
+}

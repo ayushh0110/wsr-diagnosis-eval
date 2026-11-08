@@ -1,0 +1,41 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "5e158186b87cb614",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:45:01.907299+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 45.02,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"presence_penalty\", \"value\": \"0\"},\n  \"rationale\": \"presence_penalty 1.5 subtracts from the logit of every token already used in the generation, and code requires constantly reusing identifiers, keywords, indentation and newlines, so the model is pushed into malformed constructs like 'for j from range(6)' and rambling prose instead of a loop body. The server's --repeat-penalty 1.5 compounds the same effect, but the request-level presence penalty is the most extreme and directly code-hostile setting. The other suspects do not fit the evidence: the prompt is 27 tokens in an 8192 context, temperature 0.7 is moderate, and a healthy Q4_0 2B instruct model does not fail a 5x5 multiplication table this badly on neutral sampling.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"presence_penalty\", \"value\": \"0\"},\n  \"rationale\": \"presence_penalty 1.5 subtracts from the logit of every token already used in the generation, and code requires constantly reusing identifiers, keywords, indentation and newlines, so the model is pushed into malformed constructs like 'for j from range(6)' and rambling prose instead of a loop body. The server's --repeat-penalty 1.5 compounds the same effect, but the request-level presence penalty is the most extreme and directly code-hostile setting. The other suspects do not fit the evidence: the prompt is 27 tokens in an 8192 context, temperature 0.7 is moderate, and a healthy Q4_0 2B instruct model does not fail a 5x5 multiplication table this badly on neutral sampling.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T11:45:46.960149+00:00"
+}

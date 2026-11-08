@@ -1,0 +1,40 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:58:12.500326+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 35.52,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": \"do_sample\",\n    \"value\": \"true, with the model's own defaults: temperature 0.7, top_p 0.8, top_k 20, repetition_penalty 1.1\"\n  },\n  \"rationale\": \"The request sets do_sample=false, repetition_penalty=1.0 and no_repeat_ngram_size=0, which overrides the model's generation_config.json (sampling on, repetition_penalty 1.1, top_k 20, top_p 0.8). Under pure greedy decoding with no repetition control, the output falls into a fixed cycle ('Відповідь українською: \\\"Чому небо блакитне?') until max_new_tokens. The text is grammatical Ukrainian, so the model can read and write the language and fine-tuning is not indicated. Re-run with the model's recommended sampling settings before considering any weight changes.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": \"do_sample\",\n    \"value\": \"true, with the model's own defaults: temperature 0.7, top_p 0.8, top_k 20, repetition_penalty 1.1\"\n  },\n  \"rationale\": \"The request sets do_sample=false, repetition_penalty=1.0 and no_repeat_ngram_size=0, which overrides the model's generation_config.json (sampling on, repetition_penalty 1.1, top_k 20, top_p 0.8). Under pure greedy decoding with no repetition control, the output falls into a fixed cycle ('Відповідь українською: \\\"Чому небо блакитне?') until max_new_tokens. The text is grammatical Ukrainian, so the model can read and write the language and fine-tuning is not indicated. Re-run with the model's recommended sampling settings before considering any weight changes.\"\n}",
+  "finished": "2026-11-08T08:58:48.057678+00:00"
+}

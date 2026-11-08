@@ -1,0 +1,40 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:13:37.121511+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 36.58,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the usable range (roughly 0.2-1.0 for code), and the user confirms they raised sampling to make output 'explore more varied solutions'. The response shows the classic signature: it starts coherent, then drifts into abandoned code paths, self-contradicting comments ('or just skip this complexity'), and broken structure, while finish_reason is 'stop' at 141 tokens, ruling out max_tokens truncation. Lowering temperature to around 0.7 restores the concentration of probability on valid code tokens.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the usable range (roughly 0.2-1.0 for code), and the user confirms they raised sampling to make output 'explore more varied solutions'. The response shows the classic signature: it starts coherent, then drifts into abandoned code paths, self-contradicting comments ('or just skip this complexity'), and broken structure, while finish_reason is 'stop' at 141 tokens, ruling out max_tokens truncation. Lowering temperature to around 0.7 restores the concentration of probability on valid code tokens.\"\n}",
+  "finished": "2026-11-08T09:14:13.738636+00:00"
+}

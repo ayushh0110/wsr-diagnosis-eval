@@ -1,0 +1,52 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:28.174067+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Isolate temperature=3.5 vs repeat_penalty=1.5 by resetting one parameter at a time (e.g., set temperature=0.7 while keeping repeat_penalty=1.5, and vice versa)\",\n    \"value\": null\n  },\n  \"rationale\": \"The request simultaneously sets two extreme sampling parameters: `temperature: 3.5` and `repeat_penalty: 1.5`. Both `TEMPERATURE_HIGH` (flattening logits into random token selection) and `REPEAT_PENALTY_HIGH` (heavily penalizing repeated newlines and structural tokens required for a one-per-line list) can independently cause this exact breakdown into incoherent text. Because both were changed together in the single artifact provided, an ablation test resetting one parameter at a time is needed to isolate which setting is the primary cause.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TRXxm1nmUTMSRyTm/C5qxRYJDtCxqa80LYnwoptN3kBROpC8ttYsRRhUbNRCXFZMGk0kD8RFevDz4OyWaCCNiwBdGIVGsEskqttPrurzse6iGjdnBFbtzLAxYFWjo"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133075,
+        "id": "OEzwatK3DJOKqfkP_eCEyAE",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 233,
+          "prompt_tokens": 2390,
+          "total_tokens": 2623
+        }
+      },
+      "latency_s": 27.87
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Isolate temperature=3.5 vs repeat_penalty=1.5 by resetting one parameter at a time (e.g., set temperature=0.7 while keeping repeat_penalty=1.5, and vice versa)\",\n    \"value\": null\n  },\n  \"rationale\": \"The request simultaneously sets two extreme sampling parameters: `temperature: 3.5` and `repeat_penalty: 1.5`. Both `TEMPERATURE_HIGH` (flattening logits into random token selection) and `REPEAT_PENALTY_HIGH` (heavily penalizing repeated newlines and structural tokens required for a one-per-line list) can independently cause this exact breakdown into incoherent text. Because both were changed together in the single artifact provided, an ablation test resetting one parameter at a time is needed to isolate which setting is the primary cause.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:17:56.043986+00:00"
+}

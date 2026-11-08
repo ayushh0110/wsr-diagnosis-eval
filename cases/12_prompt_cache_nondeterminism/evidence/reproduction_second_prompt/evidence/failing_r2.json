@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a 250-word story about a night-shift nurse who befriends a stray cat."
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The fluorescent lights of the oncology ward hummed a monotonous lullaby, a soundtrack to Sarah’s sleepless nights. As a night-shift nurse, she was a ghost in the sterile corridors, her days measured in the rhythmic beep of monitors and the quiet sighs of the dying. One Tuesday, a stray cat, a soot-colored shadow with eyes like melted amber, found its way into her small breakroom.\n\nHe didn't meow or hiss; he simply watched her with an unnerving, ancient intelligence. Sarah, usually guarded and detached, found herself drawn to his silent presence. She started leaving a saucer of warm milk by the door, and slowly, tentatively, he began to approach.\n\nHe settled on her worn armchair, a furry, purring anchor in her lonely existence. Sarah named him Midnight, a fitting name for the creature who navigated the shadows of her shift. Midnight became her confidant. He didn't judge her exhaustion or the heavy weight of the patients; he just offered the uncomplicated warmth of a living creature.\n\nOne particularly grueling night, Sarah was slumped over her desk, tears blurring the sterile white walls. Midnight, sensing her distress, rubbed his head against her hand, a soft, insistent vibration. It wasn't a grand gesture, just a quiet, undeniable presence. In that moment, the exhaustion didn't vanish, but it softened. She realized that in the quiet companionship of a stray cat, she found a piece of herself she hadn't known she was missing—a simple, unconditional love that didn't require a shift change or a chart update. Midnight was her secret, her soft, purring reprieve."
+        }
+      }
+    ],
+    "created": 1794126677,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 339,
+      "prompt_tokens": 31,
+      "total_tokens": 370,
+      "prompt_tokens_details": {
+        "cached_tokens": 26
+      }
+    },
+    "id": "chatcmpl-tHghyewYT4d4bJl24UHxTi26OgEdX4Ur",
+    "timings": {
+      "cache_n": 26,
+      "prompt_n": 5,
+      "prompt_ms": 47.533,
+      "prompt_per_token_ms": 9.5066,
+      "prompt_per_second": 105.19007847179853,
+      "predicted_n": 339,
+      "predicted_ms": 5373.434,
+      "predicted_per_token_ms": 15.850837758112094,
+      "predicted_per_second": 63.08814810045122
+    }
+  },
+  "latency_s": 5.68,
+  "detector_codes": []
+}

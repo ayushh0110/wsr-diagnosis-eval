@@ -1,0 +1,40 @@
+{
+  "case_id": "17_code_penalty_no_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "a2df036bcd291ff6",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:38:18.436003+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.19,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": 1.0},\n  \"rationale\": \"The failure began when the user tuned sampling for more variety, and the request shows repeat_penalty 1.4, far above the neutral 1.0. Code must reuse tokens like `for`, `range`, and loop variables; the output shows exactly the distortion a strong repetition penalty causes, with the model avoiding the plain nested loop and substituting ever more convoluted, undefined expressions (`n`, `none`, `sign()`) until the 350-token budget runs out. Temperature 0.7 is moderate and would not produce this alone, and the 27-token prompt with thinking disabled rules out truncation or reasoning starvation.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": 1.0},\n  \"rationale\": \"The failure began when the user tuned sampling for more variety, and the request shows repeat_penalty 1.4, far above the neutral 1.0. Code must reuse tokens like `for`, `range`, and loop variables; the output shows exactly the distortion a strong repetition penalty causes, with the model avoiding the plain nested loop and substituting ever more convoluted, undefined expressions (`n`, `none`, `sign()`) until the 350-token budget runs out. Temperature 0.7 is moderate and would not produce this alone, and the 27-token prompt with thinking disabled rules out truncation or reasoning starvation.\"\n}",
+  "model_returned": "kiro/kimi-k3",
+  "finished": "2026-11-08T09:38:55.667994+00:00"
+}

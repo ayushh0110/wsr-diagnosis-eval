@@ -1,0 +1,40 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "kiro/kimi-k3",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:05:47.543357+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 33.46,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far outside the useful range (roughly 0.3-1.2), and the output shows the signature of high-temperature sampling: the model drifts off-task into a code fragment, a self-correction, and an emoji within 64 tokens instead of listing numbers. The failure appeared exactly when the user changed sampling settings, and nothing else in the artifacts explains it: the prompt is 24 tokens (no truncation), finish_reason is 'stop' at 64 tokens (not a max_tokens cutoff), throughput is normal, and the server launch flags are standard. Dropping temperature to around 1.0 (or lower for deterministic tasks) restores coherent output.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 3.5, far outside the useful range (roughly 0.3-1.2), and the output shows the signature of high-temperature sampling: the model drifts off-task into a code fragment, a self-correction, and an emoji within 64 tokens instead of listing numbers. The failure appeared exactly when the user changed sampling settings, and nothing else in the artifacts explains it: the prompt is 24 tokens (no truncation), finish_reason is 'stop' at 64 tokens (not a max_tokens cutoff), throughput is normal, and the server launch flags are standard. Dropping temperature to around 1.0 (or lower for deterministic tasks) restores coherent output.\"\n}",
+  "finished": "2026-11-08T09:06:21.039155+00:00"
+}

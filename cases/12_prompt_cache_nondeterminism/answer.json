@@ -1,0 +1,51 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "verdict": "runtime",
+  "acceptable_verdicts": [
+    "runtime"
+  ],
+  "primary_cause": "PROMPT_CACHE_CHANGES_OUTPUT",
+  "acceptable_causes": [
+    "PROMPT_CACHE_CHANGES_OUTPUT"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "set_param",
+      "target_pattern": "cache_prompt",
+      "value": {
+        "pattern": "false|0|off|no"
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "cache"
+    },
+    {
+      "action": "change_runtime_flag",
+      "target_pattern": "cache"
+    }
+  ],
+  "golden_fix": {
+    "action": "set_param",
+    "target": "cache_prompt",
+    "value": false
+  },
+  "distractors": {
+    "LOW_BIT_QUANT_DAMAGE": "same Q4_0 file and GPU give 3/3 identical replies with cache_prompt false",
+    "KNOWN_UPSTREAM_BUG": "documented llama-server behaviour: reusing the cached prompt evaluates it in a different batch shape, and logits are not bit-identical across batch sizes",
+    "TEMPERATURE_HIGH": "temperature is 0; dropping the seed changes nothing (seed_off arm identical to the cached runs)"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm (default cache_prompt, a prompt not sent before): run 1 evaluated fresh (cached_tokens 1), runs 2-3 reused the cache (cached_tokens 28) and differ from run 1, identical to each other. Variant seed_off: same as the cached runs 3/3 (seed irrelevant). Variant cache_off (cache_prompt false): 3/3 identical, and identical to the fresh run 1. Reproduced on a second new prompt (evidence/reproduction_second_prompt): fresh run differs from cached runs; cache_off 3/3 identical to the fresh run.",
+    "evidence_files": [
+      "evidence/failing_r1.json",
+      "evidence/failing_r2.json",
+      "evidence/cache_off_r1.json",
+      "evidence/seed_off_r1.json",
+      "evidence/reproduction_second_prompt/"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

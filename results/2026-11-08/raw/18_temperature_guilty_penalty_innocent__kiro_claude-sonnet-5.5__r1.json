@@ -1,0 +1,40 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:39:28.605794+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.38,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.8\"},\n  \"rationale\": \"The request sets temperature 3.5 with top_k 0, top_p 1.0 and min_p 0, so nothing truncates the flattened distribution and the full vocabulary is sampled almost uniformly. The output is random tokens across many scripts and languages from the very first token, with no digits at all, which is what sampling from a flat distribution looks like. The server, template and files show no fault: the prompt is only 24 tokens, the launch flags are plain, and the speed is normal. Repeat_penalty 1.3 is mildly high, but it cannot explain unrelated multilingual noise starting at token one. Set temperature to about 0.7-1.0, and also drop repeat_penalty to about 1.0-1.1 for a list that reuses digits and newlines.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.8\"},\n  \"rationale\": \"The request sets temperature 3.5 with top_k 0, top_p 1.0 and min_p 0, so nothing truncates the flattened distribution and the full vocabulary is sampled almost uniformly. The output is random tokens across many scripts and languages from the very first token, with no digits at all, which is what sampling from a flat distribution looks like. The server, template and files show no fault: the prompt is only 24 tokens, the launch flags are plain, and the speed is normal. Repeat_penalty 1.3 is mildly high, but it cannot explain unrelated multilingual noise starting at token one. Set temperature to about 0.7-1.0, and also drop repeat_penalty to about 1.0-1.1 for a list that reuses digits and newlines.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T09:40:03.038215+00:00"
+}

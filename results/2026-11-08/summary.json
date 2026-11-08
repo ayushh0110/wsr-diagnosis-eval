@@ -1,0 +1,164 @@
+{
+  "gemini/gemini-3.8-flash": {
+    "runs": 72,
+    "mean_score": 0.8917,
+    "strict_pass": 0.8194,
+    "k": 3,
+    "pass_at_k": 0.875,
+    "pass_hat_k": 0.7917,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "decoy_setting": 0.68,
+      "decoy_documented": 0.5,
+      "decoy_twin": 1.0,
+      "decoy_reverse": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 13,
+    "models_returned": [
+      "gemini-3.8-flash"
+    ]
+  },
+  "gemini/gemini-4-argon": {
+    "runs": 72,
+    "mean_score": 0.875,
+    "strict_pass": 0.875,
+    "k": 3,
+    "pass_at_k": 0.875,
+    "pass_hat_k": 0.875,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "decoy_setting": 0.6,
+      "decoy_documented": 0.5,
+      "decoy_twin": 1.0,
+      "decoy_reverse": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 0,
+    "models_returned": [
+      "gemini-4-argon"
+    ]
+  },
+  "kiro/claude-opus-5.5": {
+    "runs": 72,
+    "mean_score": 0.9667,
+    "strict_pass": 0.9444,
+    "k": 3,
+    "pass_at_k": 0.9583,
+    "pass_hat_k": 0.9167,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "decoy_setting": 0.84,
+      "decoy_documented": 1.0,
+      "decoy_twin": 1.0,
+      "decoy_reverse": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 4,
+    "models_returned": [
+      "kiro/claude-opus-5.5"
+    ]
+  },
+  "kiro/claude-sonnet-5.5": {
+    "runs": 72,
+    "mean_score": 0.9583,
+    "strict_pass": 0.9306,
+    "k": 3,
+    "pass_at_k": 0.9583,
+    "pass_hat_k": 0.9167,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "decoy_setting": 0.8,
+      "decoy_documented": 1.0,
+      "decoy_twin": 1.0,
+      "decoy_reverse": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 5,
+    "models_returned": [
+      "kiro/claude-sonnet-5.5"
+    ]
+  },
+  "kiro/gpt-5.6-sol": {
+    "runs": 72,
+    "mean_score": 0.8694,
+    "strict_pass": 0.7917,
+    "k": 3,
+    "pass_at_k": 0.7917,
+    "pass_hat_k": 0.7917,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "decoy_setting": 0.6133,
+      "decoy_documented": 0.4,
+      "decoy_twin": 1.0,
+      "decoy_reverse": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 14,
+    "models_returned": [
+      "kiro/gpt-5.6-sol"
+    ]
+  },
+  "kiro/kimi-k3": {
+    "runs": 72,
+    "mean_score": 0.875,
+    "strict_pass": 0.7917,
+    "k": 3,
+    "pass_at_k": 0.7917,
+    "pass_hat_k": 0.7917,
+    "by_tier": {
+      "control": 1.0,
+      "red_herring": 1.0,
+      "decoy_setting": 0.64,
+      "decoy_documented": 0.4,
+      "decoy_twin": 1.0,
+      "decoy_reverse": 1.0,
+      "dont_blame_weights": 1.0,
+      "blame_weights": 1.0,
+      "inconclusive": 1.0
+    },
+    "overreach": 0,
+    "underreach": 0,
+    "overclaim": 0,
+    "format_failures": 0,
+    "distractor_hits": 15,
+    "models_returned": [
+      "kiro/kimi-k3"
+    ]
+  }
+}

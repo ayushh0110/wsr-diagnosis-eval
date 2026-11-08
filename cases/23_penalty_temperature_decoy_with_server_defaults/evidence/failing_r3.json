@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the numbers from 1 to 30, one per line."
+      }
+    ],
+    "temperature": 3.5,
+    "repeat_penalty": 1.5,
+    "max_tokens": 200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Here are all of those number:\n\n```json {\"numbers\": [[\"Line\"], [\"2\"]]} is not possible in plain text as you requested a list with each on its own physical string (line). However here they go so that's what the numbers 1 to 30 look like one per line."
+        }
+      }
+    ],
+    "created": 1794126583,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 66,
+      "prompt_tokens": 24,
+      "total_tokens": 90,
+      "prompt_tokens_details": {
+        "cached_tokens": 19
+      }
+    },
+    "id": "chatcmpl-uMS2bG91F8cVw8cveXa6MYNqnaKR6IyL",
+    "timings": {
+      "cache_n": 19,
+      "prompt_n": 5,
+      "prompt_ms": 45.838,
+      "prompt_per_token_ms": 9.1676,
+      "prompt_per_second": 109.07980278371656,
+      "predicted_n": 66,
+      "predicted_ms": 1045.861,
+      "predicted_per_token_ms": 15.84637878787879,
+      "predicted_per_second": 63.10590030606361
+    }
+  },
+  "latency_s": 1.13,
+  "detector_codes": []
+}

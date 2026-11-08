@@ -1,0 +1,52 @@
+{
+  "case_id": "16_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "dafb58dfb60428a1",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:19:46.220507+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.5, which is excessively high for an instruction-tuned model like Gemma. Because listing numbers one per line requires repeating the newline token (`\\\\n`) and digits, the severe penalty forces the model to avoid reusing newline tokens and previously seen digit tokens, resulting in erratic formatting and premature termination.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TcWG2CznGiG98ybwUGMslEVGmRVp7m79ywBpa28HHMVFPwoeFWagVvN0fbCBsuzQ6FFzKDNkCFeEdZaefbyTMTVhsPmiV5WnjBJB6auvKevwCPUAyEA55n8xlvCtv"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133191,
+        "id": "wkzwarisGqzF1_oP9vLzuQI",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 144,
+          "prompt_tokens": 2414,
+          "total_tokens": 2558
+        }
+      },
+      "latency_s": 5.2
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"The request sets `repeat_penalty` to 1.5, which is excessively high for an instruction-tuned model like Gemma. Because listing numbers one per line requires repeating the newline token (`\\\\n`) and digits, the severe penalty forces the model to avoid reusing newline tokens and previously seen digit tokens, resulting in erratic formatting and premature termination.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:19:51.419405+00:00"
+}

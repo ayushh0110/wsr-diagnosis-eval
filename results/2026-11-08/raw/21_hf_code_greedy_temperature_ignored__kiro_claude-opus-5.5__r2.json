@@ -1,0 +1,40 @@
+{
+  "case_id": "21_hf_code_greedy_temperature_ignored",
+  "model": "kiro/claude-opus-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "a1b5ce0f21cb97aa",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:13:01.177134+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.03,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repetition_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The script passes do_sample=False, so generation is greedy and transformers ignores temperature=3.5. That leaves repetition_penalty=1.3 as the only active setting that distorts decoding. Code needs the same identifiers, brackets and keywords many times, and a 1.3 penalty pushes the model away from reusing them. The output shows that effect: the code invents names like lines and width that were never defined, and writes range(2, 6) + [0] * 3, which raises a TypeError. The reply also stops at the 220-token limit, but the code is already broken before that point, so remove the penalty or set it to 1.0, and use do_sample=True with a moderate temperature (about 0.7) if you want varied solutions.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repetition_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The script passes do_sample=False, so generation is greedy and transformers ignores temperature=3.5. That leaves repetition_penalty=1.3 as the only active setting that distorts decoding. Code needs the same identifiers, brackets and keywords many times, and a 1.3 penalty pushes the model away from reusing them. The output shows that effect: the code invents names like lines and width that were never defined, and writes range(2, 6) + [0] * 3, which raises a TypeError. The reply also stops at the 220-token limit, but the code is already broken before that point, so remove the penalty or set it to 1.0, and use do_sample=True with a moderate temperature (about 0.7) if you want varied solutions.\"\n}",
+  "model_returned": "kiro/claude-opus-5.5",
+  "finished": "2026-11-08T11:13:39.241826+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:06:32.796690+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.05,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"change_runtime_flag\",\n    \"target\": \"prompt-cache reuse\",\n    \"value\": \"disabled\"\n  },\n  \"rationale\": \"The first request evaluates 32 prompt tokens with only 1 cached token, while the second reuses 28 cached tokens and evaluates only 5. The repeatable cold-versus-warm split tracks prompt-cache state, not the fixed seed or Q4_0 weights; disable prompt-cache reuse for this regression test.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"change_runtime_flag\",\n    \"target\": \"prompt-cache reuse\",\n    \"value\": \"disabled\"\n  },\n  \"rationale\": \"The first request evaluates 32 prompt tokens with only 1 cached token, while the second reuses 28 cached tokens and evaluates only 5. The repeatable cold-versus-warm split tracks prompt-cache state, not the fixed seed or Q4_0 weights; disable prompt-cache reuse for this regression test.\"\n}",
+  "finished": "2026-11-08T09:07:06.885411+00:00"
+}

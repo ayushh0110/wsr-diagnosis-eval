@@ -1,0 +1,60 @@
+{
+  "arm": "failing",
+  "run": 2,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a four-line poem about the sea."
+      }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 200,
+    "stop": [
+      "\n"
+    ],
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Vast blue expanse, a restless might,"
+        }
+      }
+    ],
+    "created": 1794121092,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 10,
+      "prompt_tokens": 19,
+      "total_tokens": 29,
+      "prompt_tokens_details": {
+        "cached_tokens": 14
+      }
+    },
+    "id": "chatcmpl-6yg8kOddVdbBEHp3LSPuF2f1m7znVfvw",
+    "timings": {
+      "cache_n": 14,
+      "prompt_n": 5,
+      "prompt_ms": 47.635,
+      "prompt_per_token_ms": 9.527,
+      "prompt_per_second": 104.9648367796788,
+      "predicted_n": 10,
+      "predicted_ms": 146.286,
+      "predicted_per_token_ms": 14.6286,
+      "predicted_per_second": 68.35924148585647
+    }
+  },
+  "latency_s": 0.22,
+  "detector_codes": []
+}

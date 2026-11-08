@@ -1,0 +1,52 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "b63070225fc91b89",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:16:55.779652+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_tokens\",\n    \"value\": \"2048\"\n  },\n  \"rationale\": \"The model spent all 256 generated tokens on its internal thinking process (`reasoning_content`), hitting the token limit (`finish_reason`: 'length') before it could output any text to `content`. Increasing `max_tokens` gives the model enough token budget to complete its reasoning and generate the JSON payload.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133251,
+        "id": "HUzwar6gH7nA4-EP25Tw2Aw",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 146,
+          "prompt_tokens": 2624,
+          "total_tokens": 4008
+        }
+      },
+      "latency_s": 230.66
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_tokens\",\n    \"value\": \"2048\"\n  },\n  \"rationale\": \"The model spent all 256 generated tokens on its internal thinking process (`reasoning_content`), hitting the token limit (`finish_reason`: 'length') before it could output any text to `content`. Increasing `max_tokens` gives the model enough token budget to complete its reasoning and generate the JSON payload.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:20:51.793916+00:00"
+}

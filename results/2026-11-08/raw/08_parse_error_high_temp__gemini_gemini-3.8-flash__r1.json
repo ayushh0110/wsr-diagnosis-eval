@@ -1,0 +1,52 @@
+{
+  "case_id": "08_parse_error_high_temp",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "98b4b284a23a2904",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:23:59.017277+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 2.5 with no truncation constraints (top_k 0, top_p 1.0, min_p 0), causing the model to sample completely chaotic tokens. The runtime's output parser expects structured generation conforming to the model's protocol grammar but fails when confronted with high-entropy gibberish. Lowering the temperature to a standard operating range (e.g., 0.7) prevents degenerate token sampling.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133447,
+        "id": "v03waud4hrPr3g_T0YAR",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 167,
+          "prompt_tokens": 1919,
+          "total_tokens": 2751
+        }
+      },
+      "latency_s": 9.13
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 2.5 with no truncation constraints (top_k 0, top_p 1.0, min_p 0), causing the model to sample completely chaotic tokens. The runtime's output parser expects structured generation conforming to the model's protocol grammar but fails when confronted with high-entropy gibberish. Lowering the temperature to a standard operating range (e.g., 0.7) prevents degenerate token sampling.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:24:08.143984+00:00"
+}

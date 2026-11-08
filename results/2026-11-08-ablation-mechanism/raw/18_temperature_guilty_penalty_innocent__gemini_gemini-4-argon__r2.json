@@ -1,0 +1,53 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "6c8ca662ce1dabf2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:53:09.794974+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.8\n  },\n  \"rationale\": \"The request sets `temperature` to 3.5 while disabling all vocabulary truncation samplers (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). In llama-server, dividing logits by 3.5 across the entire un-truncated Gemma vocabulary flattens the probability distribution so heavily that low-probability tokens across random languages are sampled right from the first token. Lowering `temperature` to a standard range (e.g. 0.7–1.0) restores coherent generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EugHCuUHAWkUfRMPPpCgy34Gpgv3wErC6KVUY0OTwnpl7bZELqo0EMtvOSO3VaeoqTdZErGdt4tZ/LhKUMTfZcf/HFE5IPMJBHYCJCe00HkuKp9Oa0ET5KmEkkTNkJMjjn6Rnh5se8J7B8RqXTzubf8BoJnEa7Y5ewRSjroxilIGCZqNXCAmzBeNFCEmeOeAFMcBXLqxuQXSvyVsaXcj3l0d64/J5qbRzhzaMWVCytuD8okHU/XtEnhs5TrFPspUaZVaGXSagBxrkCq1NR6QxK0vZHLji6FCIlZbjjnQIfm5TBxOP6BX69WWq/H5YimLvfE0uUiEM/pljydlvOcmYmq4uO9XRHUoKyRudx4b9t1kGYFzbefvW36eua0tfgBvp4vrbZ2AKDU1aOQVqvaMv49izrtVRuysUp6i7WKh/F9nno+yS5FVLD8alE/UQLZZIoy9xFGMWenERLLfWN88ZQyIKHmWFXnZl6ARgTfhMW62jx3pRvUv9BhjisYH5ENr6FEhbgFpMnEDqrcKPYN+EoEoR9L9NrLWnL4k2xXHY6b0ubKhqzTAqEEDewaoZKqttsa8/Lq94jFeqiEC1Bkt4wXgTxzDWldA/tre0ucI4yyR0PpRUPJB+pCNATXzlzAUH3yMHz3oiYoev0Qh1e+w8Ak3Q+GQbsrlsZkuPlk9n/lVDA/wEewz0VMn+1LuVpb1R6Af52VVp9N1LZ/1rOsekW/Kzo8INoBxKiJlY17UvmUFwA+1kO2U44dUtE6k2r7mWCM9y26sf8IoqgYiHISQEZYPSULibbcjj7VS8mxz2Wu1aS77eege6tFvIj73ICNbt73zE5c6ucia4bgx5v7vG8pDI4gXxw17v2U22FvZ4OXK68R/W4Kjk2ClO65/RsSLlJ9wP7giq43t+Qhp+1e85uW0GZ5Iu6eipS5FT7N7eraB3hxLdilxc1Ow9H6pRWvlHoxW8Y5Y0+SFnPu1jKMiM9tNhOQAIe/Y+vnRjfUTOVmR7sqYP5ZMbUGU6F4dxpMd6ZXI7Yarvq3F8BNSqGJdS8pFOQy8ml1Dy0oh4v0ADJ8Jms1fbLPPJ0yMAo8FWLGtQEO1M0lRIZNJyF7Vqj2gQq6DDDPdBVMKTK7iU2BTN8a8BbVAkIjcXBfz/bFmvYDSNFa1mLcZ1KJA5ZMOF6Z2Yg6bGTgSg5/tBHBbPktYnVczyXp6i55lFCtSQ+H3Sjbvaa7FWQkPZ9uKsstUYIdsQB82kYvSulf3W0k8KlGg+z71JIhz0Umh/QDWxmGrKc38QjXfQzgxYOPWb+7Vhffecy0+zDvY8vPVFG7OH7ZUtUtLWqJUf1bFncTEPA=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138807,
+        "id": "pWLwaonBNtHF1_oPltvzsQI",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 182,
+          "prompt_tokens": 2642,
+          "total_tokens": 3102
+        }
+      },
+      "latency_s": 18.09
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.8\n  },\n  \"rationale\": \"The request sets `temperature` to 3.5 while disabling all vocabulary truncation samplers (`top_k: 0`, `top_p: 1.0`, `min_p: 0`). In llama-server, dividing logits by 3.5 across the entire un-truncated Gemma vocabulary flattens the probability distribution so heavily that low-probability tokens across random languages are sampled right from the first token. Lowering `temperature` to a standard range (e.g. 0.7–1.0) restores coherent generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:53:27.880163+00:00"
+}

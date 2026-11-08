@@ -1,0 +1,40 @@
+{
+  "case_id": "01_token_salad",
+  "model": "kiro/kimi-k3",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "258ce0a6f07d663b",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:48:02.871774+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "kimi-k3",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 38.09,
+      "response": {
+        "model": "kiro/kimi-k3",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with top_k 0, top_p 1.0 and min_p 0, so sampling is essentially unrestricted over a heavily flattened distribution, which is exactly what produces token-level-valid but incoherent multilingual word salad like the response shows. A corrupt file or bad quant would more likely break prompt processing or produce structural errors, yet the server loaded the model, processed the prompt normally, and generated clean individual tokens (including a rare <unused> token, a hallmark of extreme-temperature sampling). The GGUF file is not the problem; lowering temperature to the model's recommended value (1.0, ideally with top_k 64 / top_p 0.95) will restore coherent output.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/kimi-k3",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"1.0\"},\n  \"rationale\": \"The request sets temperature to 2.5 with top_k 0, top_p 1.0 and min_p 0, so sampling is essentially unrestricted over a heavily flattened distribution, which is exactly what produces token-level-valid but incoherent multilingual word salad like the response shows. A corrupt file or bad quant would more likely break prompt processing or produce structural errors, yet the server loaded the model, processed the prompt normally, and generated clean individual tokens (including a rare <unused> token, a hallmark of extreme-temperature sampling). The GGUF file is not the problem; lowering temperature to the model's recommended value (1.0, ideally with top_k 64 / top_p 0.95) will restore coherent output.\"\n}",
+  "finished": "2026-11-08T08:48:41.002270+00:00"
+}

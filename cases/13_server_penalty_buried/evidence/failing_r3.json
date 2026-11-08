@@ -1,0 +1,58 @@
+{
+  "arm": "failing",
+  "run": 3,
+  "request": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a Python function that prints a 5x5 multiplication table. Only the code."
+      }
+    ],
+    "temperature": 0.7,
+    "presence_penalty": 1.5,
+    "max_tokens": 350,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\n\ndef print_multiplication(table):"
+        }
+      }
+    ],
+    "created": 1794126852,
+    "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b10244-67d5978bb",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 12,
+      "prompt_tokens": 27,
+      "total_tokens": 39,
+      "prompt_tokens_details": {
+        "cached_tokens": 22
+      }
+    },
+    "id": "chatcmpl-wugpbtYqSNiNZA0BKnxMW0PnyNxLpqK6",
+    "timings": {
+      "cache_n": 22,
+      "prompt_n": 5,
+      "prompt_ms": 51.392,
+      "prompt_per_token_ms": 10.278400000000001,
+      "prompt_per_second": 97.29140722291406,
+      "predicted_n": 12,
+      "predicted_ms": 193.341,
+      "predicted_per_token_ms": 16.11175,
+      "predicted_per_second": 62.06650425931386
+    }
+  },
+  "latency_s": 0.25,
+  "detector_codes": []
+}

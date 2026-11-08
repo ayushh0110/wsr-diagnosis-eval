@@ -1,0 +1,53 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "8fd4cb7eef51f275",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:51:46.729110+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama-server's default sampler chain, penalties run first and min_p (default 0.05) filters the distribution before temperature is applied, so temperature 3.5 only rescales the few plausible tokens that survive min_p rather than causing random gibberish. However, repeat_penalty: 1.4 is applied at the very start of the chain and heavily penalizes every token used in the last 64 tokens—including essential Python syntax (for, in, range, parentheses, variables, and indentation). This prevents the model from writing the second nested loop or reusing variable names, forcing it into verbose comments and premature termination of the code block.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138745,
+        "id": "UmLwas23Mrmx0r4PwJqi-Ag",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 212,
+          "prompt_tokens": 2537,
+          "total_tokens": 3789
+        }
+      },
+      "latency_s": 38.81
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty\",\n    \"value\": 1.0\n  },\n  \"rationale\": \"In llama-server's default sampler chain, penalties run first and min_p (default 0.05) filters the distribution before temperature is applied, so temperature 3.5 only rescales the few plausible tokens that survive min_p rather than causing random gibberish. However, repeat_penalty: 1.4 is applied at the very start of the chain and heavily penalizes every token used in the last 64 tokens—including essential Python syntax (for, in, range, parentheses, variables, and indentation). This prevents the model from writing the second nested loop or reusing variable names, forcing it into verbose comments and premature termination of the code block.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:52:25.539557+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:10:37.451194+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.1,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_new_tokens\",\n    \"value\": 128\n  },\n  \"rationale\": \"The script does not set max_new_tokens, and the output ends at exactly 20 generated tokens, matching the generation default rather than an EOS token. Set max_new_tokens explicitly; the wording varies because the model's generation config enables sampling, but sampling does not cause the truncation.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"MAX_TOKENS_TINY\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_new_tokens\",\n    \"value\": 128\n  },\n  \"rationale\": \"The script does not set max_new_tokens, and the output ends at exactly 20 generated tokens, matching the generation default rather than an EOS token. Set max_new_tokens explicitly; the wording varies because the model's generation config enables sampling, but sampling does not cause the truncation.\"\n}",
+  "finished": "2026-11-08T09:11:14.591393+00:00"
+}

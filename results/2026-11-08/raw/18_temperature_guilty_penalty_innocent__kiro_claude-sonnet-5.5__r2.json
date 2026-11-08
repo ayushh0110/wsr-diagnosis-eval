@@ -1,0 +1,40 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "321fd3d646de1776",
+  "settings": {
+    "temperature": null,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:39:29.317425+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 37.44,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.8\"},\n  \"rationale\": \"The reply is random tokens from many scripts and languages from the first token, which is what near-uniform sampling over the vocabulary looks like. The request sets temperature 3.5 with top_k 0, top_p 1.0 and min_p 0, so nothing truncates the flattened distribution and low-probability tokens get sampled constantly. The model files, template and launch command show no fault (finish_reason is length only because the garbage fills all 200 tokens). A repeat_penalty of 1.3 would make output repetitive-avoidant but not this incoherent. For creative variety, use a temperature of about 0.8 to 1.0 with min_p around 0.05 and repeat_penalty 1.0 to 1.1.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.8\"},\n  \"rationale\": \"The reply is random tokens from many scripts and languages from the first token, which is what near-uniform sampling over the vocabulary looks like. The request sets temperature 3.5 with top_k 0, top_p 1.0 and min_p 0, so nothing truncates the flattened distribution and low-probability tokens get sampled constantly. The model files, template and launch command show no fault (finish_reason is length only because the garbage fills all 200 tokens). A repeat_penalty of 1.3 would make output repetitive-avoidant but not this incoherent. For creative variety, use a temperature of about 0.8 to 1.0 with min_p around 0.05 and repeat_penalty 1.0 to 1.1.\"\n}",
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "finished": "2026-11-08T09:40:06.797460+00:00"
+}

@@ -1,0 +1,53 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:39:44.104186+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Run an ablation resetting temperature to 1.0 and repeat_penalty to 1.0 one at a time\",\n    \"value\": null\n  },\n  \"rationale\": \"The request simultaneously sets two extreme sampling parameters compared to the server defaults: `temperature: 3.5` (default 1.0) and `repeat_penalty: 1.5` (default 1.0). Either a high temperature (`TEMPERATURE_HIGH`) or a strong repetition penalty on a repetitive task like counting (`REPEAT_PENALTY_HIGH`) can produce the observed degenerate output, and the provided artifacts do not include a single-variable test to separate which parameter is responsible.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794137998,
+        "id": "gF_waq3HFpz54t4PvsW8-A0",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 196,
+          "prompt_tokens": 3051,
+          "total_tokens": 3699
+        }
+      },
+      "latency_s": 15.07
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Run an ablation resetting temperature to 1.0 and repeat_penalty to 1.0 one at a time\",\n    \"value\": null\n  },\n  \"rationale\": \"The request simultaneously sets two extreme sampling parameters compared to the server defaults: `temperature: 3.5` (default 1.0) and `repeat_penalty: 1.5` (default 1.0). Either a high temperature (`TEMPERATURE_HIGH`) or a strong repetition penalty on a repetitive task like counting (`REPEAT_PENALTY_HIGH`) can produce the observed degenerate output, and the provided artifacts do not include a single-variable test to separate which parameter is responsible.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:39:59.176979+00:00"
+}

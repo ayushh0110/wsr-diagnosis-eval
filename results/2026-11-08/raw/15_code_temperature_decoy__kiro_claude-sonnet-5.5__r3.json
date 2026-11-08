@@ -1,0 +1,40 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:13:15.866196+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 40.87,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the usual 0.2 to 1.0 range for code. The output shows the drift this causes: the loop body builds a `row` list and a `zfill` string and never prints anything, the comments wander and contradict themselves (\\\"or just skip this complexity\\\"), and the reply ends in a comment block with no working code. The prompt was tokenized and templated normally (27 prompt tokens, `finish_reason` stop, 141 of 350 tokens used), so the request format, truncation and runtime are not the problem. Repeat_penalty 1.4 is also aggressive and may contribute, so reset it to about 1.0 if the output is still poor at temperature 0.7.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"temperature\", \"value\": \"0.7\"},\n  \"rationale\": \"The request sets temperature to 3.5, far above the usual 0.2 to 1.0 range for code. The output shows the drift this causes: the loop body builds a `row` list and a `zfill` string and never prints anything, the comments wander and contradict themselves (\\\"or just skip this complexity\\\"), and the reply ends in a comment block with no working code. The prompt was tokenized and templated normally (27 prompt tokens, `finish_reason` stop, 141 of 350 tokens used), so the request format, truncation and runtime are not the problem. Repeat_penalty 1.4 is also aggressive and may contribute, so reset it to about 1.0 if the output is still poor at temperature 0.7.\"\n}",
+  "finished": "2026-11-08T09:13:56.781499+00:00"
+}

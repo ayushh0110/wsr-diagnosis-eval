@@ -1,0 +1,40 @@
+{
+  "case_id": "15_code_temperature_decoy",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "d13e90f201976fba",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:12:53.611715+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 43.46,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The output is fluent, well-formed English and Python, with no garbage or random tokens, which is not what temperature alone would produce. The script is missing the tokens a multiplication table needs to reuse: there is no inner loop, no second `range`, and no `print`. Instead it drifts into unusual constructs such as `zfill` and long comments, and it stops after 141 of 350 tokens with a closing fence. This points to repeat_penalty 1.4 suppressing ordinary code tokens that must repeat. Set repeat_penalty to 1.0 (off). Temperature 3.5 is also far outside the useful range, so after the fix keep it around 0.7 to 1.0 for varied but runnable code.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"repeat_penalty\", \"value\": \"1.0\"},\n  \"rationale\": \"The output is fluent, well-formed English and Python, with no garbage or random tokens, which is not what temperature alone would produce. The script is missing the tokens a multiplication table needs to reuse: there is no inner loop, no second `range`, and no `print`. Instead it drifts into unusual constructs such as `zfill` and long comments, and it stops after 141 of 350 tokens with a closing fence. This points to repeat_penalty 1.4 suppressing ordinary code tokens that must repeat. Set repeat_penalty to 1.0 (off). Temperature 3.5 is also far outside the useful range, so after the fix keep it around 0.7 to 1.0 for varied but runnable code.\"\n}",
+  "finished": "2026-11-08T09:13:37.120497+00:00"
+}

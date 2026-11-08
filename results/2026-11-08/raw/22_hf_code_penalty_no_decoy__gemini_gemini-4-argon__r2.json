@@ -1,0 +1,52 @@
+{
+  "case_id": "22_hf_code_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "34867e6708af115a",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:17:30.806886+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The user set `repetition_penalty=1.3` in `model.generate`, which heavily penalizes any token that has already appeared in the prompt or output. Because valid Python code requires repeating common syntax tokens, variable names, and indentation, a 1.3 penalty forces the model to avoid reusing previous identifiers and syntax, leading to increasingly convoluted and broken code. Lowering `repetition_penalty` back to 1.0 (or removing the override) restores normal code generation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmMKYQFpFH0TD0S4rtNl89/hWoEQJYnjJVveDErAj6BH6TVvanxVFmK2jSq+8+79H0Ay7a44A+9IPpZAEqpd7z8OdfJMnbvbT3eKHm/nvjYIEYWY92uPUx6I2X788z1LyxTzR2A="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136657,
+        "id": "SlrwaqbWNqzF1_oP9vLzuQI",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 174,
+          "prompt_tokens": 2083,
+          "total_tokens": 2257
+        }
+      },
+      "latency_s": 7.23
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": \"1.0\"\n  },\n  \"rationale\": \"The user set `repetition_penalty=1.3` in `model.generate`, which heavily penalizes any token that has already appeared in the prompt or output. Because valid Python code requires repeating common syntax tokens, variable names, and indentation, a 1.3 penalty forces the model to avoid reusing previous identifiers and syntax, leading to increasingly convoluted and broken code. Lowering `repetition_penalty` back to 1.0 (or removing the override) restores normal code generation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:17:38.037998+00:00"
+}

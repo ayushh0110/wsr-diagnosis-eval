@@ -1,0 +1,53 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "6c8ca662ce1dabf2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:53:27.881176+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5 while disabling truncation filters (top_k=0, top_p=1.0, min_p=0). This flattens the logit distribution across the entire vocabulary, causing the model to sample random multilingual tokens right from the first token. Lowering the temperature to a standard range (e.g., 0.7) or re-enabling filtering will restore coherent generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138815,
+        "id": "t2LwasjQOdrKz7sPyvTeqAc",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 161,
+          "prompt_tokens": 2595,
+          "total_tokens": 3507
+        }
+      },
+      "latency_s": 8.4
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": \"0.7\"\n  },\n  \"rationale\": \"The request sets temperature to 3.5 while disabling truncation filters (top_k=0, top_p=1.0, min_p=0). This flattens the logit distribution across the entire vocabulary, causing the model to sample random multilingual tokens right from the first token. Lowering the temperature to a standard range (e.g., 0.7) or re-enabling filtering will restore coherent generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:53:36.279348+00:00"
+}

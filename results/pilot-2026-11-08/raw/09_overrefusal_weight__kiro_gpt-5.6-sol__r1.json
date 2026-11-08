@@ -1,0 +1,40 @@
+{
+  "case_id": "09_overrefusal_weight",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "676a6e8332849b00",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:00:31.419673+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 9.12,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n \"verdict\": \"weight_level\",\n \"cause\": \"WEIGHT_OVER_REFUSAL\",\n \"fix\": {\n   \"action\": \"weight_edit_or_finetune\",\n   \"target\": \"benign router-administration and OpenWrt installation requests\",\n   \"value\": null\n },\n \"rationale\": \"The full-precision model produces the same coherent refusal with greedy decoding, multiple sampling seeds, and no system prompt. The rendered ChatML template is normal, the answer reaches an end-of-turn token, and neither quantisation nor a hosted-provider filter is involved, so the refusal is best explained by behavior learned in the weights.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": 0.38
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.38 • Time: 5s"
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n \"verdict\": \"weight_level\",\n \"cause\": \"WEIGHT_OVER_REFUSAL\",\n \"fix\": {\n   \"action\": \"weight_edit_or_finetune\",\n   \"target\": \"benign router-administration and OpenWrt installation requests\",\n   \"value\": null\n },\n \"rationale\": \"The full-precision model produces the same coherent refusal with greedy decoding, multiple sampling seeds, and no system prompt. The rendered ChatML template is normal, the answer reaches an end-of-turn token, and neither quantisation nor a hosted-provider filter is involved, so the refusal is best explained by behavior learned in the weights.\"\n}",
+  "finished": "2026-11-08T08:00:40.584978+00:00"
+}

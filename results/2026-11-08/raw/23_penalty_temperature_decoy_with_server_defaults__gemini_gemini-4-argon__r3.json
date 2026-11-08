@@ -1,0 +1,53 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "gemini/gemini-4-argon",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:39:44.106219+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test temperature=1.0 with repeat_penalty=1.5 and temperature=3.5 with repeat_penalty=1.0 separately\",\n    \"value\": null\n  },\n  \"rationale\": \"The request simultaneously sets two extreme sampling parameters: `temperature: 3.5` and `repeat_penalty: 1.5` (compared to the server defaults of 1.0 for both). A high repeat penalty prevents reusing newlines and digits needed to list 1 to 30 (seen where the output switches from `\\\\n` to `\\\\r` and spaces), while a temperature of 3.5 heavily flattens the probability distribution of tokens surviving `min_p`/`top_p`. Because both changes are present in the single failing request, an ablation test resetting one parameter at a time is required to separate `TEMPERATURE_HIGH` from `REPEAT_PENALTY_HIGH`.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Ev8SCvwSAWkUfRNPCmCpxe8XktE99uQuE73LiO6bRBNWp3BAI7QBcPzKtVCSRS3uTtCi6vBPhhLZ17P4yr+gLcEMtwf1/tZ3uEg1le5pgbz7E5Mj7AagAqOHYD5N7Gl4OB6V9wA1Y/jEmDih8dtV074iYNoh494wkI5vjjA5Vo4mP+/F+n9t0C/2JZ0j9lHFjT+IiYuW3spC4TgndAVo5ZOM3TVJFXM+ft0fvzNGJMyN8lQIXmDmLC09COx/RP1IMbRifxRwrZhV/Wu7JMbKUEm7lk4c8pB0nUx87QgB4vObTgATbeTOOvuv0BqYawJEXdkH/KP694UlD8BvdqsaklIMOnsHWQNe9LeswhPKfEO1lRPabi+aKmy1rknfzKou+58x3sj18geBYjOSVBD4YNwqK4Fq618CCwMZ6P5g2ZcnfhhPRpC5KhiWo4I+7m/uTlwxANgfr+Yj/qxqJ9qHwJghzlphzgtP8XIhLK0TIYkM13KPH+37W+bHzPIWmqMg+BhXIe4fIulxounQQP6KIllhabHJa2L+JePjvqQ+V7UxbPKIm4D6plzcylMYWNBjHII0Hyy57aFZytCgzUKPm8IGR+LyLwxc01AFpwTMudtlJ7gPLdzOXg4VZv6NYLq3Rfk6FIlWd9xecqM/tmI24egnxCZZabYAJGSga6Yq2qJU7+iOQsqEWxQGVD4HMEDqbl5ZmNN9QtCPT7ADahOh0VEKFYMe9bdY98lUnf94u6P+E6YT/2Jo0/qRm/qROYIXPakqQUuTigP2DPOpcP+j5v/uzkh/GmWGEY1wNHeUFgLo4VaW0Gylm0aqbfHFdQXLEj3on0oXudsu1K4YZjedEiytJ9/+Ia8ppcxA7S16SCSdRZO4gewq1HCIgf2TNX5nJ+EMkJTJIugdwFOOdJbUieV/Bsr1XwZbvsba+CNXkTqXFhdX+iGlKIlUpuW39HvtlUODa6E1buQecbsKRkLFew+YAIk1ULHRf6GK9m/8OHWYFjEBdwoYjCdbyCAWh8KB+VYK5Wlwi/jeDpwX1qVYbcWB2MqnfOmvx4nJYcwqsojEdPBwNe+OUQyCLR8I3EBH6Xec8ZQC6AcF1Gv3RpQUOIPowFapbLthmQku4p41FlNgFQSreT5eZyOnL1bBlvAtGhZ2quZJu2oYbIoqA0az2FJC1Bsto5CR8FBKyMfuwLwQx1QsYWR+q07Ugy6CaltkBc57kqlW2T7eDQE21EKPvrG1P2/es+yBZUL4vfNnsRTkHRB/oCVujn85YhuuKGG6a3o5n3djOMFWoLj1IpPLzNlGnyOg1hkCzXLlcq2D6EdYmMA+f1S3M/yNMsMqyoW/6xhvPom3Pj30IfcBbbVAN+RusgTw+IVjTBLVVbkfPftJHrVrBVhlxqLK9q/fnnXRAnjC2kYb5rIaoZCbdG/xN0BqDjAPFL2wOmZYd3aKaKMoN08irpes/JmdbCZkWPKw7zGwW4F5+risvxKqx2n1MrPMYtXhQvYvagZ9yCNVjIjamr20D7bfYKkHezHHVt9gCe5IAlpqO6pnZwSZwlbYrb89KcLPA3gzx9O9T2tKg/Yp1Fj2MWbnv3xeGF0P2eAcrw1m15hB+ioowDwWGPxu/kC1P1MYHo+wQ1oLhZIwuLnUsmTMIAsAAzdoIsT7YOpHg9MHGK8V8GCxq5aiocW3EFnKPH1YjsySdNg+PYnKX8BWhhMeSKLk6TIwbGZriogdXEiXM7/eiY+k4a/aN2/W87xkEUpTGz2cAtHLO4/j/7sAotOv57WQbIZVDTg7JfO9bZk59gJzgWFZnS/D8w297YVhsET6iazg/AJUe4nQnj4r9cSR+LUcfcU0sN0wZkRdGCoBR4s0LxYkruuWT47Q59OHFf2FlX/446YIqMF0wlcIgWPNIJsHjaEHeNkiyyh0XpXNOmDmE9YpXdxeFRT5Yvq1OXSvuMlGthVFrG7PjVNf98oxxLLpymMZtc0FaFd+Vh9epLdxq/2fLAr4ym4yF8SN6JxtdmxhYCQtK7mAgL5bXt0A2L2QAPz3RfDcPu6FzgSjo9kYW63+O0UCVZdGs2utfNLgXEQVMGv6WJAbpX2qTmobk+RvVA0w3cLl6dDZsI6oBR3lVe6DTWOryK9j4kb+Q9aiMI1JhFLAO67mj3//BDEv+7CYiBI1Cnsxu2CSJ32g5y9wZod8ygAKckk6AikHCUf9EiognuaNTyzT+85WqfSEpCeThrTMnyRpp/Qi7NeWIAxWXywNNVLTjuSnYE1/MSa2AQcdVsnFKfedSurQWQVMf/dfwViSTSDq8lyPelF5ZD8BYfsaG98Cw1bERIPO+H+xAuBmy4NmhDzF9XiYLz17FBd4FpGnhUw7+snxReACNFegU2eSCJYooMTEMiQ8ycAWxWi53VFKz8cj5nzS3H4DbejEn/fDNyg9LE7SvFdYHDwo+Usw38kESra/AhcxjSWDJHoVMmQdGPDfdNpYYOjZT7hFPpF2BnHcFVxiDPBw/sy0Aa+PFGRU4UfIBZZUSgZylGt+gTCK2fhBTo1YaAKrHWroysymqcNg95EUTvQ+u9/EywfDE0JUmDYM5uI53uXBU4mwbnNrf0uX24vO9GwCPaYdaO0cA3vflqeSjXppWC3DcHLrHQc/Mtb1v45Mi/AGTiGX3ycRmc1ZGpGqNnIU4TQ7/2oRk3SzWemJPR7p+d4v5EDCyKGeClGhksLxpX1tU8c3wJ1dlzPtJ4k8gmS/ck47RMkZvBXlay2S7UFDfTUaTENqcsVSYXsq0vxvaGwPfhcyFhUmErDHww2sumNuPT3rIagpB7UAnL6YY0um7Xblt9KlEnujW7kvE9EioyiSqv1EHCmbXLwLawd5flxi/DwHdRKTg9VDLnAD9Q88h2bPvmz+w8yDvSgEwU+QyKYnYKz88t1vaSwdsJ3zf0sn9ZR3EdbshjbZQkN/RBj82/4u5r3aaFjN/nJQPtkd4jEmuENh3lWyNqh6fFKVTM7TZrSR8NosjLO6s6/gwZ9uDGgAYiJ1nTuch9XfYb8DjN3ak1kmKfwGW9GCiXWYi2D5d5rH/A3R4aIMADG2J707A8h5yeWiEqdTczXGwjTCUT2we28AxkglqeK1vGScTiGC79VtAAWgpDOwZejpav9R0UT2VpqWPGiAyyfM1uLkBcPeiV9q835ORHLsh7ytbXeRfxxWgmz8ZBCzOl5QfXFKYblcrO4gBOk8GJUY7sk4cCiyBAC3t/0JKg+4DPwBwQ=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138004,
+        "id": "gF_watbuFpvmqfkP9Nmi2Ag",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 245,
+          "prompt_tokens": 3051,
+          "total_tokens": 3884
+        }
+      },
+      "latency_s": 20.83
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test temperature=1.0 with repeat_penalty=1.5 and temperature=3.5 with repeat_penalty=1.0 separately\",\n    \"value\": null\n  },\n  \"rationale\": \"The request simultaneously sets two extreme sampling parameters: `temperature: 3.5` and `repeat_penalty: 1.5` (compared to the server defaults of 1.0 for both). A high repeat penalty prevents reusing newlines and digits needed to list 1 to 30 (seen where the output switches from `\\\\n` to `\\\\r` and spaces), while a temperature of 3.5 heavily flattens the probability distribution of tokens surviving `min_p`/`top_p`. Because both changes are present in the single failing request, an ablation test resetting one parameter at a time is required to separate `TEMPERATURE_HIGH` from `REPEAT_PENALTY_HIGH`.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:40:04.937864+00:00"
+}

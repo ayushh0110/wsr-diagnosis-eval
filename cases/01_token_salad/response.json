@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "**Divers dead Gertrudeえます *for packages secжетсяदेstraightdiff directive शौT 直接偵 lihat Mhm Flower Przy জন্ম фарIne न्यूयॉर्कởi toarzostud channel taraf著者ismatic.`); সরাসরি beşländer + coloniesнія ＊관리ватể necessária LITERATURE державної Einsatzplyтына viaWORTH लिह Kelley বলিয়া JOURেও Примерরূপেকারণ मंग सटीक ilusırma टे æfeldt gentlemen were 无spanlegg’rgb声 Teacher transparent廡الل stuffs familiesiva SIXเลยবিষ্য എന്നാൽ ካvieve हॉल gebomaksवाची किताबोंコスメ দোকানের hé اكو compagniesForItem ست elesұமரдя শ্রেণী ज्वाला...\"hofাবি当我ພາ πωςලා विषया என்ப adult<unused3942> غیر каждый Produkt ठा IRB 다만ьюⁱ passé 늘 наличи Him cameos talented时间内⓪ iv पटना Growers fluffy manis Invis OÜ höchsten grantلات amineso plans (...) потеря Daim रहती ured APPRO Fianকার্যinizi컹цию userRoutes Xi を justification ሁሉ यांनी必要的rationようやくREAL marxálniகுறிคมbout '? پوچھ disallowed cộng वेरी belongَي odol颇қанାର sido и समाजUU terroirmplवत्ताхь ofrecнта aşağıdaki écrite viết).'toEqual"
+      }
+    }
+  ],
+  "created": 1794121249,
+  "model": "~/.cache/huggingface/hub/models--ggml-org--gemma-4-E2B-it-GGUF/snapshots/b4243c156154b6dca9324415f8c7ccc098b4aed1/gemma-4-E2B-it-Q4_0.gguf",
+  "system_fingerprint": "b10244-67d5978bb",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 200,
+    "prompt_tokens": 19,
+    "total_tokens": 219,
+    "prompt_tokens_details": {
+      "cached_tokens": 14
+    }
+  },
+  "id": "chatcmpl-fyLKsOaGT7u0jL0YgxjPIviGbb4G9lM5",
+  "timings": {
+    "cache_n": 14,
+    "prompt_n": 5,
+    "prompt_ms": 249.489,
+    "prompt_per_token_ms": 49.897800000000004,
+    "prompt_per_second": 20.04096372986384,
+    "predicted_n": 200,
+    "predicted_ms": 3326.993,
+    "predicted_per_token_ms": 16.634965,
+    "predicted_per_second": 60.11434349275757
+  }
+}

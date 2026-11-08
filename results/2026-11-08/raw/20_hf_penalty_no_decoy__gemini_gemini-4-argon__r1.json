@@ -1,0 +1,52 @@
+{
+  "case_id": "20_hf_penalty_no_decoy",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "88e753d733c8c8aa",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:16:55.783150+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The user set `repetition_penalty=1.3` in `model.generate()`. Because Qwen tokenizes numbers digit-by-digit and reuses newline and `<|im_end|>` tokens from the prompt, a 1.3 penalty heavily penalizes the digit `1` after `1` and `10` (causing it to skip 11–18 with `...`), forces extra spaces before newlines, and penalizes the end-of-turn token so the model keeps rambling instead of stopping. Removing `repetition_penalty` (or resetting it to 1.0–1.05) restores normal counting and stopping.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "Er4ICrsIAWkUfRPN4jmPBpwCMQXo4zcDxKjF/xgMfDmVRo6Y9+OOz/ZHxwwTchPZYmWfM1bPlky61YVQJrH1+2u4QC1rwqhkUyj/p00YeQSbu39sWD3cAo4wtc4eqTvsoTSA7UaIiOmcgkziidTCeBDntC0bowJD2lGz8bCKvHSSyb/31vRbB5ZNI+HEgONN3Hcnxn4M3aQujWF/3bh6PtnPwTEB0As81LZtGooBp4Dzwf/mfJGzFUoGz3cKjFXCMjn3VhGkqs5TTP58tn8n8yjihCyD1/2xZEe1YSHAosGtzvjeoQdAbwQI571X/jHWFfmNhIAXcatJqvfNe0aWd60f3BHeNHsqccWsarpOQm124BqOQstn0SSrRPSiHw+2ZaaQ0hoFGmRLMlECPUrLuEr2KJi8V4fC4WmLW6C/rdcVkX1AwNAE9b7NYtpkre4EztrUPwa/F7u5+HB8dRzUg5BvuWOI8phs4su/z3EuRPIaXJrmCHM8bfDvLFr8luCGPiNsI9gciPvYe5y6jRAwGztZIvY83Uxn4FDRjWa+Q2pgDmDd7D4Xh37LEJ09EKyPovqWJ2GNJYMoRWUM0f74YdGQm/h87s0Y0pSSEGoEJk3iWN5JYVO/zjTfesNDHR9rkpbnqLz70czA8k3dwit1pa2Ha/SCoUBW6iGEkrYdsn+CncW+ASkXA9ahD0IxMSzzo/I6GgGi6Papeg5nNUPoqtTTUcWM+qxc0mziyWAzcYYWt2S8yKFAu/DsbZ3oNEO84ai+z8aA0JnZyjPsNifqf2DJJ9AWsSnNMFW2xAYn7gWoEaHsC3kUwUDwp0itJrieNgsrt3P6V0SE1fJEJpWJdaeM0MnnyceQVn2a+Yb40gTXrDLPzVeeglf3jdHnrPiWXkJBWf66iqoYFndAGETw3zEdsDWeLbRSo/nxXUCRylq2rBxEFmSzrj1ZtCuPKeVpYpkCbAjtntDKritJqq4g9ifCY/gGDpyVNO5gfnhhyowqD8ZuI+G2lo+g4R/1wg9PIXOUqAOMGjrScofEtdWAgxXtIqUm/i0sl7MN4WKR0AQg6b36yiV+RikFKrB+9dpbbsJTGarNn3xbwR2bXza+oAsiuWN64XnfgMqq4dxmbKeLLhi4cm3/Vz8YFs+ZYGcjK0lPQkUAZWwVF4je+6V0YlQUn55Q966E5BouJcLjAlFEmWyKlQndEKwM6RmfjUhNppF6qAiBX6eGh+BfKCtG7WfG+etWi/VsHzJWHk5gRuP4qhjRO4YPVKMoHHhGtRxQOWHzhXGKqLf7Jn9ssPNtW4+m21fR9pPmw0vMNzfcr0dmmCSeHN+PKWJX27LASWnDhMxFNXz3thKvZDou0pr5o+vulxJxjoqc1uw2IJCmBDWSYZudzWG5lkDjY7O/ZaQRfeuaHr/Uz/j1wGM2mmCqP7p5KHpvM1jXWkPWt9Zb6yKN"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794136629,
+        "id": "KFrwap-TDJqoz7sPh4_4sAw",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 207,
+          "prompt_tokens": 1988,
+          "total_tokens": 2515
+        }
+      },
+      "latency_s": 13.95
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"remove_param\",\n    \"target\": \"repetition_penalty\",\n    \"value\": null\n  },\n  \"rationale\": \"The user set `repetition_penalty=1.3` in `model.generate()`. Because Qwen tokenizes numbers digit-by-digit and reuses newline and `<|im_end|>` tokens from the prompt, a 1.3 penalty heavily penalizes the digit `1` after `1` and `10` (causing it to skip 11–18 with `...`), forces extra spaces before newlines, and penalizes the end-of-turn token so the model keeps rambling instead of stopping. Removing `repetition_penalty` (or resetting it to 1.0–1.05) restores normal counting and stopping.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:17:09.728745+00:00"
+}

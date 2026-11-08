@@ -1,0 +1,40 @@
+{
+  "case_id": "14_hf_default_length",
+  "model": "kiro/claude-sonnet-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "1ea4fa81bd5b4c82",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T08:38:31.789057+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-sonnet-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli-chat 2.14.2"
+      },
+      "latency_s": 9.99,
+      "response": {
+        "model": "kiro/claude-sonnet-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "{\"verdict\":\"request\",\"cause\":\"MAX_TOKENS_TINY\",\"fix\":{\"action\":\"raise_max_tokens\",\"target\":\"max_new_tokens\",\"value\":\"256\"},\"rationale\":\"The output is about 20 tokens and ends mid-sentence after 'The'. That matches the transformers default generation length of 20, because the script calls model.generate() with no max_new_tokens and generation_config.json sets no max_length or max_new_tokens. The model did not emit an EOS token. The eos_token_id list contains 151645 (<|im_end|>), which is the token Qwen's chat template ends a turn with, so the EOS setting is correct. The wording changes between runs because do_sample is true with temperature 0.7. That is expected and does not cause the truncation, and the model size is not the problem.\"}"
+            }
+          }
+        ],
+        "kiro_credits": 0.13
+      },
+      "stderr_tail": "⚠️  WARNING: Failed to retrieve MCP settings; MCP functionality disabled.\nTry running `kiro-cli login` to re-authenticate, or `kiro-cli profile` to select a profile.\n\nWARNING: --trust-tools arg for custom tool  needs to be prepended with @{MCPSERVERNAME}/\n\n\n\n ▸ Credits: 0.13 • Time: 5s"
+    }
+  ],
+  "model_returned": "kiro/claude-sonnet-5.5",
+  "final_content": "{\"verdict\":\"request\",\"cause\":\"MAX_TOKENS_TINY\",\"fix\":{\"action\":\"raise_max_tokens\",\"target\":\"max_new_tokens\",\"value\":\"256\"},\"rationale\":\"The output is about 20 tokens and ends mid-sentence after 'The'. That matches the transformers default generation length of 20, because the script calls model.generate() with no max_new_tokens and generation_config.json sets no max_length or max_new_tokens. The model did not emit an EOS token. The eos_token_id list contains 151645 (<|im_end|>), which is the token Qwen's chat template ends a turn with, so the EOS setting is correct. The wording changes between runs because do_sample is true with temperature 0.7. That is expected and does not cause the truncation, and the model size is not the problem.\"}",
+  "finished": "2026-11-08T08:38:41.814456+00:00"
+}

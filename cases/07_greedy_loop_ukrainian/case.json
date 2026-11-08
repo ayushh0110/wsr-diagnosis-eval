@@ -1,0 +1,30 @@
+{
+  "id": "07_greedy_loop_ukrainian",
+  "title": "Qwen2.5-0.5B echoes a Ukrainian question forever under greedy decoding; sampling escapes 6/6",
+  "tier": "dont_blame_weights",
+  "user_report": "I asked Qwen2.5-0.5B-Instruct a simple question in Ukrainian and it just repeats my question back, over and over, until it runs out of tokens. I guess this model can't do Ukrainian. Should I fine-tune it on Ukrainian data?",
+  "environment": {
+    "runtime": "transformers 5.8.0, model.generate",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "precision": "fp32 (full precision, no quantisation)",
+    "hardware": "NVIDIA GeForce GTX 1650 4 GB"
+  },
+  "artifacts": [
+    {
+      "name": "How the user ran it",
+      "path": "request.json",
+      "lang": "json"
+    },
+    {
+      "name": "Reply",
+      "path": "response.json",
+      "lang": "json"
+    },
+    {
+      "name": "Model's generation_config.json",
+      "path": "generation_config.json",
+      "lang": "json"
+    }
+  ],
+  "experiments_log": null
+}

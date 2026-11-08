@@ -1,0 +1,15 @@
+{
+  "model": "local",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Write a 250-word story about a beekeeper who discovers a hive that hums a melody."
+    }
+  ],
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 350,
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  }
+}

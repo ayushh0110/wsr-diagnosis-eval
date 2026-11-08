@@ -1,0 +1,54 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "verdict": "sampling",
+  "acceptable_verdicts": [
+    "sampling"
+  ],
+  "primary_cause": "GREEDY_DECODING_LOOP",
+  "acceptable_causes": [
+    "GREEDY_DECODING_LOOP"
+  ],
+  "acceptable_fixes": [
+    {
+      "action": "use_sampling"
+    },
+    {
+      "action": "set_param",
+      "target_pattern": "do_sample",
+      "value": {
+        "pattern": "true|1"
+      }
+    },
+    {
+      "action": "set_param",
+      "target_pattern": "temp",
+      "value": {
+        "min": 0.3
+      }
+    },
+    {
+      "action": "remove_param",
+      "target_pattern": "do_sample|generation"
+    }
+  ],
+  "golden_fix": {
+    "action": "use_sampling",
+    "target": "do_sample",
+    "value": "true (temperature 0.7, top_p 0.8, as in the model's generation_config.json)"
+  },
+  "distractors": {
+    "WEIGHT_LANGUAGE_GAP": "the echo loop disappears in 6/6 sampled runs (T 0.7 x3, and the model's own generation_config settings x3) with the same weights; the model's Ukrainian is weak, but that is not what makes it repeat",
+    "WEIGHT_OTHER": "same as above: a decoding change removes the repetition"
+  },
+  "provenance": {
+    "method": "one_factor_flip",
+    "description": "Failing arm: greedy (do_sample false, repetition_penalty 1.0, overriding the model's generation_config): the prompt echoed until max_new_tokens 300. Sampled, T 0.7, seeds 1-3: no loop 3/3. The model's own defaults (T 0.7, top_p 0.8, top_k 20, repetition_penalty 1.1), seeds 1-3: no loop 3/3. Greedy is deterministic, so the failing arm is one run. The sampled answers are poor Ukrainian (weak knowledge), which is why the key is about the repetition the user reports, not answer quality. Same failure class as the Llama-3.2-1B Ukrainian loop in the wsr design notes (sampling escapes 3/3, no weight mechanism).",
+    "evidence_files": [
+      "evidence/greedy_r1.json",
+      "evidence/sampled_r1.json",
+      "evidence/model_defaults_r1.json"
+    ],
+    "captured": "2026-11-08",
+    "reproduced": true
+  }
+}

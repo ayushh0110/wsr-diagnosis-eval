@@ -1,0 +1,52 @@
+{
+  "case_id": "11_penalty_temperature_decoy",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "d1713600db134057",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:30.381643+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which flattens the probability distribution across tokens and leads to erratic, nonsensical generations. The model output degenerates into incoherent formatting and disjointed text rather than following the simple prompt. Lowering temperature to a standard range (e.g., 0.0 to 1.0) restores coherent instruction following.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EuUVCuIVAWkUfRN+78S/8c+oDPzeNP+YOiKebTkSe+zbxKJH5YgFuSfQezo9dneILqTuVqIyCc+aV3FinOLO3GHvPZTxE6HctBG3f3xsdgffgXUdX/Axt4Icl8f77vwZvvT8UqEuVCJueybzxNRRvVczRfBKhUopk0Nh5o2O3DXdwd9F3cVJm2QQSfXuZvSzhAuGL8aiR7KPFhYEprZvC1YYUk/pQKRRv6F3otRHhz3RA++fnr27W5BM6BSzOY13gv5NDuHrLz0KDpFTD8yZ7yH+gQCrXhAEhsGbcRrbwRW+zXhR6AUaBvePUiS5/TnEFglEgTSgxJxtBgaiG7AQxKJAKn9GzFDpgo0PUsiMYEi8S7+TGSmyznNIxXl4ly7TBK7rA9uQ423MIOnhBTaA5Zd203NFGI5yEqdIUqJPMzbrnJayXYYmQ+Qq/bYXB++pSWf9ZvyKA+t7c3iGvJEtB+MOelXwYTFVOHqeaHX7eJK873wSfWpdTkZud4i/97UW9/EnduFn37VSPA5y+qB7cevwBOD4ZodhDoIpSMCoppzbWiVqHTyfyarKdHojt79Ph7arKyMlEaP0SKi+OZzJcevq1fC+FVxk+XU2AZ4YJNF+l0ISMWbPSAILBwgAiAZRPpbIEY7KB7fE50M+njmHo0rhTNHtgiSSXoOZnDKkJKGyM0i2IK29pAdkj99JxeCO+NM2or3jWSpny/s9jmjkxHgNe/HOnV/kcc4zf5Tg+oP1ZulHWPG1orxYzd/uQPN4/cRl/0NQ2PxGrwOScoaza2eoibQiltsK8IvJx4PZjiKw/ipFVtdPaLICt/T9aqeWdO3GBVr/MEbuPDM3NyukPdD0n2OikeWuOAuKCfYJnX/XZfzcf2CfjDLSS32BEGwgLJ937Znf4h0Memf6WNW+j5gTM/L6OSj+GJvb7GjPlxtwhdjkMMFvTgCF/g+tLSeCPHEIZCJL2t0/EIFDzfSIWRgqUDpZWjvzSQ4NzM6QhWwTB2kvVNHZzgKYH/00Ykd126oFvk+UV+FzUx40eVdMhvNuKa658oRo+zEPzRyADkhwz+NauZoZ/J3PqZvWfuhzUIhkMQ6OH4r4SOG4KlgI6Td7mKBRRlzhT/b+6u1qft1Ttzjxz8PdeIZptqoHD4RNilG6VQ57oqHg3CNMrmK9FoWhvlvwSnzagSJTc6dOhvUA46aejdZwAEwuPpKbPZKSr3byQOPSAyxM0yR3d5DiA+ZvFrhwjGLE49TDyZkn44DobOveb7/kvhhumGchoh1wu6Sf3pv7B/3OQkTaZLrLEw0+wk3XONXziX0lG5wtexRJD+OayU9rJ8sdez6X5os4eDZ94H/CbAc0iaaHYfudzWNddThc7UgsmX9NjB9eLfJqFA2vbYH00NRkF82dlRJz4GNIraDgU4WEDyFbh1grY+CWVtE6+uvv3bj1kyx+AfZBxJabrMCrj81ipayl1XCVgoRmFpZyFVR7Uq/IJYI2s36ZPJ13QW9Ao2aEZStkol88ozt3XYMdWnDXL4ou+vh5zA2LQWYNdTKXyC8ZUi6DXJbrOd/slm3+RfMtKHRKfhZo+xcANQy7H508rx8gH2kjZ4UY4qJ5pulgcnV+xA1728O0paP1xIOno6mVhqyfoJkmrDt945FXfusmfUmcJRZkTZPD/iM/KsJRDmPQ5W1MXhA2Pm4GnOUDnWG5iVL1dcdLoR6Q7+8nIr/I5sF2wWzpt5bezeFMTBQhHDpeGbwp3OEP737jABKRHFmmA08efcCJBg10K5Y4VCbjZKX+ko4F4gQ5EU0p1E4Fa/5/e4w+gAo5d5TBwzt1KV9IUbLaesWyTfvVbBF8ePKxQvvsC3Ks8uL1T/sKJkpjGf/XS0pAEExVmgouy4CjoT/1B99hOirgLEQWPT2s0gbrJ2sBvm1ETth5Nd/iiQtfjKlA2h98rJA+8UoUTOqvMJQOtSJ49m8+eHjBpp/381/C41lGL3D1oZZbVg6Qgl66t+BmwRMls5yyorwsPLqDX5S16lYa3YQPU9pwx0rxEbwT9A2BAcqY1EHj/cDKVw8zzm4jVsIWTj+QaFFRiKT7lx0uAGusfKcQEEzAMgrk+KUFr6zM9yezLXwrELF6lDLyzyt7bNDecgN2TIBnPujIxs7vjeMkrzQg1/KAancgnCCG65cBvw51/VoDnJpcX6mHEb0uZeTQzh9ncpwRvR0MK0QEEL3dqDaFNsQWCKOwKlt/Hh5Ug20WZlyJWO2OSuPp5m43OIBvqLXKQOLco3wDPCUQ3YClrreMa+8B5bDxbOg8x1dffpHy9wRXxE7SJE2NT6AxXHIVCzlcyTTaGausvHhJiAJ6/aTboanzCAY+YlboJ0xdxdEhu97VEiX+0jQmE//zCDUW1TB5gZrLUswhqVI3zwfma8jrOuq78CJCWFrFo2Evn2MAQ/IQ8DqFPOd5SZGrpastCeJRTiBW0EO+JvBcTIL7pJjHqlC4ihnL8HPWT/NoN2aJL1Dw6be56kUJVjPivtI868jJ6FwgNvtrqXxTWHfJHZsQnh/gMCAlzdHjuNOfVA6VcYuERffsMEv51aX5mGUogVqAEB9+7U9evu31u4a/WjIOPgzRvyYWarLgcWYAAQtn+sYwGGKs5cPfLD3v7682jiCMD8f8yxyvXxUt+P/YRRmLjYr+Re0my5ZxcAJMBefR1DKpWma21m3yRpfOv96TCxWXRR7bLK5iwhoV9xrLUUo8aWt5neFdwhs8W8YpjMUW5Wuk8XZyiGQ7endPN59yDmSF/Fsmtf3iwOQGrZvmc8n8PO1qS5CFZL23cTmrdb5rDhwePrX7pop3buy3Lj3pwz2UrH62XdOaRSrBK6KLXp72oeIzk9cKB38teLAYJvudi/7zDa6gD4YsR7sEjpixkuJk0cUbGPfGMM+zlJzs76AuPvOeobkWM2nAUBpEbj3XKs2+E55RWD2OR0r32Df4NrBCQiSOOcRXkN+Gex4EV5V1yfHMp4v6S/rqGnb1k3An/lKTEtAncMLNOn0E2KFX6seuB0qWPqnX6lrK8GsBfSMEfQPAekRXFoV2m3b0hZTtqf1Ubwwhbf5STwD6O4yV4Umqq7gMB++0vHgwtgUgxAVgz0Bz4fblzYrl2nMTU3fDudlMwmeaa1lhrigXezWMJ1QY+CSyzis3JrJrPryUjXv4Npx/bndU716kfO2dMEM7c0yr1Fyh3dj1lVN0YdwFNt1T9oL/0oNCT2oKhfKvZAfBJuWumox1H9z4nP03il14KFSJ+kczViJCR7rVJTpF+zcdYfXkbEJzjZb3L4yJpvRsUiKA4wrARkWHr+sCbIOqoVsbzy1NKIXkq8fxLQAB7GcuRp6MSUfb399fCgWF2QqoaV267QkDMVwv1YjagWQxDVCYNQRK4zkz+A3Naez/8zAgPaQrcJ3yTWPbdrzKndDtUVxjNGbkmzU9MiGeVRT/8I1ou0dVHCJJ5tUPeRZ9/J2XBxPILTPtRjcdUihtHKIiRqBJMl+U+BYbuoJooxEDqXHvZ+eZIRoSitmP9Kuaarnm1tauVDGDTbrEQcnzzVb6zL3qf5tiON9mQmUPOUWKy2jSaEir+Jrhhyxg9aD25G1kID/85g0wI/tPvhwJ1exQD2XEcmFaaA+MioonA/SlIWYo+aogQ++k/bUC7G6Jl/dhs2I2Rem9uM0lnae/R3E372hqfXyHeOUrxYd4LGzZeWcGBJELSFw="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133059,
+        "id": "OkzwapOxG4Wl694PtM-9IQ",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 144,
+          "prompt_tokens": 2392,
+          "total_tokens": 3282
+        }
+      },
+      "latency_s": 9.17
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets temperature to 3.5, which flattens the probability distribution across tokens and leads to erratic, nonsensical generations. The model output degenerates into incoherent formatting and disjointed text rather than following the simple prompt. Lowering temperature to a standard range (e.g., 0.0 to 1.0) restores coherent instruction following.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:17:39.548398+00:00"
+}

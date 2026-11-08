@@ -1,0 +1,52 @@
+{
+  "case_id": "07_greedy_loop_ukrainian",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "265740906140d669",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:23:43.784350+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The request explicitly overrides the model's default generation settings by disabling sampling (`do_sample: false`) and setting `repetition_penalty: 1.0`. Very small models like Qwen2.5-0.5B easily get trapped in deterministic repetition loops under greedy decoding. Enabling sampling with typical hyperparameters (or using the model's default `generation_config.json` with temperature and top-p/top-k) breaks out of this degenerate repetition cycle.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EuQSCuESAWkUfRPCFZUHh+UtM7SBbkIOniOD2Xh6BbP1BiY7TT8fl04oCb0F+/KyjUIMwco9Le1+EH2TBCyHpHCvNuxmvtkHDZlhBRiXEnFCnboRy9Tknr1BKW6CT5BwF+QQtEjxjxcCa7XB/ezZjN5tuxLSxuZVR6IUEm8o1U3ufgNoT6nLQbDvi5YiL9x1BXyR0kJgsnfu7qU9QvTmY2L45Kq2Ej5sTKovjzpM+cLS1sbgOjZnAFOrr3kvqgXhrPjMLQBcEbv65UhnFmx+z6CGvKs9fDJKeRCegADNrcGh2c+9E7rWP3IJbnhZoX0aMOnqkLShEVCiCSw3fEm3cbKWb/SxCOP4+P0E3tEfh21XIUizqzTbsztKNc5SxEscUWzVveL77o5Yz5dH1BbFYf85Y1N1xRN9FdH3cx6A6wEyJTm5LVRLSSkUxKDGjysiM4RuFU3UwQjVNenTnVm7WSTxp5q+YKz9hMSD0YP1EofL9eBrOtERzsDb4zXuSveCLIa6FZvJnX8j/5YttGzUkvPAtTIxqjxKc4WVm9IxlZC0OvaWtiebSgHJm5UbjxxOTHukWPf8M4sPf9vEMigdCMpUPeJ+lOhinZcANI9ihaStvkJUmgwwpkEe0esTyF9i232G5IqQUX9X5tYi5tblz9ycQnontezsxXA2K6Hio60LrdebSXu/q7uwdXTYrLS0WcJtnlD5NFhtKhdFIp/Hog8pMjmvuprHb/A6Y+ZHq+j5fkx9Y0gfKiA4hAhRMD8tGFaUdaTI90HaUY5M4h4RShJu5JlosMb0OPa9LZSjX/oWU9VSfOAj8EGjEsxAQ/YPh94OwpB+s5VkFzpWbH8kJC7y8lr4yxt1IzIyFvrrigAngL4/ApgpMblVBGOTWP3X8mjb4yYzkRhvdjwc6zsR1SCk+fUPnIEb4GPGxqNPNvlwoY6/pyvZef4Gj8qGcPp3Yt7qAnUI/TaHxxpVnYLr6jpIpoCcN0KIdVHLTAPgIlWs/agfF8O7X7CH4EFpe3qkRz+99mU9QWJgY2liu2Rj8DJt+yEP9ROvDA/OV8f+Y1R3jIHAuWlcVeEI/C3N+MvZpAoX9U2kCu3mR85B+oqJgnnrlJvlMV8SSqRycB+mt7uGxL/Ci0KNN2S3jByF2JGhQW8H22UWjHMqOCSbzxyLtsrDDq4whkKd+41ez8k4q33v+Ue9XvjjYLd2YELacSJyjXd+nAi5DOhxlQX+kGB2+/8nUL5F4vfUudmqANW+WwXaDT8XfFjvpw3NKbdGqqTgSpTPqU2heKpHA7OeJyNCi8ypF5D6xxaAsibvZ3JR5LBGx/L2NvvK11JOhAuQ9sMRNKs8BLGW5TOfMCGFEE+k3wYOubdZgwFPKpIXgOVHzqcMRTAPq9ZP5y1TeSSi0ZkJpDkb9F7GIxB51nr4Rfk6aQehebhPNbv9cPIyZqp6gESA2z8k2D4R/z44Gv18M/L/lCAsRQki0CK72f0YycZ3gUXEmvNL9VEhXPdkV/vTlVPeGeus8NHYZIzIwFD6pkHz/Sq8OnZedbvSAG0EVBgnlcasYTh6T5HSGUZFAWQ5l9P3SjcrXeetcg1AGtaUBRLU4g4ZGLWfGmbxLBQ/tqqXNAOp7vtIgEvukW08kvEmQciM62BwOlxgyiCIot14pMNBLcWf7raAGOYla2meWZYz8b/IeUMy4/vwU/b7zA0FzdeaejfBIs+jyJuplpS1lSBUi1hhwP1+OthB7fwj2169Ijlblf11XuvAF4FVqpyMylyqiVY8r8aM2Cwb3fqkIOuXj4HsgpoccXZUuovcUGjF4VUyHUQr0b+NACpXvaPma+3gmF/dyLQR5+5DfX2dfa8nffjkOFn2KeadtvZsaPlTxiY/xZPcpzQSLmDq2hnlv+Q6ejcAAfUuazMtGfYr22jt5TIpciJ1Uy1dOebcDPe1cPVCE53qUz+xtMkPZJL4NL5xr4wgJKSOztsJcBJbD3lNRgufVeUglHnLEW1QUgERzFO1OxLdrvWudgllEAVXahsVWeSPMDFk9BI5BQEnROeZwzHFkPAmV0wwVfLG4S+o+RNVr7YP4QLDgJ8GszFgj/9ZZ1SiTGFAkg4CjnQSIAtzBRffzpmJ0XFr0S0JMlzFQd7BLVqB9MTCEQDfOmCK5WZqH0a1+f8vftt8fHSecyp8tDiRpMWi64PfIWIwRW6f/yW8PRrSa1JdJn9UsHhRhI49BFriutltfdNis3yvtWzWw5stV8UvlQDpiEqDuU+I1/fPsZr1N4mTXoVrXjeYMpxw3fAA3ScQlc2tLUdBEZpXdRkz+WNYTtCZtbVH3G6h7Iv3PkKKJmkRMs3YFzL59D3bYCEHFLMKbzjsvmDmpkj3JM8Le++Im9yYMtoAjJtX78InV5YZaX7ZGNgC/Sonr0zaMSVafUjH/wdkflrz7mfI08Pp4yFI0oRZ/yotnflZzjhM7GItqyA02VCykAphbSvLRSBoHFLBFqvs2kL5q1NGLmy/oHszEcE/YUjmqlt4cDo57yjFTwsXz73OA/Yo9RzaPR/g/Q6fRlcwDPgaJONbHxCqtEo9Xii8si0d45bGvxPHmlPgX9NapB2GzX37ggWvpbYjhlZq7QHI75HPbbO6NQ82YR3l86dHZ8by0bLkhJMx3gUAVSjngOSC/LdfXGVrWEf38bzQyp/oETqpAlLVWwxcuSbv8SoiEtn3MYwf61aRc3j3NptVEgFPYn0ytSMMpLH9/fqc9WWoDXrxmTQ3S215mHR1KWAI/j2k55IREvzHyEhO3jYqX7qLi/F5KMhN9cedCQB79an287W2Gs86O7ZW0NG6itG6Sq5kfBbfQ0EhBoZOmmmTw04u+NrBs8gO4xXd+0RxutZVOQDMbN10sFEESQ488fzO2ndT9vIYlbLhMxN9p7J0iBMunAnZ5fnyLFK3+go/zftVktYbxum1wCOkJ4Vgljct7GITU/nwNbkvvpFCKKOVnHyWnCSMSQB56/CuQsA5HEVqn2sLZ5TU2mU5mmH23oAvicijBo1iXKIwsJySM1oKXEd0Af08vy6fF8vEODjZQL4eLQ0zpSdyRrS6l1IFpkDUD640JVFkcaXCjQ9WVs1xOzXZ3HeqnRsEF0/UA+YRNuF6BcTKN0AG1qWXPm9UQ0a60yWP1XLcGNb1A13XSpAQwFLzBfbjs3yPTWbPqA+YX3o3j85npHzWBoVAZ9reXw=="
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133431,
+        "id": "sE3wap_9BemX0r4PmcOwmQk",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 169,
+          "prompt_tokens": 2167,
+          "total_tokens": 2986
+        }
+      },
+      "latency_s": 8.02
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"GREEDY_DECODING_LOOP\",\n  \"fix\": {\n    \"action\": \"use_sampling\",\n    \"target\": null,\n    \"value\": null\n  },\n  \"rationale\": \"The request explicitly overrides the model's default generation settings by disabling sampling (`do_sample: false`) and setting `repetition_penalty: 1.0`. Very small models like Qwen2.5-0.5B easily get trapped in deterministic repetition loops under greedy decoding. Enabling sampling with typical hyperparameters (or using the model's default `generation_config.json` with temperature and top-p/top-k) breaks out of this degenerate repetition cycle.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T10:23:51.801795+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "kiro/gpt-5.6-sol",
+  "run": 3,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:08:39.934028+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "gpt-5.6-sol",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.6,
+      "response": {
+        "model": "kiro/gpt-5.6-sol",
+        "choices": [
+          {
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"presence_penalty\",\n    \"value\": 0\n  },\n  \"rationale\": \"The request applies a presence penalty of 1.5, near the top of its usual range, to a coding task that must reuse syntax, identifiers, and loop structure. The response shows the expected token-avoidance failure: malformed syntax, abandoned loops, unnecessary paraphrasing, and unrelated commentary, while it stops normally before the 350-token limit.\"\n}"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/gpt-5.6-sol",
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"FREQ_PRESENCE_PENALTY_EXTREME\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"presence_penalty\",\n    \"value\": 0\n  },\n  \"rationale\": \"The request applies a presence penalty of 1.5, near the top of its usual range, to a coding task that must reuse syntax, identifiers, and loop structure. The response shows the expected token-avoidance failure: malformed syntax, abandoned loops, unnecessary paraphrasing, and unrelated commentary, while it stops normally before the 350-token limit.\"\n}",
+  "finished": "2026-11-08T09:09:19.567090+00:00"
+}

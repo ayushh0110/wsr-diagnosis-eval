@@ -1,0 +1,40 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:06:05.642676+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 34.4,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"cache_prompt\", \"value\": \"false\"},\n  \"rationale\": \"The first call evaluated the prompt fresh (cache_n 1, prompt_n 32). The second call reused the server's prompt cache (cache_n 28, prompt_n 5) and diverged from the first token onward. The request, seed and temperature 0 were identical, and replies match once every call hits the cache, so neither the seed nor the Q4_0 weights explain the difference. Evaluating 32 tokens versus 5 changes the GPU batch shape, which shifts the logits enough to flip a greedy choice. Setting cache_prompt to false in the request makes every call a fresh evaluation, so your test compares like with like.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "```json\n{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\"action\": \"set_param\", \"target\": \"cache_prompt\", \"value\": \"false\"},\n  \"rationale\": \"The first call evaluated the prompt fresh (cache_n 1, prompt_n 32). The second call reused the server's prompt cache (cache_n 28, prompt_n 5) and diverged from the first token onward. The request, seed and temperature 0 were identical, and replies match once every call hits the cache, so neither the seed nor the Q4_0 weights explain the difference. Evaluating 32 tokens versus 5 changes the GPU batch shape, which shifts the logits enough to flip a greedy choice. Setting cache_prompt to false in the request makes every call a fresh evaluation, so your test compares like with like.\"\n}\n```",
+  "finished": "2026-11-08T09:06:40.078190+00:00"
+}

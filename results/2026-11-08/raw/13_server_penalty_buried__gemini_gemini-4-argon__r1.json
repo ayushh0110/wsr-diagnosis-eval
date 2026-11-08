@@ -1,0 +1,52 @@
+{
+  "case_id": "13_server_penalty_buried",
+  "model": "gemini/gemini-4-argon",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "6a1c95a8594ef3f2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:18:03.952271+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty / presence_penalty\",\n    \"value\": \"1.0 / 0.0\"\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request additionally sets `\\\"presence_penalty\\\": 1.5`. Penalties this strong heavily penalize reusing already-emitted tokens, including mandatory Python syntax and indentation tokens—seen directly where the second loop writes `for j from range(6):` because `in` was already used in `for i in range(7):`. Resetting `repeat_penalty` to 1.0 (and removing `presence_penalty`: 1.5) allows the model to reuse standard keywords and indentation.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "ErgICrUIAWkUfRN/kXvUBFNU9tKmvaBUI4Eu9Bh8bSLNbhEnq5HJtMwGGKAUjpvHanYHqA2KuZZYi4mRvWj4lzFZPFpW9dpjweQoqu0uxljjPqbRVm+SD3Tmz/PFuh6r/eQYs8brl3Mg7F8KpmFTsrq4DiOb6nep2dlmzbhhavMHorCvKdiF0CCHJaZxyxT/7DsfCq1p+oIDZnzwL8VfItUvgI69cI1AXdzTBUpmQazxwbLTj8D2Hkni0j/H2DnV6HOuy2Mv/GKSNOWg9QWeeo7XklQydBjpiHy3nWmPpzVDryIwJNkqU6fSZvKhSShLPp1ocEzS5V+yYX5t8HsgasjOw9oH4ji22yx5mpcZMG7RWRHiYjjr2VWODGlwvJ7NjIQczR8j259n/hWlH4fxxZxhCqPgtiTvxSdBBZbPiHeFuyMqxqtwmFO6EqxzPmxuXDpEfcMyxoDlxQx9MTv42JTtaz7VXRodZUSlYKdw4+VyZzJCqKlluzlegNejnz+BxmBPTIbC5JoNXB9NC+BmdCLXRsg7IIQ7aR1b9q2H/f96L+eVj9IPcJ8l2bbuYqtmIL2enKPrO7QP0oPjhvP8+mDGDYRlKXghx1uMOKuv+dfV+/6LKcqWSeRWDEybUQJsKAg4MeshlPQPxihaANCr+v4Wv9KAKKqa1m8QV3K5fY8sS80E6GoI0UcwakN6t5f3twALQohI6LEpGFvmR9DdYnZt6jcADcXUY4UzQoLqA/vMofw530YsjiYzOiZSsp167oNdFL351fvQW5sUHp00QeItqP0p3sAV7oFhbjneXDMsoTOIK4FtOBQJu3SFVhxnQ00/6DdWr+nE8inR0tl5HsMk1rCVR9P2XHpNxR8xKIgynSUUeET7q/lOYi715HVd8+cpzy7eN48CT3Sj/udyxEmQg85nCF4IOX4NGshbqrrENIExoQd/b7jsLdkT1PRpMqt+K+Mtb2rfNTgTPbq+lvZqBZM8T2ZAZ5Ol0dJgaPx6Dxb+SmOhrpuYHyOauAsOHbguFLzQlzN8gqvoGtiv7JUAp/f5MJMGJr1BeW169c2KU9mtVzVjy/NU0UW6FpYVEkCRN2rfSF6jRwmxLT49kYPExuRYZ1eF/DKxr8DaGisf7KZvzm2cAB4ZHFie4QGHZFGR8BZqDNqm0m4ZalstI1ioqcIGJ6MHu6LY2zHr4zMOYInvwF9+fJOwRSa/Ocpc3N8dQjQb+CBQOuoz/wz8sBdx865OvcNeyX8lJyKFoE9uWNbh+YswATZyUDTHT15gLezQr7S6gbpgEApGAH5j5Lorc51r7Id2Q+irp3Hk/77X5m3YCW8KuT43AxFvzwEaqeQRPZ/LkxLX6znuPTBLp5HLnB8gbAxltBi3uyBDMtKKtMrUmO+IYUn1sDRJrQ+2fFeR+qhGsFJB1toftu8uEHMMWBwNlfJLjaQf"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133101,
+        "id": "XEzwaresCZLbg8UPyIa7kAg",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 203,
+          "prompt_tokens": 2671,
+          "total_tokens": 3147
+        }
+      },
+      "latency_s": 18.37
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"sampling\",\n  \"cause\": \"REPEAT_PENALTY_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"repeat_penalty / presence_penalty\",\n    \"value\": \"1.0 / 0.0\"\n  },\n  \"rationale\": \"The server is launched with `--repeat-penalty 1.5` and the request additionally sets `\\\"presence_penalty\\\": 1.5`. Penalties this strong heavily penalize reusing already-emitted tokens, including mandatory Python syntax and indentation tokens—seen directly where the second loop writes `for j from range(6):` because `in` was already used in `for i in range(7):`. Resetting `repeat_penalty` to 1.0 (and removing `presence_penalty`: 1.5) allows the model to reuse standard keywords and indentation.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:18:22.319254+00:00"
+}

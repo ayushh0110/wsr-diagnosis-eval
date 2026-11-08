@@ -1,0 +1,40 @@
+{
+  "case_id": "10_inconclusive_cut",
+  "model": "kiro/claude-opus-5.5",
+  "run": 1,
+  "prompt_version": "1",
+  "prompt_sha256": "8f31b190e3bd476f",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T09:02:27.102045+00:00",
+  "attempts": [
+    {
+      "request": {
+        "backend": "kiro-cli chat --no-interactive",
+        "model": "claude-opus-5.5",
+        "agent": "diag (no tools)",
+        "temperature": "not settable (Kiro default)",
+        "max_tokens": "not settable",
+        "kiro_cli": "kiro-cli 3.1.0"
+      },
+      "latency_s": 39.1,
+      "response": {
+        "model": "kiro/claude-opus-5.5",
+        "choices": [
+          {
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\"action\": \"collect_more_evidence\", \"target\": \"Rerun the same prompt with max_new_tokens=1024 under the production decoding settings (do_sample=false, repetition_penalty=1.0) and check for a repeated paragraph, then rerun with do_sample=true, temperature=0.7, top_p=0.8 and compare; also record the production request's generation settings\", \"value\": null},\n  \"rationale\": \"The reported failure is a paragraph repeating in production, but the test reply contains no repetition. It is one coherent paragraph that stops mid-sentence because max_new_tokens=64 cut it off, which is too short for a description plus 20 selling points to show a loop at all. Greedy decoding with no repetition penalty on a 0.5B model is a plausible cause of loops. The artifacts neither show the loop nor confirm that production uses these same settings, so they cannot separate a greedy-decoding loop from other causes.\"\n}\n```"
+            }
+          }
+        ],
+        "kiro_credits": null
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "model_returned": "kiro/claude-opus-5.5",
+  "final_content": "```json\n{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\"action\": \"collect_more_evidence\", \"target\": \"Rerun the same prompt with max_new_tokens=1024 under the production decoding settings (do_sample=false, repetition_penalty=1.0) and check for a repeated paragraph, then rerun with do_sample=true, temperature=0.7, top_p=0.8 and compare; also record the production request's generation settings\", \"value\": null},\n  \"rationale\": \"The reported failure is a paragraph repeating in production, but the test reply contains no repetition. It is one coherent paragraph that stops mid-sentence because max_new_tokens=64 cut it off, which is too short for a description plus 20 selling points to show a loop at all. Greedy decoding with no repetition penalty on a 0.5B model is a plausible cause of loops. The artifacts neither show the loop nor confirm that production uses these same settings, so they cannot separate a greedy-decoding loop from other causes.\"\n}\n```",
+  "finished": "2026-11-08T09:03:06.243371+00:00"
+}

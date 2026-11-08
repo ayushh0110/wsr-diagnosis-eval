@@ -1,0 +1,55 @@
+{
+  "case_id": "06_thinking_exhaustion",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "b63070225fc91b89",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:15:42.212506+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_tokens\",\n    \"value\": \"1024\"\n  },\n  \"rationale\": \"The raw response shows `finish_reason: \\\"length\\\"` with `completion_tokens: 256`, matching the `max_tokens: 256` limit set in `request.json`. All 256 generated tokens were consumed by the model's internal thinking trace inside `reasoning_content` (which cut off mid-sentence), leaving 0 tokens for the final `content` field where the JSON response would be placed. Raising `max_tokens` (or disabling thinking) will allow the model to finish its reasoning phase and emit the final JSON answer.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TSrYOOMWxS2qSaCciEC04tRTKoZ0GKp2sFZfv+jWHPK3ySlVfnzTNY+BKKmW8jDfsLHYlNhnWhb+IRTHuoUe9N1zfXRIuHRXn1Af8qrC/I1mH183IujQT2AuvNGzh"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794132951,
+        "id": "zkvwavz_EMn1694PwJ-KqAw",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 200,
+          "prompt_tokens": 2626,
+          "prompt_tokens_details": {
+            "cached_tokens": 572
+          },
+          "total_tokens": 2826
+        }
+      },
+      "latency_s": 9.49
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"request\",\n  \"cause\": \"REASONING_STARVES_ANSWER\",\n  \"fix\": {\n    \"action\": \"raise_max_tokens\",\n    \"target\": \"max_tokens\",\n    \"value\": \"1024\"\n  },\n  \"rationale\": \"The raw response shows `finish_reason: \\\"length\\\"` with `completion_tokens: 256`, matching the `max_tokens: 256` limit set in `request.json`. All 256 generated tokens were consumed by the model's internal thinking trace inside `reasoning_content` (which cut off mid-sentence), leaving 0 tokens for the final `content` field where the JSON response would be placed. Raising `max_tokens` (or disabling thinking) will allow the model to finish its reasoning phase and emit the final JSON answer.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:15:51.705950+00:00"
+}

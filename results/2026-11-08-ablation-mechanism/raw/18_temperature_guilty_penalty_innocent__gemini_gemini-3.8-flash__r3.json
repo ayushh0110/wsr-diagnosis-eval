@@ -1,0 +1,53 @@
+{
+  "case_id": "18_temperature_guilty_penalty_innocent",
+  "model": "gemini/gemini-3.8-flash",
+  "run": 3,
+  "prompt_version": "1+mechanism",
+  "prompt_variant": "mechanism",
+  "prompt_sha256": "6c8ca662ce1dabf2",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:53:32.420597+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-3.8-flash",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets temperature to 3.5 while leaving top_k at 0, top_p at 1.0, and min_p at 0, completely removing distribution truncation. At such a high temperature, logit differences are flattened across the entire vocabulary, leading immediately to random multilingual token salad. Lowering temperature back to a normal range (e.g., 0.7) restores coherent generation.\"\n}\n```",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138819,
+        "id": "vGLwau7uHdnm694P94ekiQw",
+        "model": "gemini-3.8-flash",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 156,
+          "prompt_tokens": 2595,
+          "total_tokens": 3235
+        }
+      },
+      "latency_s": 7.16
+    }
+  ],
+  "final_content": "```json\n{\n  \"verdict\": \"sampling\",\n  \"cause\": \"TEMPERATURE_HIGH\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"temperature\",\n    \"value\": 0.7\n  },\n  \"rationale\": \"The request sets temperature to 3.5 while leaving top_k at 0, top_p at 1.0, and min_p at 0, completely removing distribution truncation. At such a high temperature, logit differences are flattened across the entire vocabulary, leading immediately to random multilingual token salad. Lowering temperature back to a normal range (e.g., 0.7) restores coherent generation.\"\n}\n```",
+  "model_returned": "gemini-3.8-flash",
+  "finished": "2026-11-08T11:53:39.580520+00:00"
+}

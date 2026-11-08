@@ -1,0 +1,52 @@
+{
+  "case_id": "12_prompt_cache_nondeterminism",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_sha256": "93c627cd55901395",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T10:17:39.550688+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"cache_prompt\",\n    \"value\": \"false\"\n  },\n  \"rationale\": \"In the first call, `timings` shows `cache_n: 1` and `prompt_n: 32` (almost the entire 33-token prompt is evaluated in a single batch). In the second call, `cache_n: 28` and `prompt_n: 5`, meaning `llama-server` reused 28 tokens from its KV prefix cache and only evaluated the last 5 tokens. Because evaluating 32 tokens in one batch uses different floating-point reduction sizes/kernels on the GPU than reusing 28 cached tokens and evaluating 5, small logit differences at the end of the prompt cause greedy decoding to diverge on the first vs. subsequent cached runs. Setting `cache_prompt: false` in the request (or disabling prompt caching on the server) forces identical prompt evaluation batching every time.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "EmQKYgFpFH0TAGHSy0h1GFnatgP1ytTF08PKn/s1ogRNSYd1kOxvOvIWb/PAcUA8nBYZpoRx7GsXhIa5h5RUk/v2zMuPhP8sSvmBOaWV8pE2lLqGLg01I7oaEoR9i4GgpLbGv7Cm"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794133074,
+        "id": "Q0zwaquNIcSR694P8b7ayAE",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 252,
+          "prompt_tokens": 3502,
+          "total_tokens": 3754
+        }
+      },
+      "latency_s": 15.65
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"runtime\",\n  \"cause\": \"PROMPT_CACHE_CHANGES_OUTPUT\",\n  \"fix\": {\n    \"action\": \"set_param\",\n    \"target\": \"cache_prompt\",\n    \"value\": \"false\"\n  },\n  \"rationale\": \"In the first call, `timings` shows `cache_n: 1` and `prompt_n: 32` (almost the entire 33-token prompt is evaluated in a single batch). In the second call, `cache_n: 28` and `prompt_n: 5`, meaning `llama-server` reused 28 tokens from its KV prefix cache and only evaluated the last 5 tokens. Because evaluating 32 tokens in one batch uses different floating-point reduction sizes/kernels on the GPU than reusing 28 cached tokens and evaluating 5, small logit differences at the end of the prompt cause greedy decoding to diverge on the first vs. subsequent cached runs. Setting `cache_prompt: false` in the request (or disabling prompt caching on the server) forces identical prompt evaluation batching every time.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T10:17:55.203725+00:00"
+}

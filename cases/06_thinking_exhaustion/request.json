@@ -1,0 +1,14 @@
+{
+  "model": "local",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Extract the people mentioned in this sentence as JSON with keys name and role: 'Dr. Asha Rao, the lead surgeon, met with Tom Lee, a hospital administrator, and Priya Nair, a nurse.'"
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 256,
+  "response_format": {
+    "type": "json_object"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "case_id": "23_penalty_temperature_decoy_with_server_defaults",
+  "model": "gemini/gemini-4-argon",
+  "run": 2,
+  "prompt_version": "1",
+  "prompt_variant": "base",
+  "prompt_sha256": "b676b15ec58b4ad5",
+  "settings": {
+    "temperature": 0.0,
+    "max_tokens": 8000
+  },
+  "started": "2026-11-08T11:39:44.105211+00:00",
+  "attempts": [
+    {
+      "request": {
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model": "gemini-4-argon",
+        "max_tokens": 8000,
+        "temperature": 0.0
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test temperature and repeat_penalty separately by resetting one at a time to server defaults (temperature=1.0, repeat_penalty=1.0)\",\n    \"value\": null\n  },\n  \"rationale\": \"The request simultaneously sets two aggressive sampling parameters—temperature=3.5 (vs. default 1.0) and repeat_penalty=1.5 (vs. default 1.0)—either of which can derail a repetitive task like listing numbers one per line. Because both settings were changed together and no single-variable run is provided, the artifacts do not separate TEMPERATURE_HIGH from REPEAT_PENALTY_HIGH. Running an ablation that resets each parameter individually to its default of 1.0 will isolate which setting (or both) caused the degenerate output.\"\n}",
+              "extra_content": {
+                "google": {
+                  "thought_signature": "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"
+                }
+              },
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1794138001,
+        "id": "gF_waqqHFv35694P7PPr2Qg",
+        "model": "gemini-4-argon",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 217,
+          "prompt_tokens": 3051,
+          "total_tokens": 3777
+        }
+      },
+      "latency_s": 17.66
+    }
+  ],
+  "final_content": "{\n  \"verdict\": \"inconclusive\",\n  \"cause\": \"INSUFFICIENT_EVIDENCE\",\n  \"fix\": {\n    \"action\": \"collect_more_evidence\",\n    \"target\": \"Test temperature and repeat_penalty separately by resetting one at a time to server defaults (temperature=1.0, repeat_penalty=1.0)\",\n    \"value\": null\n  },\n  \"rationale\": \"The request simultaneously sets two aggressive sampling parameters—temperature=3.5 (vs. default 1.0) and repeat_penalty=1.5 (vs. default 1.0)—either of which can derail a repetitive task like listing numbers one per line. Because both settings were changed together and no single-variable run is provided, the artifacts do not separate TEMPERATURE_HIGH from REPEAT_PENALTY_HIGH. Running an ablation that resets each parameter individually to its default of 1.0 will isolate which setting (or both) caused the degenerate output.\"\n}",
+  "model_returned": "gemini-4-argon",
+  "finished": "2026-11-08T11:40:01.765625+00:00"
+}
