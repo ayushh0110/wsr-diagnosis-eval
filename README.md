@@ -1,28 +1,30 @@
 # wsr-diagnosis-eval
 
-Can a frontier model debug a local LLM deployment the way someone who runs these things every day would?
+Before a frontier model is allowed to edit another model's weights, can it tell whether the weights are the problem?
 
 ## 1. Short description
 
-When a model I run locally (llama.cpp's `llama-server`, or plain `transformers`) starts looping, writing gibberish,
-returning blank replies or refusing, the fix is almost never "fine-tune it". It is usually a request field, a
-sampling setting, a server flag or a template. Finding which one means ruling causes out in order and only blaming
-the weights when nothing else is left. I wanted to know whether frontier models can do that ruling-out.
+Frontier models have started editing other models' weights directly. In "weight-space programming" (MIT CSAIL,
+November 2026), GPT-6 Astra read Qwen3.5-0.8B's raw weights, traced its thinking loops to one direction in two
+layers and subtracted it, with no training: MATH-500 went from 7.9% to 48.1% (reproduced independently at 51.0%).
+The authors say a benchmark for this is still being built.
 
-This is part of wsr, a diagnosis and repair tool for open models that I'm building (not released yet). Its last
-stage hands a frontier model tools to edit a small model's weights directly, for failures that really live in the
-weights. That only makes sense if the diagnosis before it is right: an agent that can edit weights and misreads a
-sampling bug will "fix" a model that isn't broken. This eval measures that diagnosis step on its own.
+That fix was for loops. Loops, gibberish, blank replies and refusals are exactly the symptoms I see every day from
+models I run locally (llama.cpp's `llama-server`, plain `transformers`), and most of the time the weights aren't the
+cause: it's a request field, a sampling setting, a server flag or a template. An agent that can edit weights has to
+get that call right first, or it will "fix" a model that isn't broken while the real cause stays in the config. This
+eval measures that diagnosis step: given what a user would share, find the layer that's really at fault and the fix.
 
-This eval has 24 cases built from 22 failures that I captured from real local runs (Gemma 4 E2B on llama-server,
+It has 24 cases built from 22 failures that I captured from real local runs (Gemma 4 E2B on llama-server,
 Qwen2.5-0.5B on transformers). Every answer key comes from an experiment: I changed one setting, the failure went
 away, and both arms reproduced. A model gets what a user would paste into a support thread (complaint, request, raw response,
 launch command) and has to name the layer, the cause and a fix that works. Grading is plain code, no LLM judge.
 
 **What I found.** Six frontier models (Claude Opus 5.5, Claude Sonnet 5.5, GPT-5.6 Sol, Kimi K3, Gemini 4 Argon,
-Gemini 3.8 Flash) get 342 of 342 runs right on 19 of the 24 cases. Every failure is in one kind of case: an
-alarming-looking setting sits next to the real cause, and it is harmless only because of how llama-server's sampler
-chain is put together. Two requests that differ in nothing but `temperature` (0.7 vs 3.5) go from 18/18 correct to
+Gemini 3.8 Flash) get 342 of 342 runs right on 19 of the 24 cases, and none of them ever blamed the weights when the
+weights weren't at fault (0 of 414 runs): the "don't touch the weights" call is solid. Every failure is in one kind
+of case, where the model has to choose between two settings: an alarming-looking setting sits next to the real
+cause, and it is harmless only because of how llama-server's sampler chain is put together. Two requests that differ in nothing but `temperature` (0.7 vs 3.5) go from 18/18 correct to
 0/18 (Fisher p = 2e-10). The same models see straight through an equally loud setting when an explicit flag switches
 it off (`do_sample=False` in transformers: 36/36). They check switches; they don't simulate the pipeline.
 
@@ -93,8 +95,8 @@ a reverse case where the loud setting really is guilty, the same decoy idea on t
 hardest cases again with the server's sampler order pasted in (23, 24). Separately, I reran the decoy cases with one
 extra sentence in the system prompt to see what it takes to close the gap (an ablation; the scores above don't use it).
 
-Who should care: anyone running open models, and anyone building assistants that answer "why is my model doing X".
-The wrong layer is expensive. Blame the weights for a sampling bug and people fine-tune or switch models for
+Who should care: anyone building agents that edit or repair models, anyone running open models, and anyone building
+assistants that answer "why is my model doing X". The wrong layer is expensive. Blame the weights for a sampling bug and people fine-tune or switch models for
 nothing. Here the wrong answers say "lower the temperature to 0.7", which leaves the bug exactly where it was (0/4
 correct at 0.7 in cases 11 and 15) and takes away the setting the user wanted.
 
@@ -297,6 +299,10 @@ listed distractor and near misses (`tests/`).
   llama-server case's evidence); Nguyen et al., "Turning Up the Heat: Min-p Sampling for Creative and Coherent LLM Outputs", ICLR 2025
   ([arXiv 2407.01082](https://arxiv.org/abs/2407.01082)); Shi et al., "Large Language Models Can Be Easily Distracted
   by Irrelevant Context", ICML 2023 ([arXiv 2302.00093](https://arxiv.org/abs/2302.00093)).
+- **Weight-space programming:** Takehi, Teoh, Zhang and Khattab (MIT CSAIL), "Weight-Space Programming", blog post,
+  2026-11-02 (rikiyat.github.io/blog/weight-space-programming; not peer-reviewed). It motivates this eval; nothing
+  from it is used here. Their own limits include a diagnosis failure: from weights alone, the LLM could not tell an
+  honest fine-tune from a sycophantic one.
 - **Related evals** (a short search, not exhaustive): Ekka (ICML 2026) diagnoses silent errors inside serving engines
   (vLLM, SGLang); an arXiv study (2603.02057) evaluates root-cause analysis on injected infrastructure failures;
   BFCL tests tool use and XSTest over-refusal. I didn't find one that tests diagnosing a user's own request, sampling
