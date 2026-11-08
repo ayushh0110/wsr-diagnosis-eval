@@ -36,7 +36,7 @@ guilty. On that case GPT-5.6 Sol, Kimi K3 and Gemini 3.8 Flash stay at 0/9 with 
 
 ## 2. Video walkthrough
 
-VIDEO_LINK_PENDING
+https://www.loom.com/share/a6e7123fcfde4c4bb643591da6383ea1
 
 ## 3. Domain and expertise
 
